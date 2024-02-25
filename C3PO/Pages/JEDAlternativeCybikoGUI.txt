@@ -1,0 +1,46 @@
+               <TABLE BORDER=0 CELLSPACING=0 CELLPADDING=0 WIDTH=656 NOF=LY>
+                    <TR VALIGN=TOP ALIGN=LEFT>
+                        <TD WIDTH=656>
+                            <P ALIGN=CENTER><FONT COLOR="#0000FF" SIZE="+2">JED<BR>The Alternative<BR>Graphical User Interface<BR>for the Cybiko Handheld Computer</FONT></P>
+                            <P ALIGN=CENTER><FONT COLOR="#0000FF" SIZE="+2">FREE DOWNLOAD!</FONT><FONT COLOR="#00FFFF" SIZE="+2"> <BR></FONT><A HREF="attach?page=JEDAlternativeCybikoGUI/jed10.zip"><FONT SIZE="+2">Jed10.zip</FONT></A></P>
+                            <P><B><FONT SIZE="+2" FACE="Arial,Helvetica,Univers,Zurich BT,sans-serif">J</FONT><FONT FACE="Arial,Helvetica,Univers,Zurich BT,sans-serif">ed is an alternative graphical user interface (GUI) for the Cybiko.  It is 
+                                a programmer's toolkit for creating programs.  To use Jed, you must be an experienced computer programmer and know how to use SDK.  Jed makes writing GUI applications easier.</FONT></B></P>
+                            <P><B><FONT SIZE="+2" FACE="Arial,Helvetica,Univers,Zurich BT,sans-serif">W</FONT><FONT FACE="Arial,Helvetica,Univers,Zurich BT,sans-serif">hen I first started programming the Cybiko I was very pleased with the ease 
+                                with which I could write new programs.  I could easily modify the existing applications to do variations on a theme. 
+                                 Then I ventured out to create my own applications and delved into Cybiko's Graphical User Interface.  I found it cumbersome as a user and challenging as a programmer.  So I decided to write my own GUI.  I wanted to create something simple to understand, easy to look at, and easy to use - both as a user and as a programmer.</FONT>
+                                </B></P>
+                            <P><B><FONT FACE="Arial,Helvetica,Univers,Zurich BT,sans-serif">This new GUI borrows its look and feel from the Motif windowing system.  This is a popular windowing environment used in Unix/Linux systems and is a 
+                                cousin to the Microsoft Windows look and feel. 
+                                 The design is characterized by using a light gray background and 3-D effects.  I hope that this design will be more familiar to the user community and therefore will be embraced by them.  The font used for the GUI defaults to mini_normal_font but the programmer can set the font for the entire application to any font they like.  Each item can also be tagged individually with its own font.</FONT>
+                                </B></P>
+                            <P><B><I><FONT FACE="Arial,Helvetica,Univers,Zurich BT,sans-serif"> <U>Goals for a new GUI</U></FONT></I></B></P>
+                            <P><B><FONT SIZE="+2" FACE="Arial,Helvetica,Univers,Zurich BT,sans-serif">T</FONT><FONT FACE="Arial,Helvetica,Univers,Zurich BT,sans-serif">he first and most important goal for the new GUI was to make it easier for the 
+                                programmer to write and maintain the code making up a Cybiko GUI application.  Secondly, the GUI had to be easy to use for the user and be a recognizable interface - something the user may already have used in 
+                                the past.  Finally, the internal structure of the GUI had to be as simple as possible - making it easy to maintain (for me) and also less prone to errors.  I believe these goals have been met in Jed V1.0.</FONT>
+                                </B></P>
+                            <P><B><I><FONT FACE="Arial,Helvetica,Univers,Zurich BT,sans-serif"><U>The Deliverables</U></FONT></I></B></P>
+                            <P><B><FONT SIZE="+2" FACE="Arial,Helvetica,Univers,Zurich BT,sans-serif">T</FONT><FONT FACE="Arial,Helvetica,Univers,Zurich BT,sans-serif">he Jed GUI is delivered as a single object module (jed.o) which you link into 
+                                your application. 
+                                 It adds less than 5KB to the size of your application.  The header file (jed.h) is included at the top of your source file.  These two files together (and this manual) comprise all of the necessary ingredients to create a Jed application.</FONT>
+                                </B></P>
+                            <P><B><FONT FACE="Arial,Helvetica,Univers,Zurich BT,sans-serif">There are also 2 sample programs demonstrating how to use the Jed interface</FONT></B></P>
+                            <P><B><I><FONT FACE="Arial,Helvetica,Univers,Zurich BT,sans-serif"><U>The Name</U></FONT></I></B></P>
+                            <P><B><FONT SIZE="+2" FACE="Arial,Helvetica,Univers,Zurich BT,sans-serif">I</FONT><FONT FACE="Arial,Helvetica,Univers,Zurich BT,sans-serif"> wish that I could say that there is some significance to the acronym J.E.D.  Surely I have tried to come up with one.  But the fact is that the GUI is named after the character Buddy Ebson made famous on the Beverly Hillbillies - Jed Clampett.  I happen to be a big fan of the show, especially the early, black and white episodes.</FONT>
+                                </B></P>
+                            <P><B><FONT SIZE="+2" FACE="Arial,Helvetica,Univers,Zurich BT,sans-serif">J</FONT><FONT FACE="Arial,Helvetica,Univers,Zurich BT,sans-serif">ed (the man) is a simple unassuming character. 
+                                 He dresses in plain grays and whites.  His clothes are worn, but always clean.  Jed (the GUI) is fashioned in his image.  Gray-scales, well-worn metaphors, and a clean interface.</FONT></B></P>
+                            <P><B><I><FONT FACE="Arial,Helvetica,Univers,Zurich BT,sans-serif"><U>Some History</U></FONT></I></B></P>
+                            <P><B><FONT SIZE="+2" FACE="Arial,Helvetica,Univers,Zurich BT,sans-serif">J</FONT><FONT FACE="Arial,Helvetica,Univers,Zurich BT,sans-serif">ed (the GUI again) was first implemented on a VT100 terminal emulator for a Sun 
+                                Microsystems Solaris Unix system.  I needed a nice text-based user interface for some software which I ran over the phone lines. 
+                                 The users had become quite accustomed to GUIs and had come to expect ease of use in their interfaces.  </FONT></B></P>
+                            <P><B><FONT FACE="Arial,Helvetica,Univers,Zurich BT,sans-serif">So I created Jed (the curses based interface). 
+                                 It was characterized by having only 3 classes of item - the text item (non-modifiable text used for labels), the string item (single-line data entry), and the button item (a field which when highlighted performed some action).  This was a very popular model both with users and with programmers.  Later the model was expanded to include other item classes and was converted to a Graphical User Interface.</FONT>
+                                </B></P>
+                            <P><B><FONT FACE="Arial,Helvetica,Univers,Zurich BT,sans-serif">Today, Jed is reincarnated for the Cybiko. 
+                                 This is all new code, only the concepts from the early curses-based Jed are inherited.  Jed for Cybiko makes not only the GUI easier to write, but also makes message processing easier to handle.  All the keyboard events are handled for you and any message that comes to your application is passed to the Jed_process_message() function (which you supply).  You can even handle polling events (timeouts to make your application animated, for instance).</FONT>
+                                </B></P>
+                            <P><B><FONT FACE="Arial,Helvetica,Univers,Zurich BT,sans-serif">Version 1.0 of Jed does not handle bitmaps directly, but you can still call Cybiko functions to interact with bitmaps and other Cybiko internals.</FONT></B>
+                            </P>
+                        </TD>
+                    </TR>
+                </TABLE>

@@ -1,0 +1,28 @@
+<B><P>Topic :</B> OPTION-MAIN</P>
+<B><P>Language Level</B> : B2C Extension</P>
+<B><P>Effectivity :</B> B2C v4</P>
+<B><P>Syntax</B> : </P><DIR>
+<DIR>
+
+<P>OPTION MAIN ON (default)</P>
+<P>OPTION MAIN OFF</P></DIR>
+</DIR>
+
+<B><P>Description :</P><DIR>
+<DIR>
+
+</B><P>The OPTION MAIN function enables and disables main function processing.  Normally a B2C file uses all commands not in functions as the main program.  Turning OPTION MAIN OFF will ignore all such commands.  This is used to create modular B2C files with just functions in them.   Heretofore B2C recognized only 1 source module.  Now it is possible to have a library of functions that are reusable.</P>
+
+<P>Modules with OPTION MAIN OFF inherits the other options from the MAIN module.</P>
+
+<P>NOTE: No provision for the prototyping of functions has been made.  This will come in a later release.  The Cybiko compiler will generate a abnormal app without proper prototypes.  Until a provision is made for them, use the C prototypes and &quot;outline&quot; them.</P>
+</DIR>
+</DIR>
+
+<B><P>Example : </P><DIR>
+<DIR>
+
+</B><P>OPTION MAIN OFF</P>
+<B></DIR>
+</DIR>
+

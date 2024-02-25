@@ -1,0 +1,13 @@
+So how did Cybiko create CyOS, games, apps, and low level device drivers?
+
+The answer... core development kits!
+
+Each section had a different core development kit (OS/Games/Apps/Device). This contains a heavily modified GNU H8S Compiler with a custom linker and assembler. Posession of this would certainly be great for the community - giving us access to the ability to create our own CyGear integrated into the OS - and even modify the OS!
+
+But my dear Josh... What about our own SDK? Good question Josh!
+
+Well - from what I know of our SDK (not much - big surprise really...) it links against the ordinals of the OS and OS DLLs (CyWin for example) to provide us functions and give us access to everything. 
+
+Note however that most internal Cybiko development was done in C++ and NOT C.. so they had to convert the C++ functions and such over to C.
+
+- Joshua Colp. (July 28 2003)

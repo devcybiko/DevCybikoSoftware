@@ -1,0 +1,123 @@
+[path]
+c:\data\cybiko\alcor\b2cv3b
+
+[option]
+#keep
+
+[name]
+Defender
+
+[source]
+defender.b2c
+
+[type]
+game
+
+[author]
+Gregory Smith
+
+[version]
+1.0.0
+
+[copyright]
+(C) 2001 The Alcor Group, Inc.
+
+[icon]
+defender.bmp
+
+[help]
+Defender Help
+
+[splash.image]
+intro.bmp
+
+[splash.text]
+Defender
+Based on the classic Defender game by Williams Electronics
+Defend all the men on the ground.  Landers will attempt to lift them away and turn into Mutants.
+If all the men on the ground are lifted away or destroyed, then the planet is destroyed and you will be in deep Space with a horde of Mutants.
+<LEFT>=Accelarate Left
+<RIGHT>=Accelerate Right
+<UP>=move up
+<DOWN>=move down
+<ENTER>=fire
+<DEL>=Smart Bomb
+<SPACE>=Hyper Space
+<SHIFT>=Status
+
+[music]
+shot.mus
+lander_explode.mus
+lander_mutant.mus
+man_lifting.mus
+man_falling.mus
+man_explode.mus
+man_capture.mus
+man_landed.mus
+hyperspace.mus
+smart_bomb.mus
+inspace.mus
+
+[pic=defintro.pic]
+defintro0.bmp
+defintro1.bmp
+defintro2.bmp
+defintro3.bmp
+defintro4.bmp
+
+[pic=lander.pic]
+lander0.bmp
+lander1.bmp
+lander2.bmp
+lander3.bmp
+mutant0.bmp
+mutant1.bmp
+mutant2.bmp
+mutant3.bmp
+[pic=pod.pic]
+pod.bmp
+
+[pic=swarmer.pic]
+swarmer.bmp
+
+[pic=bomber.pic]
+bomber.bmp
+
+[pic=baiter.pic]
+baiter.bmp
+
+[pic=ship.pic]
+ship0.bmp
+ship1.bmp
+ship2.bmp
+
+[pic=man.pic]
+man0.bmp
+man1.bmp
+
+[pic=shot.pic]
+shot0.bmp
+shot1.bmp
+shot2.bmp
+shot3.bmp
+shot4.bmp
+shot5.bmp
+
+[pic=explosion.pic]
+explosion0.bmp
+explosion1.bmp
+explosion2.bmp
+explosion3.bmp
+explosion4.bmp
+explosion5.bmp
+explosion6.bmp
+explosion7.bmp
+explosion8.bmp
+
+[pic=bullet.pic]
+bullet0.bmp
+bullet1.bmp
+
+[pic=points.pic]
+points0.bmp
+points1.bmp

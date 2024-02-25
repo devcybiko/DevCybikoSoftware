@@ -1,0 +1,67 @@
+Quinci -  The ICQ Client
+for the
+Cybiko Handheld Computer
+By Greg Smith
+Introduction:
+QuinciChat is an ICQ Client for the Cybiko Handheld Computer.  It is designed for the user who already has an ICQ account.  ICQ is a service that allows instant messaging between computers connected to the Internet.  For more information on ICQ including a free ICQ account, see www.icq.com.
+
+With QuinciChat you will be able to send messages to users on the Internet from your Cybiko without being wired to the Internet.  This is accomplished by using 2 Cybikos - one wired to your internet-connected-PC and the other as an ICQ client.
+
+The way it works is that the Cybiko connected to the PC (called the Junction) will take Radio Frequency (RF) messages through the antenna and convert them into serial messages passed to the PC.  The PC then converts them into TCP/IP packets and ships them onto the Internet.  And of course, the process works in reverse too.  So, your wireless Cybiko is in fact connected to the Internet!
+Setup:
+To run QuinciChat you need the following things:
+* 2 Cybiko handheld computers (one must be a Classic, the other can be either Classic or Xtreme)
+* A PC Running Microsoft Windows
+* An initialized ICQ account
+* A B2C Password for the Client Cybiko computer (www.devcybiko.com)
+
+The following items are part of the QuinciChat.zip file:
+* QuinciChat.exe - a program for the PC
+* QUINCIJunction.app - a program for the Cybiko
+* QUINCIClient.app - the remote ICQ client for the Cybiko
+
+First, download the QUINCIJunction.app to a Cybiko Classic computer.  From now on, this Cybiko will be called the Junction. Download the QUINCIClient.app to a different Cybiko computer (either Classic or Xtreme).  From now on this Cybiko will be called the Client.
+
+Next, connect the Junction Cybiko to the PC with the Serial cable in the usual way.  Run the program "QuinciChat.exe" on your PC.  It should pop up in a MSDOS Command window and display some copyright information.
+
+Finally, run the Client.  The first thing you will see is a window asking you to choose the Junction. Select the name of the Junction Cybiko.
+
+
+
+Once you have selected a Junction, the main screen is displayed: (or the profile screen for first time users).
+
+
+
+There are 2 text regions and 4 buttons.  To move from one region to the next use the TAB key.  When a button is active it will be highlighted.  Pressing the ENTER key will perform that action.  
+
+The Message Region is where you will see messages from the operating system and from your friends.  If you TAB into the Message Region you may scroll back using the arrow keys to see up to 100 lines of previous text.
+
+The "Clear" button will clear the Message Region.
+The "Exit" button will leave QUINCIClient.
+
+The Input Region is where you send messages to your buddies.  Type text in there and press ENTER.  The arrow keys work as do the backspace and delete keys so you may edit your text.  Pressing FN-BkSp will erase all text in the field.
+
+The "Buds" button will display a list of all the people from your buddy list who are currently logged in.
+
+You may select one of these users by using the up/down arrow keys.  Pressing ENTER will make them the currently active buddy and you can start sending messages to them.  When you are in the Main Screen, if a buddy logs in you will get an operating system message like this:
+
+".12345678 logged in"
+
+(all operating system messages have a period in the first position)  QUINCIClient will store the last message they sent to you and display it when you select that User Id Number (UIN).
+
+The "Profile" button on the main display will show your current information.  If you have no current information the screen will pop up automatically.
+
+You must enter a valid UIN and Password.  There is space for your nickname, but it is unused at this time.  Normally the server must be "icq.mirabilis.com" and the port must be 4000.  Pressing OK here will return you to the main screen.
+
+While in the Profile screen, you may update your buddy list with the "Buds" button.
+
+Here you can Add or Delete a buddy by their UIN number.  Or, if they are online, you can Call them too.
+
+Contact:
+We hope you will enjoy QuinciChat.  Since this is Version 1.1.0 release, there are bound to be errors.  Please report bugs to:
+
+Greg Smith
+DevCybiko.com
+cybiko@alcorgrp.com
+AIM : DevCybiko
+ICQ: 131834046

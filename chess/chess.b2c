@@ -1,0 +1,37 @@
+OPTION C_COORDS
+OPTION SHOW OFF
+OPTION ESCAPE OFF
+OPTION SPRITES 2
+OPTION 3DROOMS 0
+
+include "sprites.b2c"
+include "board.b2c"
+include "user.b2c"
+include "moves.b2c"
+include "ai_random.b2c"
+
+sub repaint
+  cls
+  board_repaint
+  printxy 120,10,nmoves
+  redraw show
+end sub
+
+sub init
+  keyclick off
+  board_reset
+end sub
+
+sub play_chess()
+  dim oldkey as int
+  oldkey = 0
+  init
+  repaint
+  while(true)
+    oldkey = user_move_cursor(oldkey, white)
+    if (oldkey=#KEY_SPACE) then exit while
+    ai(black)
+  wend
+end sub
+
+play_chess

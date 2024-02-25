@@ -1,0 +1,364 @@
+OPTION C_COORDS
+OPTION SHOW OFF
+OPTION ESCAPE OFF
+
+include "msg.b2c"
+
+msg_init
+
+dim player as long
+dim nplayers as int
+dim players[8] as long
+dim points[8] as long
+dim locked_out[8] as int
+dim names[8,20] as char
+dim tmp[64] as char
+dim status[64] as char
+dim winner as int
+dim my_cyid as long
+dim my_name[20] as char
+dim nsecs as long
+dim last_secs as long
+dim state as int
+dim countdown_reset as int
+dim question_reset as int
+dim question_timer as int
+dim question_points as long
+
+dim GETPOINTS as int
+dim GAMEOVER as int
+dim WAITING as int
+dim BUZZING as int
+dim CORRECT as int
+dim INCORRECT as int
+dim RESET as int
+dim JOINING as int
+
+last_secs=0
+
+function sort(who as int) as int
+    dim swap as int
+    dim ptmp as long
+
+    swap=true
+    while swap
+        swap=false
+        if who>0 then
+            if points[who] > points[who-1] then
+                ptmp=points[who-1]
+                points[who-1]=points[who]
+                points[who]=ptmp
+
+                tmp=names[who-1]
+                names[who-1]=names[who]
+                names[who]=tmp
+
+                ptmp=players[who-1]
+                players[who-1]=players[who]
+                players[who]=ptmp
+                swap=true
+                who=who-1
+            endif
+        endif
+        if who<nplayers-1 then
+            if points[who] < points[who+1] then
+                ptmp=points[who]
+                points[who]=points[who+1]
+                points[who+1]=ptmp
+
+                tmp=names[who]
+                names[who]=names[who+1]
+                names[who+1]=tmp
+
+                ptmp=players[who]
+                players[who]=players[who+1]
+                players[who+1]=ptmp
+                swap=true
+                who=who+1
+            endif
+        endif
+    wend
+    sort = who
+end function
+
+sub timer()
+    dim now as long
+    inline now=clock();
+    if now-last_secs < 5000 then exit sub
+    last_secs = now
+    nsecs=nsecs-5
+    sprint tmp, nsecs
+    Sendmessage -1, msg_mc_timer, "player", tmp
+    repaint
+    if nsecs=0 then
+        Sendmessage -1, msg_mc_gameover, "player", ""
+        Sendmessage players[0], msg_mc_winner, "player", ""
+    endif
+end sub
+
+sub add_player(cyid as long, buf[] as char)
+    dim x as int
+    dim time_value as long
+
+    for i=0 to nplayers-1
+        if players[i] = cyid then
+            sprint tmp, points[i]
+            Sendmessage cyid, msg_mc_rejoined, "player", tmp
+            exit sub
+        end if
+    next
+
+    if nplayers = 8 then
+        Sendmessage cyid, msg_mc_player_refused, "player", "Sorry, there are too many players"
+        exit sub
+    endif
+
+    names[nplayers] = buf
+    sprint tmp, names[nplayers], " Would like to play"
+
+    x = dialog("MC", tmp)
+
+    if x = false then
+        Sendmessage cyid, msg_mc_player_refused, "player", "Sorry, you were refused"
+        exit sub
+    endif
+    players[nplayers]=cyid
+    points[nplayers]=0
+    locked_out[nplayers]=false
+    Sendmessage cyid, msg_mc_player_added, "player", ""
+    nplayers=nplayers+1
+    status = buf
+    sort(nplayers-1)
+end sub
+
+function lookup_player(cyid as long, name[] as char) as int
+    for i=0 to nplayers-1
+        if cyid = players[i] then
+            lookup_player=i
+            name=names[i]
+            exit function
+        endif
+    next
+    lookup_player = 10
+end function
+
+sub player_buzzed_in(cyid as long, buf[] as char)
+    dim x as int
+    dim name[20] as char
+
+    status = buf    
+    x = lookup_player(cyid, name)
+    if x=10 then
+        beep 10
+        wait 5
+        beep -1
+    else
+        if locked_out[x]=false then
+            winner = x
+            Sendmessage cyid, msg_mc_recognized, "player", ""
+            Sendmessage -1, msg_mc_lockout, "player", names[winner]
+            state = BUZZING
+        endif
+    endif
+end sub
+
+sub onmessage(cyid as long, msgno as int, buf[] as char)
+    if msgno=msg_player_add_player then add_player(cyid,buf)
+    if msgno=msg_player_buzzed_in then player_buzzed_in(cyid, buf)
+end sub
+
+sub high_score
+    sprint tmp, names[0],"|",points[0]
+    Sendmessage -1, msg_mc_high_score, "player", tmp
+end sub
+
+sub add_points(x as int, amount as long)
+    points[x] = points[x] + amount
+    sprint tmp, points[x]
+    Sendmessage players[x], msg_mc_score, "player", tmp
+    winner = sort(x)
+    high_score
+end sub
+
+sub init
+    GETPOINTS=0
+    GAMEOVER=1
+    WAITING=2
+    BUZZING=3
+    CORRECT=4
+    INCORRECT=5
+    RESET=6
+    JOINING=7
+
+    nplayers=0
+    players[nplayers]=0
+    inline my_cyid = get_own_id();
+    inline strcpy(my_name,finder.mf.f_nick);
+    dim a
+    dim secs[10] as char
+    secs="10"
+    a = dialog("MC", "How many minutes?", secs, 10)
+    inline countdown_reset=atoul(secs)*60;
+    secs="10"
+    a = dialog("MC", "Question Timeout (secs)?", secs, 10)
+    inline question_reset=atoul(secs);
+    a = dialog("MC", "PRESS ENTER TO BEGIN!")
+    state=JOINING
+end sub
+
+sub repaint()
+    dim y as int
+
+    ink black
+    paper ltgrey
+    cls
+
+    if state=WAITING then
+        font "cool_bold_font"
+        printxy 1,1,nsecs
+        font "mini_normal_font"
+        for i=0 to nplayers-1
+            y = i*10
+            printxy 80,y, names[i]
+            printxy 120,y, points[i]
+        next
+    end if
+
+    if state=JOINING then
+        font "cool_bold_font"
+        printxy 1,1,"JOINING..."
+        font "mini_normal_font"
+        for i=0 to nplayers-1
+            y = i*10
+            printxy 80,y, names[i]
+            printxy 120,y, points[i]
+        next
+    end if
+
+    if state=BUZZING then
+        font "cool_bold_font"
+        printxy 80,50,names[winner],"!"
+        printxy 1,1, question_timer
+    endif
+
+    if state=CORRECT then
+        font "cool_bold_font"
+        printxy 80,50,names[winner]," : ", points[i]
+    endif
+
+    if state=INCORRECT then
+        font "cool_bold_font"
+        printxy 80,50,names[winner]," : ", points[i]
+    endif
+
+    if state=RESET then
+        font "cool_bold_font"
+        printxy 80,50,"Next Question"
+    endif
+
+    if state=GAMEOVER then
+        font "cool_bold_font"
+        printxy 80,50,"GAME OVER"
+    endif
+
+    if state=GETPOINTS then
+        font "cool_bold_font"
+        printxy 80,50,"GET POINTS"
+    endif
+
+    redraw show
+end sub
+
+sub do_nothing
+    state=state
+end sub
+
+sub do_reset
+    Sendmessage -1, msg_mc_reset, "player", ""
+    for i=0 to nplayers-1
+        locked_out[i] = false
+    next
+    state = GETPOINTS
+end sub
+
+sub do_getpoints
+    dim a as int
+    dim pts[10] as char
+
+    Sendmessage -1, msg_mc_standby, "player", ""
+
+    pts="100"
+    a = dialog("MC", "Points", pts, 10)
+    inline question_points=atoul(pts);
+    do_reset
+    state = WAITING
+    repaint
+end sub
+
+sub do_waiting
+    if key(#KEY_SPACE) then
+        state=RESET
+    endif
+end sub
+
+sub do_buzzing
+    dim a
+    sprint tmp,names[winner]," Buzzed In - OK=Right Cancel=Wrong"
+    a = dialog("MC", tmp)
+    if a=0 then
+        state=INCORRECT
+    else
+        state=CORRECT
+    endif
+end sub
+
+sub do_correct
+    add_points(winner, question_points)
+    Sendmessage players[winner], msg_mc_right, "player", ""
+    state=GETPOINTS
+end sub
+
+sub do_incorrect
+    add_points(winner, -question_points)
+    locked_out[winner]=true
+    for i=0 to nplayers-1
+        if locked_out[i] and i<>winner then
+            Sendmessage players[i], msg_mc_lockout, "player", ""
+        else
+            Sendmessage players[i], msg_mc_reset, "player", ""
+        endif
+    next
+    Sendmessage players[winner], msg_mc_wrong, "player", ""
+    state=WAITING
+end sub
+
+sub do_joining
+    while not key(#KEY_ENTER)
+        inline _escape(0);
+        repaint
+        wait 5
+    wend
+    state=GETPOINTS
+end sub
+
+sub mainsub
+    init
+
+    nsecs = countdown_reset
+
+    repaint
+
+    while true
+        inline _escape(0);
+        timer
+        if state=JOINING then do_joining
+        if state=GETPOINTS then do_getpoints
+        if state=WAITING then do_waiting
+        if state=BUZZING then do_buzzing
+        if state=CORRECT then do_correct
+        if state=INCORRECT then do_incorrect
+        if state=RESET then do_reset
+    wend
+end sub
+
+mainsub

@@ -1,0 +1,31 @@
+<B><P>Topic :</B> Sprite</P>
+<B><P>Language Level</B> : B2C Extension</P>
+<B><P>Effectivity :</B> B2C v2c</P>
+<B><P>Syntax</B> : </P><DIR>
+<DIR>
+
+<P>Sprite n, "filename"</P>
+<P>Sprite n</P></DIR>
+</DIR>
+
+<B><P>Description :</P>
+<P>&#9;</B>A Sprite is an animated object on the Cybiko screen.  The first form of the Sprite command loads a ".pic" file into memory.  The value 'n' indicates which sprite (0-32) is being loaded.  This file should have been created using the SDK program "2pic".  Once in memory, the Move command can be used to move and animate the Sprite.</P>
+<P>&#9;The second form deletes the sprite from memory.</P>
+
+<B><P>Example</P>
+<P>&#9;</B>Dim x as int</P>
+<P>&#9;Dim y as int</P>
+<P>&#9;Dim z as int</P>
+<P>&#9;Sprite 1, "lemming.pic" ' load a sprite from the archive</P>
+<P>&#9;Sprite 2, "/default/mario.pic" 'load a sprite from the flash</P>
+<P>&#9;X=0</P>
+<P>&#9;Y=0</P>
+<P>&#9;Z=0</P>
+<P>&#9;While 1</P>
+<P>&#9;&#9;If key(264) then x=x-1</P>
+<P>&#9;&#9;If key(266) then x=x+1</P>
+<P>&#9;&#9;Move x,y,z</P>
+<P>&#9;&#9;Redraw</P>
+<P>&#9;wend</P>
+
+<B><P>&nbsp;</P>

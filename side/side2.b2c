@@ -1,0 +1,195 @@
+'
+' side1 - side scrolling demo
+'
+' Greg Smith
+' 9/11/02
+'
+OPTION C_COORDS
+OPTION SHOW OFF
+OPTION ESCAPE OFF
+
+'
+' global variables
+'
+dim land as int ' landscape sprite number
+dim land_x as int ' x position of land (0-land_w*land_n-1)
+dim land_y as int ' y position of land
+dim land_w as int ' width of landscape panel
+dim land_h as int ' height of landscape panel
+dim land_n as int ' number of landscape panels
+
+dim lemming as int ' lemming sprite number
+dim lemming_x as int ' lemming position on the screen
+dim lemming_y as int ' lemming position on the screen
+dim lemming_z as int ' lemming animation
+dim lemming_w as int ' lemming width
+dim lemming_h as int ' lemming height
+dim lemming_n as int ' number of lemmings
+dim lemming_mode as int ' lemming flipped?
+
+dim speed as int ' background movement speed
+
+'
+' init subroutine - init globals
+'
+sub init
+    dim dummy as int
+    land = 1
+    lemming = 2
+    speed = 2
+
+    sprite land,"land.pic"
+    sprite_get land, land_x, land_y, dummy, dummy, land_w, land_h
+    land_x = 0
+    land_y = 0
+    land_n = sprite_n(land)
+
+    sprite lemming,"lemming.pic"
+    sprite_get lemming, lemming_x, lemming_y, lemming_z, lemming_mode, lemming_w, lemming_h
+    lemming_x = 80
+    lemming_y = find_pixel(lemming_x)-lemming_h
+    lemming_z = 0
+    lemming_mode = 0
+    lemming_n = sprite_n(lemming)    
+end sub
+
+'''
+''' useful but alas missing functions from B2Cuser
+'''
+
+'
+' sprite_n - get the number of elements from the sprite bitmap
+'
+function sprite_n(spriteno as int) as int
+    inline return(BitmapSequence_get_size(b2c->sprites[spriteno].bitmap));
+end function
+
+'
+' get_pixel - get the color of the pixel on the screen
+'
+function get_pixel(x as int, y as int) as int
+    inline return DisplayGraphics_get_pixel (b2c->main_module.m_gfx, x, y);
+end function
+
+'
+' draw_landscape - draw the current landscape using 2 bitmaps
+'
+sub draw_landscape
+    dim x as int
+    dim y as int
+    dim z as int
+
+    x = land_x mod land_w  ' choose the x coordinate to draw at within a single panel
+    y = land_y ' this never changes
+    z = land_x / land_w ' choose the panel to draw
+
+    cls  ' erase the screen 
+    ' draw the first panel just offscreen to the left
+    ' the stuff offscreen is not displayed but the 
+    ' rest of the panel is displayed
+    move land, 0-x, y, z
+    redraw land
+
+    ' draw the second panel just to the right of the
+    ' first panel. they mesh nicely. the extra stuff
+    ' is not displayed (it falls off the right edge)
+    move land, land_w-x, y, z+1
+    redraw land
+end sub
+
+'
+' draw_lemming - draw the current lemming
+'
+sub draw_lemming
+    move lemming, lemming_x, lemming_y, lemming_z, lemming_mode
+    redraw lemming
+end sub
+
+'
+' draw_everything - draw the landscape and then the lemming
+'
+sub draw_everything
+    draw_landscape
+    draw_lemming
+    redraw show
+end sub
+
+'
+' land_move - update the land_x variable depending on the direction (delta_x)
+'
+sub land_move(delta_x as int)
+    land_x=land_x + delta_x*speed ' move "speed" pixels to the left or right
+    if land_x < 0 then 
+        'wrap around to the left
+        land_x = land_w * land_n + land_x
+    endif
+    if land_x > land_w * land_n then
+        'wrap around to the right
+        land_x = 0
+    endif
+end sub
+
+'
+' find_pixel - find the lowest pixel on the landscape
+' this function starts scanning at the top of the 
+' current screen position and scans down until it
+' finds a non-white pixel
+'
+function find_pixel(x as int) as int
+    dim y as int
+    for y=0 to land_h 'from the top to the bottom of the landscape
+	if get_pixel(x, y) <> white then 'non-white pixel
+            find_pixel = y ' set the find_pixel return value
+            exit function; ' return early
+        endif
+    next
+    find_pixel=land_h ' default return value
+end function
+
+'
+' lemming move - move the lemming
+' (really we move the background)
+'
+sub lemming_move(delta_x as int)
+    '
+    ' this is the collision detection with the background
+    '
+    land_move(delta_x) ' move the landscape to the next position
+    draw_landscape ' draw the landscape so we can scan it
+    lemming_y = find_pixel(lemming_x+lemming_w/2) ' scan the landscape for first non-white pixel
+    lemming_y = lemming_y-lemming_h ' position the lemming 
+    if lemming_y <= 0 then  ' if the lemming's head is offscreen
+        land_move(-delta_x) ' undo landscape movement 
+        exit sub ' exit the movement subroutine without changes
+    end if
+
+    lemming_z = lemming_z + 1 ' next lemming animation
+    if lemming_z >= lemming_n then lemming_z = 0
+    lemming_mode = 0
+    if delta_x < 0 then lemming_mode = FLIP_X
+end sub
+
+'
+' handle_keys - what to do if the keys are moved
+'
+sub handle_keys
+    if key(#KEY_DEL) then speed=speed-1
+    if key(#KEY_INS) then speed=speed+1
+    if speed < 1 then speed = 1
+
+    if key(#KEY_LEFT) then lemming_move(-1)
+    if key(#KEY_RIGHT) then lemming_move(1)
+end sub
+
+'
+' run_program - run the whole thing
+'
+sub run_program
+    init
+    while key(#KEY_SPACE)=0
+        draw_everything
+        handle_keys
+    wend
+end sub
+
+run_program

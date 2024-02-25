@@ -1,0 +1,2 @@
+call build mc.bld
+call build player.bld

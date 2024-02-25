@@ -1,0 +1,176 @@
+{{{
+//
+// This file contains functions from the:
+//
+// RPG KIT ENGINE Version 1.0.0
+// (c)Copyright 2001 Kieren Johnstone
+// FILE VERSIONED: 10:57 17/02/01
+//
+// Although some of this code MAY be a
+// part of the Cybiko RPG Kit project,
+// it is not guarenteed that it is, or
+// that it has not been altered in order
+// to be distributed.  The author cannot
+// provide a warranty or any kind, nor
+// can he accept any responsibility for
+// any unwanted effects it may cause.
+// Use this file at your own risk.
+//
+// You may use any code provided in this
+// file, modify it, alter it, distribute
+// it, etc., as long as this message
+// remains intact.  If you decide to use
+// this code in a project, you should
+// also put the below message in any
+// readme files, etc. distributed with
+// the project:
+//
+// "This project utilises certain source
+// code from the Cybiko RPG Kit project,
+// which can be found at http://greenpro
+// jects.iwarp.com/specialprojects/rpgki
+// t/."
+//
+// Thankyou for your interest in this
+// code.
+//
+
+// NOTE: if, like the RPG Kit, you want to use your own memory
+// managers / other debugging functions, you may remove the
+// two #define statements below, then write your own _malloc and
+// _free routines, possibly utilising the actual malloc and
+// free routines provided in the Cybiko RTL.
+#define _malloc malloc
+#define _free free
+
+#include "cywin.h"
+// NOTE: you should also #include a main file here, so that any
+// require globals (such as main_module) are accessible here.
+
+// function: split_screen
+// effect:   Splits the active page into bars which scroll away
+// NOTE: assumes that main_module is global
+void split_screen(void)
+{
+	int a;
+	int b;
+	int y;
+
+	// reset redraw counter
+	b = 0;
+
+	// split the screen
+	for (a = 0; a < 160; a++)
+	{
+		// split lines
+		for (y = 0; y < 100; y += 20)
+		{
+			DisplayGraphics_scroll(main_module.m_gfx, a, y, 160 - a, 10, 1, 0); // move right
+			DisplayGraphics_scroll(main_module.m_gfx, 0, y + 10, 160 - a, 10, -1, 0); // move left
+		}
+
+		// update the screen
+		if (++b == 3)
+		{
+			b = 0; // reset counter
+			DisplayGraphics_show(main_module.m_gfx); // update screen
+		}
+	}
+}
+
+// function: fade_to_colour
+// effect:   changes the active page to the colour specified, by
+//           means of blocking it in
+// NOTE: assumes that main_module is global
+void fade_to_colour(color_t colour)
+{
+	int a;
+	int o;
+	char *d;
+	int x, y;
+
+	// allocate table
+	d = (char *)_malloc(160);
+
+	// clear table
+	memset(d, 0, 160);
+
+	// set colour
+	DisplayGraphics_set_color(main_module.m_gfx, colour);
+
+	// block out screen
+	for (a = 0; a < 160; a++)
+	{
+		// find a free block
+		x = (int)random(16);
+		y = (int)random(10); // select
+		o = x + (y * 16); // build offset
+		while (d[o] == 1)
+		{
+			x = (int)random(16); // retry
+			y = (int)random(10);
+			o = x + (y * 16); // rebuild offset
+		}
+
+		// draw the block
+		d[o] = 1; // update table
+		DisplayGraphics_fill_rect(main_module.m_gfx, x * 10, y * 10, 10, 10); // draw on screen
+
+		// update screen
+		DisplayGraphics_show(main_module.m_gfx);
+	}
+
+	// delete table
+	_free(d);
+}
+
+// function: copy_other_page
+// effect:   changes the active page to the contents of the other
+//           page (assuming only pages 0 and 1 are in use), by
+//           means of blocking it in
+// NOTE: assumes that main_module is global
+void copy_other_page(void)
+{
+	int a;
+	int o;
+	int src,dest;
+	char *d;
+	int x, y;
+
+	// allocate table
+	d = (char *)_malloc(160);
+
+	// clear table
+	memset(d, 0, 160);
+
+	// get source, destination pages
+	dest = DisplayGraphics_get_page(main_module.m_gfx); // destination - current page
+	src = (dest == 1) ? 0 : 1; // source, opposite to destination
+
+	// block out screen
+	for (a = 0; a < 160; a++)
+	{
+		// find a free block
+		x = (int)random(16);
+		y = (int)random(10); // select
+		o = x + (y * 16); // build offset
+		while (d[o] == 1)
+		{
+			x = (int)random(16); // retry
+			y = (int)random(10);
+			o = x + (y * 16); // rebuild offset
+		}
+
+		// copy the block
+		d[x + (y * 16)] = 1; // update table
+		DisplayGraphics_page_copy(main_module.m_gfx, src, dest, x * 10, y * 10, 10, 10); // draw on screen
+
+		// update screen
+		DisplayGraphics_show(main_module.m_gfx);
+	}
+
+	// delete table
+	_free(d);
+}
+
+}}}

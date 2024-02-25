@@ -1,0 +1,27 @@
+Alittle lesson regarding ChanIOUSB.dll before I begin - it's the DLL responsible for communication between Cybiko Xtreme and Windows.
+
+ChanIOUSB is based around the idea of multiple channels to the Xtreme and is designed to be portable to a wide range of devices including the Planet Halo device. Actually - the Planet Halo device used a modified ChanIOUSB.dll for the Xtreme for communication.
+
+Now the actual protocol/theory for communication:
+
+The Xtreme is based around different "pipes" for different functions, I think that what "pipes" mean is actually channels and vice versa. Pipe 100 is for (where did I put my reference book...) receiving files and pipe 101 is for sending.
+
+What about actual file transfers? I lost my page for that but what I have here indicates (my memory isn't that good) 4D 4D 11 C7 (Block number) 02 00 (then the actual data) (CRC16).
+
+Booting an image is accomplished by using a different product ID upon the Xtreme booting - the Windows machine recognizes that and EZLoader is informed.
+
+Here's the actual process step-by-step of what bytes were sent:<br>
+Restart Cybiko: PC to Cybiko - 0x1E<br>
+Notify Cybiko is ready: Cybiko to PC - 0x2D<br>
+Boot image information: PC to Cybiko - 0x3C (Address Begin) (Image length)<br>
+-- then while not end of boot image --<br>
+Request block: Cybiko to PC - 0x4B (number of block)<br>
+Block data: PC to Cybiko - 0x5A (block length) (number of block) (data) (CRC16)<br>
+-- end of that nasty thing I said above --<br>
+If transfer ok: Cybiko to PC - 0x69<br>
+If transfer not good: Cybiko to PC - 0x78<br>
+
+That's it folks!
+
+- Joshua Colp. (July 18 2003)
+[josh]

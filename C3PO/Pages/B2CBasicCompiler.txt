@@ -1,0 +1,153 @@
+ <center>
+               <TABLE BORDER=0 CELLSPACING=0 CELLPADDING=0 WIDTH=656 NOF=LY>
+                    <TR VALIGN=TOP ALIGN=LEFT>
+                        <TD WIDTH=656>
+                            <FORM NAME="Text1FORM" ACTION="" METHOD=POST>
+                                <P ALIGN=CENTER>
+                                    <TABLE WIDTH="100%" BORDER=0 CELLSPACING=0 CELLPADDING=0 ALIGN=LEFT NOF=TE>
+                                        <TR>
+                                            <TD>
+                                                <TABLE ID="Table7" BORDER=1 CELLSPACING=3 CELLPADDING=1 WIDTH="100%">
+                                                    <TR>
+                                                        <TD COLSPAN=2>
+                                                            <P>
+                                                                <TABLE WIDTH="100%" BORDER=0 CELLSPACING=0 CELLPADDING=0 NOF=TE>
+                                                                    <TR>
+                                                                        <TD ALIGN="CENTER"><IMG ID="Picture4" HEIGHT=143 WIDTH=200 SRC="attach?page=B2CBasicCompiler/b2cv5.bmp" BORDER=0></TD>
+                                                                    </TR>
+                                                                </TABLE>
+                                                        </TD>
+                                                    </TR>
+                                                    <TR>
+                                                        <TD WIDTH="49%">
+                                                            <P ALIGN=CENTER><FONT class="" COLOR="#0000FF" SIZE="+2">The First<BR>BASIC Compiler<BR>for the Cybiko Handheld Computer</FONT></P>
+                                                            <P ALIGN=CENTER><FONT COLOR="#0000FF" SIZE="+2">FREE DOWNLOAD!<BR></FONT><A HREF="attach?page=B2CBasicCompiler/b2cv5.zip"><FONT SIZE="+2">B2Cv5.zip</FONT></A> <BR>(2.063MB)<BR>
+</P>
+                                                            <P ALIGN=CENTER><A HREF="attach?page=B2CBasicCompiler/Cybiko_SDK_2010_Std.exe">Cybiko SDK 2.0.10.std</A><BR>(3.4MB)<BR><P>
+                                                        </TD>
+                                                        <TD WIDTH="50%">
+                                                            <P>
+
+
+
+<b><font face=helvetica size=3><u>B2C Libraries</u></font></b><br>
+<font face=helvetica size=2>B2C Libraries are extensions to the B2C language written by B2C Developers.  These functions give new capabilities to B2C without modifying the compiler.  Check back here from time to time and download the latest enhancements to the B2C Library.</font>
+<TABLE BORDER CELLSPACING=0 BORDERCOLOR="#dddddd" CELLPADDING=0 WIDTH=350>
+<tr>
+<th width=25%><center>Author</center></th>
+<th width=25%><center>Library</center></th>
+<th><center>Description</th>
+</tr>
+<tr>
+<td width=25% align=center>Elliot Lee</td>
+<td width=25% align=center><a href=attach?page=B2CBasicCompiler/time.zip>time.zip</a></td>
+<td>Gets the current systems time</td>
+</tr>
+<tr>
+<td width=25% align=center>Elliot Lee</td>
+<td width=25% align=center><a href=attach?page=B2CBasicCompiler/run.zip>run.zip</a></td>
+<td>Runs a program from inside your program</td>
+</tr>
+<tr>
+<td width=25% align=center>Greg Smith</td>
+<td width=25% align=center><a href=attach?page=B2CBasicCompiler/serial.zip>serial.zip</a></td>
+<td>Adds support for the serial port</td>
+</tr>
+<tr>
+<td width=25% align=center>HyperDev</td>
+<td width=25% align=center>[vibe.zip|B2CBasicCompiler/vibe.zip]</td>
+<td>Control the sound, vibe, and comm port</td>
+</tr>
+</table>
+<p>
+
+ </P>
+                                                        </TD>
+                                                    </TR>
+                                                    <TR>
+                                                        <TD VALIGN=TOP ALIGN=LEFT WIDTH="49%">
+                                                            <P><B><FONT SIZE="-1" FACE="Arial,Helvetica,Univers,Zurich BT,sans-serif">The B2C (Basic to C) compiler gives you, the Basic programmer, the same processing power as a SDK/C 
+                                                                programmer.  B2C has all the power of CyBasic plus these capabilities too:</FONT></B></P>
+                                                            <UL>
+                                                                <LI><B><FONT SIZE="-1" FACE="Arial,Helvetica,Univers,Zurich BT,sans-serif">Sprite-oriented Bit-mapped graphics</FONT></B></LI>
+                                                                <LI><B><FONT SIZE="-1" FACE="Arial,Helvetica,Univers,Zurich BT,sans-serif">3D Graphics</FONT></B></LI>
+                                                                <LI><B><FONT SIZE="-1" FACE="Arial,Helvetica,Univers,Zurich BT,sans-serif">Multiplayer (RF) capability</FONT></B></LI>
+                                                                <LI><B><FONT SIZE="-1" FACE="Arial,Helvetica,Univers,Zurich BT,sans-serif">Music (foreground/background)</FONT></B></LI>
+                                                                <LI><B><FONT SIZE="-1" FACE="Arial,Helvetica,Univers,Zurich BT,sans-serif">Simple Dialog Boxes</FONT></B></LI>
+                                                                <LI><B><FONT SIZE="-1" FACE="Arial,Helvetica,Univers,Zurich BT,sans-serif">Fonts</FONT></B></LI>
+                                                                <LI><B><FONT SIZE="-1" FACE="Arial,Helvetica,Univers,Zurich BT,sans-serif">Inline C calls</FONT></B></LI>
+                                                                <LI><B><FONT SIZE="-1" FACE="Arial,Helvetica,Univers,Zurich BT,sans-serif">Menus</FONT></B></LI>
+                                                                <LI><B><FONT SIZE="-1" FACE="Arial,Helvetica,Univers,Zurich BT,sans-serif">High Scores for games</FONT></B></LI>
+                                                                <LI><B><FONT SIZE="-1" FACE="Arial,Helvetica,Univers,Zurich BT,sans-serif">Vibrate</FONT></B></LI>
+                                                                <LI><B><FONT SIZE="-1" FACE="Arial,Helvetica,Univers,Zurich BT,sans-serif">Fixed-point variables (decimals)</FONT></B></LI>
+                                                            </UL>
+                                                            <P><B><FONT SIZE="-1" FACE="Arial,Helvetica,Univers,Zurich BT,sans-serif">When you compile a B2C program it is tranlasted into a C file.  Then, the C program is passed through the </FONT>
+                                                                </B><A HREF="attach?page=B2CBasicCompiler/Cybiko_SDK_2010_Std.exe"><B><FONT SIZE="-1" FACE="Arial,Helvetica,Univers,Zurich BT,sans-serif">Cybiko SDK/C</FONT></B></A><B><FONT SIZE="-1"
+                                                                 FACE="Arial,Helvetica,Univers,Zurich BT,sans-serif"> compiler resulting in a true Cybiko application (.app) file.  Your CyBasic program can run from 5 to 10 time faster than with interpretted CyBasic.  You don't need to know anything about C programming to use B2C.</FONT>
+                                                                </B></P>
+                                                            <P><B><FONT SIZE="-1" FACE="Arial,Helvetica,Univers,Zurich BT,sans-serif">B2C is delivered with the Tardis Adventure ready for compilation.  It also includes the </FONT></B><A HREF="attach?page=B2CBasicCompiler/cybasic.rtf"><B><FONT SIZE="-1" FACE="Arial,Helvetica,Univers,Zurich BT,sans-serif">CyBasic Tutorial</FONT></B></A><B><FONT SIZE="-1"
+                                                                 FACE="Arial,Helvetica,Univers,Zurich BT,sans-serif"> complete with source code examples. </FONT>
+                                                                </B><B><FONT SIZE="-1" FACE="Arial,Helvetica,Univers,Zurich BT,sans-serif">CybikoB2C</FONT></B></A><B><FONT SIZE="-1"
+                                                                 FACE="Arial,Helvetica,Univers,Zurich BT,sans-serif"> for assistance.  Especially if you've never programmed before, we want programming with B2C to be straightforward and trouble-free</FONT>
+                                                                </B></P>
+                                                            <P><B><FONT SIZE="-1" FACE="Arial,Helvetica,Univers,Zurich BT,sans-serif">Also, feel free to IM us at anytime on AOL/AIM at </FONT><FONT COLOR="#0000FF" SIZE="-1"
+                                                                 FACE="Arial,Helvetica,Univers,Zurich BT,sans-serif">DevCybiko</FONT></B></P>
+                                                            <P ALIGN=CENTER>
+                                                                <!-- Begin AIM Remote -->
+<table width=140><tr align=right><td><a href="http://dynamic.aol.com/cgi/redir?
+http://www.aol.com/aim/imreg_download_template?pageset=aol&promo=106695"><img src="http://www.aol.com/aim/gr/aimver_man.gif" width=44 height=55 border=0 alt="Download AIM"></a><img src="http://www.aol.com/aim/gr/aimver_topsm.gif" width=73 height=55 border=0 alt="AIM Remote"><br><a href="aim:goim?screenname=DevCybiko&message=Hi.+Are+you+there?"><img src="http://www.aol.com/aim/gr/aimver_im.gif" width=117 height=39 border=0 alt="Send me an Instant Message"></a><br><a href="aim:addbuddy?screenname=DevCybiko"><img src="http://www.aol.com/aim/gr/aimver_bud.gif" width=117 height=39 border=0 alt="Add me to Your Buddy List"></a><br><a href="mailto:Cybiko@alcorgrp.com"><img src="http://www.aol.com/aim/gr/aimver_email.gif" width=117 height=39 border=0 alt="Send me an Email"></a><br><a href="http://dynamic.aol.com/cgi/redir?http://www.aol.com
+/aim/remote/home.adp"><img src="http://www.aol.com//aim/gr/aimver_botadd.gif" width=117 height=23 border=0 alt="Add Remote to Your Page"></a><br><a href="http://dynamic.aol.com/cgi/redir?
+http://www.aol.com/aim/imreg_download_template?pageset=aol&promo=106695"><img src="http://www.aol.com//aim/gr/aimver_botdow.gif" width=117 height=29 border=0 alt="Download AOL Instant Messenger"></a><br><br></td></tr></table>
+<!-- End AIM Remote --> 
+                                                                <B><FONT SIZE="-2" FACE="Arial,Helvetica,Univers,Zurich BT,sans-serif">.</FONT></B></P>
+                                                        </TD>
+                                                        <TD WIDTH="50%">
+                                                            <P><B><FONT SIZE="-1" FACE="Arial,Helvetica,Univers,Zurich BT,sans-serif">Release 5 is perhaps the most significant release of B2C - and is also the last. 
+                                                                 These new features are added in v5:</FONT></B></P>
+                                                            <UL>
+                                                                <LI><B><FONT SIZE="-2" FACE="Arial,Helvetica,Univers,Zurich BT,sans-serif"> </FONT><FONT SIZE="-1" FACE="Arial,Helvetica,Univers,Zurich BT,sans-serif">All documentation now stored in 
+                                                                    B2C.chm file (windows html help)</FONT></B></LI>
+                                                                <LI><B><FONT SIZE="-1" FACE="Arial,Helvetica,Univers,Zurich BT,sans-serif"> Double variables are implemented.  Actually implemented as 32-bit fixed point math.  16 bits of integer and 16 bits of decimal.  Gives a range of –32767.0000 to +32767.0000 (four digits of accuracy).</FONT>
+                                                                    </B></LI>
+                                                                <LI><B><FONT SIZE="-1" FACE="Arial,Helvetica,Univers,Zurich BT,sans-serif">+, -, *, /</FONT></B></LI>
+                                                                <LI><B><FONT SIZE="-1" FACE="Arial,Helvetica,Univers,Zurich BT,sans-serif">sin, cos, tan, sqrt, inv – functions</FONT></B></LI>
+                                                                <LI><B><FONT SIZE="-1" FACE="Arial,Helvetica,Univers,Zurich BT,sans-serif">all DIM statements MUST include an AS clause</FONT></B></LI>
+                                                                <LI><B><FONT SIZE="-1" FACE="Arial,Helvetica,Univers,Zurich BT,sans-serif">inputxy – positions the cursor and allows input at that point</FONT></B></LI>
+                                                                <LI><B><FONT SIZE="-1" FACE="Arial,Helvetica,Univers,Zurich BT,sans-serif">menuxy – positions the menu </FONT></B></LI>
+                                                                <LI><B><FONT SIZE="-1" FACE="Arial,Helvetica,Univers,Zurich BT,sans-serif">OPTION MULTITASKING OFF – when the app loses focus it normally will continue to run. Turning multitasking 
+                                                                    off will prevent that</FONT></B></LI>
+                                                                <LI><B><FONT SIZE="-1" FACE="Arial,Helvetica,Univers,Zurich BT,sans-serif">Help key processing works</FONT></B></LI>
+                                                                <LI><B><FONT SIZE="-1" FACE="Arial,Helvetica,Univers,Zurich BT,sans-serif">OPTION HELP OFF – turns off help key processing</FONT></B></LI>
+                                                                <LI><B><FONT SIZE="-1" FACE="Arial,Helvetica,Univers,Zurich BT,sans-serif">OPTION 3DSPRITES – set the maximum number of 3d sprites</FONT></B></LI>
+                                                                <LI><B><FONT SIZE="-1" FACE="Arial,Helvetica,Univers,Zurich BT,sans-serif">OPTION 3DROOMS – set the maximum number of 3d rooms</FONT></B></LI>
+                                                                <LI><B><FONT SIZE="-1" FACE="Arial,Helvetica,Univers,Zurich BT,sans-serif">wrap – displays text in a word-wrapping text box</FONT></B></LI>
+                                                                <LI><B><FONT SIZE="-1" FACE="Arial,Helvetica,Univers,Zurich BT,sans-serif">rename – renames a file</FONT></B></LI>
+                                                                <LI><B><FONT SIZE="-1" FACE="Arial,Helvetica,Univers,Zurich BT,sans-serif">remove – deletes a file</FONT></B></LI>
+                                                                <LI><B><FONT SIZE="-1" FACE="Arial,Helvetica,Univers,Zurich BT,sans-serif">exists() – determines if a file exists</FONT></B></LI>
+                                                                <LI><B><FONT SIZE="-1" FACE="Arial,Helvetica,Univers,Zurich BT,sans-serif">load – copies a file from the app's archive to the flash</FONT></B></LI>
+                                                                <LI><B><FONT SIZE="-1" FACE="Arial,Helvetica,Univers,Zurich BT,sans-serif">len() – returns the length of a string</FONT></B></LI>
+                                                                <LI><B><FONT SIZE="-1" FACE="Arial,Helvetica,Univers,Zurich BT,sans-serif">menuxy – positions a menu on the screen</FONT></B></LI>
+                                                                <LI><B><FONT SIZE="-1" FACE="Arial,Helvetica,Univers,Zurich BT,sans-serif">rect – draws an empty rectangle</FONT></B></LI>
+                                                                <LI><B><FONT SIZE="-1" FACE="Arial,Helvetica,Univers,Zurich BT,sans-serif">rectfill – draws a filled rectangle</FONT></B></LI>
+                                                                <LI><B><FONT SIZE="-1" FACE="Arial,Helvetica,Univers,Zurich BT,sans-serif">circle – draws an empty circle</FONT></B></LI>
+                                                                <LI><B><FONT SIZE="-1" FACE="Arial,Helvetica,Univers,Zurich BT,sans-serif">circfill – draws a filled circle</FONT></B></LI>
+                                                                <LI><B><FONT SIZE="-1" FACE="Arial,Helvetica,Univers,Zurich BT,sans-serif">stringheight() – returns the height of a string in the current font</FONT></B></LI>
+                                                                <LI><B><FONT SIZE="-1" FACE="Arial,Helvetica,Univers,Zurich BT,sans-serif">stringwidth() – returns the width of a string in the current font</FONT></B></LI>
+                                                                <LI><B><FONT SIZE="-1" FACE="Arial,Helvetica,Univers,Zurich BT,sans-serif">font – now accepts user font names stored in the archive</FONT></B></LI>
+                                                                <LI><B><FONT SIZE="-1" FACE="Arial,Helvetica,Univers,Zurich BT,sans-serif">open archive – open now allows ARCHIVE as a mode, reads from the app's archive</FONT></B></LI>
+                                                                <LI><B><FONT SIZE="-1" FACE="Arial,Helvetica,Univers,Zurich BT,sans-serif">get/put allows arrays</FONT></B></LI>
+                                                                <LI><B><FONT SIZE="-1" FACE="Arial,Helvetica,Univers,Zurich BT,sans-serif">dabs() – returns abs of double variable</FONT></B></LI>
+                                                                <LI><B><FONT SIZE="-1" FACE="Arial,Helvetica,Univers,Zurich BT,sans-serif">Xtreme keyboard works</FONT></B></LI>
+                                                                <LI><B><FONT SIZE="-1" FACE="Arial,Helvetica,Univers,Zurich BT,sans-serif">now drains the message queue on exit</FONT></B></LI>
+                                                            </UL>
+                                                            <P><B><FONT SIZE="-1" FACE="Arial,Helvetica,Univers,Zurich BT,sans-serif">Historical Releases<BR>B2CV2 - 6/1/01 </FONT></B><FONT SIZE="-1"
+                                                                 FACE="Arial,Helvetica,Univers,Zurich BT,sans-serif"><BR><B>B2CV2a - 6/22/01 </B><BR><B>B2CV2b - 7/3/01 </B><BR><B>
+                                                                B2CV2c - 7/13/01 </B><BR><B>B2CV3 - 8/7/01 </B><BR><B>B2CV3a - 8/26/01 </B><BR><B>B2CV3d - 9/25/01 </B><BR><B>B2Cve3 - 12/12/01 </B><BR><B>B2CV4 - 12/26/01 </B><BR><B>B2CV5 - 4/23/02</B><BR> </FONT>
+                                                            </P>
+                                                        </TD>
+                                                    </TR>
+                                                </TABLE>
+                                            </TD>
+                                        </TR>
+                                    </TABLE>
+ </center> 

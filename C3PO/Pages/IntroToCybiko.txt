@@ -1,0 +1,127 @@
+<h1>Introducing the Cybiko</h1>
+
+<h2>Teen Computer </h2>
+<p>CYBIKO is a wireless hand held computer for teens.  With it you can chat wirelessly with 
+1 or 100 of your friends that have a Cybiko Computer, play multiplayer wireless games, 
+send/receive pictures, text files and emails to Cybiko computer's nearby or... connect to 
+your PC to send your emails and other information to anyone on the Internet.  There are over 
+ 700 single player games and wireless multi-player games are available at DevCybiko.com 
+written by both Cybiko, Inc. and third party developers.</p>
+
+<h2>Beginnings</h2>
+<p>In 1999, Donald Wisniewski and David Yang created the Cybiko as a portable computer for
+tweens (ages 10-12) and teens (ages 13-17). It was designed to fill a niche left between the 
+Palm Pilot and Nintendo Game boy. The Cybiko comes in two styles: The Classic and the 
+Xtreme.</p>
+
+<h2>Look & Feel</h2>
+<img src=Pages/IntroToCybiko-att/set.jpeg-dir/1.jpeg>
+<p>The original Cybiko Classic looks like a walkie talkie encased in a transparent shell 
+from one of five colors (black, clear, yellow, blue, and purple - and a promotional red). It 
+has an array of white buttons comprising a QWERTY-style keyboard, a joystick pad, and some 
+function keys. The original, older model (released in April 2000) had a power slide switch 
+on the side, which was later replaced by an "Esc" key. </p>
+
+<img src=Pages/IntroToCybiko-att/cybikox.gif-dir/1.gif>
+<p>The newer Cybiko Xtreme was released in September, 2001.  It is very different from the 
+Cybiko Classic.  The Xtreme's body has a trim feel to it compared to the Classic.  It is 
+roughly the same size as the Classic but it's molded as all one unit and shaped like a 
+figure 8 (curved edges, wide at the top, narrow waist, and wide near the bottom). In this 
+way it resembles the m100 model of the Palm Pilot. And like the m100 series, there are skins 
+that cover the silverized Xtreme body. There are also separate panels for the areas around 
+the keyboard, arrow keys, and the Enter pad. Red, green, blue, and zebra colors are 
+available. You can even mix and match colors for a unique color scheme. </p>
+
+<p>The Xtreme keyboard has larger keys and they are of a solid black rubbarized material. 
+The arrow keys resemble the Game Boy keys and are separate from the ESC key. In a brilliant 
+and very welcome move, there is an ON/OFF key situated in the center of the keyboard. One 
+drawback to the new, larger keyboard is that Cybiko removed the top row of number keys 
+(1-9). To type numbers into the unit you must use the FN key to 'shift'. The F1-F7 keys 
+still exist at the top of the unit.</p>
+<p>The Xtreme antenna is no longer the 6" long rod rising from the back of the unit. 
+Instead, a slim side-antenna (again resembling the Palm Pilot VII antenna). Xtreme sports a 
+mini USB port at the bottom of the case. This USB port will be used to download games. It 
+also doubles as the battery charger connection. A supplied cable connects the USB port to a 
+power adapter.  The display is the same as on the Classic: 160x100 pixels, 4-color 
+greyscale.  A slot for additional devices is now at the top of the unit.</p>
+
+<h2>Donald Wisniewski & Cybiko Inc. </h2>
+<p>The creators of the Cybiko - Donald Wisniewski (President of Cybiko, Inc.) and David Yang 
+started the company in early 1999. They recognized a need in the teen marketplace for a 
+handheld wireless entertainment device that teens could call their own.</p>
+<p>Wisniewski (born in 1960) is a former executive of V-Tech (another high-tech firm in the 
+business of creating devices for young people). He holds a BS in mechanical engineering from 
+Purdue University. "We want to create a social environment where teens can chat and 
+interact," he said in a recent interview, "We see a huge opportunity with 12- to 16-year 
+olds."</p>
+
+<p>The Cybiko was released in April of 2000 with a price tag of $170. At that time, New 
+York-based Cybiko had 85 engineers who had created the device. As of January 2001 Cybiko had 
+a staff of around 170 Russian-based software developers and the unit retailed for about $99. 
+They had successfully delivered a new application daily from about January 2000 to July 
+2001. The product was first introduced at a number of toy and electronics retailers like FAO 
+Schwarz, Virgin Records, CompUSA, Babbage's, and Software Etc. Eventually, it was available 
+at over 9000 locations across the USA and online at www.cybiko.com.  Cybiko is privately 
+held and owns all of the intellectual property. </p>
+<p>The Xtreme was released in September 2001.  The game-a-day policy had changed to a 
+trickle of just one game per week.  Currently, Cybiko, Inc. no longer produces software for 
+the Cybiko.</p>
+
+<h2>Teens and Cybiko</h2>
+<p>There are 30 million teens in the United States, 65 percent of whom have a computer in 
+the home. 45 percent have Internet access and none of them had a mobile wireless product. 
+That is a market of 13.5 million people. The Cybiko is aimed at Nine to 20-year-olds. They 
+felt interconnectivity and communication was a key feature left out of other devices for 
+teens. "We wanted to create a social environment where teens can chat and interact," said 
+Wisniewski. </p>
+
+<p>And they wanted to create a device that was more than a game machine - so they included 
+single and multiplayer wireless games, support applications like the planner, email, Friend 
+Finder, and a way to chat with anyone in the network. "I've seen users as young as five and 
+old as 55," Wisniewski said in a recent interview. </p>
+
+<h2>Technical Details</h2>
+<p>The operating system for the Cybiko is called CyOS. The final version of the software 
+was released in September of 2001 and is version 1.3.57. The original Cybiko Classic (v1.2 - 
+with the side-slide switch) advertised a mere 256KB of RAM. In the V1.3 Classic  the memory 
+is divided into 2 segments : 512KB of RAM and 512KB or Flash RAM - for a grand total of 1MB. 
+Most of the memory is used up by CyOS. Only about 300KB is available for the user. The 
+memory is supposed to be upgradeable to 16MB, but this number is different depending on the 
+published source. (There is a 1MB expansion module but the Cybiko can take advantage of the 
+MP3's memory which can be as large as 64MB). </p>
+
+<p>The Cybiko Xtreme boasts 1MB of RAM and 1MB or Flash RAM.  With an additional 500KB of 
+ROM, the Xtreme weighs in at 2.5MB of memory.</p>
+
+<p>The Cybiko's display is 160 x 100 pixels of monochrome LCD (actually, its 4-color gray 
+scale). Its Microprocessor is a 32-bit 11-MHz processor manufactured by Hitachi (this is 
+roughly equivalent in capability to an Intel 386 chip - the heart of the original IBM PC) 
+The Xtreme has a 22-MHz processor.
+<p>
+<p>The Cybiko broadcasts on 30 digital channels over frequencies between 902 and 928 MHz 
+with a range of up to 300 feet. There has been a lot of talk on the Internet about improving 
+the range with home-brew antennae and so on, but for all practical purposes 300 feet is as 
+far as the Cybiko can broadcast.  Wireless eMail is possible with the CyWIG software on the 
+PC. Users can send files (including music, games and applications) between two Cybikos. 
+While Cybiko users can chat and game with other Cybikos within a range of 300 ft.  They can 
+also transmit through each other to extend the range, similar to a re-transmitter. </p>
+<p>The Cybiko Classic has a small keyboard allows for data entry. The keys are arranged in 
+the traditional QWERTY layout, but are smaller than those used on the popular RIM pager 
+devices. A stylus is provided to allow easier typing. There is a small joystick pad with up, 
+down, left, and right keys. Seven pre-programmed function keys line the top of the unit. And 
+the help, enter, select, tab, and del keys are along the right side. In fact, you will 
+mostly use the arrow keys and the enter key. </p>
+
+<p>The Xtreme keyboard has black letters that are larger than its predecessor.</p>
+<P>The expansion slot is located at the base of the Cybiko Classic. It is able to take an 
+optional MP3 player. Also, a memory card with 1MB of memory is available.   The Xtreme 
+expansion slot is at the top of the unit.</p>
+
+<p>Two rechargeable nickel-metal hydride batteries (F6 Prismatics) that last for 8-10 hours 
+of regular use supply power. The unit can vibrate whenever a similar machine is in range. 
+</p>
+
+<p>An RS232 cable connects the Classic to a PC, which allows users to download new games and 
+applications from the Internet. It is also possible to write programs that access the RS232 
+port. </p>
+<p>The Xrtreme uses a USB port to communicate with the outside world.</p>

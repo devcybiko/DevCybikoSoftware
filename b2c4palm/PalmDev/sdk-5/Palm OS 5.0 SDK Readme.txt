@@ -1,0 +1,412 @@
+Palm OS 5.0 SDK - Readme File
+
+IMPORTANT:  Read Before Using the Accompanying Software
+
+= = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = =
+P a l m   O S   S o f t w a r e   D e v e l o p m e n t   K i t
+= = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = =
+
+***************************************************************
+* IMPORTANT INFORMATION REGARDING FUTURE OS COMPATIBILITY     *
+***************************************************************
+
+In preparation for future Palm OS versions, Palm engineering is recommending
+that developers DO NOT directly access internal data structures. Palm is
+creating "Glue" routines, which are found in PalmOSGlue, to access these
+structures.
+
+Starting with the Palm OS SDK 4.0 Update 1, the default compilation options
+disallow direct access to those internal structures. The file BuildDefaults.h
+(which is located within the "Incs" folder inside the "Palm OS Support" folder)
+contains the compiler flags correctly set:
+
+    #define DO_NOT_ALLOW_ACCESS_TO_INTERNALS_OF_STRUCTS
+
+Compile your application as you normally do, and fix the potential
+incompatibilities that are identified.
+
+Note that some of the samples shipped with the 4.0 release of the SDK use
+direct access of internal structures instead of using APIs. Those samples will
+no longer build correctly as a result of this change to the default compilation
+options.  To work around this problem, you can edit the header file
+buildDefaults.h and comment out the following line near the end of the file:
+
+//  #define DO_NOT_ALLOW_ACCESS_TO_INTERNALS_OF_STRUCTS
+
+With this change, the old samples will compile properly.  However, Palm
+engineering recommends that developers DO NOT directly access internal data
+structures.
+
++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++
++ IMPORTANT INFORMATION REGARDING METROWERKS CODEWARRIOR      +
++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++
+
+- Palm OS SDK 5.0 and CodeWarrior for Palm OS R7
+
+  All of the examples and other Metrowerks project (MCP) files were last saved
+  using the CodeWarrior Pro 5 IDE (version 4.0.4 build 486). This version is
+  the predecessor to the IDE which ships with CodeWarrior for Palm OS R7.
+
+  When you open these project files, you will be prompted to convert them to
+  the new IDE. Converting the project files will not cause any problems; you
+  should convert the files if you are using the newest version of the IDE.
+
+- Checking for updates for Metrowerks components
+
+  Metrowerks occasionally provides updates to some components, such as the IDE
+  and other plug-ins. To make sure that your Metrowerks components are up to
+  date, please check for updates and patches on the Metrowerks web site:
+  http://www.metrowerks.com/download/
+
++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++
++ IMPORTANT INFORMATION REGARDING GCC                         +
++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++
+
+This archive contains the GCC versions of the NetSocket and PalmOSGlue static
+linker libraries that were omitted from the initial 5.0 SDK archive.  It is
+available in three formats:
+
+- Header files and libraries packaged as an RPM
+
+  This RPM contains the SDK header files and static libraries and is suitable
+  for RPM-based Linux distributions and other Unix-like operating systems
+  which support RPM.
+
+- A tarball containing header files (with Unix line termination) and libraries
+
+  This tar archive contains the SDK header files and static libraries and is
+  suitable for any Unix-like operating system.
+
+- A zipfile containing the libraries
+
+  This zip archive contains the SDK static libraries only; it can be used,
+  on Windows or any other operating system, to add GCC SDK libraries to an
+  existing installation of the SDK header files.
+
+This archive does not contain the SDK examples or documentation; you can
+obtain those from the initial full 5.0 SDK archive.  Windows users who need
+the SDK header files will find these too in the initial full 5.0 SDK archive.
+
+The RPM can be installed in the usual RPM way; check the package's information
+(rpm -qip) for considerations for users of non-Linux operating systems or
+non-standard PalmDev tree locations.
+
+Unpacking the tar or zip archives will create a hierarchy of files underneath
+a "sdk-5" directory.  The archive, whichever of the two you use, should be
+unpacked directly within your PalmDev tree (e.g., /opt/palmdev), so that its
+files are arranged underneath /opt/palmdev/sdk-5.
+
+If you are using the zip archive to add the libraries alongside an existing
+installation of the 5.0 SDK header files, you should unpack the archive so
+that the "lib" directory is a sibling of the "Incs" or "include" directory
+containing the header files.  (Most likely the header files are in
+/PalmDev/sdk-5/include or /PalmDev/sdk-5/Incs, so this means that the
+libraries will be in /PalmDev/sdk-5/lib.)
+
+To recap: you need to unpack this archive so that the SDK header files and
+libraries are arranged in a directory tree as follows:
+
+    /opt/palmdev/sdk-5/include
+    /opt/palmdev/sdk-5/include/PalmTypes.h ...etc...
+    /opt/palmdev/sdk-5/include/Core/...etc...
+    /opt/palmdev/sdk-5/lib
+    /opt/palmdev/sdk-5/lib/m68k-palmos-coff
+    /opt/palmdev/sdk-5/lib/m68k-palmos-coff/libPalmOSGlue.a ...etc...
+    /opt/palmdev/sdk-5/lib/m68k-palmos-coff/mown-gp/...etc...
+
+(On Windows, replace "/opt/palmdev" here by "/PalmDev".  It is also
+acceptable for the header files to be under a directory named "Incs" rather
+than "include"; this may be more convenient if you have unpacked the initial
+Windows 5.0 SDK archive or used the installer.)
+
+Remember to rerun palmdev-prep after installing these libraries!
+
+To verify that the SDK libraries have been detected, check the report
+generated when palmdev-prep is run; it should include a line such as
+
+    sdk-5    headers in 'include', libraries in 'lib'
+
+rather than "no libraries".
+
++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++
++ ENHANCEMENTS AND FIXES -- WHAT'S NEW                        +
++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++
+
+- Palm OS Support Folder
+
+  All header files now include the following version string
+  in their header blocks:  Palm OS 5.0 SDK.
+
+  Header files for the security APIs have been added under Libraries
+  (CPMLib and SSLLib). However, these components may not be present by
+  default on all handhelds.  Remember to use the Feature Manager to check
+  whether a particular feature is present before attempting to use that
+  feature.
+
+  AddressSortLib.h is used by the Address book to speed up the address sorting.
+  It is the interface of an ARM native library and it will not be present on
+  68K handhelds.
+
+- Palm OS APIs
+
+  "Palm OS Programmer's Companion" and "Palm OS Programmer's API Reference"
+  contain new sections documenting additions and changes to the Palm OS APIs
+  for bitmaps, Window Manager, and Sound Manager.
+
+  o  The following notifications have been added:
+
+     sysAppLaunchCmdAttention
+     sysAppLaunchCmdCardLaunch
+
+  o  The following features have been added:
+
+     High-Density Display Feature Set
+       BmpCreateBitmapV3              WinGetCoordinateSystem
+       BmpGetCompressionType          WinGetSupportedDensity
+       BmpGetDensity                  WinPaintTiledBitmap
+       BmpGetNextBitmapAnyDensity     WinScalePoint
+       BmpGetTransparentValue         WinScaleRectangle
+       BmpGetVersion                  WinScreenGetAttribute
+       BmpSetDensity                  WinSetCoordinateSystem
+       BmpSetTransparentValue         WinUnscalePoint
+       EvtGetPenNative                WinUnscaleRectangle
+
+     Palm OS 5 New Feature Set
+       PceNativeCall
+
+- PalmRez
+
+  PalmRez supports resource files that contain double-density bitmaps,
+  double-density fonts, and wave sound resources.
+
+- Constructor for Palm OS 1.8
+
+  Constructor for Palm OS includes the following new features:
+
+  o  Support for double density bitmaps and fonts
+  o  Support for sound resources
+
+  For more information, see the "Constructor for Palm OS" book.
+
+- Palm OS Simulator
+
+  Palm OS Simulator is a new development tool that you can use to test Palm OS
+  applications on Windows.  For more information, see the "Testing with Palm
+  OS Simulator" book.
+
+- Palm OS Documentation
+
+  Palm File Format Specification document is available online at
+  http://www.palmos.com/dev/support/docs/
+  
++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++
++ KNOWN ISSUES                                                +
++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++
+
+- Constructor for Palm OS
+
+  PRC Editing:  Constructor has the following limitations when editing PRC
+  files.
+
+  o  Constructor cannot view or edit Wave Sound resources in a PRC file
+  o  Constructor cannot view or edit Font and Font Family resources in a PRC
+     file
+  o  Editing a PRC file may fail if you perform multiple editing steps that
+     involve adding or deleting resources.  If you need to perform multiple
+     editing steps, you should save the PRC file after each edit that adds or
+     deletes a resource.
+
+  No font editor:  Constructor does not provide a native font editor.  You can
+  use Constructor to create Font Families, but you must first create the fonts
+  with an external font editor.
+
+  Mac OS X limitations:  When using the Bitmap Editor on Mac OS X, you may see
+  some bitmaps with the bottom right corner clipped due to a Mac OS X bug.
+
+  Windows limitations:
+
+  o  When you close a Constructor window, instead of activating the window that
+     was behind the closed window, Constructor may activate a window behind the
+     expected window.
+
+  o  If you move the Constructor main menu window, the Constructor icon will
+     disappear from the taskbar.  To restore the taskbar icon, minimize the
+     Constructor main menu window.  You can then click on the taskbar icon to
+     restore the Constructor windows.
+
+  o  Constructor may not work on PCs with large amounts of memory (for example,
+     1 gigabyte (GB) of memory).
+
+  Supported CodeWarrior IDE on Windows.
+
+  o  Constructor requires version 3.1.0.0 of ASINTPPC.DLL. this library
+     is not shipped with the Pro versions of the CodeWarrior IDE for Windows, 
+     which prevents using Constructor with those environments.
+
+
++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++
++ INSTALLATION INSTRUCTIONS                                   +
++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++
+
++-------------------------------------------------------------+
++ Manual Installation                                         +
++-------------------------------------------------------------+
+
+Macintosh
+
+1.  Locate the "CodeWarrior Support" folder which is in the "SDK" folder.
+
+2.  Move the items located inside the "Codewarrior plugins" folder in the
+    "SDK" folder into their respective folders where CodeWarrior is installed
+    on your local drive. (Make sure to use the correct version of a tool
+    depending on the OS version you are running when both a classic version
+    and a "carbonized" versions are present.)
+
+    This will include the following:
+
+    - Move "PalmRez Post Linker" from the "Linkers" folder on the SDK to the
+      "Linkers" folder inside the "CodeWarrior Plugins" folder where your
+      CodeWarrior is installed on your local drive. This will replace the old
+      "PalmRez Post Linker" file.
+
+    - Move "PalmRez Panel" from the "Preference Panels" folder on the SDK to
+      the "Preference Panels" folder inside the "CodeWarrior Plugins" folder
+      where CodeWarrior is installed on your local drive.  This will replace
+      the old "PalmRez Panel" file.
+
+      Note: If you are doing development on a Japanese system, then replace the
+      "PalmRez Panel" file with "PalmRez-J Panel" file. You can have only one
+      PalmRez Preference Panel on your system at a time.
+
+    - Move the "Support" folder from the SDK to the "Codewarrior Plugins"
+      folder on your local system. If a "Support" folder already exists, then
+      copy only the "PalmRez Japanese Support" file to your existing "Support"
+      folder.
+
+    - Copy the "Palm OS Support" folder from the SDK into the directory
+      where CodeWarrior is installed on your local drive.
+
+    - Manually copy any other files located on the SDK or downloaded from
+      the web to your local drive.
+
+Windows - CodeWarrior
+
+1.  Locate the "CodeWarrior Support" folder which is in the "SDK" folder.
+
+2.  Move the items located inside the "Codewarrior plugins" folder on the SDK
+    into their respective folders where CodeWarrior is installed on your local
+    drive.
+
+    This will include the following:
+
+    - Move the "PalmRezPostLinker.dll" from the "Linkers" folder on the SDK to
+      the "Linkers" folder inside the "Bin\Plugins" folder where CodeWarrior is
+      installed on your local drive. This will replace the old
+      "PalmRezPostLinker.dll" file.
+
+    - Move the "PPalmRez.dll" from the "Preference Panels" folder on the SDK to
+      the "Preference Panels" folder inside "Bin\Plugins" folder where
+      CodeWarrior is installed on your local drive. This will replace the old
+      "PPalmRez.dll" file.
+
+      Note: If you are doing development on a Japanese system replace the
+      "PPalmRez.dll" with "PPalmRez-J.dll". You can have only one PalmRez
+      Preference Panel in your system at a time.
+
+    - Move the "Support" folder from the SDK to the "Bin\Plugins" folder on
+      your local system. If a "Support" folder already exists, copy only the
+      "PalmRez Japanese Support" file to your existing "Support" folder.
+
+    - Merge the content of the "Palm OS Support" folder from the SDK with the
+      "Palm OS Support" folder contained in your CodeWarrior environment.
+
+    - Manually copy any other files located on the SDK or downloaded from the
+      web to your local drive.
+
++-------------------------------------------------------------+
++ Installation Using Installers                               +
++-------------------------------------------------------------+
+
+NOTE:  The installer will replace any older version of Palm OS SDK.
+
+Macintosh
+
+This installer will only install the components needed by CodeWarrior to your
+local drive. For all other items you can drag the folder to the
+necessary place.
+
+1.  Start the "Palm OS(R) SDK 5.0 Installer" application.
+
+2.  The following items will be installed by this installer:
+
+    - "PalmPlugin" will be added to your
+      "Metrowerks CodeWarrior:CodeWarrior Plugins:Debuggers" folder.
+    - "PalmRez Post Linker" will be added to your
+      "Metrowerks CodeWarrior:CodeWarrior Plugins:Linkers" folder.
+    - "PalmRez Panel" will be added to your
+      "Metrowerks CodeWarrior:CodeWarrior Plugins:Preference Panels" folder.
+    - "PalmRez Japanese Support" will be added to your
+      "Metrowerks CodeWarrior:CodeWarrior Plugins:Support" folder.
+    - "Constructor for Palm OS" will be added to your "Palm OS Constructor"
+      folder and remove the old version.
+    - "Palm OS Support" folder in the "Metrowerks CodeWarrior" folder will be
+      updated with the latest header files.
+    - On English systems, Japanese Support will be installed to your
+      "Palm OS Extras:Japanese" folder.
+    - "Palm OS 5.0 SDK Readme.txt" will be installed to the root of your
+      CodeWarrior installation.
+    - The Palm documentation will be added to your "Palm Documentation:Palm OS 5.0 Docs"
+      folder.
+    - The Palm examples will be added to your "(CodeWarrior Examples):Palm OS 5.0 SDK Examples"
+      folder.
+    - The Palm Stationery will be added to your "Stationery:Palm OS Application" folder. 
+      Any existing stationery will be replaced.
+    - The Palm debugger will be added to your "Palm Tools:Palm OS 5.0 SDK Other Tools:PalmDebugger" 
+      folder
+    - The overlay tools will be added to your "Palm Tools:Palm OS 5.0 SDK Other Tools:Overlay Tools" 
+      folder
+
+Windows - CodeWarrior
+
+This installer will only install the components needed by CodeWarrior to your
+local drive. For all other items you can drag the folder to the necessary place.
+
+1.  Start the "PalmOS 5.0 SDK.exe" application. This will unarchive and
+    start the installer.
+
+2.  Follow the instructions displayed by the installer.
+
+3.  The following items will be installed by this installer:
+
+    - "PalmRezPostLinker.dll" will be added to your "bin\plugins\Linker" folder.
+    - "PPalmRez.dll" will be added to your "bin\plugins\Preference Panel"
+      folder.
+    - "PalmRez Japanese Support" will be added to your "bin\plugins\Support"
+      folder.
+    - "Constructor for Palm OS.exe" will be added to your "Palm Tools\Constructor" 
+      folder.
+    - "Palm OS Support" folder in the "Metrowerks CodeWarrior" folder will be
+      updated with the latest header files and libraries. Any existing version will 
+      be renamed "(old Palm OS Support)"
+    - "PPalmRez-J.dll" will be installed to your 
+      "Palm Tools\Palm OS 5.0 SDK Other Tools\Palm OS Extras\Japanese Support\
+      CodeWarrior Support\Plugins\Preference Panel"
+      Support" folder.
+    - "Palm OS 5.0 SDK Readme.txt" will be installed to the root of your
+      CodeWarrior installation.
+    - The Palm documentation will be added to your "Palm Documentation\Palm OS 5.0 Docs"
+      folder.
+    - The Palm examples will be added to your "(CodeWarrior Examples)\Palm OS 5.0 SDK Examples"
+      folder.
+    - The Palm Stationery will be added to your "Stationery\Palm OS Application" folder. 
+      Any existing stationery will be replaced.
+    - The Palm debugger will be added to your "Palm Tools\Palm OS 5.0 SDK Other Tools\PalmDebugger" 
+      folder
+    - The overlay tools will be added to your "Palm Tools\Palm OS 5.0 SDK Other Tools\Overlay Tools" 
+      folder
+
+
+Palm, Inc.
+5470 Great America Parkway
+Santa Clara, California 95052
+(408) 878-9000

@@ -1,0 +1,458 @@
+font "mini_normal_font"
+inline Font_set_fixed(mini_normal_font, 1);
+inline Font_set_spacing(mini_normal_font, 6);
+
+dim xvader0[20] as char
+dim xvader1[20] as char
+dim xvader2[20] as char
+dim vader0[20] as char
+dim vader1[20] as char
+dim vader2[20] as char
+dim spaces[20] as char
+dim tones[10] as int
+dim nt as int
+dim score as long
+dim lives as int
+dim level as int
+dim killed as int
+dim xxx[2] as char
+dim bottom_row as int
+dim fire_key as int
+
+dim cw as int
+dim ch as int
+
+dim x as int
+dim y as int
+dim z as int
+dim dir as int
+dim mx as int
+dim my as int
+dim missile as int
+dim delay as int
+dim curr_delay as int
+dim row as int
+dim col as int
+dim max_key_delay as int
+dim key_delay as int
+dim status[40] as char
+
+'''''''''''''''''''''''''''''
+''' return true if odd
+'''''''''''''''''''''''''''''
+function odd(x as int)
+  inline x=x%2;
+  odd = x
+end function
+
+'''''''''''''''''''''''''''''
+''' return width of string
+'''''''''''''''''''''''''''''
+function str_width(str as long)
+  inline _str_width = Font_string_width(mini_normal_font, (char *)str);
+end function
+
+'''''''''''''''''''''''''''''
+''' return height of string
+'''''''''''''''''''''''''''''
+function str_height(str as long)
+  inline _str_height = Font_get_char_height(mini_normal_font);
+end function
+
+'''''''''''''''''''''''''''''
+''' return length of string
+'''''''''''''''''''''''''''''
+function len(str as long)
+  inline _len = strlen((char *)str);
+end function
+
+'''''''''''''''''''''''''''''
+''' repaint the main display
+'''''''''''''''''''''''''''''
+sub repaint(x as int, y as int)
+    cls
+    font "mini_bold_font"
+    inline sprintf(status, "Score: %4d Lives: %d Level: %d", score, lives, level);
+    printxy -80,49,status
+    font "mini_normal_font"
+    if odd(nt) then
+        printxy x,y,vader0
+        printxy x,y-ch,vader1
+        printxy x,y-ch-ch,vader2
+    else
+        printxy x,y,xvader0
+        printxy x,y-ch,xvader1
+        printxy x,y-ch-ch,xvader2
+    end if
+    printxy z-cw,-50+ch,"/ \"
+    if missile then
+        printxy mx,my,"|"
+    end if
+end sub
+
+
+
+'''''''''''''''''''''''''''''
+''' redraw main display in reverse
+''' and dislay SQUASHED!
+'''''''''''''''''''''''''''''
+sub squashed
+    ink 0
+    paper 3
+    repaint(x,y)
+    font "cool_bold_font"
+    printxy -50,6,"S Q U A S H E D !"
+    font "mini_normal_font"
+    beep -1
+    wait 5
+    beep 40
+    wait 5
+    beep 10
+    wait 5
+    beep 40
+    wait 5
+    beep -1
+    wait 5
+    ink 3
+    paper 0
+end sub
+
+''''''''''''''''''''
+''' game over screen
+''''''''''''''''''''
+sub game_over
+    ink 0
+    paper 3
+    cls
+    font "cool_bold_font"
+    printxy -32,12,"G A M E"
+    printxy -20,-12,"O V E R"
+    font "mini_bold_font"
+    inline sprintf(status, "Score: %4d Lives: %d Level: %d", score, lives, level);
+    printxy -80,49,status
+    beep -1
+    wait 5
+    beep 10
+    wait 5
+    beep 40
+    wait 5
+    beep 10
+    wait 5
+    beep -1
+    wait 5
+    ink 3
+    paper 0
+    inline set_clicks_enabled(1);
+    while 1
+    wend
+end sub
+
+'''''''''''''''''''''''''''''
+''' redraw the LEVEL screen
+'''''''''''''''''''''''''''''
+sub redraw_level
+    ink 0
+    paper 3
+    cls
+    beep -1
+    font "cool_bold_font"
+    printxy -30, 6, "Level: ", level
+    font "mini_normal_font"
+    ink 3
+    paper 0
+    wait 5
+    beep 10
+    wait 5
+    beep 40
+    wait 5
+    beep 10
+    wait 5
+    beep -1
+    wait 5
+end sub
+
+'''''''''''''''''''''''''''''
+''' return length of longest row of vaders
+'''''''''''''''''''''''''''''
+function maxlen as int
+  dim width as int
+  maxlen = str_width(vader0);
+  width = str_width(vader1);
+  if width > maxlen then
+    maxlen = width
+  end if
+  width = str_width(vader2);
+  if width > maxlen then
+    maxlen = width
+  end if
+end function
+
+'''''''''''''''''''''''''''''
+''' reinitialize variables for next level
+'''''''''''''''''''''''''''''
+sub next_level
+  bottom_row = 3
+  level = level + 1
+  redraw_level
+  if curr_delay > 50 then curr_delay = curr_delay - 50
+  if curr_delay < 50 then curr_delay = 50
+  delay = curr_delay
+  if max_key_delay > 13 then max_key_delay = max_key_delay - 13
+  if max_key_delay < 13 then max_key_delay = 13
+  key_delay = max_key_delay
+  dir = 1
+  missile = 0
+  nt = 0
+  killed = 0
+  x = -80
+  y = 49-ch
+  for q=0 to 15
+    if odd(q) then
+      vader0[q]=32
+      vader1[q]=32
+      vader2[q]=32
+      xvader0[q]=32
+      xvader1[q]=32
+      xvader2[q]=32
+    else
+      vader0[q]=171
+      vader1[q]=171
+      vader2[q]=171
+      xvader0[q]=170
+      xvader1[q]=170
+      xvader2[q]=170
+    end if
+  next
+end sub
+
+'''''''''''''''''''''''''''''
+''' initialize the whole game
+'''''''''''''''''''''''''''''
+sub init
+  ink 0
+  paper 3
+  cls
+  font "cool_bold_font"
+  printxy -32,25,"V A D E R S"
+  font "mini_bold_font"
+  printxy -36,0,"By Greg Smith"
+  printxy -24,-25, "(C) 2001"
+  font "mini_normal_font"
+  ink 3
+  paper 0
+  wait 20
+  lives=3
+  level=0
+  curr_delay = 400
+  max_key_delay = 100
+  tones[0] = 5
+  tones[1] = 4
+  tones[2] = 3
+  tones[3] = 2
+  tones[4] = 1
+
+  xxx[0]=161
+  xxx[1]=0
+  cw = str_width(xxx)
+  ch = str_height(xxx)
+
+  inline set_clicks_enabled(0);
+end sub
+
+'''''''''''''''''''''''''''''
+''' play a raw tone
+'''''''''''''''''''''''''''''
+sub raw(tone as int)
+  inline play_raw(tone);
+end sub
+
+'''''''''''''''''''''''''''''
+''' return absolute value
+'''''''''''''''''''''''''''''
+function abs(a as int) as int
+  abs = a
+  if (a < 0) then
+    abs = -a
+  end if
+end function
+
+'''''''''''''''''''''''''''''
+''' play the next vaders note
+'''''''''''''''''''''''''''''
+sub nexttone
+  beep tones[nt]+missile*10
+  nt = nt + 1
+  if nt >=4 then
+  	nt = 0
+  end if
+end sub
+
+'''''''''''''''''''''''''''''
+''' trim the spaces off the end of the string
+'''''''''''''''''''''''''''''
+sub trim(s as long)
+  inline char *xx = (char *)s;
+  inline xx = &xx[strlen(xx)-1];
+  inline while(*xx==' ') {*xx=0; xx--;}
+end sub
+
+'''''''''''''''''''''''''''''
+''' return the character at r,c in the vaders arrays
+'''''''''''''''''''''''''''''
+function get_vaders(r as int, c as int) as int
+  if r=0 then
+    get_vaders = vader0[c]
+  elseif r=1 then
+    get_vaders = vader1[c]
+  else
+    get_vaders = vader2[c]
+  end if
+end function
+
+'''''''''''''''''''''''''''''
+''' set the vaders(r,c) to z
+''' and trim appropriately
+'''''''''''''''''''''''''''''
+sub set_vaders(r as int, c as int, z as int)
+  if r=0 then
+    vader0[c] = z
+    xvader0[c] = z
+    trim(vader0)
+    trim(xvader0)
+  elseif r=1 then
+    vader1[c] = z
+    xvader1[c] = z
+    trim(vader1)
+    trim(xvader1)
+  else
+    vader2[c] = z
+    xvader2[c] = z
+    trim(vader2)
+    trim(xvader2)
+  end if
+  while (vader0[0]=32) and (vader1[0]=32) and (vader2[0]=32)
+    inline strcpy(vader0, &vader0[2]);
+    inline memset(&vader0[strlen(vader0)], 0, 2);
+    inline strcpy(vader1, &vader1[2]);
+    inline memset(&vader1[strlen(vader1)], 0, 2);
+    inline strcpy(vader2, &vader2[2]);
+    inline memset(&vader2[strlen(vader2)], 0, 2);
+    inline strcpy(xvader0, &xvader0[2]);
+    inline strcpy(xvader1, &xvader1[2]);
+    inline strcpy(xvader2, &xvader2[2]);
+    x = x + cw + cw
+  wend
+  if vader0[0] <> 0 then bottom_row=1
+  if vader1[0] <> 0 then bottom_row=2
+  if vader2[0] <> 0 then bottom_row=3
+end sub
+
+'''''''''''''''''''''''''''''
+''' move the vaders along
+'''''''''''''''''''''''''''''
+sub update_vaders
+  nexttone
+  x=x+cw*dir
+  if (x<=-80) or (x+str_width(vader0) >= 80) or (x+str_width(vader1) >= 80) or (x+str_width(vader2) >= 80) then
+    dir=-dir
+    y = y-ch
+  end if
+end sub
+
+'''''''''''''''''''''''''''''
+''' move the missile along
+'''''''''''''''''''''''''''''
+sub update_missile
+    my=my+ch
+    beep abs(my)
+
+    if (my-ch > y-ch*3) and (my-ch < y) then
+	if (mx < x+cw*16) and (mx > x) then
+	  row = (y-(my-ch))/ch
+	  col = (mx-x)/cw
+	  if (get_vaders(row,col) = -85) then
+            killed = killed + 1
+	    set_vaders(row,col,32)
+	    score = score + 10
+	    for i=30 to 39
+	      beep i
+	    next
+	    missile = 0
+	  end if
+	end if
+    end if
+    if my >= 49 then
+       missile=0
+    else
+       printxy mx, my-ch, "|"
+    end if
+end sub
+
+'''''''''''''''''''''''''''''
+''' watch the up, down, and enter keys
+'''''''''''''''''''''''''''''
+sub handle_keys
+    if key(264) then  'left
+      z=z-cw
+      if z <=-80 then
+        z=z+cw
+      end if
+    end if
+    if key(266) then  'right
+      z=z+cw
+      if z >=80 then
+        z=z-cw
+      end if
+    end if
+    if key(272) and fire_key=0 then  'enter
+      fire_key = 1
+      missile=1
+      mx=z+2
+      my=-45
+    end if
+    if key(272)=0 and fire_key=1 then ' key released
+      fire_key=0
+    end if
+end sub
+
+'''''''''''''''''''''''''''''
+''' the main function
+'''''''''''''''''''''''''''''
+sub main0
+  init
+  lives=3
+  call next_level
+  while lives > 0
+    while(killed <> 24)
+      delay = delay - 1
+      if delay = 0 then 
+        delay = curr_delay
+        call update_vaders
+        call repaint(x,y)
+      end if
+      if missile then
+        call update_missile
+      end if
+
+      key_delay = key_delay-1
+      if key_delay = 0 then
+        call handle_keys
+        key_delay = max_key_delay
+      end if
+      if y-ch*bottom_row <= -50 then
+         call squashed
+         lives = lives - 1
+         level = level - 1 'hack city
+         goto Die
+      end if
+    wend
+Die:
+    if lives <> 0 then next_level
+  wend
+end sub
+
+'''''''''''''''''''''''''''''
+''' call the main function
+'''''''''''''''''''''''''''''
+main0
+game_over

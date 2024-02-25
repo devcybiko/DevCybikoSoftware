@@ -1,0 +1,253 @@
+
+
+{{{
+OPTION C_COORDS
+OPTION ESCAPE OFF
+
+'
+' 0=my sprite
+' 1=your sprite
+'
+dim me as int
+dim you as int
+dim x[2] as int  'position of lemming from 0-159
+dim y[2] as int  'position of lemming from 0-99
+dim z_dir[2] as int  'which direction of lemming
+dim z_cnt[2] as int  'animation image of lemming
+
+dim sprite_lemming[2] as int 'the sprite ids
+dim lemming_left as int     'index into lemming sprite for going left
+dim lemming_right as int    'index into lemming sprite for going right
+dim lemming_up as int       'index into lemming sprite for going up
+dim lemming_down as int     'index into lemming sprite for going down
+dim lemming_stop as int
+
+dim mycyid as long
+dim cyid as long
+dim now as int
+dim whenever as int
+dim begin as int
+dim start as int
+'''
+''' initialization
+'''
+sub init
+    now = 1
+    whenever = 0
+    begin = 0
+    start = 0
+
+    sprite_lemming[0] = 1     
+    sprite_lemming[1] = 2
+
+    me = 0
+    you = 1
+
+    sprite sprite_lemming[me], "lemming.pic"
+    sprite sprite_lemming[you], "lemming.pic"
+
+    lemming_stop=-1
+    lemming_left=0        'lemming left image
+    lemming_right=5       'lemming right image
+    lemming_up=10         'lemming up image
+    lemming_down=15       'lemming down image
+
+    x[me]=rnd(159)
+    y[me]=rnd(99)
+    z_dir[me]=lemming_right  ' lemming faces right
+    z_cnt[me]=0              ' animation counter
+end sub
+
+sub repaint
+    move sprite_lemming[me], x[me], y[me], z_dir[me]+z_cnt[me]
+    move sprite_lemming[you], x[you], y[you], z_dir[you]+z_cnt[you]
+    paper white  'transparent color for the lemming
+    redraw        'redraw all the sprites
+end sub
+
+'''
+''' increment the z_cnt variable
+'''
+sub update_z_cnt(who as int)
+    z_cnt[who]=(z_cnt[who]+1) MOD 5
+end sub
+
+'''
+''' process the keyboard
+'''
+sub get_keys
+    if key(#KEY_UP) then 
+        z_dir[me]=lemming_up
+        send_telemetry(now)
+    end if
+    if key(#KEY_DOWN) then
+        z_dir[me]=lemming_down
+        send_telemetry(now)
+    end if
+    if key(#KEY_LEFT) then
+        z_dir[me]=lemming_left
+        send_telemetry(now)
+    end if
+    if key(#KEY_RIGHT) then
+        z_dir[me]=lemming_right
+        send_telemetry(now)
+    end if
+    if key(#KEY_SPACE) then exit program
+end sub
+
+'''
+''' move the sprite
+'''
+sub move_lemming(who as int)
+    if z_dir[who]=lemming_right then x[who]=x[who]+1
+    if z_dir[who]=lemming_left then x[who]=x[who]-1
+    if z_dir[who]=lemming_up then y[who]=y[who]-1
+    if z_dir[who]=lemming_down then y[who]=y[who]+1
+    if x[who] < 0 then x[who] = 0
+    if x[who] >(160-20) then x[who]=(160-20)
+    if y[who] < 0 then y[who] = 0
+    if y[who] > (100-20) then y[who]=(100-20)
+    update_z_cnt(who)
+end sub
+
+'''
+''' incoming messages
+'''
+sub onMessage(cyid as long, msgno as int, buf[] as char)
+    dim xx[10] as char
+    dim yy[10] as char
+    dim dir[10] as char
+    if msgno = 1 then 
+        begin = 1
+        exit sub
+    end if
+    if msgno = 2 then 
+        start = 1
+        exit sub
+    end if
+    tokenize buf,"|",xx,yy,dir
+    x[you] = int(xx)
+    y[you] = int(yy)
+    z_dir[you] = int(dir)
+end sub
+
+'''
+''' find a partner
+'''
+sub get_you
+    cyid = usermenu("Select Client", 0)
+    if cyid = 0 then exit program
+end sub
+
+'''
+''' send data
+'''
+dim lasttime as long
+inline lasttime = clock();
+sub send_telemetry(now as int)
+    dim data[32] as char
+    dim delta as long
+    inline delta = clock() - lasttime;
+    if (now or (delta > 1000)) then '' every 1/4 second
+        sprint data, x[me], "|", y[me], "|", z_dir[me]
+        sendMessage cyid, 0, "telemetry", data
+        inline lasttime = clock();
+inline TRACE("lasttime = %ld", lasttime);
+    end if
+end sub
+
+'''
+''' check the message queue
+'''
+dim k as int
+k = 0
+sub check_queue()
+    k = k + 1
+    if k = 10 then
+        k = key ''for a look at the msgqueue
+        k = 0
+    end if
+end sub
+
+'''
+''' get my cyid
+'''
+sub get_me
+    inline mycyid = get_own_id();
+end sub
+
+'''
+''' wait_for_begin
+'''
+sub wait_for_begin
+    cls
+    print "Waiting for partner"
+    while (not begin)
+        check_queue
+        wait 10
+        send_start
+    wend
+end sub
+
+'''
+''' wait_for_start
+'''
+sub wait_for_start
+    cls
+    print "Waiting for partner"
+    while (not start)
+        check_queue
+        wait 10
+        send_begin
+    wend
+end sub
+
+'''
+''' send_begin
+'''
+sub send_begin
+    dim data[32] as char
+    data = "begin"
+    sendMessage cyid, 1, "telemetry", data
+end sub
+
+'''
+''' send_start
+'''
+sub send_start
+    dim data[32] as char
+    data = "start"
+    sendMessage cyid, 2, "telemetry", data
+end sub
+
+'''
+''' main subroutine
+'''
+sub mainsub
+    init
+
+    get_you
+    get_me
+
+    if mycyid > cyid then 
+        wait_for_begin ' arbitrarily choose one cybiko as the server
+    else 
+        wait_for_start
+    end if
+
+    while true
+        check_queue
+        get_keys
+        send_telemetry(whenever)
+        move_lemming(me)
+        move_lemming(you)
+        repaint
+    wend
+end sub
+
+'''
+''' call the main subroutine
+'''
+mainsub
+}}}
+

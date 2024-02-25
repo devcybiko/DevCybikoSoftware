@@ -1,0 +1,54 @@
+<B><P>Topic :</B> Redraw</P>
+<B><P>Language Level</B> : B2C Extension</P>
+<B><P>Effectivity :</B> B2C v2c</P>
+<B><P>Syntax</B> : </P><DIR>
+<DIR>
+
+<P>Redraw All</P>
+<P>Redraw n</P>
+<P>Redraw Show</P></DIR>
+</DIR>
+
+<B><P>Description :</P>
+</B><P>&#9;The Redraw command has 3 modes of operations</P>
+<P>&#9;Redraw All :</P><DIR>
+<DIR>
+<DIR>
+<DIR>
+
+<P>Redraw All will redraw all sprites from Sprite 0 through Sprite n (which is defined by the Option Sprites command).  Sprite 0 is drawn first.  If it is not defined then the entire screen is erased with the currently defined paper color.  If Sprite 0 is defined then it is tiled against the background.  Setting the X,Y coordinates of Sprite 0 (with the Move Command) can create a scrolling effect.  The result of the Redraw command is immediately visible on the display.</P></DIR>
+</DIR>
+
+<P>Redraw n:</P><DIR>
+<DIR>
+
+<P>Redraw n will draw only the sprite ‘n’ onto the display.  However it will not immediately show the result of the redrawing.  A call to Redraw Show is needed to make the result visible.  This is a performance enhancement.  You should redraw all the sprites in the current frame using Redraw n and call Redraw Show only after all sprites have been Redrawn.</P></DIR>
+</DIR>
+</DIR>
+</DIR>
+
+<P>&#9;Redraw Show:</P><DIR>
+<DIR>
+<DIR>
+<DIR>
+
+<P>For all graphics commands (line, point, printxy), the user will see the result of the command only if OPTION SHOW ON is set.  If OPTION SHOW OFF is set then Redraw Show will update the display with the results of the graphics command.  This is also true of sprites drawn with the Redraw n command.</P></DIR>
+</DIR>
+</DIR>
+</DIR>
+
+<B><P>Example</P>
+<P>&#9;</B>Dim x as int</P>
+<P>&#9;Dim y as int</P>
+<P>&#9;Dim z as int</P>
+<P>&#9;Sprite 1, "lemming.pic"</P>
+<P>&#9;X=0</P>
+<P>&#9;Y=0</P>
+<P>&#9;Z=0</P>
+<P>&#9;While 1</P>
+<P>&#9;&#9;If key(264) then x=x-1</P>
+<P>&#9;&#9;If key(266) then x=x+1</P>
+<P>&#9;&#9;Move 1,x,y,z</P>
+<P>&#9;&#9;Redraw</P>
+<P>&#9;Wend</P>
+<B>

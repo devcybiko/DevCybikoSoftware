@@ -1,0 +1,33 @@
+' chapter 9 example program
+' sum and average of n grades
+' grades are from 0-100
+dim sum    'this variable will store the sum of the n grades
+dim avg    'this variable will store the average of the n grades
+dim n as int   ' the number of grades to average
+
+print "How many grades?"
+input n
+dim grade[n]  ' an array of n grades
+
+ ' ---INPUT ---
+for i=0 to n-1                 'get the inputs
+    print "Enter grade ", i   ' notice that we indent in loops
+    input grade[i]                'get the grades from the student
+next
+
+'--- PROCESS ---
+' compute the sum and the average
+for i=0 to n-1
+    sum = sum + grade[i]   'notice we accumulate the sum
+next
+avg = sum/n
+
+'--- OUTPUT ---
+print "The average of your"
+print n, " grades is", avg
+
+print "Press <Enter> to continue"
+dim tmp ' a temporary variable
+input tmp 'wait for the user to press enter
+
+

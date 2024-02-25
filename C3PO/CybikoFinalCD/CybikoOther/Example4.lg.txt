@@ -1,0 +1,127 @@
+penup;
+moveto -80,-40;
+pendown;
+forward 160;
+
+;Now let's draw walls, 
+;a floor and a ceiling. 
+;So it will be a square 
+;with side 44 pixels. 
+
+penup;
+moveto -70,-37;
+pendown;
+forward 44;
+left;
+forward 44;
+left;
+forward 44;
+left;
+forward 44;
+
+;The house needs a 
+;foundation. 
+;So let's draw it.
+
+right;
+forward 3;
+left;
+forward 3;
+left;
+forward 50;
+left;
+forward 3;
+left;
+forward 3;
+penup;
+right;
+
+;Now we are drawing a double 
+;roof - first, its outer part, 
+;then - the inner one. 
+
+forward 43;
+right;
+forward 4;
+left 135;
+pendown;
+forward 37;
+left;
+forward 37;
+left;
+forward 2;
+left;
+forward 35.5;
+right;
+forward 35.5;
+penup;
+
+;Now we are drawing a window.
+
+right 45;
+forward 9;
+right;
+forward 15;
+pendown;
+forward 20;
+left;
+forward 20;
+left;
+
+forward 20;
+left;
+forward 20;
+penup;
+back 2;
+left;
+forward 2;
+pendown;
+forward 16;
+left;
+forward 16;
+left;
+forward 16;
+left;
+forward 16;
+back 7;
+left;
+forward 16;
+back 8;
+right;
+back 8;
+penup;
+forward 36;
+
+;Now we proceed to drawing 
+;a small garret window.
+
+left;
+pendown;
+forward 2;
+right;
+forward 5;
+right;
+forward 4;
+right;
+forward 5;
+right;
+forward 2;
+penup;
+moveto 58,16;	
+
+;And at the end we will draw 
+;a sun with 18 rays. 
+
+moveto 58,16;		
+while i<18		
+{
+  pendown;
+  forward 3;
+  left 80;	
+  forward;	
+  penup;	
+  back;		
+  right 100;	
+  i=i+1;	
+}
+hide;

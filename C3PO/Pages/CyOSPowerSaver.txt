@@ -1,0 +1,13 @@
+Hi! 
+Currently Cybiko SDK does not support suspend control functions.
+But if you declare these functions
+
+__{{{__cyos "keybd.app" 8  poc_request( bool );}}}__
+__{{{__cyos "keybd.app" 13 poc_enable_autosleep( bool );}}}__
+
+you will can control suspend mode of the cybiko computer. Function poc_request switches
+nonsuspend/suspend mode. And poc_enable_autosleep turns off autosuspend.
+
+- devsupport
+
+[Professr] - 15-Jul-2003

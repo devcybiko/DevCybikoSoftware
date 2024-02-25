@@ -1,0 +1,34 @@
+                <TABLE BORDER=0 CELLSPACING=0 CELLPADDING=0 WIDTH=656 NOF=LY>
+                    <TR VALIGN=TOP ALIGN=LEFT>
+                        <TD WIDTH=656>
+                            <P ALIGN=CENTER><B><FONT COLOR="#0000FF" SIZE="+2">Learning to Program in C with the <BR>Cybiko Handheld Computer</FONT></B><BR>By Greg Smith</P>
+                            <P ALIGN=LEFT>Book one is a by-the-hand tour of the 'C' programming language and the tools you will need to write Cybiko games and apps. 'C' can be hard to learn, but it is very exact, and very fast. <p>
+                                 The best programs around are written in 'C' because of its special features.  You can program close to the "metal" giving you very tight control over every instruction.  Use 'C' if you aren't in a hurry, but want professional results, and are willing to spend several hours in front of the keyboard.
+                            </P>
+                            <P><HR ID="HRRule1" WIDTH="95%" ALIGN=CENTER SIZE=2>
+                            <P ALIGN=CENTER><FONT SIZE="+1">Click here for my </FONT><A HREF="attach?page=LearnCybikoC/cwhirl.rtf"><FONT SIZE="+1">Whirlwind Tour of Cybko C.</FONT></A></P>
+                            <P ALIGN=CENTER><FONT SIZE="+1">Click here for my </FONT><A HREF="attach?page=LearnCybikoC/sdktutorial.rtf"><FONT SIZE="+1">SDK/C</FONT></A><FONT SIZE="+1"> Tutorial.</FONT></P>
+                            <P ALIGN=CENTER><FONT SIZE="+1">Click here for the </FONT><A HREF="attach?page=LearnCybikoC/sdktutorial.zip"><FONT SIZE="+1">ZIP file</FONT></A><FONT SIZE="+1"> of all programs in the Tutorial</FONT></P>
+                            <P ALIGN=CENTER><FONT SIZE="+1">Click here for a copy of Cybiko's </FONT><A HREF="attach?page=LearnCybikoC/Cybiko_SDK_2010_Std.exe"><FONT SIZE="+1">Software Development Kit</FONT></A></P>
+                            <P ALIGN=LEFT><HR ID="HRRule3" WIDTH="94%" ALIGN=CENTER SIZE=2>
+<center><h3>STDIO - Standard I/O</h3></center>
+The following sites have free tutorials on 'C' programming.  They provide the basics for programming the 
+                                Cybiko.  You normally wouldn't be able to run any of their sample programs on the Cybiko, because there are no 'stdio' or Standard Input/Output functions.  But I have provided some for your use.  Many of the 
+                                functions are there - but scanf is notably absent. <BR><A HREF="attach?page=LearnCybikoC/helloworld.zip">HelloWorld.zip - STDIO Library</A>. contains a simple "Hello World" application demonstrating the stdio library.
+                            <P><A HREF="http://devcentral.iftech.com/learning/tutorials/subcpp.asp">DevCentral Learning Center</A> - C & C++ Tutorials</P>
+                            <P><A HREF="http://www.geocities.com/SiliconValley/Hills/1317/">C Programming for Beginners</A> - From a Computer Science course at Illinois Central</P>
+                            <P><A HREF="http://www.1cplusplusstreet.com/">1 C++ Street</A> - Free code samples</P>
+                            <P><A HREF="http://members.tripod.com/~johnt/c.html">Learn C in 5 hours</A> - Francis Thottungal's popular introduction to 'C'</P>
+                            <UL>
+                                <UL>
+                                    <UL>
+                                        <P> </P>
+                                    </UL>
+                                </UL>
+                            </UL>
+                        </TD>
+                    </TR>
+                </TABLE>
+
+ 
+ 

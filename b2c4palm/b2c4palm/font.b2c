@@ -1,0 +1,36 @@
+dim s[64] as char
+point 0,0
+point 159,0
+point 0,159
+point 159,159
+paper 1
+ink 0
+cls
+s = "0123456789ABCDEFGabcdefg"
+font "_stdFont"
+rect 0,0,stringwidth(s)+0,stringheight(s)+0
+printxy 1,1,"0123456789ABCDEFGabcdefg"
+font "_boldFont"
+printxy 0,20,"0123456789ABCDEFGabcdefg"
+rect 0,20,stringwidth(s)+0,stringheight(s)+0
+font "_largeFont"
+printxy 0,40,"0123456789ABCDEFGabcdefg"
+rect 0,40,stringwidth(s)+0,stringheight(s)+0
+font "_symbolFont"
+printxy 0,60,"0123456789ABCDEFGabcdefg"
+rect 0,60,stringwidth(s)+0,stringheight(s)+0
+font "_symbol11Font"
+printxy 0,80,"0123456789ABCDEFGabcdefg"
+rect 0,80,stringwidth(s)+0,stringheight(s)+0
+font "_symbol7Font"
+printxy 0,100,"0123456789ABCDEFGabcdefg"
+rect 0,100,stringwidth(s)+0,stringheight(s)+0
+font "_ledFont"
+printxy 0,120,"0123456789ABCDEFGabcdefg"
+rect 0,120,stringwidth(s)+0,stringheight(s)+0
+font "_largeBoldFont"
+printxy 0,140,"0123456789ABCDEFGabcdefg"
+rect 0,140,stringwidth(s)+0,stringheight(s)+0
+
+dim a as int
+a=getkey

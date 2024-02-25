@@ -1,0 +1,33 @@
+<B><P>Topic :</B> Key-function</P>
+<B><P>Language Level</B> : B2C Extension</P>
+<B><P>Effectivity :</B> B2C v2c</P>
+<B><P>Syntax</B> : </P><DIR>
+<DIR>
+
+<P>Key(keynumber)</P></DIR>
+</DIR>
+
+<B><P>Description :</P>
+</B><P>Key(keynumber) returns TRUE (nonzero) if keynumber is depressed and FALSE (0) otherwise.  See <a href=key-variable.htm>Key-variable</a>, for a chart of key name and key numbers.  This feature was added in Version 2c to facilitate faster keyboard checking.  "Key" (the key-variable) is kept for backwards compatibility - but takes 1/10 second per call.  Key() (the function) is essentially instantaneous.</P>
+<p>It is impossible to detect the ESC key with this function.  This is due to a limitation in the Cybiko DirectKeyboard function.  It is recommended that the programmer use OPTION ESCAPE OFF to turn off escape key processing and use the key function to detect key presses.  Also, the programmer will then have to detect some other key for exiting the program - such as the KEY_SPACE key.
+See the <a href="key-variable.htm">Key</a> variable for a list of key values.
+<p>See the <a href="option-escape.htm">OPTION ESCAPE</a> function for limitations of escape key processing.
+<B>
+<P>Example :</P>
+</b>
+<P>OPTION ESCAPE OFF
+<P>&#9;</B>Dim x as int</P>
+<P>&#9;Dim y as int</P>
+<P>&#9;Dim z as int</P>
+<P>&#9;Sprite 1, "lemming.pic"</P>
+<P>&#9;X=0</P>
+<P>&#9;Y=0</P>
+<P>&#9;Z=0</P>
+<P>&#9;While 1</P>
+<P>&#9;&#9;If key(#KEY_LEFT) then x=x-1</P>
+<P>&#9;&#9;If key(#KEY_RIGHT) then x=x+1</P>
+<P>&#9;&#9;If key(#KEY_SPACE) then exit program</P>
+<P>&#9;&#9;Move x,y,z</P>
+<P>&#9;&#9;Redraw</P>
+<P>&#9;wend</P>
+<B>

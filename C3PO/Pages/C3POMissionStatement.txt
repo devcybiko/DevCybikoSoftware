@@ -1,0 +1,3 @@
+The goal of the [Cybiko Third Party Organization] ([C3PO]) is to further the development of third party hardware and software for the Cybiko Handheld computer.
+
+To do this...

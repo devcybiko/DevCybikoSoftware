@@ -1,0 +1,44 @@
+<B><P>Topic :</B> Vibrate</P>
+<B><P>Language Level</B> : B2C Extension</P>
+<B><P>Effectivity :</B> B2C v2c</P>
+<B><P>Syntax</B> : </P><DIR>
+<DIR>
+
+<P>Vibrate n</P></DIR>
+</DIR>
+
+<B><P>Description :</P>
+<P>&#9;</B>Vibrate causes the Cybiko to vibrate.  'n' is the strength of the vibration and is from 0 to 255.  A vibrate of 0 will cause the vibrations to stop.  A vibrate of 128 is medium and a vibrate of 255 is maximum.</P>
+<B><P>Example :</P>
+<P>&#9;</B>Dim x as int</P>
+<P>&#9;Dim y as int</P>
+<P>&#9;Dim z as int</P>
+<P>&#9;Dim a as int</P>
+<P>&#9;Dim b as int</P>
+<P>&#9;Sprite 1, "lemming.pic"</P>
+<P>&#9;Sprite 2, "other.pic</P>
+<P>&#9;X=0</P>
+<P>&#9;Y=0</P>
+<P>&#9;Z=0</P>
+<P>&#9;A=-80</P>
+<P>&#9;B=-50</P>
+<P>&#9;Move 2, a, b</P>
+<P>&#9;While 1</P>
+<P>&#9;&#9;If key(264) then x=x-1</P>
+<P>&#9;&#9;If key(266) then x=x+1</P>
+<P>&#9;&#9;Move x,y,z</P>
+<P>&#9;&#9;Beep 0</P>
+<P>&#9;&#9;Vibrate 0</P>
+<P>&#9;&#9;If Collision(1,2) then </P><DIR>
+<DIR>
+<DIR>
+<DIR>
+
+<P>beep 1</P>
+<P>vibrate 128</P></DIR>
+</DIR>
+</DIR>
+</DIR>
+
+<P>&#9;&#9;Redraw</P>
+<P>&#9;wend<B> </P>

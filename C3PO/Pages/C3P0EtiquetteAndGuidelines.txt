@@ -1,0 +1,19 @@
+!!Editing
+# Edit often
+# Do not delete other people's work
+# All pages are fair game for editing (if you have a comment to make be sure to sign and date it. ''possibly in italics so its clear that you are commenting'')
+# Sign your work with [[loginName]
+# Date your work with [[{now} ]
+# No Swears
+# Respect each other - no flames
+# Put something meaningful on your personal page
+# When adding to an existing page - follow the design of the author (for example, see [Articles])
+
+!! Content
+# Upload your demos and completed applications
+# Do not copy information from the [C3PO] Wiki to other sites without the consent of the author.
+# Especially do not publish applications posted in the [C3PO] Wiki to other sites
+# If you post something on the [C3PO] Wiki that you want to be public domain, say so
+
+!!Uploads
+# Upload applications as .zip files. Include a README and Copyright statement.

@@ -1,0 +1,85 @@
+<pre>
+I've been developing some code for the Cybiko which sets up a 
+Messaging mesh network, with one Cybiko connected to a PC and 
+mulitple "Remote" Cybiko units. I needed to be informed of when users 
+came up and down. To get the MSG_USER_FOLK message to work correctly, 
+you need to somewhere in your main module (during initialisation), 
+set the following global variable to true:
+
+send_user_folk = TRUE;
+
+In your main message loop, you need to trap the MSG_USER_FOLK 
+message, and check for the presence of a buffer. If the message has a 
+buffer, a new user has appeared. If the message does not contain a 
+buffer, a user has disappeared. The CyId of the user is stored in 
+message parameter 0, i.e. pMessage->param[0] as type cyid_t.
+
+The following code fragments should help illustrate this (I've 
+removed irrelevant code from this example)
+
+
+
+bool cMainForm_proc( struct cMainForm* pMainForm, struct Message* pMessage )
+{
+struct Buffer *pBuffer;
+
+int i;
+int Size;
+char CyIdStr[[16];
+char Nickname[[16];
+
+cyid_t CyId;
+
+bool Handled = FALSE;
+
+switch( pMessage->msgid )
+{
+// Include all cases in this message loop
+// They've only been removed for ease of reading
+
+// Process Remote User Changes
+case MSG_USER_FOLK:
+
+// Retrieve CyId of user which has (dis)appeared
+CyId = pMessage->param[[0];
+
+// Convert CyId to a string
+cyid2str(CyIdStr, CyId);
+
+// Check message for a buffer.
+// If Message includes a buffer, a new user has appeared.
+
+if ( Message_has_buffer(pMessage) )
+{
+// Get Buffer
+pBuffer = Message_get_buffer(pMessage);
+
+// Get Data (Note that there appears to be an extra character
+// appearing after the nickname - this may be additional data
+// of some kind, but I'm not sure what it is so it's ignored.
+
+Buffer_load_string(pBuffer, Nickname, 0, NICKNAMESIZE);
+
+// Do something with the information
+cMainForm_OnUserNew(pMainForm, CyId, Nickname);
+}
+else
+{
+// Message didn't include a buffer.
+// Therefore a user has gone
+
+// Do something with the information
+cMainForm_OnUserGone(pMainForm, Cy Id);
+}
+Handled = TRUE;
+break;
+}
+
+if (Handled == FALSE)
+{
+Handled = cFrameForm_proc(pMainForm->pFrameForm, pMessage);
+}
+return Handled;
+}
+
+</pre>

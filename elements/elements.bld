@@ -1,0 +1,12 @@
+[option]
+#keep
+[path]
+..
+[source]
+elements.b2c
+[pic=elements.pic]
+background.bmp
+[pic=cursor.pic]
+cursor.bmp
+[files]
+elements.dat

@@ -1,0 +1,98 @@
+{{{
+BYTECODE                     LENGTH
+=======================================
+00 seteq                     1
+01 setne                     1
+02 setlt                     1
+03 setle                     1
+04 setgt                     1
+05 setge                     1
+06 switch    <w> ... <w>     2n + 1
+07 jump.c    <byte op.>      2
+08 jumpz.c   <byte op.>      2
+09 jumpnz.c  <byte op.>      2
+0a calln.s   <word op.>      3
+0b
+0c callx.b   <byte op.>      2
+0d calls12.w <word op.>      3
+0e calls3.w  <word op.>      3
+0f retf                      1
+10 retn                      1
+11 retn.c    <byte op.>      2
+12 stack.c   <byte op.>      2
+13 push                      1
+14 pop                       1
+15 move                      1
+16 load.c    <byte op.>      2
+17 load.s    <word op.>      3
+18 leal.b    <byte op.>      2
+19
+1a leag.u    <word op.>      3
+1b loadic                    1
+1c loadis                    1
+1d loadil                    1
+1e storeic                   1
+1f storeis                   1
+20 storeil                   1
+21 loadlc.b  <byte op.>      2
+22 loadls.b  <byte op.>      2
+23 loadll.b  <byte op.>      2
+24
+25
+26
+27 storelc.b <byte op.>      2
+28 storels.b <byte op.>      2
+29 storell.b <byte op.>      2
+2a
+2b
+2c
+2d inc1                      1
+2e inc2                      1
+2f inc4                      1
+30 dec1                      1
+31 dec2                      1
+32 dec4                      1
+33 lshift1                   1
+34 lshift2                   1
+35
+36
+37 add                       1
+38 sub                       1
+39 neg                       1
+3a mul                       1
+3b div                       1
+3c mod                       1
+3d and                       1
+3e or                        1
+3f
+40 jump.s    <word op.>      3
+41 jumpz.s   <word op.>      3
+42 jumpnz.s  <word op.>      3
+43 load0                     1
+44 load1                     1
+45 load.l    <dword op.>     5
+46 add.c     <byte op.>      2
+47 add.s     <word op.>      3
+48
+49 cmpe.c    <byte op.>      2
+4a cmpe.s    <word op.>      3
+4b
+4c calld12.w <word op.>      3
+4d calld3.w  <word op.>      3
+4e setz                      1
+4f setnz                     1
+50 cwd                       1
+51 cbd                       1
+52 loadgc.u  <word op.>      3
+53 loadgs.u  <word op.>      3
+54 loadgl.u  <word op.>      3
+55 storegc.u <word op.>      3
+56 storegs.u <word op.>      3
+57 storegl.u <word op.>      3
+
+80 leas.w    <word op.>      3
+81 lead.w    <word op.> <word.op>     5
+
+=======================================
+
+}}}

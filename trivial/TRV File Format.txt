@@ -1,0 +1,107 @@
+TRV File Format
+1. Introduction
+The TRV file format is designed to be both a simple and interchangeable format for use in different trivia applications.  It supports the use of multiple categories, multiple point values, a variable number of answers, and a counter for the number of times a question has been used.  A supplied B2C function library allows for easy access to the file format without knowledge of the internals.  The supplied 2trv program (PC Console app) converts a ASCII data format into the .trv format.
+
+2. ASCII Format
+The following ASCII format is for use with the 2trv application.  Each line of the file is a single question.  Each question is broken up into fields by vertical bars (|).  There are no blank lines or comment lines allowed.  Generally ASCII format files end it a .dat extension.
+
+2.1. Example:
+PointIndex|Category|Question|*Answer1|Answer2|Answer3|Answer4|...
+0|What is the air speed velocity of an unlaiden swallow?|15 mph|*20mph|25mph|30mph
+2.2. Field 1: Point index
+The point index starts at zero and goes as high as desired depending on the trivia application.  Note that this is an index and not a point value.  The application should assign a point value.  (For example, Trivial.app uses 100 points for a 0-point index and 250 for a 1.)
+
+2.3. Field 2: Category
+The Category is the area of interest for the question.  It can be any length. This may be ignored by the application.  (For example Trivial.app uses this field as the Cat: line)
+
+2.4. Field 3: Question
+This is the question portion of the record.  It can be any length.
+
+2.5. Fields 4-n: Answers
+These fields represent the answers to the question.  Answers may be any length. You may have as few as zero and as many as you like.  By convention the answer beginning with an asterisk (*) is the correct one.  In Trivial.app 4 questions are used.
+
+3. 2trv - convert from .dat to .trv
+2trv will convert a .dat ASCII formatted file into a .trv-formatted file.  .trv is a binary format (described below) and is the ultimate deliverable to the application.  The command-line format is:
+
+2trv filename.dat
+
+the resultant file is filename.trv
+
+4. .trv binary format
+The .trv binary format is designed to create a fast question lookup based on the point index of questions.  Questions may be looked up by their point index or by their position in the file.  The file is organized as a record for the number of entries, an array of offset records, followed by a lightly encoded ASCII data section (which is merely the original data with CR/LF turned into NULLS)
+
+All integers are stored in Cybiko Byte Order.
+
+The first 2 bytes are the number of records in the file - 'n'
+
+The next sets of bytes are 12-byte records indicating the position of each record in the file.  These records are sorted by point-index.  There are 'n' of these records. The C structure for these records is:
+struct trv {
+	long offset; // from beginning of file to question record
+	long point_index; // 0-n index of point value
+	short usage; // number of times this question has been used
+	short padding; // zero
+};
+
+The remainder of the file is the ASCII data file encoded by exclusive-or'ing each byte with 0xAA.  This is not to make the records impossible to decrypt, only to make it difficult for the casual user to read the answers.  Each CR/LF has been replaced with 2 NULL bytes.  The NULLs are not encrypted.
+
+5. TRV.B2C - the function library
+The TRV.B2C function library is a general set of functions for the B2C programmer to use in creating their trivia application.  It can support only 1 open trivia file at a time.
+
+5.1. sub trv_open(s[] as char, trv as int) - open a trivia file
+trv_open() will open a trivia file. 
+'s' is a string containing the trivia filename
+trv is a file number (0-7) of a b2c file handle
+This function opens the file and creates an array of offsets to the point indexes (this is for fast point index lookup)
+
+5.2. sub trv_close(trv as int) - close a trivia file
+trv_close() will close a trivia file
+trv is a filenumber previously passed to trv_open()
+
+5.3. function trv_nquestions(trv as int) as int - return the # of questions
+trv_nquestions() will return the number of questions in a trivia file
+trv is a filenumber previously passed to trv_open()
+
+5.4. function trv_points(trv as int, n as int) as long - return the points
+trv_points() returns the point index of a question
+trv is a filenumber previously passed to trv_open()
+n is the index of the question in the file to find the point index of
+
+5.5. function trv_usage(trv as int, n as int) as int - return the usage
+trv_usage() returns the number of times a question has been used
+trv is a filenumber previously passed to trv_open()
+n is the index of the question in the file to find the usage of
+
+5.6. sub trv_inc_usage(trv as int, n as int) - increment a questions usage
+trv_inc_usage() adds one to the usage of a trivia question
+trv is a filenumber previously passed to trv_open()
+n is the index of the question in the file to find the usage of
+
+5.7. function trv_find(trv as int, points as long) as int - choose a question
+trv_find() will locate a question with point index points and of minimal usage
+trv is a filenumber previously passed to trv_open()
+points is the point index of the question to find
+
+5.8. function trv_nanswers(trv as int, i as int) as int - return number of answers to a question
+trv_answers() returns the number of answers to a question
+trv is a filenumber previously passed to trv_open()
+i is the index of the question
+
+5.9. function trv_answers(trv as int, i as int, j as int, s[] as char) as int - get the text of an answer
+trv_answers() returns TRUE if this question is the right answer (begins with *) and FALSE otherwise.  The text of the answer is placed in the character array s which must contain enough space to hold the answer
+trv is a filenumber previously passed to trv_open()
+i is the index of the question
+j is the index of the answer to receive (only valid up to trv_nanswers()-1)
+s is the receiving character field.  If the answer begins with an asterisk (*) then TRUE is returned and the asterisk is trimmed from the field before being returned.
+
+
+5.10. sub trv_question(trv as int, i as int, s[] as char) - return the question text
+trv_question()  The text of the question is placed in the character array s which must contain enough space to hold the question
+trv is a filenumber previously passed to trv_open()
+i is the index of the question
+s is the receiving character field.
+5.11. sub trv_category(trv as int, i as int, s[] as char) - return the category text
+trv_category()  The text of the category is placed in the character array s which must contain enough space to hold the category
+trv is a filenumber previously passed to trv_open()
+i is the index of the category
+s is the receiving character field.
+

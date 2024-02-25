@@ -1,0 +1,32 @@
+<B><P>Topic :</B> OnMessage</P>
+<B><P>Language Level</B> : B2C Extension</P>
+<B><P>Effectivity :</B> B2C v3d</P>
+<B><P>Syntax</B> : </P><DIR>
+<DIR>
+
+<P>sub onMessage(cyid as long, msgno as int, buf[] as char)</P></DIR>
+</DIR>
+
+<B><P>Description :</P><DIR>
+<DIR>
+
+</B><P>OnMessage is a user-supplied function.  It is called &quot;spontaneously&quot; (like an interrupt) whenever a message enters the message queue for the currently running app.  (In fact the message queue is checked during calls to keyboard input routines).  Do not call keyboard functions (key, getchar, input, etc... during onmessage() calls)</P></DIR>
+</DIR>
+
+<B><P>Example : </P><DIR>
+<DIR>
+
+</B><P>sub onMessage(cyid as long, msgno as int, buf[] as char)</P>
+<P>&#9;if buf[0] = ‘1’ then beep 10</P>
+<P>&#9;else beep -1</P>
+<P>end sub</P>
+</DIR>
+</DIR>
+
+<B><P>See Also:</P><DIR>
+<DIR>
+
+</B><P>SendMessage, UserMenu, toCyid, toUser, Tokenize</P>
+<B></DIR>
+</DIR>
+

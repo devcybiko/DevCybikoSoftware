@@ -1,0 +1,76 @@
+*asm:
+-mno-68881 -m68000 -l
+
+*asm_final:
+
+
+*cpp:
+%(cpp_fpu)%{!ansi:%{m68302:-Dmc68302 }%{m68010:-Dmc68010 }%{m68020:-Dmc68020 }%{mc68020:-Dmc68020 }%{m68030:-Dmc68030 }%{m68040:-Dmc68040 }%{m68020-40:-Dmc68020 -Dmc68030 -Dmc68040 }%{m68020-60:-Dmc68020 -Dmc68030 -Dmc68040 -Dmc68060 }%{m68060:-Dmc68060 }%{mcpu32:-Dmcpu32 } %{m68332:-Dmc68332 -Dmcpu32 }%{m5200:-Dmcf5200 }} %{m68302:-D__mc68302__ -D__mc68302 }%{m68010:-D__mc68010__ -D__mc68010 }%{m68020:-D__mc68020__ -D__mc68020 }%{mc68020:-D__mc68020__ -D__mc68020 }%{m68030:-D__mc68030__ -D__mc68030 }%{m68040:-D__mc68040__ -D__mc68040 }%{m68020-40:-D__mc68020__ -D__mc68030__ -D__mc68040__ -D__mc68020 -D__mc68030 -D__mc68040 }%{m68020-60:-D__mc68020__ -D__mc68030__ -D__mc68040__ -D__mc68020 -D__mc68030 -D__mc68040 -D__mc68060__ -D__mc68060 }%{m68060:-D__mc68060__ -D__mc68060 }%{mcpu32:-D__mcpu32__ -D__mcpu32 }%{m68332:-D__mc68332__ -D__mc68332 -D__mcpu32__ -D__mcpu32 }%{m5200:-D__mcf5200__ -D__mcf5200 } %{!mc68000:%{!m68000:%{!m68302:%{!m68010:%{!mc68020:%{!m68020:%{!m68030:%{!m68040:%{!m68020-40:%{!m68020-60:%{!m68060:%{!mcpu32: %{!m68332:%{!m5200:%(cpp_cpu_default)}}}}}}}}}}}}}} %(cpp_subtarget) 
+
+*cc1:
+-fpic -msoft-float -m68000 %{!Wmultichar:-Wno-multichar}
+
+*cc1plus:
+
+
+*endfile:
+-lcrt
+
+*link:
+--embedded-relocs --no-check-sections -N %{!static:-dy}
+
+*lib:
+%{!shared:%{g*:-lg} %{!p:%{!pg:-lc}}%{p:-lc_p}%{pg:-lc_p}}
+
+*libgcc:
+-lgcc
+
+*startfile:
+%{!shared:crt0.o%s} %{shared:scrt0.o%s} %{g:gdbstub.o%s}
+
+*switches_need_spaces:
+
+
+*signed_char:
+%{funsigned-char:-D__CHAR_UNSIGNED__}
+
+*predefines:
+-Dm68000 -Dmc68000 -Dm68k -D__palmos__ -Asystem(palmos) -Acpu(m68k) -Amachine(pilot)
+
+*cross_compile:
+1
+
+*version:
+2.95.3-kgpd
+
+*multilib:
+. !mown-gp;mown-gp mown-gp;
+
+*multilib_defaults:
+m68000 msoft-float
+
+*multilib_extra:
+
+
+*multilib_matches:
+mown-gp mown-gp;
+
+*linker:
+collect2
+
+*cpp_cpu_default:
+%{!ansi:-Dmc68000 } -D__mc68000 -D__mc68000__
+
+*cpp_fpu:
+%{m68881:-D__HAVE_68881__ }%{mfpa:-D__HAVE_FPA__ }%{msky:-D__HAVE_SKY__ }
+
+*cpp_subtarget:
+%{mown-gp:-D__OWNGP__ }%{mextralogues:-D__EXTRALOGUES__ }
+
+*asm_cpu_default:
+-mc68000
+
+*link_command:
+%{!fsyntax-only:  %{!c:%{!M:%{!MM:%{!E:%{!S:%(linker) %l %X %{o*} %{A} %{d} %{e*} %{m} %{N} %{n} 			%{r} %{s} %{t} %{u*} %{x} %{z} %{Z}			%{!A:%{!nostdlib:%{!nostartfiles:%S}}}			%{static:} %{L*} %D %o			%{!nostdlib:%{!nodefaultlibs:%G %L %G}}			%{!A:%{!nostdlib:%{!nostartfiles:%E}}}			%{T*}			
+ }}}}}}
+

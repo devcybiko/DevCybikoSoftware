@@ -1,0 +1,93 @@
+'wait for the last key to be released
+sub user_key_up(oldkey as int)
+  if (oldkey) then
+	while key(oldkey)
+	wend
+  endif
+end sub
+
+function user_key(oldkey as int) as int
+  ' wait for the last key to be released
+  user_key_up(oldkey)
+
+  'wait for one of the valid keys to be hit
+  dim k as int
+  k = 0
+  while k = 0
+    if (key(#KEY_SPACE)) then k = #KEY_SPACE
+    if (key(#KEY_UP)) then k = #KEY_UP
+    if (key(#KEY_DOWN)) then k = #KEY_DOWN
+    if (key(#KEY_LEFT)) then k = #KEY_LEFT
+    if (key(#KEY_RIGHT)) then k = #KEY_RIGHT
+    if (key(#KEY_ENTER)) then k = #KEY_ENTER
+    if (key(#KEY_DEL)) then k = #KEY_DEL
+  wend
+  user_key = k
+end function
+
+'
+' move the cursor to a valid square
+'
+function user_move_cursor(oldkey as int, color as int) as int
+  dim k as int           'key pressed
+  dim tmp as int         'temp variable
+  dim piece_color as int 'the color of the currently selected piece
+  dim new_row as int     'row selected by cursor movement
+  dim new_col as int     'col selected by cursor movement
+
+  'loop forever until the space or enter key is pressed
+  while true
+    k = user_key(oldkey)  'get the key
+    oldkey = k            'save the last key pressed
+
+    new_row = cursor_row  'initialize the new position
+    new_col = cursor_col
+
+    'move the cursor around
+if (k = #KEY_DEL) then exit program
+    if (k = #KEY_UP) then new_row = new_row+1
+    if (k = #KEY_DOWN) then new_row = new_row-1
+    if (k = #KEY_LEFT) then new_col = new_col-1
+    if (k = #KEY_RIGHT) then new_col = new_col+1
+    if (k = #KEY_SPACE) then 'exit the program?
+	user_key_up(oldkey)
+	tmp = dialog("Chess", "Do you want to quit?") 
+	if (tmp) then exit while
+    endif
+    if (k = #KEY_ENTER) then  'select the position
+	piece_color = ltgrey ' a bogus color for now
+	tmp = board[new_row,new_col]
+	if (tmp>=wk) and (tmp<=wp) then piece_color=white
+	if (tmp>=bk) and (tmp<=bp) then piece_color=black
+	if piece_color=color then 'if the user selected one of his own pieces 
+	  marker_row = cursor_row 'set the marker to the cursor
+	  marker_col = cursor_col
+	  music foreground,"goodmove.mus"  'tried to select the wrong piece
+	  music foreground,play
+	  repaint 'redraw the screen with the selected piece
+	else
+	  if marker_row>0 and move_legal(marker_row, marker_col, new_row, new_col) then
+	    move_make(marker_row, marker_col, new_row, new_col)
+	    music foreground,"goodmove.mus"
+	    music foreground,play
+	    marker_row=-1
+	    marker_col=-1
+	    repaint
+	    exit while  
+	  else
+	    music foreground,"badmove.mus"  'tried to select the wrong piece
+	    music foreground,play
+	  endif
+	endif
+    endif
+    if board[new_row,new_col]<>-1 then 'its a valid square on the board
+	cursor_row = new_row             'move the cursor
+	cursor_col = new_col
+	repaint ' repaint the board with the selected piece
+    else
+	music foreground,"badmove.mus" 'tried to move off the board
+	music foreground,play
+    endif
+  wend
+  user_move_cursor = k 'return the last key
+end function

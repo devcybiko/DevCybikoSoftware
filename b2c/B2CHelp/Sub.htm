@@ -1,0 +1,40 @@
+<B><P>Topic :</B> Sub</P>
+<B><P>Language Level</B> : CyBasic-1</P>
+<B><P>Effectivity :</B> B2C v2</P>
+<B><P>Syntax</B> : </P><DIR>
+<DIR>
+
+<P>Sub subname {(param1{[]} {As datatype1} {, param2 {As datatype2} …})}</P>
+<P>&#9;{Exit Sub}</P>
+<P>&#9;Body</P>
+<P>End Sub</P></DIR>
+</DIR>
+
+<B><P>Description :</P><DIR>
+<DIR>
+
+</B><P>A Sub is very much like a Function, but it returns no value and therefore has no associated datatype</P>
+
+<P>Sub initiates the definition of a new subroutine .  subname is the name of the subroutine.  An optional parameter list may be specified.  Zero, one, or more parameters may be specified.  Each parameter may have a datatype as specified in Dim.  However, no array parameters may be passed.  If the datatype is not specified, the variable is defined as Double</P>
+
+<P>If the Exit Sub statement is encountered, the function will return immediately.</P>
+
+<P>With version 3a of B2C, single-dimensioned arrays may be passed into subs.  The format of the parameter is p[] – indicating an array of arbitrary length.  This now allows strings to be passed into functions and subroutines.  See the example under ‘Function’</P></DIR>
+</DIR>
+
+<B><P>Example</P><DIR>
+<DIR>
+
+</B><P>Sub menu</P>
+<P>&#9;Print "1) Attach"</P>
+<P>&#9;Print "2) Retreat"</P>
+<P>&#9;Print "3) Plead for Life"</P>
+<P>&#9;Print "0) Quit"</P>
+<P>End Sub</P>
+</DIR>
+</DIR>
+
+<P>&#9;Dim x</P>
+<P>&#9;Call Menu</P>
+<P>&#9;Input x</P>
+<B>

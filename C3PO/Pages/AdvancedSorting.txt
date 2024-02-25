@@ -1,0 +1,210 @@
+<h1>Generalizing the Bubble Sort</h1>
+<p>
+Well, bubble_sort() is fine but it only sorts arrays of text.  What if we want to sort an array of integers? or an array of structs?  We can generalize bubble_sort() to accept a poitner to the array, but how do you make it compare two integers?  One way to do this would be to rewrite bubble_sort() for every type of object in the world.  That'd be painful.  But there is another solution ... function pointers.
+<p>
+Function pointers allow us to define a pointer to a function that compares whatever type of object we have in the array.  This is superior to rewriting the entire bubble_sort() everytime we want to sort something different.
+<p>
+What is a function pointer?  Well it is just what it sounds like - a pointer to a function.  The concept is the same as a pointer to data - which is just a memory address of some data.  Instead, the function pointer points to the memory where you created a function.  Let's look at the syntax ...
+<p>
+<H1>Function Pointers</h1>
+<p>
+Here is the definition of a pointer to a comparison function that compares two strings ...
+<p>
+<pre><code>
+int (*compare)(char *a, char *b);
+</pre></code>
+<p>
+Here, the function pointer is called "compare" and it takes 2 parameters.  They are 'a' and 'b' which are pointers to characters.  Now, let's update bubble_sort() to take a pointer to the compare() function - and show two different functions.  The first function will sort text from low to high, the other will sort from high to low.
+<p>
+<pre><code>
+
+int ascending(char *a, char *b)
+{
+	return strcmp(a,b);
+}
+
+int decending(char *a, char *b)
+{
+	return strcmp(b,a);
+}
+
+void swap(char **data, int i, int j)
+{
+	char *tmp;
+	tmp = data[[i];
+	data[[i] = data[[j];
+	data[[j] = tmp;
+}
+
+void bubble_sort(char **data, int n, int (*compare)(char *a, char *b))
+{
+	for(i=0; i < n; i++)
+	{
+		for(j=i; j < n; j++)
+		{
+			if (compare(data[[i], data[[j]) < 0)
+			{
+				swap(data, i, j);
+			}
+		}
+	}
+}
+
+char *names[[] = {"greg", "amber", "heather", "galen", "sean"};
+main() 
+{ 
+	int i; 
+	bubble_sort(names, 5, descending); 
+	for (i=0; i < 5; i++) 
+		TRACE("%s", names[[i]); 
+	bubble_sort(names, 5, ascending); 
+	for (i=0; i < 5; i++) 
+		TRACE("%s", names[[i]); 
+} 
+</pre></code>
+
+<h1>Sorting ANYTHING</h1>
+<p>
+This solution is fine but still it only sorts text.  To sort any general type of object we have to extend things a bit.  First of all we need to pass in a pointer to a block of data.  To do this we need to pass in a <code>void</code> pointer.  That is just like any other pointer, its just that it isn't defined to point to anything in particular.  (Wanna know a secret?  Internally, Cybiko's SDK thinks of <code>void</code> pointers as <code>char</code> pointers.)  So, lets modify the definition of bubble_sort() to include a void pointer...
+<p>
+<pre><code>
+void bubble_sort(void *data, int size, int n, int (*compare)(void *a, void *b));
+</pre></code>
+<p>
+I slipped in a couple other changes while you weren't looking.  Not only did I add <code>void *data</code> but I added <code>int size</code>.  This is the size of the data objects.  For <code>char *</code> data its going to be <code>sizeof(char *)</code> which is just 4 bytes.
+<p>
+I also changed the parameters to the <code>compare</code> function pointer.  These are also <code>void *</code> since we'll be comparing unknown objects later on. We'll also have to change the <code>swap()</code> function to generalize it to swap 2 objects of generic size.
+<p>
+
+So let's look at this new method of calling bubble_sort() using the same example as before...
+<p>
+
+<pre><code>
+
+int decending(void *aa, void *bb)
+{
+	char **a = (char **)aa;
+	char **b = (char **)bb;
+	return strcmp(*a,*b);
+}
+
+int ascending(void *aa, void *bb)
+{
+	char **a = (char **)aa;
+	char **b = (char **)bb;
+	return strcmp(*b,*a);
+}
+
+void swap(void *d, int size, int i, int j)
+{
+	char *data = (char *)d;
+	char *tmp = (char *)malloc(size);
+	memcpy(tmp, &data[[i*size], size);
+	memcpy(&data[[i*size], &data[[j*size], size);
+	memcpy(&data[[j*size], tmp, size);
+	free(tmp);
+}
+
+void bubble_sort(void *d, int size, int n, int (*compare)(char *a, char *b))
+{
+	char *data = (char *)d;
+	for(i=0; i < n; i++)
+	{
+		for(j=i; j < n; j++)
+		{
+			if (compare(&data[[i*size], &data[[j*size]) < 0)
+			{
+				swap(data, size, i, j);
+			}
+		}
+	}
+}
+
+char *names[[] = {"greg", "amber", "heather", "galen", "sean"};
+main() 
+{ 
+	int i; 
+	bubble_sort(names, sizeof(char *), 5, descending); 
+	for (i=0; i < 5; i++) 
+		TRACE("%s", names[[i]); 
+	bubble_sort(names, sizeof(char *), 5, ascending); 
+	for (i=0; i < 5; i++) 
+		TRACE("%s", names[[i]); 
+} 
+</pre></code>
+<p>
+<H1>Sorting something ELSE</h1>
+<p>
+Now that the code is generalized, let's try sorting an array of structures...
+<p>
+<pre><code>
+
+struct foo {
+	char name[[32];  //person's name
+	int n_apples;	//number of his apples
+	int age;	//his age
+	int n_oranges;	//number of oranges
+};
+
+struct foo records[[] = {
+"greg", 100, 39, 25,
+"galen", 35, 18, 64,
+"amber", 25, 13, 0,
+"heather", 200, 10, 65,
+"sean", 1, 12, 32
+};
+
+int compare_apples(void *aa, void *bb)
+{
+	struct foo *a = aa;
+	struct foo *b = bb;
+	return a->n_apples - b->n_apples;
+}
+int compare_oranges(void *aa, void *bb)
+{
+	struct foo *a = aa;
+	struct foo *b = bb;
+	return a->n_oranges - b->n_oranges;
+}
+int compare_names(void *aa, void *bb)
+{
+	struct foo *a = aa;
+	struct foo *b = bb;
+	return strcmp(a->names, b->names);
+}
+
+void print_foo(char *title)
+{
+	TRACE("\n%s...\n", title);
+	for (i=0; i < 5; i++) 
+	{
+		TRACE("%d: ", i);
+		TRACE("%s, ", records[[i].name); 
+		TRACE("%s, ", records[[i].apples); 
+		TRACE("%s, ", records[[i].oranges); 
+		TRACE("%s, ", records[[i].age); 
+		TRACE("\n\n");
+	}
+}
+
+main() 
+{ 
+	print_foo("Unsorted");	
+
+	bubble_sort(names, sizeof(struct foo), 5, compare_names); 
+	print_foo("Sorted by Names");
+
+	bubble_sort(names, sizeof(char *), 5, compare_apples); 
+	print_foo("Sorted by apples");
+
+	bubble_sort(names, sizeof(char *), 5, compare_oranges); 
+	print_foo("Sorted by oranges");
+
+} 
+
+</pre></code>
+
+<H1>Conclusions</h1>
+<p>
+We have generalized bubble_sort to sort any type of object.  The power of function pointers cannot be overstated.  They are in fact the basis for what has become "methods" in C++.  Next time, we'll improve the performance and make it as fast as possible.
+</p>

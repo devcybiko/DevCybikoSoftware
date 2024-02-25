@@ -1,0 +1,17 @@
+TELEMETRY:
+This program (written in b2c) demonstrates a head-to-head game where the motion of one player is sent to the other by cybiko RF.  The problem is that the messages appear to be very slow to be received.  I have it set so that only one message per second is sent.  This should not clog the queue.  But it appears that the messages are often delayed before the other player receives them.
+
+please peruse, and comment.  The project is available for upload [here|TELEMETRY/telemetry.zip]
+
+[TELEMETRY.code]
+----
+''The first difference I see between TELEMETRY and my [code|http://users.adelphia.net/~samneggs/Cybiko/tank/tankx.b2c] is that I didn't use OPTION ESCAPE OFF. It seems I tried it at one time but REMarked it out. You are using the key variable but maybe that's not enough to read the message queue. Also the one message per second could be improved. I believed my attempt approached the fabled 1/10 second update which seems to be barely suitable for game play.'' [SamNEggs] 7-25-03
+----
+Sam, one of the "dirty little secrets" of B2C is that the _escape(0) function is called at the top of every loop.  Turning off ESCAPE processing stops that.  The message queue is never sampled in this case.  But, when you call the __key__ variable it calls the message queue reader that also handles B2C messages (hence, calling onMessage() for you).  That's why i turned off ESCAPE processing and occasionally (once every 10 iteration) call the __key__ variable.  Possibly you are right, I may need to call it more frequently. otherwise, i dont see much difference in our approach. ''by the way, very nice use of inline code!'' [greg] 25-Jul-2003
+----
+''There may be some method to Cybiko's madness. If the RF maxes out at 10 times per sec for 19200 baud then shouldn't your main loop run at the same frequency? I guess if there was a good movement predition scheme then a faster loop is always better. Anyhow, you may need to read the queue (key) at a faster rate than it is written. (not 10x less) Thanks for the props, as they say.'' [SamNEggs] 7-27-03
+
+----
+well, i dont know if its obvious, but i have a delay that prevents messages from going out more than once per second. thats a terrible refresh rate. but i'm frustrated because the messages shouldnt be queueing up at that rate. i have the __key__ variable thing turned down to 1 read every 10 iterations so that i get good performance. the __key__ function (and __ _escape(0)__ take about 1/10 second to execute. so you dont want to run it continuously.
+
+''which reminds me - the cybiko __clock()__ funciton is not accurate. it loses about .02 seconds per second.  this caused me fits when i wrote myStorm.b2c which attempted to display the video at the correct frame rate based on the cybiko's __clock()__. Somebody remind me to write an article on that and a workaround.'' [greg] Fri 25-Jul-2003 10:54:47 GMT

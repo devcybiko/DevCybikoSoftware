@@ -1,0 +1,176 @@
+                <TABLE BORDER=0 CELLSPACING=0 CELLPADDING=0 WIDTH=656 NOF=LY>
+                    <TR VALIGN=TOP ALIGN=LEFT>
+                        <TD WIDTH=656>
+                            <P><FONT SIZE="+1">EXECUTIVE SUMMARY:<BR></FONT>Well I tested it myself, and the Radio Shack antenna not only doesn't improve performance it actually degrades performance. Don't even bother thinking of trading in your 
+                                beautiful black sleek Cybiko antenna for the ugly silver Radio Shack one.</P>
+                            <P>Here are the specifics...</P>
+                            <P><FONT SIZE="+1">THE EXPERIMENT:</FONT> <BR>I took 2 Cybikos (Green and Purple) out to a football field. I first used the original antennas on both devices. I ran RF Scanner on both Cybikos. My daughters held the 
+                                purple one at the zero yard line. We took a measurement and then I took the green one and marched off 25 yards (75 ft). I took a measurement on the RF Scanner and wrote down the result for each of the 2 Cybikos (my 
+                                daughters and i used walkie talkies to communicate the results). I did this again for each of 50, 75, and 100 yards.</P>
+                            <P>Then I took the black Cybiko antenna off the Green Cybiko and replaced it with the silver Radio Shack antenna (which is a tight fit by the way). We did the same trials again. Below are the results.</P>
+                            <P><FONT SIZE="+1">THE DATA<BR></FONT>
+                                <TABLE WIDTH="100%" BORDER=0 CELLSPACING=0 CELLPADDING=0 ALIGN=LEFT NOF=TE>
+                                    <TR>
+                                        <TD>
+                                            <TABLE ID="Table1" BORDER=1 CELLSPACING=3 CELLPADDING=1 WIDTH="100%">
+                                                <TR ALIGN=CENTER>
+                                                    <TD WIDTH="30%">
+                                                        <P ALIGN=CENTER>Distance</P>
+                                                    </TD>
+                                                    <TD WIDTH="36%">
+                                                        <P ALIGN=CENTER>Green/Regular Ant</P>
+                                                    </TD>
+                                                    <TD WIDTH="32%">
+                                                        <P ALIGN=CENTER>Purple/Regualr Ant</P>
+                                                    </TD>
+                                                </TR>
+                                                <TR>
+                                                    <TD ALIGN=RIGHT WIDTH="30%">
+                                                        <P ALIGN=RIGHT>0</P>
+                                                    </TD>
+                                                    <TD ALIGN=RIGHT WIDTH="36%">
+                                                        <P ALIGN=RIGHT>80</P>
+                                                    </TD>
+                                                    <TD ALIGN=RIGHT WIDTH="32%">
+                                                        <P ALIGN=RIGHT>90</P>
+                                                    </TD>
+                                                </TR>
+                                                <TR>
+                                                    <TD ALIGN=RIGHT WIDTH="30%">
+                                                        <P ALIGN=RIGHT>25</P>
+                                                    </TD>
+                                                    <TD ALIGN=RIGHT WIDTH="36%">
+                                                        <P ALIGN=RIGHT>25</P>
+                                                    </TD>
+                                                    <TD ALIGN=RIGHT WIDTH="32%">
+                                                        <P ALIGN=RIGHT>25</P>
+                                                    </TD>
+                                                </TR>
+                                                <TR>
+                                                    <TD ALIGN=RIGHT WIDTH="30%">
+                                                        <P ALIGN=RIGHT>50</P>
+                                                    </TD>
+                                                    <TD ALIGN=RIGHT WIDTH="36%">
+                                                        <P ALIGN=RIGHT>12</P>
+                                                    </TD>
+                                                    <TD ALIGN=RIGHT WIDTH="32%">
+                                                        <P ALIGN=RIGHT>25</P>
+                                                    </TD>
+                                                </TR>
+                                                <TR>
+                                                    <TD ALIGN=RIGHT WIDTH="30%">
+                                                        <P ALIGN=RIGHT>75</P>
+                                                    </TD>
+                                                    <TD ALIGN=RIGHT WIDTH="36%">
+                                                        <P ALIGN=RIGHT>12</P>
+                                                    </TD>
+                                                    <TD ALIGN=RIGHT WIDTH="32%">
+                                                        <P ALIGN=RIGHT>15</P>
+                                                    </TD>
+                                                </TR>
+                                                <TR>
+                                                    <TD ALIGN=RIGHT WIDTH="30%">
+                                                        <P ALIGN=RIGHT>100</P>
+                                                    </TD>
+                                                    <TD ALIGN=RIGHT WIDTH="36%">
+                                                        <P ALIGN=RIGHT>8</P>
+                                                    </TD>
+                                                    <TD ALIGN=RIGHT WIDTH="32%">
+                                                        <P ALIGN=RIGHT>15</P>
+                                                    </TD>
+                                                </TR>
+                                            </TABLE>
+                                        </TD>
+                                    </TR>
+                                </TABLE>
+                        </TD>
+                    </TR>
+                </TABLE>
+                <TABLE BORDER=0 CELLSPACING=0 CELLPADDING=0 NOF=LY>
+                    <TR VALIGN=TOP ALIGN=LEFT>
+                        <TD HEIGHT=9></TD>
+                    </TR>
+                    <TR VALIGN=TOP ALIGN=LEFT>
+                        <TD WIDTH=656>
+                            <TABLE ID="Table2" BORDER=1 CELLSPACING=3 CELLPADDING=1 WIDTH="100%">
+                                <TR>
+                                    <TD WIDTH=190>
+                                        <P ALIGN=CENTER>Distance</P>
+                                    </TD>
+                                    <TD WIDTH=229>
+                                        <P ALIGN=CENTER>Green/Radio Shack Ant</P>
+                                    </TD>
+                                    <TD WIDTH=211>
+                                        <P ALIGN=CENTER>Purple/Regular Ant</P>
+                                    </TD>
+                                </TR>
+                                <TR ALIGN=RIGHT>
+                                    <TD WIDTH=190>
+                                        <P ALIGN=RIGHT>0</P>
+                                    </TD>
+                                    <TD WIDTH=229>
+                                        <P ALIGN=RIGHT>75</P>
+                                    </TD>
+                                    <TD WIDTH=211>
+                                        <P ALIGN=RIGHT>90</P>
+                                    </TD>
+                                </TR>
+                                <TR ALIGN=RIGHT>
+                                    <TD WIDTH=190>
+                                        <P ALIGN=RIGHT>25</P>
+                                    </TD>
+                                    <TD WIDTH=229>
+                                        <P ALIGN=RIGHT>25</P>
+                                    </TD>
+                                    <TD WIDTH=211>
+                                        <P ALIGN=RIGHT>25</P>
+                                    </TD>
+                                </TR>
+                                <TR ALIGN=RIGHT>
+                                    <TD WIDTH=190>
+                                        <P ALIGN=RIGHT>50</P>
+                                    </TD>
+                                    <TD WIDTH=229>
+                                        <P ALIGN=RIGHT>5</P>
+                                    </TD>
+                                    <TD WIDTH=211>
+                                        <P ALIGN=RIGHT>5</P>
+                                    </TD>
+                                </TR>
+                                <TR ALIGN=RIGHT>
+                                    <TD WIDTH=190>
+                                        <P ALIGN=RIGHT>75</P>
+                                    </TD>
+                                    <TD WIDTH=229>
+                                        <P ALIGN=RIGHT>2</P>
+                                    </TD>
+                                    <TD WIDTH=211>
+                                        <P ALIGN=RIGHT>12.5</P>
+                                    </TD>
+                                </TR>
+                                <TR ALIGN=RIGHT>
+                                    <TD WIDTH=190>
+                                        <P ALIGN=RIGHT>100</P>
+                                    </TD>
+                                    <TD WIDTH=229>
+                                        <P ALIGN=RIGHT>2</P>
+                                    </TD>
+                                    <TD WIDTH=211>
+                                        <P ALIGN=RIGHT>5</P>
+                                    </TD>
+                                </TR>
+                            </TABLE>
+                        </TD>
+                    </TR>
+                </TABLE>
+                <TABLE BORDER=0 CELLSPACING=0 CELLPADDING=0 WIDTH=656 NOF=LY>
+                    <TR VALIGN=TOP ALIGN=LEFT>
+                        <TD WIDTH=656>
+                            <P><FONT SIZE="+1">CONCLUSIONS:</FONT> <BR>From the data you can see that both reception and transmission were negatively affected when the Radio Shack antenna was used. The "spike" of 12.5 for purple power is 
+                                likely due to a phenomenon known as "constructive interference".</P>
+                            <P><FONT SIZE="+1">DISCUSSION:<BR></FONT>Radio antennae are designed for the frequency they are to broadcast/receive. Modifying (increasing) the length of the antenna changes the transmitter's ability to send. In 
+                                particular the Standing Wave Ratio (the tendancy for a radio wave to go back down the antenna) is affected by the length of the antenna. The designers at Cybiko have already "tuned" the Cybiko to work with 
+                                the sleek black antenna that comes with your Cybiko. Changing it will only reduce your Cybiko's performance.</P>
+                        </TD>
+                    </TR>
+                </TABLE>

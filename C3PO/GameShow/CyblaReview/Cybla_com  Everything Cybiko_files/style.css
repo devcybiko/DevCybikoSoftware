@@ -1,0 +1,24 @@
+FONT {
+	FONT-SIZE: 11px; COLOR: #000000; FONT-FAMILY: Tahoma
+}
+BODY {
+	FONT-SIZE: 11px; COLOR: #000000; FONT-FAMILY: Tahoma
+}
+TABLE {
+	FONT-SIZE: 11px; COLOR: #000000; FONT-FAMILY: Tahoma
+}
+.tableheader {
+	FONT-WEIGHT: bold; FONT-SIZE: 12px; COLOR: #ffffff; FONT-FAMILY: Tahoma
+}
+A:active {
+	COLOR: #000000; TEXT-DECORATION: none
+}
+A:hover {
+	COLOR: #ffffff; TEXT-DECORATION: none
+}
+A:link {
+	COLOR: #000000
+}
+A:visited {
+	COLOR: #000000
+}

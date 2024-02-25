@@ -1,0 +1,41 @@
+<html> 
+
+<head> 
+<meta http-equiv="content-type" content="text/html;charset=iso-8859-1"> 
+<meta name="generator" content="Adobe GoLive 4"> 
+<title>Zor II by Eddie Allanwood</title> 
+<style type="text/css"><!-- 
+h1 { color: black; font-size: 11px; font-family: Arial, Helvetica, Geneva, Swiss, SunSans-Regular; text-decoration: none } 
+h2 { color: black; font-weight: bold; font-size: 12px; font-family: Arial, Helvetica, Geneva, Swiss, SunSans-Regular }--> 
+</style> 
+</head> 
+
+<body bgcolor="#D9E8FF"> 
+<center> 
+<h1><img height="32" width="360" src="http://www.allanwood.co.uk/~eddie/zoriibanner.gif"></h1> 
+<h1><a href="mailto:edd_allanwood@hotmail.com">Eddie Allanwood</a> 2003</h1> 
+</center> 
+<div align="left"> 
+<h1>Info (last updated 4th August 2003):</h1> 
+</div> 
+<h1> 
+<hr> 
+In the first Zor there is no battle system for user-interactivity, so, for the second version I intend to add one with animation and force-feedback subroutines using the vibrate command more frequently for extra effect. 
+<hr> 
+Animations will be 60x40 10 frame sequences and all other tasks run by the program will cease to allow speed. Full screen frame by frame animations are too intensive for the cybiko to handle.</h1> 
+<h1>OR</h1> 
+<h1>I will create separate sprites in separate b2cs to animate attack sequences mathematically. 
+<hr> 
+<h1>Please make comments here!
+</h1> 
+''Full frame animation should not be a problem really, but you could be better
+off using sprites. That way you would use less memory and the app would be smaller, plus it would be more flexible in that you get the game to generate
+specific battle sequences as opposed to using fixed animation sequences. Of
+course you could just use both and have full screen animations for the bigger battles...''
+[ssjx] 05-Aug-2003
+<hr> 
+''Got going good now. Just won't go on to cybiko. I think I'll reinstall my EZ loader. Been neglecting this a bit but I have had exams recently (all of which I passed!). I require more variable ideas for this RPG.''
+[eddie allanwood] 05-Aug-2003
+<hr> 
+</body> 
+</html>

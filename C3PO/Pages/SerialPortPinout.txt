@@ -1,0 +1,31 @@
+From [http://4cybiko.com]
+{{{
+Cybiko Serial Port Pin-Out
+From CybiMunk.com 
+
+Article: Cybiko Serial Port Pin-Out 
+Post by: HunkPapa 
+Date: 12/23/2000 9:11:53 PM 
+Area: Hardware 
+
+Cybiko (9-4) Cable
+(To Computer). 
+(To Cybiko). 
+
+9 PIN D-SUB FEMALE to the Computer 
+4 PIN FEMALE to Cybiko 
+
+Female Male Dir 
+Shield 
+Transmit Data 3 3 
+Receive Data 2 4 
+Request to Send 7 2 
+Clear to Send 8 
+Data Set Ready 6 
+System Ground 5 1 
+Carrier Detect 1 
+Data Terminal Ready 4 
+Ring Indicator 9 
+Found at: CybiMunk.com 
+Author: HunkPapa 
+}}}

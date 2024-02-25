@@ -1,0 +1,4 @@
+----
+[Edit Page Help|JSPWiki:EditPageHelp]\\
+[One Minute Wiki|JSPWiki:OneMinuteWiki]
+----

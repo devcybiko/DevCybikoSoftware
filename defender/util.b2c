@@ -1,0 +1,25 @@
+sub xline(x0 as int, y0 as int, x1 as int, y1 as int)
+  inline DisplayGraphics_set_color(_ptr_main_module->m_gfx, CLR_WHITE);
+  inline DisplayGraphics_draw_line(_ptr_main_module->m_gfx, x0, y0, x1, y1);
+end sub
+
+sub xpoint(x0 as int, y0 as int)
+  inline DisplayGraphics_set_pixel(_ptr_main_module->m_gfx, x0, y0, CLR_WHITE);
+end sub
+
+sub xor_display
+    inline int i;
+    inline char *sptr = DisplayGraphics_get_page_ptr(_ptr_main_module->m_gfx, 0);
+    inline for(i=0; i<4000; i++) sptr[i] ^=0xff;
+    inline DisplayGraphics_show(_ptr_main_module->m_gfx);
+end sub
+
+function sgn(x as int)
+   if x<0 then sgn=-1
+   if x>0 then sgn=1
+   if x=0 then sgn=0
+end function
+
+function len(s[] as char)
+    inline _len = strlen(s);
+end function

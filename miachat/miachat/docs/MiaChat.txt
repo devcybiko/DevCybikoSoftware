@@ -1,0 +1,82 @@
+MiaChat 2.0 -  The AIM Client
+for the
+Cybiko Handheld Computer
+By Greg Smith
+Introduction:
+MiaChat 2.0 is an AIM Client for the Cybiko Handheld Computer.  It is designed for the user who already has an AIM account.  AIM is a service that allows instant messaging between computers connected to the Internet.  For more information on AIM including a free AIM account, see www.aim.com.
+
+With MiaChat 2.0 you will be able to send messages to users on the Internet from your Cybiko without being wired to the Internet.  This is accomplished by using 2 Cybikos - one wired to your Internet-connected-PC and the other as an AIM client.
+
+The way it works is the Cybiko connected to the PC (called the Junction) will take Radio Frequency (RF) messages through the antenna and convert them into serial messages passed to the PC.  The PC then converts them into TCP/IP packets and ships them onto the Internet.  And of course, the process works in reverse too.  So, your wireless Cybiko is in fact connected to the Internet!
+Setup:
+To run MiaChat 2.0 you need the following things:
+* 2 Cybiko handheld computers (one must be a Classic, the other can be either Classic or Xtreme and must have a B2C Password)
+* A PC Running Microsoft Windows
+* An initialized AIM account
+* A B2C Password for the Client Cybiko computer (www.devcybiko.com)
+
+The following items are part of the MiaChat.zip file:
+* MiaChat.exe - a program for the PC
+* MiaJunction.app - a program for the Cybiko Classic
+* MiaClient.app - the remote AIM client for the Cybiko (either Classic or Xtreme)
+
+First, download the MiaJunction.app to a Cybiko Classic computer (if you are unsure how to do this consult www.devcybiko.com/downloading.html). From now on, this Cybiko will be called the Junction. Download the MiaClient.app to a different Cybiko computer (either Classic or Xtreme).  From now on this Cybiko will be called the Client.
+
+Next, connect the Junction Cybiko to the PC with the Serial cable in the usual way (COM1).  Run the program "MiaChat.exe" on your PC.  It should pop up in a MSDOS Command window and display some copyright information.  If you get an error message (and the window just disappears) then some other program is using COM1 (like EZLoader, CyberLoad, PalmPilot, or Console.exe).  If you want to use a different port, run the program from the RUN menu option as miachat.exe 2 (for COM2).  Miachat.exe supports ports 1-4.
+
+Also, run the MiaJunction.app application on the Junction Cybiko connected to the PC.  
+
+Finally, run the MiaClient.app application on the wireless Client Cybiko.  (It doesn't matter what order you run these programs in, as long as the Client is run last).  The first thing you will see is a window asking you to choose the Junction. Select the name of the Junction Cybiko.
+
+
+
+
+Once you have selected a Junction, you will be asked to select a profile.  (If this is the first time you have run MiaClient.app then you will see the Profile Screen, below).  Select one of the AIM Screen Names.
+
+Main Screen
+Once you have selected a screen name, the main screen is displayed.  Pressing the ESC key will display a menu of possible options.  The top line of the display is the current buddy you are chatting with.  The large window in the middle is the Message Region where you will see messages to and from your buddy.  The narrow window to the right is your list of buddies who are online (Chat List) and the thin window along the bottom is the Input Region, where you type messages to your buddies.
+
+
+
+You may move from one window to the next using the TAB key.  For example, moving into the Chat List allows you to select a new user to talk to.  (When someone sends you a message you will hear an appropriate sound and a "*" star will show up next to their name).
+
+The Message Region is where you will see messages from the operating system and from your buddies.  If you TAB into the Message Region you may scroll back using the arrow keys to see up to 100 lines of previous text.
+
+The Input Region is where you send messages to your buddies.  Type text in there and press ENTER.  The arrow keys work as do the backspace and delete keys so you may edit your text.
+
+The "Add" Menu Option
+When you press the ESC key a menu pops up.  The "Add" option will add the current person you are chatting with to your Buddy List.  You will be prompted to be sure this is what you intended:
+
+The "Buds" Menu Option
+The "Buds" menu option will display a list of all the people on your buddy list.  
+
+You may select one of these users by using the up/down arrow keys.  Pressing ENTER will make them the currently active buddy and you can start sending messages to them.  When you are in the Main Screen, if a buddy logs in you will get an operating system message like this:
+
+".devcybiko logged in"
+
+(all operating system messages have a period in the first position)  MiaClient.app will store up to 1,000 characters of text sent to or from your buddies.
+
+The "Profile" Menu Option
+The "Profile" menu option on the main display will show your current information.  If you have no current information the screen will pop up automatically.
+
+
+You must enter a valid Screen Name and Password.  Normally the server must be "login.oscar.aol.com" and the port must be 5190.  Pressing OK here will return you to the main screen.  While in the Profile screen, you may update your buddy list with the "Buds" button or your fonts with the "Fonts" button.  NOTE:  Pressing ESC will cancel any of your changes in this screen.
+
+The "Fonts" Menu Option
+The "Fonts" menu option will display your font information.  Note that this is the font as it appears to your buddy in their AIM chat window.  There are no special fonts in the Cybiko window.  You may change your font name (Arial, Times, or Courier),  the font size (-2 is very small, 0 is normal, and 1,2,3,4,5 are successively larger fonts).  You can specify a color for the foreground and background of your font (Black, White, Red, Orange, Yellow, Green, Blue, Indigo, and Violet).  
+
+Finally there is a new feature - Prefix and Suffix text.  These are text strings that come before and come after your text.  It is useful for alerting buddies that your are on your Cybiko.  You may also insert HTML commands like <B> and <I> for Bold and Italic as well. 
+
+The "Switch" Menu Option
+The Switch Menu Option allows you to select a different screen name.  You can create different profiles in the Profile screen just by editing the Screen Name field.  Then go into the Switch option and select the new screen name.  Note that you should only use screen names which you have set up using the Windows AIM client (the Cybiko will not create a new screen name for you).  All profiles are stored as files in your Cybiko's flash memory.  The filename extension is ".mia".
+
+When you select a new screen name, you will be logged out of your old one and logged in with a new one. 
+
+Contact:
+We hope you will enjoy MiaChat 2.0. While we at the Alcor Group, Inc. endeavor to create perfect software, however bugs occasionally creep in.  Please report problems to:
+
+Greg Smith
+DevCybiko.com
+cybiko@alcorgrp.com
+AIM : DevCybiko
+ICQ: 131834046

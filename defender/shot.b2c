@@ -1,0 +1,141 @@
+dim shot_n as int
+shot_n = 4
+dim shot_ctr as int
+dim shot_screen_x[4] as int
+dim shot_x[4] as int
+dim shot_y[4] as int
+dim shot_z[4] as int
+dim shot_dx[4] as int
+dim shot_delay[4] as int
+dim shot_max_delay as int
+dim shot_on[4] as int
+dim shot_mode[4] as int
+dim shot_distance[4] as int
+
+sub shot_init_one(a as int)
+'inline TRACE("Shot_init_one %d", a);
+    shot_on[a] = 0
+    shot_delay[a] = shot_max_delay
+    shot_distance[a] = 0
+end sub
+
+sub shot_init_all
+  for i = 0 to shot_n - 1
+    shot_init_one(i)
+  next
+end sub
+
+sub shot_init
+  sprite sprite_shot, "shot.pic"
+  shot_max_delay = 1
+  shot_init_all
+end sub
+
+sub shot_redraw_one(i as int)
+'inline TRACE("Shot_redraw_one %d", i);
+    dim x as int
+    dim y as int
+
+    if not ship_hit and shot_on[i] then
+        x = shot_x[i]-pf_x
+        if x<-1268 then
+            x = 1280 + x
+        elseif x> 1268 then
+            x = x - 1280
+        elseif x<-12 then
+            x = x + 1280
+        endif
+
+        if -12<=x and x<160 then
+            shot_screen_x[i] = x
+            move sprite_shot, x, shot_y[i], shot_z[i], shot_mode[i]
+            redraw sprite_shot
+        end if
+    endif
+end sub
+
+sub shot_redraw
+  for i = 0 to shot_n-1
+      shot_redraw_one(i)
+  next
+end sub
+
+sub shot_move_one(i as int)
+'inline TRACE("Shot_move_one %d", i);
+    if NOT shot_on[i] then exit sub
+
+    shot_delay[i] = shot_delay[i] - 1
+    if shot_delay[i] <> 0 then exit sub
+
+    shot_delay[i] = shot_max_delay
+
+    shot_distance[i] = shot_distance[i] + abs(shot_dx[i])
+    if shot_distance[i] > 120 then
+        shot_on[i] = 0
+        exit sub
+    end if
+
+    shot_x[i] = shot_x[i] + shot_dx[i]
+    if shot_x[i] < 0 then shot_x[i] = shot_x[i] + 1280        
+    if shot_x[i] > 1279 then shot_x[i] = shot_x[i] - 1280
+
+    shot_z[i] = shot_z[i] + 1
+    if shot_z[i] > 5 then shot_z[i] = 0
+
+end sub
+
+sub shot_move_all
+    for i=0 to shot_n-1
+        shot_move_one(i)
+    next
+end sub
+
+sub shot_shoot
+    dim x
+'inline TRACE("Shot_Shoot");
+    for i=0 to shot_n-1
+        if NOT shot_on[i] then
+            music foreground, "shot.mus"
+            music foreground, play
+            shot_on[i] = 1
+            shot_x[i]=ship_x
+            shot_y[i]=ship_y+3
+            shot_z[i] = 0
+            shot_distance[i] = 0
+            if ship_mode = 1 then
+                shot_mode[i] = 1
+                shot_dx[i] = -16
+                shot_x[i]=shot_x[i]-11
+            else
+                shot_mode[i] = 0
+                shot_dx[i] = 16
+                shot_x[i]=shot_x[i]+11
+            end if
+            x = shot_x[i]-pf_x
+            if x<-1268 then
+                x = 1280 + x
+            elseif x> 1268 then
+                x = x - 1280
+            elseif x<-12 then
+                x = x + 1280
+            endif
+            shot_screen_x[i] = x
+            exit for
+        endif
+    next
+end sub
+
+function shot_collision(spr as int) as int
+  shot_collision = 0
+  for i=0 to shot_n-1
+     if shot_on[i] then
+       move sprite_shot, shot_screen_x[i], shot_y[i]
+       if collision(spr, sprite_shot) then
+         shot_on[i] = 0
+         shot_collision = 1
+         exit function
+       end if
+     end if
+   next
+end function
+

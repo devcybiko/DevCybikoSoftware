@@ -1,0 +1,200 @@
+<html>
+<body>
+<pre>
+<h1>Build Log</h1>
+<h3>
+--------------------Configuration: IcqLib - Win32 Release--------------------
+</h3>
+<h3>Command Lines</h3>
+Creating temporary file "c:\windows\TEMP\RSP6393.TMP" with contents
+[
+/nologo /ML /W3 /GX /O2 /D "WIN32" /D "NDEBUG" /D "_WINDOWS" /D "_WIN32" /D "BYTE_ORDER_LITTLE_ENDIAN" /D "_MSVC_" /D __STDC__=1 /Fo"Release/" /Fd"Release/" /FD /c 
+"C:\Data\Cybiko\Alcor\cyicq\icqlib\chatsession.c"
+"C:\Data\Cybiko\Alcor\cyicq\icqlib\contacts.c"
+"C:\Data\Cybiko\Alcor\cyicq\icqlib\cyrillic.c"
+"C:\Data\Cybiko\Alcor\cyicq\icqlib\eventhandle.c"
+"C:\Data\Cybiko\Alcor\cyicq\icqlib\filesession.c"
+"C:\Data\Cybiko\Alcor\cyicq\icqlib\icqbyteorder.c"
+"C:\Data\Cybiko\Alcor\cyicq\icqlib\icqevent.c"
+"C:\Data\Cybiko\Alcor\cyicq\icqlib\icqlib.c"
+"C:\Data\Cybiko\Alcor\cyicq\icqlib\icqpacket.c"
+"C:\Data\Cybiko\Alcor\cyicq\icqlib\list.c"
+"C:\Data\Cybiko\Alcor\cyicq\icqlib\proxy.c"
+"C:\Data\Cybiko\Alcor\cyicq\icqlib\queue.c"
+"C:\Data\Cybiko\Alcor\cyicq\icqlib\socketmanager.c"
+"C:\Data\Cybiko\Alcor\cyicq\icqlib\stdpackets.c"
+"C:\Data\Cybiko\Alcor\cyicq\icqlib\tcp.c"
+"C:\Data\Cybiko\Alcor\cyicq\icqlib\tcpchathandle.c"
+"C:\Data\Cybiko\Alcor\cyicq\icqlib\tcpfilehandle.c"
+"C:\Data\Cybiko\Alcor\cyicq\icqlib\tcphandle.c"
+"C:\Data\Cybiko\Alcor\cyicq\icqlib\tcplink.c"
+"C:\Data\Cybiko\Alcor\cyicq\icqlib\timeout.c"
+"C:\Data\Cybiko\Alcor\cyicq\icqlib\udp.c"
+"C:\Data\Cybiko\Alcor\cyicq\icqlib\udphandle.c"
+"C:\Data\Cybiko\Alcor\cyicq\icqlib\util.c"
+]
+Creating command line "cl.exe @c:\windows\TEMP\RSP6393.TMP" 
+Creating temporary file "c:\windows\TEMP\RSP6394.TMP" with contents
+[
+/nologo /out:"Release\icqlib.lib" 
+.\Release\chatsession.obj
+.\Release\contacts.obj
+.\Release\cyrillic.obj
+.\Release\eventhandle.obj
+.\Release\filesession.obj
+.\Release\icqbyteorder.obj
+.\Release\icqevent.obj
+.\Release\icqlib.obj
+.\Release\icqpacket.obj
+.\Release\list.obj
+.\Release\proxy.obj
+.\Release\queue.obj
+.\Release\socketmanager.obj
+.\Release\stdpackets.obj
+.\Release\tcp.obj
+.\Release\tcpchathandle.obj
+.\Release\tcpfilehandle.obj
+.\Release\tcphandle.obj
+.\Release\tcplink.obj
+.\Release\timeout.obj
+.\Release\udp.obj
+.\Release\udphandle.obj
+.\Release\util.obj
+]
+Creating command line "link.exe -lib @c:\windows\TEMP\RSP6394.TMP"
+<h3>Output Window</h3>
+Compiling...
+chatsession.c
+contacts.c
+C:\Data\Cybiko\Alcor\cyicq\icqlib\contacts.c(88) : warning C4028: formal parameter 3 different from declaration
+C:\Data\Cybiko\Alcor\cyicq\icqlib\contacts.c(97) : warning C4028: formal parameter 3 different from declaration
+cyrillic.c
+eventhandle.c
+filesession.c
+C:\Data\Cybiko\Alcor\cyicq\icqlib\filesession.c(118) : warning C4013: 'icq_SocketSetHandler' undefined; assuming extern returning int
+icqbyteorder.c
+icqevent.c
+C:\Data\Cybiko\Alcor\cyicq\icqlib\icqevent.c(59) : warning C4244: 'function' : conversion from 'unsigned long ' to 'unsigned short ', possible loss of data
+C:\Data\Cybiko\Alcor\cyicq\icqlib\icqevent.c(176) : warning C4305: '=' : truncation from 'const int ' to 'char '
+C:\Data\Cybiko\Alcor\cyicq\icqlib\icqevent.c(205) : warning C4305: '=' : truncation from 'const int ' to 'char '
+C:\Data\Cybiko\Alcor\cyicq\icqlib\icqevent.c(385) : warning C4101: 'port' : unreferenced local variable
+icqlib.c
+C:\Data\Cybiko\Alcor\cyicq\icqlib\icqlib.c(129) : warning C4013: 'strdup' undefined; assuming extern returning int
+C:\Data\Cybiko\Alcor\cyicq\icqlib\icqlib.c(129) : warning C4047: '=' : 'char *' differs in levels of indirection from 'int '
+C:\Data\Cybiko\Alcor\cyicq\icqlib\icqlib.c(210) : warning C4047: '=' : 'char *' differs in levels of indirection from 'int '
+C:\Data\Cybiko\Alcor\cyicq\icqlib\icqlib.c(211) : warning C4047: '=' : 'char *' differs in levels of indirection from 'int '
+icqpacket.c
+list.c
+proxy.c
+C:\Data\Cybiko\Alcor\cyicq\icqlib\proxy.c(96) : warning C4013: 'strdup' undefined; assuming extern returning int
+C:\Data\Cybiko\Alcor\cyicq\icqlib\proxy.c(96) : warning C4047: '=' : 'char *' differs in levels of indirection from 'int '
+C:\Data\Cybiko\Alcor\cyicq\icqlib\proxy.c(99) : warning C4047: '=' : 'char *' differs in levels of indirection from 'int '
+C:\Data\Cybiko\Alcor\cyicq\icqlib\proxy.c(100) : warning C4047: '=' : 'char *' differs in levels of indirection from 'int '
+queue.c
+C:\Data\Cybiko\Alcor\cyicq\icqlib\queue.c(134) : warning C4013: 'icq_UDPSockWriteDirect' undefined; assuming extern returning int
+socketmanager.c
+stdpackets.c
+tcp.c
+tcpchathandle.c
+tcpfilehandle.c
+tcphandle.c
+C:\Data\Cybiko\Alcor\cyicq\icqlib\tcphandle.c(408) : warning C4090: 'function' : different 'const' qualifiers
+C:\Data\Cybiko\Alcor\cyicq\icqlib\tcphandle.c(408) : warning C4022: 'free' : pointer mismatch for actual parameter 1
+C:\Data\Cybiko\Alcor\cyicq\icqlib\tcphandle.c(409) : warning C4090: 'function' : different 'const' qualifiers
+C:\Data\Cybiko\Alcor\cyicq\icqlib\tcphandle.c(409) : warning C4022: 'free' : pointer mismatch for actual parameter 1
+tcplink.c
+C:\Data\Cybiko\Alcor\cyicq\icqlib\tcplink.c(129) : warning C4013: 'icq_SocketDelete' undefined; assuming extern returning int
+C:\Data\Cybiko\Alcor\cyicq\icqlib\tcplink.c(388) : warning C4013: 'icq_SocketNew' undefined; assuming extern returning int
+C:\Data\Cybiko\Alcor\cyicq\icqlib\tcplink.c(414) : warning C4244: 'function' : conversion from 'unsigned long ' to 'unsigned short ', possible loss of data
+C:\Data\Cybiko\Alcor\cyicq\icqlib\tcplink.c(460) : warning C4013: 'icq_SocketSetHandler' undefined; assuming extern returning int
+C:\Data\Cybiko\Alcor\cyicq\icqlib\tcplink.c(482) : warning C4013: 'icq_SocketAccept' undefined; assuming extern returning int
+timeout.c
+Generating Code...
+C:\Data\Cybiko\Alcor\cyicq\icqlib\tcplink.c(414) : warning C4761: integral size mismatch in argument; conversion supplied
+C:\Data\Cybiko\Alcor\cyicq\icqlib\tcplink.c(422) : warning C4761: integral size mismatch in argument; conversion supplied
+C:\Data\Cybiko\Alcor\cyicq\icqlib\tcphandle.c(147) : warning C4761: integral size mismatch in argument; conversion supplied
+C:\Data\Cybiko\Alcor\cyicq\icqlib\tcphandle.c(279) : warning C4761: integral size mismatch in argument; conversion supplied
+C:\Data\Cybiko\Alcor\cyicq\icqlib\tcphandle.c(279) : warning C4761: integral size mismatch in argument; conversion supplied
+C:\Data\Cybiko\Alcor\cyicq\icqlib\tcphandle.c(279) : warning C4761: integral size mismatch in argument; conversion supplied
+C:\Data\Cybiko\Alcor\cyicq\icqlib\tcphandle.c(279) : warning C4761: integral size mismatch in argument; conversion supplied
+C:\Data\Cybiko\Alcor\cyicq\icqlib\tcphandle.c(279) : warning C4761: integral size mismatch in argument; conversion supplied
+C:\Data\Cybiko\Alcor\cyicq\icqlib\tcphandle.c(318) : warning C4761: integral size mismatch in argument; conversion supplied
+C:\Data\Cybiko\Alcor\cyicq\icqlib\tcphandle.c(318) : warning C4761: integral size mismatch in argument; conversion supplied
+C:\Data\Cybiko\Alcor\cyicq\icqlib\tcphandle.c(318) : warning C4761: integral size mismatch in argument; conversion supplied
+C:\Data\Cybiko\Alcor\cyicq\icqlib\tcphandle.c(318) : warning C4761: integral size mismatch in argument; conversion supplied
+C:\Data\Cybiko\Alcor\cyicq\icqlib\tcphandle.c(318) : warning C4761: integral size mismatch in argument; conversion supplied
+C:\Data\Cybiko\Alcor\cyicq\icqlib\tcphandle.c(397) : warning C4761: integral size mismatch in argument; conversion supplied
+C:\Data\Cybiko\Alcor\cyicq\icqlib\tcphandle.c(397) : warning C4761: integral size mismatch in argument; conversion supplied
+C:\Data\Cybiko\Alcor\cyicq\icqlib\tcphandle.c(397) : warning C4761: integral size mismatch in argument; conversion supplied
+C:\Data\Cybiko\Alcor\cyicq\icqlib\tcphandle.c(397) : warning C4761: integral size mismatch in argument; conversion supplied
+C:\Data\Cybiko\Alcor\cyicq\icqlib\tcphandle.c(397) : warning C4761: integral size mismatch in argument; conversion supplied
+C:\Data\Cybiko\Alcor\cyicq\icqlib\tcpfilehandle.c(55) : warning C4761: integral size mismatch in argument; conversion supplied
+C:\Data\Cybiko\Alcor\cyicq\icqlib\tcpfilehandle.c(55) : warning C4761: integral size mismatch in argument; conversion supplied
+C:\Data\Cybiko\Alcor\cyicq\icqlib\tcpfilehandle.c(55) : warning C4761: integral size mismatch in argument; conversion supplied
+C:\Data\Cybiko\Alcor\cyicq\icqlib\tcpfilehandle.c(55) : warning C4761: integral size mismatch in argument; conversion supplied
+C:\Data\Cybiko\Alcor\cyicq\icqlib\tcpfilehandle.c(55) : warning C4761: integral size mismatch in argument; conversion supplied
+C:\Data\Cybiko\Alcor\cyicq\icqlib\tcpchathandle.c(101) : warning C4761: integral size mismatch in argument; conversion supplied
+C:\Data\Cybiko\Alcor\cyicq\icqlib\tcpchathandle.c(101) : warning C4761: integral size mismatch in argument; conversion supplied
+C:\Data\Cybiko\Alcor\cyicq\icqlib\tcpchathandle.c(101) : warning C4761: integral size mismatch in argument; conversion supplied
+C:\Data\Cybiko\Alcor\cyicq\icqlib\tcpchathandle.c(101) : warning C4761: integral size mismatch in argument; conversion supplied
+C:\Data\Cybiko\Alcor\cyicq\icqlib\tcpchathandle.c(101) : warning C4761: integral size mismatch in argument; conversion supplied
+C:\Data\Cybiko\Alcor\cyicq\icqlib\icqpacket.c(154) : warning C4761: integral size mismatch in argument; conversion supplied
+C:\Data\Cybiko\Alcor\cyicq\icqlib\icqlib.c(491) : warning C4761: integral size mismatch in argument; conversion supplied
+C:\Data\Cybiko\Alcor\cyicq\icqlib\icqevent.c(59) : warning C4761: integral size mismatch in argument; conversion supplied
+C:\Data\Cybiko\Alcor\cyicq\icqlib\icqevent.c(60) : warning C4761: integral size mismatch in argument; conversion supplied
+C:\Data\Cybiko\Alcor\cyicq\icqlib\icqevent.c(123) : warning C4761: integral size mismatch in argument; conversion supplied
+C:\Data\Cybiko\Alcor\cyicq\icqlib\icqevent.c(124) : warning C4761: integral size mismatch in argument; conversion supplied
+C:\Data\Cybiko\Alcor\cyicq\icqlib\eventhandle.c(76) : warning C4761: integral size mismatch in argument; conversion supplied
+C:\Data\Cybiko\Alcor\cyicq\icqlib\eventhandle.c(76) : warning C4761: integral size mismatch in argument; conversion supplied
+C:\Data\Cybiko\Alcor\cyicq\icqlib\eventhandle.c(76) : warning C4761: integral size mismatch in argument; conversion supplied
+C:\Data\Cybiko\Alcor\cyicq\icqlib\eventhandle.c(76) : warning C4761: integral size mismatch in argument; conversion supplied
+C:\Data\Cybiko\Alcor\cyicq\icqlib\eventhandle.c(76) : warning C4761: integral size mismatch in argument; conversion supplied
+C:\Data\Cybiko\Alcor\cyicq\icqlib\eventhandle.c(91) : warning C4761: integral size mismatch in argument; conversion supplied
+C:\Data\Cybiko\Alcor\cyicq\icqlib\eventhandle.c(91) : warning C4761: integral size mismatch in argument; conversion supplied
+C:\Data\Cybiko\Alcor\cyicq\icqlib\eventhandle.c(91) : warning C4761: integral size mismatch in argument; conversion supplied
+C:\Data\Cybiko\Alcor\cyicq\icqlib\eventhandle.c(91) : warning C4761: integral size mismatch in argument; conversion supplied
+C:\Data\Cybiko\Alcor\cyicq\icqlib\eventhandle.c(91) : warning C4761: integral size mismatch in argument; conversion supplied
+C:\Data\Cybiko\Alcor\cyicq\icqlib\eventhandle.c(109) : warning C4761: integral size mismatch in argument; conversion supplied
+C:\Data\Cybiko\Alcor\cyicq\icqlib\eventhandle.c(109) : warning C4761: integral size mismatch in argument; conversion supplied
+C:\Data\Cybiko\Alcor\cyicq\icqlib\eventhandle.c(109) : warning C4761: integral size mismatch in argument; conversion supplied
+C:\Data\Cybiko\Alcor\cyicq\icqlib\eventhandle.c(109) : warning C4761: integral size mismatch in argument; conversion supplied
+C:\Data\Cybiko\Alcor\cyicq\icqlib\eventhandle.c(109) : warning C4761: integral size mismatch in argument; conversion supplied
+C:\Data\Cybiko\Alcor\cyicq\icqlib\eventhandle.c(99) : warning C4700: local variable 'pmsgevent' used without having been initialized
+C:\Data\Cybiko\Alcor\cyicq\icqlib\eventhandle.c(174) : warning C4761: integral size mismatch in argument; conversion supplied
+C:\Data\Cybiko\Alcor\cyicq\icqlib\eventhandle.c(174) : warning C4761: integral size mismatch in argument; conversion supplied
+C:\Data\Cybiko\Alcor\cyicq\icqlib\eventhandle.c(174) : warning C4761: integral size mismatch in argument; conversion supplied
+C:\Data\Cybiko\Alcor\cyicq\icqlib\eventhandle.c(174) : warning C4761: integral size mismatch in argument; conversion supplied
+C:\Data\Cybiko\Alcor\cyicq\icqlib\eventhandle.c(174) : warning C4761: integral size mismatch in argument; conversion supplied
+C:\Data\Cybiko\Alcor\cyicq\icqlib\eventhandle.c(164) : warning C4700: local variable 'pmsgevent' used without having been initialized
+Compiling...
+udp.c
+udphandle.c
+C:\Data\Cybiko\Alcor\cyicq\icqlib\udphandle.c(161) : warning C4090: 'function' : different 'const' qualifiers
+C:\Data\Cybiko\Alcor\cyicq\icqlib\udphandle.c(161) : warning C4022: 'free' : pointer mismatch for actual parameter 1
+C:\Data\Cybiko\Alcor\cyicq\icqlib\udphandle.c(162) : warning C4090: 'function' : different 'const' qualifiers
+C:\Data\Cybiko\Alcor\cyicq\icqlib\udphandle.c(162) : warning C4022: 'free' : pointer mismatch for actual parameter 1
+C:\Data\Cybiko\Alcor\cyicq\icqlib\udphandle.c(307) : warning C4244: 'function' : conversion from 'unsigned long ' to 'unsigned short ', possible loss of data
+util.c
+Generating Code...
+C:\Data\Cybiko\Alcor\cyicq\icqlib\util.c(513) : warning C4761: integral size mismatch in argument; conversion supplied
+C:\Data\Cybiko\Alcor\cyicq\icqlib\udphandle.c(307) : warning C4761: integral size mismatch in argument; conversion supplied
+C:\Data\Cybiko\Alcor\cyicq\icqlib\udphandle.c(690) : warning C4761: integral size mismatch in argument; conversion supplied
+C:\Data\Cybiko\Alcor\cyicq\icqlib\udphandle.c(752) : warning C4761: integral size mismatch in argument; conversion supplied
+C:\Data\Cybiko\Alcor\cyicq\icqlib\udphandle.c(752) : warning C4761: integral size mismatch in argument; conversion supplied
+C:\Data\Cybiko\Alcor\cyicq\icqlib\udphandle.c(752) : warning C4761: integral size mismatch in argument; conversion supplied
+C:\Data\Cybiko\Alcor\cyicq\icqlib\udphandle.c(752) : warning C4761: integral size mismatch in argument; conversion supplied
+C:\Data\Cybiko\Alcor\cyicq\icqlib\udphandle.c(752) : warning C4761: integral size mismatch in argument; conversion supplied
+C:\Data\Cybiko\Alcor\cyicq\icqlib\udphandle.c(752) : warning C4761: integral size mismatch in argument; conversion supplied
+C:\Data\Cybiko\Alcor\cyicq\icqlib\udp.c(335) : warning C4761: integral size mismatch in argument; conversion supplied
+C:\Data\Cybiko\Alcor\cyicq\icqlib\udp.c(417) : warning C4761: integral size mismatch in argument; conversion supplied
+C:\Data\Cybiko\Alcor\cyicq\icqlib\udp.c(461) : warning C4761: integral size mismatch in argument; conversion supplied
+C:\Data\Cybiko\Alcor\cyicq\icqlib\udp.c(646) : warning C4761: integral size mismatch in argument; conversion supplied
+Creating library...
+
+
+
+<h3>Results</h3>
+icqlib.lib - 0 error(s), 99 warning(s)
+</pre>
+</body>
+</html>

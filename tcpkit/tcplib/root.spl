@@ -1,0 +1,7 @@
+tcpclient
+Version 1.0.0
+Gregory Smith
+(C) 2002 The Alcor Group, Inc.
+
+This is the TCPCLIENT.
+Make sure both TCPJunction and TCPgate.exe are running.

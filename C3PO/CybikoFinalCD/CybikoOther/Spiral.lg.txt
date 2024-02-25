@@ -1,0 +1,9 @@
+;Now we are drawing
+;10 convolutions
+while i<360 
+{
+  left 10;
+  moveto i/4*cos(angle),i/8*sin(angle);
+  i=i+1;
+}
+hide;

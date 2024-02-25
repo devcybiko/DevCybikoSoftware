@@ -1,0 +1,7 @@
+The first thing to understand is that the ''vcc1.exe'' compiler does not generate native H8 code.  It only generates bytecode assembly language.  Bytecode is a compact computer language where an instruction resides in a single byte.  It is the Assembler that converts the assembly language into a bytecode file (*.o).
+
+There is a special instruction in the bytecode language called ''.native''.  When this code is encountered, the Assembler emits actual H8 instructions instead of the bytecode equivalent.  This makes the resulting .o file a lot larger, but the program will run much faster.
+
+To gain this performance improvement, you must use the ''-n -V18'' compiler directives.  by now most of you should be using the ''vcc'' driver to compile programs (the old way was to use vcpp | vcc1 - this method is archaic and in some cases does not even work).
+
+__Note: i keep getting an error ''vlink: corrupt file: incomplete native declaration.'' i'll try to resolve it and continue with the article later. [greg] Fri 25-Jul-2003 18:01:00 GMT

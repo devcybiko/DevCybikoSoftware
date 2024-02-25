@@ -1,0 +1,159 @@
+OPTION C_COORDS
+OPTION SHOW OFF
+OPTION ESCAPE OFF
+
+dim digits[4] as int
+dim start[4] as int
+sprite 1,"digits.pic"
+
+sub repaint_digits(digits[] as int)
+    for i=0 to 3
+        if i=0 and digits[i]=0 then
+            'do nothing
+        else
+            move 1,i*25+30, 35, digits[i]
+            redraw 1
+        end if
+    next 
+    move 1, 67, 35, 10 ' colon
+    redraw 1
+end sub
+
+function wait_key(k as int) as int
+    wait_key = 0
+    if key(k) then
+        while key(k)
+        wend
+        wait_key = k
+    end if
+end function
+
+sub setup
+    dim finished as int
+
+    finished = false
+    while not finished
+        cls
+        printxy 50, 15, "S E T U P"
+    
+        repaint_digits(start)
+        redraw show
+
+        while not finished
+            inline _escape(0);
+            if wait_key(#KEY_ENTER) then finished = true
+            if key(#KEY_UP) then
+                wait 1
+                if start[2] = 0 then
+                    start[2]=3
+                else
+                    start[2] = 0
+                    start[1]=start[1]+1
+                    if start[1]=10 then
+                        start[1]=0
+                        start[0]=start[0]+1
+                        if start[0]=10 then start[0]=0
+                    endif
+                endif
+                exit while
+            endif
+            if key(#KEY_DOWN) then
+                wait 1
+                if start[2] = 3 then
+                    start[2]=0
+                else
+                    start[2] = 3
+                    start[1]=start[1]-1
+                    if start[1]=-1 then
+                        start[1]=9
+                        start[0]=start[0]-1
+                        if start[0]=-1 then start[0]=9
+                    endif
+                endif
+                exit while
+            endif
+        wend
+    wend    
+end sub
+
+sub one_second
+    dim x as long
+
+    while true
+        inline x=clock() % 1000;
+        if x=0 then exit while
+        if key(#KEY_ENTER) then exit while
+    wend
+end sub
+
+function countdown
+    for i=0 to 3
+        digits[i]=start[i]
+    next
+
+    music foreground, "start.mus"
+    music foreground, play
+
+    cls
+    repaint_digits(digits)
+    redraw show
+    while true
+        inline _escape(0);
+        if key(#KEY_ENTER) then
+            countdown = false
+            goto EXIT_SUB
+        endif
+        one_second
+        digits[3] = digits[3]-1
+        if digits[3] = -1 then
+            digits[3] = 9
+            digits[2] = digits[2] - 1
+            if digits[2] = -1 then
+                digits[2] = 5
+                digits[1] = digits[1] - 1
+                if digits[1] = -1 then
+                    digits[1] = 9
+                    digits[0] = digits[0] - 1
+                    if digits[0] = -1 then exit while
+                end if
+            end if
+        end if
+        cls
+        repaint_digits(digits)
+        redraw show
+    wend
+    countdown = true
+EXIT_SUB:
+    music foreground, "timeup.mus"
+    music foreground, play
+end sub
+
+sub doit
+    start[0]=0
+    start[1]=1
+    start[2]=0
+    start[3]=0
+
+    while true
+        inline _escape(0);
+        setup
+        if countdown then
+            cls
+            printxy 15, 50, "T I M E   I S   U P !"
+        else
+            cls
+            printxy 0, 50, "TIMER WAS INTERRUPTED!"
+        endif
+        redraw show
+        for i=0 to 128 step 16
+            vibrate i
+            wait 1
+        next
+        vibrate 0
+        while wait_key(#KEY_ENTER)=0
+            inline _escape(0);
+        wend
+    wend
+end sub
+
+doit

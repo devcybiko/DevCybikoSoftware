@@ -1,0 +1,511 @@
+dim ch3
+dim ch3a
+dim ch4
+dim ch5
+dim ch6
+dim ch7
+dim ch8
+dim ch9
+dim ch10
+dim ch11
+dim ch12
+dim ch13
+dim ch14
+dim ch6a
+dim ch6b
+dim ch7a
+dim ch7b
+dim ch8a
+dim ch9b
+dim ch10a
+dim ch8b
+dim ch9a
+dim ch10b
+dim ch11a
+dim ch11b
+dim ch12a
+dim ch12b
+dim ch13a
+dim ch13b
+print "Terrorists have taken"
+print "over, you must escape."
+wait 30
+cls
+sub dead
+wait 38
+print "Game Over"
+wait 20
+end sub
+sub main
+print "1) Elevator"
+print "2) Phone"
+print "3) Doors"
+end sub
+call main
+dim choice1
+input choice1
+if choice1=1 then
+cls
+call dead
+end if
+if choice1=2 then
+cls
+call dead
+end if 
+sub doors1 
+cls
+
+print "1) Door 1"
+print "2) Door 2"
+print "3) Door 3"
+print "4) Door 4"
+print "5) Door 5"
+end sub
+if choice1=3 then
+call doors1
+end if
+sub room2
+cls
+print "You live, continue"
+print "1) Door 1"
+print "2) Door 2"
+dim ch3
+input ch3
+if ch3=2 then 
+cls
+print "This room is where"
+print "Godzilla is"
+call dead
+end if
+if ch3=1 then
+cls
+print "In this room there"
+print "are two boxes."
+print "Which will you open"
+print "1) Box 1"
+print "2) Box 2"
+dim ch3a 
+input ch3a
+if ch3a=1 then
+cls
+wait 15
+beep 1
+wait 20
+beep 1
+wait 17
+beep 1
+wait 12
+beep 1
+wait 9
+beep 1
+wait 6
+beep 1
+wait 3
+beep 1
+wait 3
+beep 1
+wait 3
+print "Uh-oh"
+print "Its a bomb!"
+print "*************"
+call dead
+end if 
+if ch3a=2 then
+cls
+print "You found a gun."
+print "In this room there"
+print "are three other doors"
+wait 27
+cls
+print "Which door"
+print
+print "1) Door 1"
+print "2) Door 2"
+print "3) Door 3"
+dim ch4
+input ch4
+if ch4=1 then
+cls   
+print "This is really"
+print "a window"
+print "You fall and die"
+call dead
+end if
+if ch4=2 then
+cls
+print "You walk in"
+wait 15
+beep 1
+wait 15 
+beep 1
+wait 20
+cls
+print "LAND MINES"
+print "***********"
+print "BOOM"
+call dead
+end if
+if ch4=3 then
+cls
+print "You walk in"
+wait 15 
+print "And see a terrorist!"
+wait 25
+cls
+print "Well . . ."
+print "1) Shoot him"
+print "2) Hide"
+dim ch5
+input ch5
+if ch5=1 then
+cls
+print "BANG, he is dead"
+wait 20
+print "But then his"
+print "friends come"
+print "You are captured"
+call dead
+end if
+if ch5=2 then
+cls
+print "You hide in a closet"
+wait 25
+print "Then you see a chest,"
+print "a safe, and a box"
+wait 45
+cls
+print "What do you want"
+print "to open first"
+print "1) Chest"
+print "2) Box"
+print "3) Safe"
+dim ch6
+input ch6
+if ch6=1 then
+cls
+wait 20
+call dead
+end if
+if ch6=3 then
+cls
+print "The alarm goes off."
+print "You are captured."
+call dead
+end if
+if ch6=2 then 
+cls
+print "In the box is a key."
+print "You pick it up"
+wait 35
+cls
+print "What do you want to"
+print "Use the key on?"
+print
+print "1) Chest"
+print "2) Safe"
+dim ch6a
+input ch6a
+if ch6a=2 then
+cls
+
+print "The alarm goes off."
+print "You are captured."
+call dead
+end if
+if ch6a=1 then
+cls 
+print "You open the chest"
+wait 20
+print "In the chest are wire"
+print "cutters, a chisel and"
+print "two blocks of C4"
+wait 40
+cls
+print "Which two do you want?"
+print 
+print "1) Chisel and C4"
+print "2) Wire Cutters and C4"
+print "3) Wire Cutters and"
+print "   Chisel"
+dim ch6b
+input ch6b
+if ch6b=1 then
+cls
+wait 25
+call dead
+end if
+if ch6b=2 then 
+cls
+wait 25
+call dead
+end if
+if ch6b=3 then
+cls
+print "You leave the closet"
+print "You see many terrorists"
+print "in front of you"
+wait 40
+cls
+print "What do you want to do"
+print "1) Throw Grenade"
+print "2) Run to Mommy"
+dim ch7
+input ch7
+if ch7=2 then
+cls
+print "You run to Mommy,"
+wait 15
+print "and get shot."
+call dead
+end if
+if ch7=1 then
+cls
+print "You throw it"
+wait 19
+print "BOOM!!!"
+wait 10 
+print "You kill all of the"
+print "terrorists except. . ."
+wait 23
+print "Big Bad Phil"
+wait 19
+cls
+print "Battling Phil"
+print "1) Shoot him"
+print "2) Beat him up"
+print "3) Pee on him"
+print "4) Call him a homosexual"
+print "5) Hide"
+dim ch8 as int
+input ch8
+if ch8=1 then
+cls
+print "You miss and he kills you"
+call dead
+end if
+if ch8=2 then
+cls
+print "You try, and fail when"
+print "your head flies off"
+call dead
+end if
+if ch8=3 then
+cls
+print "You feel better after"
+print "but Big Bad Phil makes"
+print "you feel real bad"
+wait 20
+call dead
+end if
+if ch8=4 then 
+cls	
+
+print "He doesnt want"
+print "you tellin anybody."
+wait 15
+print "ever."
+call dead
+end if
+if ch8=5 then
+cls
+print "You hide in the basement"
+print "You find a ladder"
+print 
+PRINT "1) Go down"
+print "2) Stay"
+dim ch9
+input ch9
+if ch9=2 then
+cls
+print "Phil follows you to the"
+print "basement and kills you"
+call dead
+end if
+if ch9=1 then
+cls
+print "You go down it"
+print "and see a mine"
+wait 20
+cls
+print "What do you do"
+print "1) Use the mine."
+print "2) Take a crap"
+dim ch10
+input ch10
+if ch10=2 then
+cls
+print "AHHHHHHHHHHHHHH"
+print "Much Better . . ."
+wait 20
+print "But Phil kills you"
+call dead
+end if
+if ch10=1 then
+cls
+print "You see Phil come down"
+print "and throw the mine at"
+print "him. He's dead but. . ."
+print "You are trapped in here"
+wait 39
+cls
+print "what to do"
+print
+print "1) Punch yourself"
+print "2) Look around"
+print "3) Eat mice droppings"
+dim ch11	
+input ch11
+if ch11=1 then
+cls
+print "What a punch."
+print "Your head falls off."
+call dead
+end if
+if ch11=3 then
+cls
+print "Yum"
+wait 20
+print "You get sick and die"
+call dead
+end if
+if ch11=2 then
+cls
+print "You find a bomb"
+print "Which wall do you"
+print "want to blow up"
+print "1) Left wall"
+print "2) Right wall"
+dim ch11a
+input ch11a
+if ch11a=2 then
+cls
+print "You blew a steam line"
+print "Steam burns you"
+wait 10
+print "to death."
+call dead
+end if
+if ch11a=1 then
+cls
+print "You find a new place"
+print "1) Go up ladder"
+print "2) Open a door"
+print "3) Go down ladder"
+dim ch12
+input ch12
+if ch12=2 then
+cls 
+print "A mummy rips off"
+print "your head"
+call dead
+end if
+if ch12=3 then
+cls
+print "A large sewer rat"
+print "eats you"
+call dead
+end if
+if ch12=1 then
+cls
+print "You run into"
+wait 5
+print "Big Butt Bob"
+wait 20
+print "Battling Bob"
+print 
+print "1) Call him gay"
+print "2) Shoot him"
+dim ch13 
+input ch13
+if ch13=1 then
+print "He shoots you"
+call dead
+end if
+if ch13=2 then
+print "Bang, he is dead"
+print "Now. . ."
+wait 24
+cls
+print "1) Open Door"
+print "2) Go downstairs"
+input ch14
+if ch14=1 then 
+cls
+print "You see that you are"
+print
+print
+print "OUTSIDE"
+print "Hurrah, you escaped"
+end if
+end if
+end if
+end if
+end if          
+end if          
+end if
+end if
+end if
+end if
+end sub
+sub door1
+cls 
+print "This room is full of"
+print "snakes"
+call dead
+end sub
+sub door2
+cls
+print "This room has a nuke"
+wait 10
+print "3"
+wait 10
+print "2"
+wait 10
+print "1"
+wait 10
+cls
+print "   *******   "
+print "*************"
+print "*************"
+print " ***********"
+print "    *****   "
+print "    *****   "
+print "BOOM"
+wait 40
+cls
+call dead
+end sub
+sub door3
+cls
+print "You get captured"
+wait 20
+call dead
+end sub
+sub door4
+cls
+print "You go to another room"
+wait 29
+call room2
+end sub
+sub door5
+cls
+print "This room has a lion"
+call dead
+end sub
+dim choice2
+input choice2
+if choice2=1 then
+call door1
+end if
+if choice2=2 then
+call door2
+end if
+if choice2=3 then 
+call door3
+end if
+if choice2=4 then
+call door4
+end if
+if choice2=5 then 
+call door5
+end if

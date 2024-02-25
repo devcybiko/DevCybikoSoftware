@@ -1,0 +1,28 @@
+dim a as long
+cls
+print "Self-extracting Archive"
+print
+print "General.TRV"
+print "Is being installed"
+print
+print "Please Stand By"
+print "for 60 seconds"
+inline a=File_free_user_bytes_total("");
+if a < 40000 then
+    a = dialog("ERROR", "Delete some Files 40K Needed")
+    exit program
+end if
+inline File_remove("general.trv");
+inline _load("general.trv");
+cls
+print
+print "General.TRV"
+print "has been installed"
+print
+print "You may now delete"
+print "General.app"
+print
+print "Press ENTER to exit"
+dim x
+input x
+

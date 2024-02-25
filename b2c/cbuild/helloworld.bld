@@ -1,0 +1,24 @@
+[name]
+Hello World
+
+[icon]
+hello.bmp
+
+[source]
+helloworld.c
+
+[author]
+gengar56
+
+[copyright]
+2002 cydevr/4Cybiko
+
+[help]
+hello world
+displays "Hello World!" on the screen
+
+[splash.text]
+a standard "Hello World!" application
+
+[type]
+app

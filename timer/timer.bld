@@ -1,0 +1,28 @@
+[path]
+..
+[source]
+timer.b2c
+
+[pic=digits.pic]
+0.bmp
+1.bmp
+2.bmp
+3.bmp
+4.bmp
+5.bmp
+6.bmp
+7.bmp
+8.bmp
+9.bmp
+colon.bmp
+
+[music]
+timeup.mus
+start.mus
+
+[author]
+Gregory Smith
+
+[splash.text]
+Timer is a simple countdown timer.  Set it by using the arrow keys to increase or decrease the timer.  Press ENTER to start counting down.  Cancel the timer by pressing ENTER again.
+When the timer is complete, it will play music and vibrate.  Press the ENTER key to return to the Setup Screen and press ENTER again to start counting down.

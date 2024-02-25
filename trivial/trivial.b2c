@@ -1,0 +1,689 @@
+OPTION ESCAPE OFF
+OPTION SHOW OFF
+OPTION C_COORDS
+
+outline int FileListForm(
+outline     char* title,                //(in)title of the form
+outline    char* filter,               //(in)filter for file list
+outline    char* filename,             //(out)filename selected
+outline    struct cWinApp* ptr_win_app //(in)application pointer(main_module.m_process)
+outline );
+
+font "mini_normal_font"
+
+include "trv.b2c"
+
+dim a as int
+dim filename[64] as char
+dim trv as int
+dim question[200] as char
+dim factoid[400] as char
+dim joke[400] as char
+dim lines[10,50] as char
+dim category[50] as char
+dim answers[4,50] as char
+dim qnum as int
+dim pointlist[13] as long
+dim nans as int
+dim correct_answer as int
+dim tmp as int
+dim x as int
+dim y as int
+dim w as int
+dim s[32] as char
+
+sub init
+    inline TRACE(">init");
+    ink white
+    paper black
+    sprite 1,"100.pic"
+    sprite 2,"250.pic"
+    sprite 3,"500.pic"
+    sprite 4,"1k.pic"
+    sprite 5,"2k.pic"
+    sprite 6,"5k.pic"
+    sprite 7,"10k.pic"
+    sprite 8,"25k.pic"
+    sprite 9,"50k.pic"
+    sprite 10,"100k.pic"
+    sprite 11,"250k.pic"
+    sprite 12,"500k.pic"
+    sprite 13,"1m.pic"
+    sprite 14,"correct.pic"
+    sprite 15,"wrong.pic"
+    sprite 16,"intro.pic"
+    sprite 17,"joke.pic"
+    sprite 18,"factoid.pic"
+    sprite 19,"answer.pic"
+
+    pointlist[0]=100
+    pointlist[1]=250
+    pointlist[2]=500
+    pointlist[3]=1000
+    pointlist[4]=2500
+    pointlist[5]=5000
+    pointlist[6]=10000
+    pointlist[7]=25000
+    pointlist[8]=50000
+    pointlist[9]=100000
+    pointlist[10]=250000
+    pointlist[11]=500000
+    pointlist[12]=1000000
+   'inline TRACE("<init");
+end sub
+
+sub wait_enter
+    dim x as int
+    while key(#KEY_ENTER) or key(#KEY_ESC)
+    wend
+    while true
+        x = key(#KEY_ENTER)
+        if x then exit while
+        x = key(#KEY_ESC)
+        if x then exit while
+    wend
+    beep 20
+    while key(x)
+    wend
+    beep -1
+end sub
+
+function wait_key(k as int, t as int) as int
+    wait_key = 0
+    if not key(k) then exit function
+    beep t
+    while key(k)
+    wend
+    beep -1
+    wait_key = k
+end function
+
+function pixel_len(s[] as char)
+    inline _pixel_len = Font_string_width(mini_normal_font, s);
+end function
+
+function pixel_len2(s[] as char)
+    inline _pixel_len2 = Font_string_width(cool_bold_font, s);
+end function
+
+function len(s[] as char) as int
+    inline _len = strlen(s);
+end function
+
+sub hyphenate(q[] as char, nlines as int, npixels as int)
+    dim l as int
+    dim left as int
+    dim last as int
+    dim s[50] as char
+
+   'inline TRACE(">hyphenate len=%d q=%s", len(q), q);
+
+    l=0
+    left = 0
+    last = 0
+    for i=0 to nlines-1
+        lines[i,0]=0
+    next
+    for i=0 to 400
+        if (q[i] = \ \) or (q[i]=0) or (q[i]=92) then
+            mid s, q, left, i-left
+            if pixel_len(s) > npixels then
+                mid lines[l], q, left, last-left
+                l = l+1
+                last = last+1
+                left = last
+               'inline TRACE("  %d:(%d) %s", l-1, len(lines[l-1]), lines[l-1]);
+                if l = nlines then goto EXIT_SUB
+            else
+                last = i
+            endif
+            if q[i]=0 then
+                mid lines[l], q, left, i-left
+               'inline TRACE("  %d:(%d) %s", l, len(lines[l]), lines[l]);
+                goto EXIT_SUB
+            endif
+            if q[i]=92 then
+                mid lines[l], q, left, i-left
+                l=l+1
+                last=i+1
+                left=last
+               'inline TRACE("  %d:(%d) %s", l-1, len(lines[l-1]), lines[l-1]);
+                if l = nlines then goto EXIT_SUB
+            endif
+        endif
+    next
+EXIT_SUB:
+   'inline TRACE("<hyphenate");
+end sub
+
+sub repaint(point_index as int)
+    dim y as int
+    dim corr as int
+
+   'inline TRACE(">repaint");
+
+    y=0
+    ink white
+    paper black
+    cls
+    y=y+15
+    line 0,y,159,y
+    y=y+1
+    paper black
+    for i=0 to point_index
+        move i+1, i*12, 0
+        redraw i+1
+        redraw show
+        beep i*3+20
+        wait 1
+    next
+    beep -1
+    trv_question(trv, qnum, question)
+    hyphenate(question, 4, 158)
+    trv_category(trv, qnum, category)
+    font "mini_bold_font"
+    printxy 1,y,"Cat: ", category
+    y=y+9
+    font "mini_normal_font"
+    for i=0 to 3
+        printxy 1,y,lines[i]
+        y=y+9
+    next
+    y=y+1
+    line 0,y,159,y
+    nans=trv_nanswers(trv, qnum)
+    'inline TRACE("............qnum=%d nans=%d", qnum, nans);
+    if nans>4 then
+        'inline TRACE("nans=5 - call trv_nanswers");
+        nans=4
+        trv_answers(trv, qnum, 4, factoid)
+        'inline TRACE("trv_answers called and returned");
+    else
+        factoid[0] = 0
+        'inline TRACE("no factoid");
+    endif
+    for i=0 to nans-1
+        'inline TRACE("Getting qnum=%d answer=%d", qnum, i);
+        corr = trv_answers(trv, qnum, i, answers[i])
+        if corr then correct_answer = i
+    next
+    'inline TRACE("Showing screen");
+    redraw show
+   'inline TRACE("<repaint");
+end sub
+
+sub repaint_answers(point_index as int, curr as int)
+    dim y as int
+    y=63
+    ink white
+    paper black
+   'inline TRACE(">repaint_answers");
+    inline DisplayGraphics_set_color(_ptr_main_module->m_gfx, CLR_BLACK);
+    inline DisplayGraphics_fill_rect(_ptr_main_module->m_gfx, 0, y, 159, 99);
+    for i=0 to nans-1
+        if curr = i then
+            font "mini_bold_font"
+            printxy 1,y, ">",answers[i]
+            font "mini_normal_font"
+        else
+            printxy 1,y, answers[i]
+        endif
+        y=y+9
+    next
+    redraw show
+   'inline TRACE("<repaint_answers");
+end sub
+
+sub scroll_left
+    dim x as int
+    dim y as int
+    dim z as int
+    dim w as int
+    dim h as int
+    dim mode as int
+    dim leftmost as int
+   'inline TRACE(">scroll_left");
+    ink black
+    paper white
+    cls
+    y=25
+    z=rnd(10)
+    move 14, x,y,z
+    inline _sprite_get(14, &x, &y, &z, &mode, &w, &h);
+    'inline TRACE("w=%d height=%d", w, h);
+    y = (100-h)/2
+    leftmost = (160-w)/2
+    for x=160 to leftmost step -4
+       tmp = key(#KEY_ENTER)
+       cls
+       move 14, x,y,z
+       redraw 14
+       redraw show
+    next
+    wait 7
+    for x=leftmost to -160 step -4
+       tmp = key(#KEY_ENTER)
+       cls
+       move 14, x,y,z
+       redraw 14
+       redraw show
+   next
+  'inline TRACE("<scroll_left");
+end sub
+
+sub scroll_right
+    dim x as int
+    dim y as int
+    dim z as int
+    dim w as int
+    dim h as int
+    dim mode as int
+    dim rightmost as int
+
+   'inline TRACE(">scroll_right");
+    ink black
+    paper white
+    cls
+    z=rnd(10)
+    move 14, x,y,z
+    inline _sprite_get(14, &x, &y, &z, &mode, &w, &h);
+    'inline TRACE("w=%d height=%d", w, h);
+    y = (100-h)/2
+    rightmost = (160-w)/2
+    for x=-160 to rightmost step 4
+       tmp = key(#KEY_ENTER)
+       cls
+       move 14, x,y,z
+       redraw 14
+       redraw show
+    next
+    wait 7
+    for x=rightmost to 160 step 4
+       tmp = key(#KEY_ENTER)
+       cls
+       move 14, x,y,z
+       redraw 14
+       redraw show
+    next
+   'inline TRACE("<scroll_right");
+end sub
+
+sub scroll_up
+    dim x as int
+    dim y as int
+    dim z as int
+    dim w as int
+    dim h as int
+    dim mode as int
+    dim topmost as int
+
+   'inline TRACE(">scroll_up");
+    ink black
+    paper white
+    cls
+    z=rnd(10)
+    move 14, x,y,z
+    inline _sprite_get(14, &x, &y, &z, &mode, &w, &h);
+    'inline TRACE("w=%d height=%d", w, h);
+    x=(160-w)/2
+    topmost = (100-h)/2
+    for y=100 to topmost step -2
+       tmp = key(#KEY_ENTER)
+       cls
+       move 14, x,y,z
+       redraw 14
+       redraw show
+    next
+    wait 7
+    for y=topmost to -32 step -2
+       tmp = key(#KEY_ENTER)
+       cls
+       move 14, x,y,z
+       redraw 14
+       redraw show
+    next
+   'inline TRACE("<scroll_up");
+end sub
+
+sub scroll_down
+    dim x as int
+    dim y as int
+    dim z as int
+    dim w as int
+    dim h as int
+    dim mode as int
+    dim topmost as int
+
+   'inline TRACE(">scroll_down");
+
+    ink black
+    paper white
+    cls
+    z=rnd(10)
+    move 14, x,y,z
+    inline _sprite_get(14, &x, &y, &z, &mode, &w, &h);
+    'inline TRACE("w=%d height=%d", w, h);
+    x=(160-w)/2
+    topmost = (100-h)/2
+    for y=-25 to topmost step 2
+       tmp = key(#KEY_ENTER)
+       cls
+       move 14, x,y,z
+       redraw 14
+       redraw show
+    next
+    wait 7
+    for y=topmost to 102 step 2
+       tmp = key(#KEY_ENTER)
+       cls
+       move 14, x,y,z
+       redraw 14
+       redraw show
+    next
+   'inline TRACE("<scroll_down");
+end sub
+
+sub show_joke
+    dim mus[32] as char
+
+   'inline TRACE(">show_joke");
+    qnum = trv_find(trv, 13)
+    trv_question(trv, qnum, joke)
+    trv_inc_usage(trv, qnum)
+    ink black
+    paper white
+    cls
+    move 17,0,0
+    redraw 17
+    font "mini_normal_font"
+    hyphenate(joke, 8, 150)
+    for i=0 to 7
+        printxy 5,32+i*9, lines[i]
+        redraw show
+    next
+    sprint mus, "good",rnd(10),".mus"
+    'music foreground, mus
+    'music foreground, play
+    wait_enter
+    'music foreground, stop
+   'inline TRACE("<show_joke");
+end sub
+
+sub millionaire
+    dim x as int
+    dim x1 as int
+    dim dx as int
+    dim cx as int
+    dim y as int
+    dim y1 as int
+    dim dy as int
+    dim cy as int
+    dim z as int
+    dim w as int
+    dim h as int
+    dim mode as int
+    dim topmost as int
+    dim leftmost as int
+    dim n as int
+
+   'inline TRACE(">millionaire");
+    ink black
+    paper white
+    music background, "good11.mus"
+    music background, play
+    move 14, 0,0,12
+    inline _sprite_get(14, &x, &y, &z, &mode, &w, &h);
+    leftmost=(160-w)/2
+    topmost=(100-h)/2
+    n=20
+    dx = (160/2)*100/n
+    dy = (100/2)*100/n
+    cx = 0
+    cy = 0
+    for i=1 to n
+        x = cx/100
+        y = cy/100
+        cx=cx+dx
+        cy=cy+dy
+        cls
+        move 14,x-w/2,y-h/2,z
+        redraw 14
+        move 14,(160-x)-w/2,y-h/2,z
+        redraw 14
+        move 14,x-w/2,(100-y)-h/2,z
+        redraw 14
+        move 14,(160-x)-w/2,(100-y)-h/2,z
+        redraw 14
+        redraw show
+    next
+    cls
+    move 14, leftmost, topmost, z
+    redraw 14
+    redraw show
+    wait 7
+    for i=1 to n+n/2
+        x = cx/100
+        y = cy/100
+        cx=cx+dx
+        cy=cy+dy
+        cls
+        move 14,x-w/2,y-h/2,z
+        redraw 14
+        move 14,(160-x)-w/2,y-h/2,z
+        redraw 14
+        move 14,x-w/2,(100-y)-h/2,z
+        redraw 14
+        move 14,(160-x)-w/2,(100-y)-h/2,z
+        redraw 14
+        redraw show
+    next
+    music background, stop
+   'inline TRACE("<millionaire");
+end sub
+
+sub right_answer(point_index as int)
+    dim choice as int
+    dim mus[32] as char
+    dim x
+    dim y
+    dim z
+    dim mode
+    dim w
+    dim h
+
+   'inline TRACE(">right_answer");
+
+    if point_index = 12 then
+        millionaire
+    else
+   'inline TRACE("1");
+        sprint mus, "good",rnd(10),".mus"
+   'inline TRACE("2, %s", mus);
+        music background, mus
+   'inline TRACE("3");
+        music background, play
+   'inline TRACE("4");
+        choice = rnd(3)+1
+   'inline TRACE("5");
+        'inline TRACE("choice=%d", choice);
+   'inline TRACE("6");
+        on choice gosub scroll_up, scroll_down, scroll_left, scroll_right
+   'inline TRACE("7");
+        music background, stop
+   'inline TRACE("8");
+    endif
+    if factoid[0] then
+        sprint mus, "good",rnd(10),".mus"
+        'music foreground, mus
+        'music foreground, play
+        ink black
+        paper white
+        cls
+        move 18,0,0
+        redraw 18
+        font "mini_normal_font"
+        hyphenate(factoid, 8, 150)
+        for i=0 to 7
+            printxy 5,32+i*9, lines[i]
+            redraw show
+        next
+        wait_enter
+        'music foreground, stop
+    elseif point_index = 3 or point_index = 8 then
+        show_joke
+    endif
+   'inline TRACE("<right_answer");
+end sub
+
+sub wrong_answer
+    dim x as int
+    dim y as int
+    dim z as int
+    dim mode as int
+    dim w as int
+    dim h as int
+    dim mus[32] as char
+
+   'inline TRACE(">wrong_answer");
+    ink white
+    paper black
+    cls
+
+    sprint mus, "bad",rnd(10),".mus"
+    music background, mus
+    music background, play
+    z = rnd(7)
+    move 15, 0,0,z
+    inline _sprite_get(15, &x, &y, &z, &mode, &w, &h);
+    x=(160-w)/2
+    y=(100-h)/2
+    move 15,x,y,z
+    redraw 15
+    redraw show
+    wait 20
+    music background, stop
+    ink black
+    paper white
+    cls
+    move 19,0,0
+    redraw 19
+    font "mini_normal_font"
+    y=32
+    hyphenate(question, 5, 150)
+    for i=0 to 4
+        if lines[i,0] <> 0 then
+            printxy 5,y,lines[i]
+            redraw show
+            y=y+9
+        endif
+    next
+    y=y+9
+    font "mini_bold_font"
+    printxy 5,y, answers[correct_answer]
+    redraw show
+    wait_enter
+   'inline TRACE("<wrong_answer");
+end sub
+
+sub mainloop
+    dim ans as int
+    dim ending as int
+    dim points as int
+    dim a as int
+
+   'inline TRACE(">mainloop");
+
+    inline a=FileListForm("Trivial", "*.trv", filename, _ptr_main_module->m_process);
+    if a<0 then exit program
+
+    keyclick off
+
+
+START:
+    cls
+    print "Beginning..."
+    redraw show
+    trv = 0
+    ending = 1
+    trv_open(filename, trv)
+    for i=0 to 12
+       'inline TRACE("lowmem=%d", is_low_memory());
+        if ending = 0 then exit for
+        qnum = trv_find(trv, i)
+        repaint(i)
+        repaint_answers(trv, 0)
+        ans = 0
+        while true
+            inline _escape(0);
+            if wait_key(#KEY_UP, 10) and ans>0 then
+                ans=ans-1
+                repaint_answers(trv, ans)
+
+            elseif wait_key(#KEY_DOWN, 10) and ans<>(nans-1) then
+                ans=ans+1
+                repaint_answers(trv, ans)
+            endif
+            if wait_key(#KEY_ENTER, 20) then
+                if correct_answer=ans then
+                    right_answer(i)
+                    ending = 1
+                    points = i
+                    exit while
+                else
+                    wrong_answer
+                    ending = 0
+                    exit while
+                endif
+            endif
+        wend
+        trv_inc_usage(trv, qnum)
+    next
+
+    trv_close(trv)
+
+    if points>-1 then score pointlist[points]
+
+SHOW_SCORE:
+    move 16, 0, 0
+    redraw 16
+
+    sprint s, pointlist[points]
+    w = pixel_len2(s)
+    x = (160-w)/2
+    y=4
+    ink white
+    paper black
+    font "cool_bold_font"
+    printxy x-1,y-1,s
+    printxy x-1,y,s
+    printxy x-1,y+1,s
+    printxy x,y-1,s
+    printxy x,y,s
+    printxy x,y+1,s
+    printxy x+1,y-1,s
+    printxy x+1,y,s
+    printxy x+1,y+1,s
+    ink black
+    paper white
+    printxy x,y,s
+    redraw show
+    font "mini_bold_font"
+    score
+    wait_enter
+
+    cls
+    move 16,0,0
+    redraw 16
+    redraw show
+    keyclick on
+    menu a, "START", "SCORE", "EXIT"
+    keyclick off
+    on a goto START, SHOW_SCORE, EXIT_NOW
+EXIT_NOW:
+   'inline TRACE("<mainloop");
+end sub          
+
+'inline TRACE(">main");
+init
+mainloop
+'inline TRACE("<main");

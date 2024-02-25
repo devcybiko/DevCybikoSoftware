@@ -1,0 +1,164 @@
+!The following is a transcript of emails between me and Cybiko/UK.
+!This is Confidential. Do not publish outside the C3PO.
+{{{
+July 17, 2003
+
+Hello,
+
+
+I am Gregory Smith, president of The Alcor Group, founder of the Cybiko 
+Third Party Organization, and webmaster of  DevCybiko.com - a website 
+dedicated to new and experienced Cybiko developers. I represent a 
+collection of third party developers in the United States who are
+steadfast in their interest in developing hardware and software 
+applications for the Cybiko handheld computer for teens.
+
+I am writing to you today to increase interest in the Cybiko handheld 
+computer.  I hope to do this by establishing a working relationship with
+Cybiko/UK that will allow me and the other developers I represent to
+create hardware and software of all types for the Cybiko computer in the UK.
+
+I have been programming for the Cybiko since November of 
+2001.  DevCybiko.com opened up on December 21, 2001.  I have created
+such applications as "B2C" (the BASIC compiler for Cybiko), "MiaChat" (the 
+wireless AIM client for the Cybiko), and "TCPKIT" (the TCP/IP tool kit
+for wireless Internet applications on the Cybiko). I have been featured in 
+articles regarding the Cybiko and I even have a link on the Cybiko.com 
+developer's page.  I have contributed to the CyBoard and Cybiko.com 
+newsgroup answering questions about the Cybiko and how to develop for
+it.
+
+As you are likely aware, Cybiko/USA has abandoned the Cybiko handheld 
+computer as a hardware platform preferring instead software development
+for other wireless platforms.  This has caused the availability of Cybikos in the
+USA to nearly vanish (with the exception of a trickle that is sold on 
+Ebay).  This lack of hardware on the market has created a lack of Cybiko
+users.  The lack of users of course means there are fewer people to try
+our 3rd party applications.
+
+So, when I observed that Cybiko/UK was ramping up the marketing of
+Cybiko computers overseas, I and the other members of the Cybiko Third Party 
+Organization became very interested.
+
+I believe that together we can create new software products for the
+Cybiko that will make it an ever more interesting product for its users. I 
+currently have the following projects on the boards:
+
+1) Wireless Internet HTML Browsing
+2) Wireless Internet Telnet
+3) Wireless Internet Multiplayer Games
+4) Wireless Internet POP3 Client
+5) Audio and Video playback of AVI files
+6) Video Games based on AVI technology
+
+The problem with completing these projects is that its only worth it to
+us if there will be users for them.
+
+So, I would like to create a strategic alliance with Cybiko/UK by:
+
+1) Establishing a dialog between myself and your upper management.  This
+will help me to understand your relationship (if any) to Cybiko/USA.
+
+2) Establishing a dialog between myself and your sales group.  The type
+of information I am interested in is the general plan Cybiko/UK has for the
+future of Cybiko (eg: release of the CyWig or new hardware versions of
+the Cybiko).  Also, a general idea of the number of units sold.  This 
+information will be used to determine how best to approach creating
+third party software for the Cybiko.
+
+3) Establishing a dialog between myself and your technical staff.  I am
+in need of some technical details that you may be able to provide. Both in 
+terms of hardware and software. 
+
+Doing these things will enable me and the other developers to create
+great and novel products for the Cybiko, which can, in turn, increase sales.
+I am very excited at the prospect of Cybikos in the United Kingdom running
+software created by myself and the other members of the Cybiko Third
+Party Organization.  I look forward to hearing from you soon.
+
+Sincerely,
+
+
+Gregory Smith
+President, The Alcor Group, Inc.
+Founder of The Cybiko Third Party Organization
+}}}
+----
+{{{
+July 28, 2003
+
+Dear Mr. Smith,
+
+
+Sorry for the delay in replying to you.
+The service and ideas that you are offer sounds interesting. However we
+can't proceed with the new projects at the moment as we haven't got man
+power to do so.
+
+
+Regards,
+}}}
+----
+{{{
+July 28, 2003
+
+Dear Sir,
+
+Thank you so much for your kind response. I fully appreciate your
+man-power concerns. Perhaps there is some way in which the Cybiko Third Party 
+Organization can assist.  We are now up to a dozen members.  I can
+imagine that we can help in several ways.  Here are a few:
+
+1) Writing new software.  Our members are skilled in Wireless, 3D, 
+Inter-networking, and many other technologies.
+
+2) Testing software.  We can try new software under a non-disclosure 
+agreement and report to you any features that are lacking.
+
+3) Marketing and advertising.  All of our members have popular fan sites
+that are frequented daily.  DevCybiko.com has over 2000 members - that's
+quite an email list!
+
+4) Tutorials, Online Seminars, and other instructional aids in the use
+and programming of the Cybiko.
+
+5) any other areas that you may need assistance in.
+
+The members of the Cybiko Third Party Organization are dedicated to the 
+success of your product.  You won't find a more motivated and grateful 
+group of people.  I hand-select the members because of their skill and 
+demonstrated capabilities in the area of software in general, and the 
+Cybiko in particular.
+
+Please consider us at your disposal,
+
+With warmest regards,
+
+Greg Smith
+President, The Alcor Group, Inc.
+Founder of The Cybiko Third Party Organization
+}}}
+----
+{{{
+July 29, 2003
+
+Dear Gregory,
+
+Thank you for your grateful offer.
+
+We can certainly let you give us a hand with the developments and all
+the rest of the work that needs to be done as Cybiko Inc has abandoned
+not just Cybiko websites but also its customers.
+
+At the moment we would appreciate if you guys could come up with some
+kind of a e-marketing plan in order to increase sales in the UK and
+overseas. At the moment we have rights to sell Cybiko computers
+worldwide and quantities that we need to shift (ship??) this year are pretty big.
+
+If the target will be reached this year (100k) we might get into the
+draws and pull out our dev. files of next Cybiko generation.
+
+
+Best regards,
+
+}}}

@@ -1,0 +1,30 @@
+!!!Greg's Wiki
+!Leave me a message here: [GregsMessageBoard]
+<table border=1><tr><td width=50% valign=top>
+!Contact Info
+Greg Smith\\
+cybiko@alcorgrp.com\\
+[greg-smith.com|http://greg-smith.com]\\
+!Projects
+[B2C4Palm]\\
+[WinB2C]\\
+[GregsCybiko]\\
+
+
+!Links
+[Greg-Smith|http://greg-smith.com]\\
+[DevCybiko|http://devcybiko.greg-smith.com]\\
+[B2C4Palm|http://b2c4palm.greg-smith.com]\\
+[Vics AirStream|http://vic.greg-smith.com]\\
+                                                                <!-- Begin AIM Remote -->
+<table width=140><tr align=right><td><a href="http://dynamic.aol.com/cgi/redir?
+http://www.aol.com/aim/imreg_download_template?pageset=aol&promo=106695"><img src="http://www.aol.com/aim/gr/aimver_man.gif" width=44 height=55 border=0 alt="Download AIM"></a><img src="http://www.aol.com/aim/gr/aimver_topsm.gif" width=73 height=55 border=0 alt="AIM Remote"><br><a href="aim:goim?screenname=DevCybiko&message=Hi.+Are+you+there?"><img src="http://www.aol.com/aim/gr/aimver_im.gif" width=117 height=39 border=0 alt="Send me an Instant Message"></a><br><a href="aim:addbuddy?screenname=DevCybiko"><img src="http://www.aol.com/aim/gr/aimver_bud.gif" width=117 height=39 border=0 alt="Add me to Your Buddy List"></a><br><a href="mailto:Cybiko@alcorgrp.com"><img src="http://www.aol.com/aim/gr/aimver_email.gif" width=117 height=39 border=0 alt="Send me an Email"></a><br><a href="http://dynamic.aol.com/cgi/redir?http://www.aol.com
+/aim/remote/home.adp"><img src="http://www.aol.com//aim/gr/aimver_botadd.gif" width=117 height=23 border=0 alt="Add Remote to Your Page"></a><br><a href="http://dynamic.aol.com/cgi/redir?
+http://www.aol.com/aim/imreg_download_template?pageset=aol&promo=106695"><img src="http://www.aol.com//aim/gr/aimver_botdow.gif" width=117 height=29 border=0 alt="Download AOL Instant Messenger"></a><br><br></td></tr></table>
+<!-- End AIM Remote --> 
+
+
+</td><td valign=top>
+!Greg has edited these pages:
+[{ReferringPagesPlugin separator='\n'}]
+</td></tr></table>

@@ -1,0 +1,336 @@
+<P ALIGN=CENTER><B><FONT COLOR="#0000FF" SIZE="+2">
+Performance Statistics of the <BR>
+Cybiko Classic Handheld Computer<BR>
+</FONT></B>By [greg]</P>
+<P ALIGN=LEFT><B><FONT SIZE="+1" FACE="Arial,Helvetica,Univers,Zurich BT,sans-serif">Introduction:</FONT></B></P>
+<P ALIGN=LEFT>I did a study of the performance of key function calls in the Cybiko graphics system.  My goal was to determine the feasibility of a graphics engine based on several different approaches.  Here are my findings:</P>
+<P ALIGN=LEFT><B><FONT SIZE="+1" FACE="Arial,Helvetica,Univers,Zurich BT,sans-serif">Data: (</FONT></B><A HREF="http://www.DevCybiko.com/Files/speed.xls"><B><FONT SIZE="+1" FACE="Arial,Helvetica,Univers,Zurich BT,sans-serif">speed.xls </FONT></B></A><B><FONT SIZE="+1" FACE="Arial,Helvetica,Univers,Zurich BT,sans-serif"> , </FONT></B><A HREF="http://www.DevCybiko.com/Files/speed.txt">
+<B><FONT SIZE="+1" FACE="Arial,Helvetica,Univers,Zurich BT,sans-serif">speed.txt</FONT></B></A><B><FONT SIZE="+1" FACE="Arial,Helvetica,Univers,Zurich BT,sans-serif"> - spreadsheets)</FONT></B></P>
+
+
+<TABLE ID="Table4" BORDER=1 CELLSPACING=3 CELLPADDING=1 WIDTH="100%">
+<TR>
+<TD WIDTH="28%" BGCOLOR="#808080">
+<P ALIGN=CENTER><FONT SIZE="+1" FACE="Arial,Helvetica,Univers,Zurich BT,sans-serif">Operation</FONT></P>
+</TD>
+<TD WIDTH="10%" BGCOLOR="#808080">
+<P ALIGN=CENTER><FONT SIZE="+1" FACE="Arial,Helvetica,Univers,Zurich BT,sans-serif">#ops</FONT></P>
+</TD>
+<TD WIDTH="19%" BGCOLOR="#808080">
+<P ALIGN=CENTER><FONT SIZE="+1" FACE="Arial,Helvetica,Univers,Zurich BT,sans-serif">Time (ms)</FONT></P>
+</TD>
+<TD WIDTH="19%" BGCOLOR="#808080">
+<P ALIGN=CENTER><FONT SIZE="+1" FACE="Arial,Helvetica,Univers,Zurich BT,sans-serif">Ops/sec</FONT></P>
+                                                    </TD>
+                                                    <TD WIDTH="20%" BGCOLOR="#808080">
+                                                        <P ALIGN=CENTER><FONT SIZE="+1" FACE="Arial,Helvetica,Univers,Zurich BT,sans-serif">Pixels/sec</FONT></P>
+                                                    </TD>
+                                                </TR>
+                                                <TR>
+                                                    <TD WIDTH="28%">
+                                                        <P>Graphics_set_pixel</P>
+                                                    </TD>
+                                                    <TD WIDTH="10%">
+                                                        <P ALIGN=RIGHT>16,000</P>
+                                                    </TD>
+                                                    <TD WIDTH="19%">
+                                                        <P ALIGN=RIGHT>1310</P>
+                                                    </TD>
+                                                    <TD WIDTH="19%">
+                                                        <P ALIGN=RIGHT>12,213.74</P>
+                                                    </TD>
+                                                    <TD WIDTH="20%">
+                                                        <P ALIGN=RIGHT>12,213.74</P>
+                                                    </TD>
+                                                </TR>
+                                                <TR>
+                                                    <TD WIDTH="28%">
+                                                        <P>Graphics_draw_bitmap 8x8</P>
+                                                    </TD>
+                                                    <TD WIDTH="10%">
+                                                        <P ALIGN=RIGHT>800</P>
+                                                    </TD>
+                                                    <TD WIDTH="19%">
+                                                        <P ALIGN=RIGHT>1100</P>
+                                                    </TD>
+                                                    <TD WIDTH="19%">
+                                                        <P ALIGN=RIGHT>727.27</P>
+                                                    </TD>
+                                                    <TD WIDTH="20%">
+                                                        <P ALIGN=RIGHT>46,545.45</P>
+                                                    </TD>
+                                                </TR>
+                                                <TR>
+                                                    <TD WIDTH="28%">
+                                                        <P>Graphics_draw_bitmap 8x8 x%4=0</P>
+                                                    </TD>
+                                                    <TD WIDTH="10%">
+                                                        <P ALIGN=RIGHT>800</P>
+                                                    </TD>
+                                                    <TD WIDTH="19%">
+                                                        <P ALIGN=RIGHT>1030</P>
+                                                    </TD>
+                                                    <TD WIDTH="19%">
+                                                        <P ALIGN=RIGHT>776.70</P>
+                                                    </TD>
+                                                    <TD WIDTH="20%">
+                                                        <P ALIGN=RIGHT>49,708.74</P>
+                                                    </TD>
+                                                </TR>
+                                                <TR>
+                                                    <TD WIDTH="28%">
+                                                        <P>Graphics_draw_bitmap 16x16</P>
+                                                    </TD>
+                                                    <TD WIDTH="10%">
+                                                        <P ALIGN=RIGHT>800</P>
+                                                    </TD>
+                                                    <TD WIDTH="19%">
+                                                        <P ALIGN=RIGHT>2170</P>
+                                                    </TD>
+                                                    <TD WIDTH="19%">
+                                                        <P ALIGN=RIGHT>368.66</P>
+                                                    </TD>
+                                                    <TD WIDTH="20%">
+                                                        <P ALIGN=RIGHT>94,377.88</P>
+                                                    </TD>
+                                                </TR>
+                                                <TR>
+                                                    <TD WIDTH="28%">
+                                                        <P>Graphics_draw_bitmap 16x16 x%4=0</P>
+                                                    </TD>
+                                                    <TD WIDTH="10%">
+                                                        <P ALIGN=RIGHT>800</P>
+                                                    </TD>
+                                                    <TD WIDTH="19%">
+                                                        <P ALIGN=RIGHT>1920</P>
+                                                    </TD>
+                                                    <TD WIDTH="19%">
+                                                        <P ALIGN=RIGHT>416.67</P>
+                                                    </TD>
+                                                    <TD WIDTH="20%">
+                                                        <P ALIGN=RIGHT>106,666.67</P>
+                                                    </TD>
+                                                </TR>
+                                                <TR>
+                                                    <TD WIDTH="28%">
+                                                        <P>Display_graphics_show</P>
+                                                    </TD>
+                                                    <TD WIDTH="10%">
+                                                        <P ALIGN=RIGHT>800</P>
+                                                    </TD>
+                                                    <TD WIDTH="19%">
+                                                        <P ALIGN=RIGHT>11,740</P>
+                                                    </TD>
+                                                    <TD WIDTH="19%">
+                                                        <P ALIGN=RIGHT>68.14</P>
+                                                    </TD>
+                                                    <TD WIDTH="20%">
+                                                        <P ALIGN=RIGHT>1,090,289.60</P>
+                                                    </TD>
+                                                </TR>
+                                                <TR>
+                                                    <TD WIDTH="28%">
+                                                        <P>memcpy(to display)</P>
+                                                    </TD>
+                                                    <TD WIDTH="10%">
+                                                        <P ALIGN=RIGHT>800</P>
+                                                    </TD>
+                                                    <TD WIDTH="19%">
+                                                        <P ALIGN=RIGHT>11740</P>
+                                                    </TD>
+                                                    <TD WIDTH="19%">
+                                                        <P ALIGN=RIGHT>68.14</P>
+                                                    </TD>
+                                                    <TD WIDTH="20%">
+                                                        <P ALIGN=RIGHT>1,090,289.60</P>
+                                                    </TD>
+                                                </TR>
+                                                <TR>
+                                                    <TD WIDTH="28%">
+                                                        <P>Graphics_scroll</P>
+                                                    </TD>
+                                                    <TD WIDTH="10%">
+                                                        <P ALIGN=RIGHT>800</P>
+                                                    </TD>
+                                                    <TD WIDTH="19%">
+                                                        <P ALIGN=RIGHT>40,940</P>
+                                                    </TD>
+                                                    <TD WIDTH="19%">
+                                                        <P ALIGN=RIGHT>19.54</P>
+                                                    </TD>
+                                                    <TD WIDTH="20%">
+                                                        <P ALIGN=RIGHT>312,652.66</P>
+                                                    </TD>
+                                                </TR>
+                                                <TR>
+                                                    <TD WIDTH="28%">
+                                                        <P>Graphics_scroll (x%4=0)</P>
+                                                    </TD>
+                                                    <TD WIDTH="10%">
+                                                        <P ALIGN=RIGHT>800</P>
+                                                    </TD>
+                                                    <TD WIDTH="19%">
+                                                        <P ALIGN=RIGHT>26,320</P>
+                                                    </TD>
+                                                    <TD WIDTH="19%">
+                                                        <P ALIGN=RIGHT>30.40</P>
+                                                    </TD>
+                                                    <TD WIDTH="20%">
+                                                        <P ALIGN=RIGHT>486,322.19</P>
+                                                    </TD>
+                                                </TR>
+                                                <TR>
+                                                    <TD WIDTH="28%">
+                                                        <P>Graphics_draw_hline</P>
+                                                    </TD>
+                                                    <TD WIDTH="10%">
+                                                        <P ALIGN=RIGHT>1600</P>
+                                                    </TD>
+                                                    <TD WIDTH="19%">
+                                                        <P ALIGN=RIGHT>400</P>
+                                                    </TD>
+                                                    <TD WIDTH="19%">
+                                                        <P ALIGN=RIGHT>4,000.00</P>
+                                                    </TD>
+                                                    <TD WIDTH="20%">
+                                                        <P ALIGN=RIGHT>400,000.00</P>
+                                                    </TD>
+                                                </TR>
+                                                <TR>
+                                                    <TD WIDTH="28%">
+                                                        <P>Graphics_draw_vline</P>
+                                                    </TD>
+                                                    <TD WIDTH="10%">
+                                                        <P ALIGN=RIGHT>1600</P>
+                                                    </TD>
+                                                    <TD WIDTH="19%">
+                                                        <P ALIGN=RIGHT>1,760</P>
+                                                    </TD>
+                                                    <TD WIDTH="19%">
+                                                        <P ALIGN=RIGHT>909.09</P>
+                                                    </TD>
+                                                    <TD WIDTH="20%">
+                                                        <P ALIGN=RIGHT>90,909.09</P>
+                                                    </TD>
+                                                </TR>
+                                                <TR>
+                                                    <TD WIDTH="28%">
+                                                        <P>Graphics_draw_line (diagonal)</P>
+                                                    </TD>
+                                                    <TD WIDTH="10%">
+                                                        <P ALIGN=RIGHT>1600</P>
+                                                    </TD>
+                                                    <TD WIDTH="19%">
+                                                        <P ALIGN=RIGHT>10,540</P>
+                                                    </TD>
+                                                    <TD WIDTH="19%">
+                                                        <P ALIGN=RIGHT>151.80</P>
+                                                    </TD>
+                                                    <TD WIDTH="20%">
+                                                        <P ALIGN=RIGHT>15,180.27</P>
+                                                    </TD>
+                                                </TR>
+                                                <TR>
+                                                    <TD WIDTH="28%" HEIGHT=38>
+                                                        <P>Graphics_draw_line (horizontal)</P>
+                                                    </TD>
+                                                    <TD WIDTH="10%">
+                                                        <P ALIGN=RIGHT>1600</P>
+                                                    </TD>
+                                                    <TD WIDTH="19%">
+                                                        <P ALIGN=RIGHT>450</P>
+                                                    </TD>
+                                                    <TD WIDTH="19%">
+                                                        <P ALIGN=RIGHT>3,555.56</P>
+                                                    </TD>
+                                                    <TD WIDTH="20%">
+                                                        <P ALIGN=RIGHT>355,555.56</P>
+                                                    </TD>
+                                                </TR>
+                                                <TR>
+                                                    <TD WIDTH="28%">
+                                                        <P>Graphics_draw_line (vertical)</P>
+                                                    </TD>
+                                                    <TD WIDTH="10%">
+                                                        <P ALIGN=RIGHT>1600</P>
+                                                    </TD>
+                                                    <TD WIDTH="19%">
+                                                        <P ALIGN=RIGHT>1,810</P>
+                                                    </TD>
+                                                    <TD WIDTH="19%">
+                                                        <P ALIGN=RIGHT>883.98</P>
+                                                    </TD>
+                                                    <TD WIDTH="20%">
+                                                        <P ALIGN=RIGHT>88,397.79</P>
+                                                    </TD>
+                                                </TR>
+                                                <TR>
+                                                    <TD WIDTH="28%" HEIGHT=19>
+                                                        <P>Graphics_fill_screen</P>
+                                                    </TD>
+                                                    <TD WIDTH="10%">
+                                                        <P ALIGN=RIGHT>1600</P>
+                                                    </TD>
+                                                    <TD WIDTH="19%">
+                                                        <P ALIGN=RIGHT>23,400</P>
+                                                    </TD>
+                                                    <TD WIDTH="19%">
+                                                        <P ALIGN=RIGHT>68.38</P>
+                                                    </TD>
+                                                    <TD WIDTH="20%">
+                                                        <P ALIGN=RIGHT>1,094,017.09</P>
+                                                    </TD>
+                                                </TR>
+                                                <TR>
+                                                    <TD WIDTH="28%" HEIGHT=19>
+                                                        <P>Graphics_fill_rect</P>
+                                                    </TD>
+                                                    <TD WIDTH="10%">
+                                                        <P ALIGN=RIGHT>1600</P>
+                                                    </TD>
+                                                    <TD WIDTH="19%">
+                                                        <P ALIGN=RIGHT>15,760</P>
+                                                    </TD>
+                                                    <TD WIDTH="19%">
+                                                        <P ALIGN=RIGHT>101.52</P>
+                                                    </TD>
+                                                    <TD WIDTH="20%">
+                                                        <P ALIGN=RIGHT>1,624,365.48</P>
+                                                    </TD>
+                                                </TR>
+                                                <TR>
+                                                    <TD WIDTH="28%" HEIGHT=19>
+                                                        <P>Graphics_draw_text</P>
+                                                    </TD>
+                                                    <TD WIDTH="10%">
+                                                        <P ALIGN=RIGHT>1600</P>
+                                                    </TD>
+                                                    <TD WIDTH="19%">
+                                                        <P ALIGN=RIGHT>52,450</P>
+                                                    </TD>
+                                                    <TD WIDTH="19%">
+                                                        <P ALIGN=RIGHT>30.51</P>
+                                                    </TD>
+                                                    <TD WIDTH="20%">
+                                                        <P ALIGN=RIGHT>58,570.07</P>
+                                                    </TD>
+                                                </TR>
+                                            </TABLE>
+                                        </TD>
+                                    </TR>
+                                </TABLE>
+<B><FONT SIZE="+1" FACE="Arial,Helvetica,Univers,Zurich BT,sans-serif">Conclusions:</FONT></B></P>
+                            <OL>
+                                <LI>Always use the CyOS graphics functions when possible.  They will be faster than your bytecode-compiled functions</LI>
+                                <LI>The more pixels you draw at once, the faster your programs will run.  If you look a the performance of drawing 1 pixel at a time (Graphics_set_pixel) only 12,214 pixels are drawn in a second.  If you 
+                                    go up to 64 pixels at a time (8x8) you get about a 4x performance boost.  If you go up to 256 pixels at a time (16x16) you get a 8x boost (2x faster than 64 pixels).  If you look at 
+                                    Display_graphics_show you'll see over 1Million pixels per second.  This is because it is a simple memory copy from one region in RAM to another.</LI>
+                                <LI>Which brings us to conclusion #3.  If you can perform memory copies from one region to another as a graphics operation, do it.  It is as fast as Display_graphics_show at around 1M pixels/sec.</LI>
+                                <LI>Drawing your bitmaps on pixel boundaries which are evenly divisible by 4  (where x%4=0) will gain you a 6-12% or more performance increase.  This is because when a bitmap is displayed on "odd" 
+                                    boundaries, the bitmap must be shifted into place before the bitmap operation takes place.  And that eats away valuable CPU time.  So either move your objects 4 pixels at a time, or pre-shift your 
+                                    bitmaps at the beginning of your program.</LI>
+                                <LI>Use Graphics_draw_hline or Graphis_draw_vline if you know you are drawing straight lines.  They are around 11% faster.</LI>
+                                <LI> Drawing a diagonal line is 26 times slower than drawing a straight line.</LI>
+                                <LI>Scrolling on the 4-pixel boundary is 36% faster than scrolling one pixel.</LI>
+                                <LI>It is faster to perform a Graphics_fill_rect than a Graphics_fill_screen when clearing the display<BR> 
+                            </OL>

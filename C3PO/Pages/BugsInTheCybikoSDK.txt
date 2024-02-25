@@ -1,0 +1,33 @@
+               <TABLE BORDER=0 CELLSPACING=0 CELLPADDING=0 WIDTH=656 NOF=LY>
+                    <TR VALIGN=TOP ALIGN=LEFT>
+                        <TD WIDTH=656>
+                            <P ALIGN=CENTER><B><FONT COLOR="#000000" SIZE="+2">CyOS & SDK Bugs<BR>for the<BR>Cybiko Handheld Computer<BR><IMG ID="SiteStyleLine1" HEIGHT=12 WIDTH=500 SRC="./Line.gif" VSPACE=0 HSPACE=0 ALIGN="TOP" BORDER=0><BR></FONT><FONT
+                                 SIZE="+2">Cybiko has been informed of all the following bugs but basically has no fix for them nor is any planned...<BR><IMG ID="SiteStyleLine2" HEIGHT=12 WIDTH=500 SRC="./Line.gif" VSPACE=0 HSPACE=0 ALIGN="TOP"
+                                 BORDER=0> </FONT></B>
+                            <OL>
+                                <LI STYLE="color: #000000"><B><FONT COLOR="#000000" SIZE="-1" FACE="Arial,Helvetica,Univers,Zurich BT,sans-serif">B2C Bloated Apps. (5/5/2002)<BR></FONT></B><FONT COLOR="#000000" SIZE="-1"
+                                     FACE="Arial,Helvetica,Univers,Zurich BT,sans-serif"><I>B2C Apps compiled with SDK 2.x are never smaller than 11K because DEBUG information is inserted by 
+                                    the compiler.  If you compile and link under SDK 3.0 the smallest B2C app is 1K (it doesnt propagate the 
+                                    DEBUG).  It turns out that 2.x adds a string with the name of every function REFERENCED by the .h file.<BR> </I></FONT><I></I></LI>
+                                <LI STYLE="color: #000000"><B><FONT COLOR="#000000" SIZE="-1" FACE="Arial,Helvetica,Univers,Zurich BT,sans-serif">exit() leaks memory (5/5/2002)<BR></FONT></B><FONT COLOR="#000000" SIZE="-1"
+                                     FACE="Arial,Helvetica,Univers,Zurich BT,sans-serif"><I>All b2c apps and SDK/C apps which exit by calling exit() (eg: do not exit by "falling through" the bottom of 
+                                    the program - return 0) will leak memory equal to THE SIZE OF THE APP ITSELF.  This is especially true of B2C apps since the exit() function is called when the "Quit?" dialog is displayed.<BR>
+                                     </I></FONT><I></I></LI>
+                                <LI STYLE="color: #000000"><B><FONT COLOR="#000000" SIZE="-1" FACE="Arial,Helvetica,Univers,Zurich BT,sans-serif">When doing a message_get the min/max is ignored. (5/5/2002)<BR></FONT></B><FONT COLOR="#000000"
+                                     SIZE="-1" FACE="Arial,Helvetica,Univers,Zurich BT,sans-serif"><I>The cWinApp_message_get() function takes a minimum msgid and maximum msgid that will be read. 
+                                    these are ignored by the message_get function and the next message on the queue is read regardless of its msgid.<BR> </I></FONT><I></I></LI>
+                                <LI STYLE="color: #000000"><B><FONT COLOR="#000000" SIZE="-1" FACE="Arial,Helvetica,Univers,Zurich BT,sans-serif">SDK/C - #line directives don't work inside functions. (5/5/2002)<BR></FONT></B><FONT COLOR="#000000"
+                                     SIZE="-1" FACE="Arial,Helvetica,Univers,Zurich BT,sans-serif"><I>The rarely used #line directives resets the compiler's concept of the current file and line number.  It doesnt work at all in SDK/C<BR> </I></FONT><I></I>
+                                </LI>
+                                <LI STYLE="color: #000000"><B><FONT COLOR="#000000" SIZE="-1" FACE="Arial,Helvetica,Univers,Zurich BT,sans-serif">Random General Protection Faults (GPF) in SDK/C (5/5/2002)<BR></FONT></B><FONT COLOR="#000000"
+                                     SIZE="-1" FACE="Arial,Helvetica,Univers,Zurich BT,sans-serif"><I>A user complained of a problem in SDK 2.0.12 with a "seasoned" bit of code of mine.  The program 
+                                    (helloworld.c) will cause the vcc1 compiler to GPF for no clear reason.  The SDK 2.0.10 and SDK 3.0.12 versions of the compiler do not have this problem (Download </I></FONT><A
+                                     HREF="http://www.DevCybiko.com/Files/B2C/Cybiko_SDK_2010_Std.exe"><FONT COLOR="#000000" SIZE="-1" FACE="Arial,Helvetica,Univers,Zurich BT,sans-serif"><I>SDK 2.0.10</I></FONT></A><FONT COLOR="#000000" SIZE="-1"
+                                     FACE="Arial,Helvetica,Univers,Zurich BT,sans-serif"><I>)<BR> </I></FONT><I></I></LI>
+                                <LI STYLE="color: #000000"><B><FONT COLOR="#000000" SIZE="-1" FACE="Arial,Helvetica,Univers,Zurich BT,sans-serif">Memory Limit in Messages: (5/5/2002)<BR></FONT></B><FONT COLOR="#000000" SIZE="-1"
+                                     FACE="Arial,Helvetica,Univers,Zurich BT,sans-serif"><I>There is a technical limit of about 4k per message. This is bound with the way messages are packetized 
+                                    during transmission. Thus sending messages larger than 2k is not recommended</I></FONT><FONT COLOR="#FFFFCC" SIZE="-1" FACE="Arial,Helvetica,Univers,Zurich BT,sans-serif"><I>.</I></FONT>
+                            </OL>
+                        </TD>
+                    </TR>
+                </TABLE>

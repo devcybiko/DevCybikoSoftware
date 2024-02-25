@@ -1,0 +1,41 @@
+<B>
+<P>Topic :</B> Circle</P>
+<B><P>Language Level</B> : B2C Extension</P>
+<B><P>Effectivity :</B> B2C v5</P>
+<B><P>Syntax</B> : </P><DIR>
+<DIR>
+
+<P>Circle X, Y, R</P></DIR>
+</DIR>
+
+<B><P>Description :</P><DIR>
+<DIR>
+
+</B><P>Circle will draw a circle at location X, Y with a radius of R.</P></DIR>
+</DIR>
+
+<B><P>Example : </P>
+</B></FONT><FONT FACE="Courier New" SIZE=2><P>OPTION SHOW OFF</P>
+<P>OPTION ESCAPE OFF</P>
+
+<P>dim r as int</P>
+
+<P>sub draw_circle(r as int)</P>
+<P>    cls</P>
+<P>    circle 0,0,r</P>
+<P>    redraw show</P>
+<P>end sub</P>
+
+<P>draw_circle(r)</P>
+
+<P>while true</P>
+<P>  if key(#KEY_LEFT) then</P>
+<P>    r=r+1</P>
+<P>    draw_circle(r)</P>
+<P>  endif</P>
+<P>  if key(#KEY_RIGHT) then</P>
+<P>    r=r-1</P>
+<P>    draw_circle(r)</P>
+<P>  endif</P>
+<P>  if key(#KEY_SPACE) then exit while</P>
+<P>wend</P>

@@ -1,0 +1,5 @@
+To be expanded upon:
+
+    The only evidence of audio circuitry on a Cybiko Xtreme is in the near vicinity of the MCU.  A couple of sound lines come out of the MCU and go to a small filtering circuit, which has two lines going in and out labelled "Snd_MCU".  There is no chip by that description in the schematics, so either the schematics are incomplete or the MCU acts as the only sound processor on the Xtreme.  In other words, WAV audio recording and playback would be processed by the main processor and not an auxiliary chip.
+
+[Professr]    15-Jul-2003

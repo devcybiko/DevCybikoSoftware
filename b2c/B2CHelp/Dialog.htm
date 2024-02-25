@@ -1,0 +1,26 @@
+<B><P>Topic :</B> Dialog</P>
+<B><P>Language Level</B> : B2C Extension</P>
+<B><P>Effectivity :</B> B2C v3d</P>
+<B><P>Syntax</B> : </P><DIR>
+<DIR>
+
+<P>Result = Dialog(box_hdr, prompt)</P>
+<P>Result = Dialog(box_hdr, prompt, str_var, len)</P></DIR>
+</DIR>
+
+<B><P>Description :</P><DIR>
+<DIR>
+
+</B><P>Dialog will display a dialog box with the OK and CANCEL buttons in it.  The &quot;box_hdr&quot; is the text to display in the dialog box’s header while the &quot;prompt&quot; is the text to display in the body of the dialog box.  If str_var is specified, then an Edit field appears in the dialog.  Whatever is in the str_var will be the initial value of the Edit field.  &quot;Len&quot; is the maximum number of characters to enter into str_var (usually the dimensioned length of the string).  When the user enters text into the Edit field and presses Enter, the str_var receives the input string.</P>
+
+<P>Result receives TRUE if the user hits the OK button and FALSE if the user hits the CANCEL button or the ESC key.</P></DIR>
+</DIR>
+
+<B><P>Example : </P><DIR>
+<DIR>
+
+</B><P>If Dialog(&quot;Exit?&quot;, &quot;Are you ready to exit now?&quot;) then exit program</P>
+<P>Proceed = Dialog(&quot;Input File&quot;, &quot;What input file will you use?&quot;, filename, 32) </P>
+<B></DIR>
+</DIR>
+

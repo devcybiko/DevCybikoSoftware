@@ -1,0 +1,12 @@
+*cpp_sdk_5:
+ -isystem /cygdrive/c/PalmDev/sdk-5/Incs -isystem /cygdrive/c/PalmDev/sdk-5/Incs/libraries -isystem /cygdrive/c/PalmDev/sdk-5/Incs/libraries/Telephony -isystem /cygdrive/c/PalmDev/sdk-5/Incs/libraries/Telephony/UI -isystem /cygdrive/c/PalmDev/sdk-5/Incs/libraries/SSL -isystem /cygdrive/c/PalmDev/sdk-5/Incs/libraries/Sms -isystem /cygdrive/c/PalmDev/sdk-5/Incs/libraries/Simulator -isystem /cygdrive/c/PalmDev/sdk-5/Incs/libraries/Simulator/Locale -isystem /cygdrive/c/PalmDev/sdk-5/Incs/libraries/Pdi -isystem /cygdrive/c/PalmDev/sdk-5/Incs/libraries/PalmOSGlue -isystem /cygdrive/c/PalmDev/sdk-5/Incs/libraries/Lz77 -isystem /cygdrive/c/PalmDev/sdk-5/Incs/libraries/INet -isystem /cygdrive/c/PalmDev/sdk-5/Incs/libraries/exglocal -isystem /cygdrive/c/PalmDev/sdk-5/Incs/libraries/CPMLib -isystem /cygdrive/c/PalmDev/sdk-5/Incs/libraries/AddressSort -isystem /cygdrive/c/PalmDev/sdk-5/Incs/Extensions -isystem /cygdrive/c/PalmDev/sdk-5/Incs/Extensions/ExpansionMgr -isystem /cygdrive/c/PalmDev/sdk-5/Incs/Dynamic -isystem /cygdrive/c/PalmDev/sdk-5/Incs/Core -isystem /cygdrive/c/PalmDev/sdk-5/Incs/Core/UI -isystem /cygdrive/c/PalmDev/sdk-5/Incs/Core/System -isystem /cygdrive/c/PalmDev/sdk-5/Incs/Core/System/Unix -isystem /cygdrive/c/PalmDev/sdk-5/Incs/Core/Hardware
+
+*link_sdk_5:
+ -L/cygdrive/c/PalmDev/sdk-5/lib/m68k-palmos-coff -L/cygdrive/c/PalmDev/sdk-5/lib/m68k-palmos-coff/mown-gp
+
+*cpp:
++ %{!palmos-none: %{palmos5:%(cpp_sdk_5)} %{palmos5.0:%(cpp_sdk_5)} %{!palmos*: %(cpp_sdk_5)}}
+
+*link:
++ %{!palmos-none: %{palmos5:%(link_sdk_5)} %{palmos5.0:%(link_sdk_5)} %{!palmos*: %(link_sdk_5)}}
+

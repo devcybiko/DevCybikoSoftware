@@ -1,0 +1,19 @@
+Usage:
+
+Inline frame=explode_sprite(sprite,index,x,y,frames);
+
+Parameters:
+
+sprite is the B2C sprite number
+
+index is the bitmap index within the B2C sprite
+
+x is x-coordinate to draw explosion on screen
+
+y is y-coordinate to draw explosion on screen
+
+frames is the number of explosion frames
+
+Returns:
+
+Current frame of explosion (int)

@@ -1,0 +1,49 @@
+<B><P>Topic :</B> Goto</P>
+<B><P>Language Level</B> : B2C Extension</P>
+<B><P>Effectivity :</B> B2C v2b</P>
+<B><P>Syntax</B> : </P><DIR>
+<DIR>
+
+<P>label : </P>
+<P>Goto label</P></DIR>
+</DIR>
+
+<B><P>Description :</P><DIR>
+<DIR>
+
+</B><P>Transfers control from the current line to the line identified by label.  It is not possible to goto a label outside the current function.</P></DIR>
+</DIR>
+
+<B><P>Example : </P><DIR>
+<DIR>
+
+</B><P>Dim y</P>
+<P>Sub foo</P><DIR>
+<DIR>
+
+<P> Dim x</P>
+<P> x=1</P></DIR>
+</DIR>
+
+<P>loop :</P><DIR>
+<DIR>
+
+<P>print x,y</P>
+<P>x=x+1</P>
+<P>if x&lt;10 then goto loop</P></DIR>
+</DIR>
+
+<P>end Subject:</P>
+
+<P>y=1</P>
+<P>count_me :</P><DIR>
+<DIR>
+
+<P>call foo</P>
+<P>y=y+1</P>
+<P>if y&lt;10 then goto count_me</P>
+
+<P>&nbsp;</P></DIR>
+</DIR>
+</DIR>
+</DIR>

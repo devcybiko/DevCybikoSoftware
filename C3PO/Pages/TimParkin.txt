@@ -1,0 +1,19 @@
+{{{
+#include &lt;cybiko.h&gt;
+
+struct module_t main_module;
+
+void main()
+{
+  init_module( &main_module );
+
+  while(1)
+  {
+    // such evul :D
+  }
+}
+}}}
+----
+
+!TimParkin has editted these pages:
+[{ReferringPagesPlugin separator='\n'}]

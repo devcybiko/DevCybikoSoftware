@@ -1,0 +1,101 @@
+dim points_n as int
+points_n = 5
+dim points_x[5] as int
+dim points_y[5] as int
+dim points_z[5] as int
+dim points_dx[5] as int
+dim points_dy[5] as int
+dim points_delay[5] as int
+dim points_max_delay as int
+dim points_on[5] as int
+dim points_distance[5] as int
+
+sub points_init_one(a as int)
+    points_on[a] = 0
+    points_delay[a] = points_max_delay
+end sub
+
+sub points_init_all
+  for i = 0 to points_n - 1
+    points_init_one(i)
+  next
+end sub
+
+sub points_init
+  sprite sprite_points, "points.pic"
+  points_max_delay = 1
+  points_init_all
+end sub
+
+sub points_redraw_one(i as int)
+    dim x as int
+    dim y as int
+
+    if points_on[i] then
+        x = points_x[i]-pf_x
+        if x<-1268 then
+            x = 1280 + x
+        elseif x> 1268 then
+            x = x - 1280
+        elseif x<-12 then
+            x = x + 1280
+        endif
+
+        if -12<=x and x<160 then
+            move sprite_points, x, points_y[i], points_z[i]
+            redraw sprite_points
+        end if
+    endif
+end sub
+
+sub points_redraw
+  for i = 0 to points_n-1
+      points_redraw_one(i)
+  next
+end sub
+
+sub points_move_one(i as int)
+    if NOT points_on[i] then exit sub
+
+    points_delay[i] = points_delay[i] - 1
+    if points_delay[i] <> 0 then exit sub
+
+    points_delay[i] = points_max_delay
+
+    points_distance[i] = points_distance[i] - 1
+    if points_distance[i] <= 0 then points_on[i] = 0
+
+    points_x[i] = points_x[i] + points_dx[i]
+    if points_x[i] < 0 then points_x[i] = points_x[i] + 1280        
+    if points_x[i] > 1279 then points_x[i] = points_x[i] - 1280
+
+    points_y[i] = points_y[i] + points_dy[i]
+    if points_y[i] >= 80 then points_y[i] = 80
+    if points_y[i] <= 15 then points_y[i] = 15
+
+end sub
+
+sub points_move_all
+    for i=0 to points_n-1
+        points_move_one(i)
+    next
+end sub
+
+sub points_begin(x as int, y as int, pts as int)
+    for i=0 to points_n-1
+      if NOT points_on[i] then
+        points_x[i] = x
+        points_y[i] = y
+        if pts = 250 then
+            points_z[i] = 1
+        elseif pts = 500 then
+            points_z[i] = 0
+        endif
+        points_dx[i] = 0
+        points_distance[i]=80
+        points_dy[i] = 0
+        points_on[i] = 1
+        exit for
+      end if
+    next
+end sub

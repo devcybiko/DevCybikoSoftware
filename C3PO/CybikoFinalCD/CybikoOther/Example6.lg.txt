@@ -1,0 +1,8 @@
+while key <> 272
+{
+  if key
+  {
+   beep key;
+  }
+  wait 2;
+}

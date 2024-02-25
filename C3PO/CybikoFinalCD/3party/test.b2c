@@ -1,0 +1,61 @@
+OPTION SHOW OFF
+OPTION ESCAPE OFF
+
+dim r as double
+
+sub draw_circle
+  dim x0 as int
+  dim y0 as int
+  dim x1 as int
+  dim y1 as int
+  dim angle as double
+  dim start as double
+  dim stp as double
+  dim inc as double
+  dim theta as double
+  cls
+
+'  printxy -70,-40,r
+
+  start = 0
+  stp = 6.28
+  inc = 0.628
+  theta = 0.0628*r
+  angle = 0
+  x0=sin(angle+theta)*r
+  y0=cos(angle+theta)*r
+  while (angle < stp)
+    x1=sin(angle+theta)*r
+    y1=cos(angle+theta)*r
+    line x0, y0, x1, y1
+    x0=x1
+    y0=y1
+    angle = angle + inc
+  wend
+  angle=theta
+  x1=sin(angle)*r
+  y1=cos(angle)*r
+  line x0, y0, x1, y1
+
+
+  REDRAW SHOW
+
+end sub
+
+r = 10
+
+draw_circle
+
+while true
+'  inline _escape(0);
+
+  if key(#KEY_LEFT) then
+    r=r+1
+    draw_circle(r)
+  endif
+  if key(#KEY_RIGHT) then
+    r=r-1
+    draw_circle(r)
+  endif
+  if key(#KEY_SPACE) then exit while
+wend

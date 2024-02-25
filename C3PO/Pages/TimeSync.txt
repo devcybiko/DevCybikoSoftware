@@ -1,0 +1,20 @@
+I fired up my Cybikos after a many months and noticed
+the batteries had drained and the clocks were wrong.
+So instead of spending 1 minute to set the clocks I spent
+a couple days writing a program to sync one Cybiko
+clock with another. Since my Xtreme can sync with my
+PC via EZLoader I could use it as the master - although
+the program more peer to peer than master/slave.
+
+Anyway the program finds nearby Cybikos and stores
+there IDs in an array using get_people_around. Then
+every second each Cybiko sends its date and time info
+to all IDs in the array. Each ID, username, date and time
+is then printed as a list. The user can use the up and
+down arrows to highlight the remote Cybiko to sync with.
+Finally, pressing ENTER sets the clock to the new time.
+
+So one local and one remote unit works well but more than
+that gets a little wacky. Thats on the classic only, multiple
+units work with the Xtreme.(?) \\
+[SamNEggs] 27-Jul-2003

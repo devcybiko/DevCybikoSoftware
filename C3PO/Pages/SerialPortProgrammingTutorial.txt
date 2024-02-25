@@ -1,0 +1,126 @@
+From [http://cydevr.net]
+
+  <p align="center"><em><strong>Cybiko Serial Port Programming Tutorial</strong></em></p>
+  <p align="left">A simple and very basic tutorial on how to use the Cybiko's 
+    serial port. Further reading for advanced serial port usage is described in 
+    step 5. Note that this tutorial assumes that you already know the basics of 
+    the C programming language and can create and compile a program with the Cybiko 
+    SDK.</p>
+  <p align="left"><strong>Step 1: Opening the serial port</strong>.<br>
+    The first thing you need to do to access the serial port is to create a com_t 
+    structure for it. Text in the Courier font is C code:<br>
+    <br>
+    <font face="System">com_t serial;</font><font face="Courier"><br>
+    <br>
+    </font>Note that this should be outside of any functions, making it global 
+    and accessible anywhere (this helps us avoid several potential problems). 
+    The next step is opening the serial port, or reserving it for your program's 
+    use. Type the following:<br>
+    <br>
+    <font face="System">serial = com_open(COMM_DEV_DEFAULT, 1);</font><font face="Courier"><br>
+    <br>
+    </font>Note that this line should be inside your main() function, and you 
+    must do it BEFORE you do anything with the serial port. Now the serial port 
+    is ready for action.</p>
+  <p align="left"><strong>Step 2: Reading from the port</strong>.<br>
+    Connect your Cybiko to your computer and launch the Console (included with 
+    the Cybiko SDK). When you type text into the box on the bottom and press Enter, 
+    it is sent to your Cybiko via the serial port. We will write a simple function 
+    to read one letter from the serial port.<br>
+    <br>
+    <font face="System">int serial_read( void );</font></p>
+  <p align="left"><font face="System">int serial_read( void )<br>
+    {<br>
+    &nbsp;&nbsp;return com_read(serial, 1); // Read and return one letter from 
+    the port.<br>
+    }</font><font face="Courier"><br>
+    <br>
+    </font>Note that this code belongs outside any other functions. We can use 
+    this function to read a string from the serial port by continuously reading 
+    until there is nothing left:<br>
+    <br>
+    <font face="System">char k;<br>
+    char s[[100]; // Where we'll store the string<br>
+    int i; // To indicate where we are in s</font></p>
+  <p align="left"><font face="System">k = serial_read();<br>
+    while( k != -1 ) // serial_read() returns -1 when nothing was read<br>
+    {<br>
+    &nbsp;&nbsp;s[[i] = k;<br>
+    &nbsp;&nbsp;i++;<br>
+    &nbsp;&nbsp;s[[i] = 0; // String terminator<br>
+    &nbsp;&nbsp;k = serial_read(); // Get the next letter<br>
+    }</font><font face="Courier"><br>
+    <br>
+    </font>You can safely ignore any &quot;type mismatch&quot; warnings you recieve 
+    while compiling. Note that in C, all variable declarations must be at the 
+    TOP of a function or outside the function (global, recommended because there 
+    is a size limit for variables inside). s is now a string of data from the 
+    serial port that you can do anything with (such as saving to a file or printing 
+    to the screen).</p>
+  <p align="left"><strong>Step 3: Writing to the port</strong>.<br>
+    Writing to the serial port is just as easy. Here's our function to write a 
+    single character to the port:<br>
+    <br>
+    <font face="System">int serial_write( int value );</font></p>
+  <p align="left"><font face="System">int serial_write( int value )<br>
+    {<br>
+    &nbsp;&nbsp;return com_write(serial, value, 1); // Write value to the &nbsp;&nbsp;serial 
+    port and return the results<br>
+    }</font><font face="Courier"><br>
+    <br>
+    </font>Again, place this code outside of any other functions. Our function 
+    returns true if the letter was successfully written, false otherwise. value 
+    can be any single character and a string can be written by using a simple 
+    loop.</p>
+  <p align="left"><strong>Step 4: Closing the serial port</strong>.<br>
+    Type the following to stop using the serial port (freeing it, allowing another 
+    app to use it):<br>
+    <br>
+    <font face="System">com_close(serial);</font><font face="Courier"><br>
+    <br>
+    </font>Note that you MUST close the serial port BEFORE your program exits, 
+    or the port will no longer work for any application including Cyberload (the 
+    Cybiko will have to be reset).</p>
+  <p align="left"><strong>Step 5: Further reading</strong>.<br>
+    The previous was a simple and basic tutorial. I hope that it benefited you. 
+    There is much more that you can do with the port. Check out &quot;Serial Port 
+    Access&quot; in the Cybiko SDK help file for more information. The functions 
+    that were not covered in this tutorial are: </p>
+  <ul>
+    <div align="left"></div>
+    <li> 
+      <div align="left">com_flush( com_t port ) </div>
+    </li>
+    <li> 
+      <div align="left">com_get_DTR( com_t port ) </div>
+    </li>
+    <li> 
+      <div align="left">com_set_DTR( com_t port ) </div>
+    </li>
+    <li> 
+      <div align="left">com_get_RTS( com_t port ) </div>
+    </li>
+    <li> 
+      <div align="left">com_set_RTS( com_t port ) </div>
+    </li>
+    <li> 
+      <div align="left">com_get_config( com_t port, struct COMMConfig * config 
+        ) </div>
+    </li>
+    <li> 
+      <div align="left">com_set_config( com_t port, struct COMMConfig * config 
+        ) </div>
+    </li>
+    <li> 
+      <div align="left">com_get_state( com_t port ) </div>
+    </li>
+    <li> 
+      <div align="left">com_wait_for_data( com_t port, long timeout )</div>
+    </li>
+  </ul>
+</div>
+<div align="center"> 
+  <div align="left">Thanks for reading,</div>
+</div>
+<div align="center">
+<p align="left"><em>gengar56 (Elliot Lee)</em></p>

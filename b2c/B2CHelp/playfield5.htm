@@ -1,0 +1,405 @@
+<HTML>
+<HEAD>
+<META HTTP-EQUIV="Content-Type" CONTENT="text/html; charset=windows-1252">
+<META NAME="Generator" CONTENT="Microsoft Word 97">
+<TITLE>Part 5 : Multiple Playfields</TITLE>
+</HEAD>
+<BODY>
+
+<B><FONT FACE="Arial" SIZE=5><P ALIGN="CENTER">Playfield Graphics Tutorial</P>
+<P ALIGN="CENTER">Part 5 – Multiple Playfields</P>
+</B></FONT><FONT SIZE=2><P ALIGN="CENTER">by Greg Smith</P>
+</FONT><B><FONT FACE="Arial" SIZE=4><P>Introduction:</P>
+</B></FONT><FONT SIZE=2><P>Part-3 of the Playfield Graphics Tutorial introduced the concept of Background Collision Detection.  Part-4 demonstrates how to put the collision data into a file.  In Part-5 we implement multiple playfields to extend the game play.</P>
+<P>&nbsp;</P>
+</FONT><B><FONT FACE="Arial" SIZE=4><P>The New Playfield:</P>
+</B></FONT><FONT SIZE=2><P>The new playfield (Playfield-2) is another set of roads, but this time the roads have a different set of turns than the first set – and they are in a city instead of a highway.  The bitmaps in the second set of roads are named street0.bmp – street8.bmp.  Remember to add them to the playfield.bld file:</P>
+</FONT><FONT FACE="Courier New" SIZE=2>
+<P>[pic=street.pic]</P>
+<P>street0.bmp</P>
+<P>street1.bmp</P>
+<P>street2.bmp</P>
+<P>street3.bmp</P>
+<P>street4.bmp</P>
+<P>street5.bmp</P>
+<P>street6.bmp</P>
+<P>street7.bmp</P>
+<P>street8.bmp</P>
+
+</FONT><B><FONT FACE="Arial" SIZE=4><P>The Playfield.dat file:</P>
+</B></FONT><FONT SIZE=2><P>In Part-4 we created the playfield.dat file with the name of the playfield and the collision detection data.  In Part-5 we create a second playfield, and a playfield.dat file for it called playfield2.dat.</P>
+
+<P>In addition, we add a new character to the playfield.dat file.  In Part-3 we used the period (‘.’) to indicate an area the lemming could not walk, and the ‘x’ to indicate areas where the lemming could walk.  Now, we also use the digits 1-9 to represent alternate playfields.  If a collision table entry has a ‘2’ in it, it means the lemming will be transported to playfield-2.  Or, if a collision table entry has a ‘1’ in it, it means the lemming will be transported back to playfield –1.</P>
+
+<P>To facilitate this, a castle icon has been added to the playfields to indicate a portal from one playfield to the other.  In playfield-1 this portal is on screen5.bmp.  In playfield-2 its on street0.bmp.  Whenever the lemming walks into the castle it will be transported to the center of the other playfield.</P>
+
+<P>The playfield 2.dat file must be added to the playfield.bld file:</P>
+</FONT><FONT FACE="Courier New" SIZE=2><P>[files]</P>
+<P>playfield1.dat</P>
+<P>playfield2.dat</P>
+</FONT><FONT SIZE=2>
+<P>&nbsp;</P>
+<P>&nbsp;</P>
+</FONT><B><I><FONT FACE="Arial"><P>Playfield1.dat:</P>
+</B></I></FONT><FONT SIZE=2><P>Notice the ‘2’ character in the center-right of the collision map.  This indicates the portal to transport from playfield-1 to playfield-2.  When the lemming encounters this region of the screen, it will automatically be transported to the center of playfield-2.</P>
+
+</FONT><FONT FACE="Courier New" SIZE=2><P>playfield.pic</P>
+<P>..............................</P>
+<P>..............................</P>
+<P>..............................</P>
+<P>..............................</P>
+<P>..xxxxxxxxxxxxxxxxxxxxxxxxx...</P>
+<P>..x...........x...........x...</P>
+<P>..x...........x...........x...</P>
+<P>..x...........x...........x...</P>
+<P>..x...........x...........x...</P>
+<P>..x...........x...........x...</P>
+<P>..x...........x...........x...</P>
+<P>..x...........x...........x...</P>
+<P>..x...........x...........x...</P>
+<P>..x...........x...........x...</P>
+<P>..xxxxxxxxxxxxxxxxxxxxxxxx2...</P>
+<P>..x...........x...........x...</P>
+<P>..x...........x...........x...</P>
+<P>..x...........x...........x...</P>
+<P>..x...........x...........x...</P>
+<P>..x...........x...........x...</P>
+<P>..x...........x...........x...</P>
+<P>..x...........x...........x...</P>
+<P>..x...........x...........x...</P>
+<P>..x...........x...........x...</P>
+<P>..xxxxxxxxxxxxxxxxxxxxxxxxx...</P>
+<P>..............................</P>
+<P>..............................</P>
+<P>..............................</P>
+<P>..............................</P>
+<P>..............................</P>
+
+</FONT><FONT SIZE=2><P>&nbsp;</P>
+</FONT><B><I><FONT FACE="Arial"><P>&nbsp;</P>
+<P>Playfield2.dat:</P>
+</B></I></FONT><FONT SIZE=2><P>Notice the character ‘1’ at the top left of the playfield collision table.  This indicates a portal from playfield-2 to playfield-1.</P>
+
+</FONT><FONT FACE="Courier New" SIZE=2><P>street.pic</P>
+<P>..............................</P>
+<P>..............................</P>
+<P>.1xxxxxxxxxxxxxxxxxxxxxxx.....</P>
+<P>....x.........x.........x.....</P>
+<P>....x.........x.........x.....</P>
+<P>....x.........x.........x.....</P>
+<P>....x.........x.........x.....</P>
+<P>....x.........x.........x.....</P>
+<P>....x.........x.........x.....</P>
+<P>....x.........x.........x.....</P>
+<P>....x.........x.........x.....</P>
+<P>....x.........x.........x.....</P>
+<P>....x.........x.........x.....</P>
+<P>....x.........x.........x.....</P>
+<P>....x.........x.........x.....</P>
+<P>....x.........x.........x.....</P>
+<P>....x.........x.........x.....</P>
+<P>....x.........x.........x.....</P>
+<P>....x.........x.........x.....</P>
+<P>....x.........x.........x.....</P>
+<P>....x.........x.........x.....</P>
+<P>....x.........x.........x.....</P>
+<P>....x.........x.........x.....</P>
+<P>....x.........x.........x.....</P>
+<P>....x.........x.........x.....</P>
+<P>....xxxxxxxxxxxxxxxxxxxxx.....</P>
+<P>..............................</P>
+<P>..............................</P>
+<P>..............................</P>
+<P>..............................</P>
+<P>&nbsp;</P>
+</FONT><B><FONT SIZE=2><P>&nbsp;</P>
+</FONT><FONT FACE="Arial" SIZE=4><P>The Program</P>
+</B></FONT><FONT FACE="Courier New" SIZE=2><P>'''</P>
+<P>''' playfield tutorial - part 5</P>
+<P>''' multiple playfields</P>
+<P>'''</P>
+<P>''' by greg smith</P>
+<P>'''</P>
+
+<P>'''</P>
+<P>''' use c coordinates</P>
+<P>'''</P>
+<P>OPTION C_COORDS</P>
+
+<P>'''</P>
+<P>''' turn off escape processing for speed</P>
+<P>'''</P>
+<P>OPTION ESCAPE OFF</P>
+
+<P>dim x as int  'position of lemming from 0-480</P>
+<P>dim y as int  'position of lemming from 0-300</P>
+<P>dim z_dir as int  'which direction of lemming</P>
+<P>dim z_cnt as int  'animation image of lemming</P>
+
+<P>dim sprite_field as int 'the sprite number of the playfield sprites</P>
+<P>dim sprite_lemming as int   'the sprite number of the lemming sprites</P>
+<P>dim lemming_left as int     'index into lemming sprite for going left</P>
+<P>dim lemming_right as int    'index into lemming sprite for going right</P>
+<P>dim lemming_up as int       'index into lemming sprite for going up</P>
+<P>dim lemming_down as int     'index into lemming sprite for going down</P>
+
+<P>dim collision_street as char     'the street's collision value</P>
+<P>dim collision_pf0 as char        'playfield 0</P>
+<P>dim collision_pf9 as char        'playfield 9</P>
+
+<P>dim collision_table[30,31] as char 'the collision table</P>
+
+<P>'''</P>
+<P>''' update file - copy file from app to flash</P>
+<P>'''</P>
+<P>sub update_file(fname[] as char)</P>
+<P>    inline File_remove(fname);</P>
+<P>    inline _load(fname);</P>
+<P>end sub</P>
+
+<P>'''</P>
+<P>''' initialization</P>
+<P>'''</P>
+<P>sub init</P>
+<P>    update_file("playfield1.dat") 'get the .dat file into flash</P>
+<P>    update_file("playfield2.dat")</P>
+
+<P>    sprite_field = 0  'playfield sprite</P>
+<P>    sprite_lemming = 31    'lemming sprite is largest possible sprite - on top</P>
+
+<P>    lemming_left=0        'lemming left image</P>
+<P>    lemming_right=5       'lemming right image</P>
+<P>    lemming_up=10         'lemming up image</P>
+<P>    lemming_down=15       'lemming down image</P>
+
+<P>    '''</P>
+<P>    ''' the lemming has 20 bitmaps 5 for each direction</P>
+<P>    sprite sprite_lemming, "lemming.pic"</P>
+
+<P>    '''</P>
+<P>    ''' the lemming can be anywhere on the playfield from</P>
+<P>    ''' x = 0-480</P>
+<P>    ''' y = 0-300</P>
+<P>    x=240  'center of the playfield</P>
+<P>    y=150  'center of the playfield</P>
+<P>    z_dir=lemming_right  ' lemming faces right</P>
+<P>    z_cnt=0              ' animation counter</P>
+
+<P>    '''</P>
+<P>    ''' set the collision flags</P>
+<P>    '''</P>
+<P>    collision_street = \x\</P>
+<P>    collision_pf0 = \0\</P>
+<P>    collision_pf9 = \9\</P>
+<P>end sub</P>
+
+<P>sub repaint</P>
+<P>    dim field_x as int   '0,1,2 for the horizontal bitmap</P>
+<P>    dim field_y as int   '0,1,2 for the vertical bitmap</P>
+<P>    dim field as int     '0-8 for the bitmap currently visible</P>
+<P>    dim lemming_x as int     '0-159 for the x coord on the screen</P>
+<P>    dim lemming_y as int     '0-99  for the y coord on the screen</P>
+
+<P>    field_x = x / 160    ' compute the horizontal bitmap</P>
+<P>    field_y = y / 100    ' compute the vertical bitmap</P>
+<P>    field = field_y*3 + field_x ' combine them to compute the bitmap number</P>
+
+<P>    lemming_x = x mod 160  ' compute the lemming's position on the screen</P>
+<P>    lemming_y = y mod 100  ' compute the lemming's position on the screen</P>
+
+<P>    move sprite_field, 0, 0, field  'display the current field</P>
+<P>    move sprite_lemming, lemming_x, lemming_y, z_dir+z_cnt 'display the lemming </P>
+
+<P>    paper white  'transparent color for the lemming</P>
+<P>    ink ltgrey</P>
+
+<P>    redraw        'redraw all the sprites</P>
+<P>    </P>
+<P>end sub</P>
+
+<P>'''</P>
+<P>''' increment the z_cnt variable</P>
+<P>'''</P>
+<P>sub update_z_cnt</P>
+<P>    z_cnt=(z_cnt+1) MOD 5</P>
+<P>end sub</P>
+
+<P>'''</P>
+<P>''' check for collision against table</P>
+<P>'''</P>
+<P>function collision_check(x as int, y as int) as char</P>
+<P>    collision_check = collision_table[y/10,x/16]</P>
+<P>end function</P>
+
+<P>'''</P>
+<P>''' transport lemming to another playfield</P>
+<P>'''</P>
+<P>sub transport(f as int)</P>
+<P>    init_playfield(f)</P>
+<P>    if f=1 then</P>
+<P>        x=240</P>
+<P>        y=150</P>
+<P>    elseif f=2 then</P>
+<P>        x=230</P>
+<P>        y=150</P>
+<P>    endif</P>
+<P>end sub</P>
+
+<P>'''</P>
+<P>''' process the keyboard</P>
+<P>'''</P>
+<P>sub get_keys</P>
+<P>    dim tmp as int</P>
+<P>    dim cc as int</P>
+
+<P>    if key(#KEY_UP) then   'move the lemming up</P>
+<P>        tmp=y-3</P>
+<P>        cc = collision_check(x,tmp)</P>
+<P>        if cc = collision_street then</P>
+<P>            y=tmp</P>
+<P>            z_dir=lemming_up</P>
+<P>            update_z_cnt</P>
+<P>        end if</P>
+<P>        if cc &gt;= collision_pf0 and cc &lt;= collision_pf9 then</P>
+<P>            transport(cc-collision_pf0)</P>
+<P>        end if</P>
+<P>    end if</P>
+<P>    if key(#KEY_DOWN) then 'move the lemming down</P>
+<P>        tmp=y+3</P>
+<P>        cc = collision_check(x,tmp)</P>
+<P>        if cc = collision_street then</P>
+<P>            y=tmp</P>
+<P>            z_dir=lemming_down</P>
+<P>            update_z_cnt</P>
+<P>        end if</P>
+<P>        if cc &gt;= collision_pf0 and cc &lt;= collision_pf9 then</P>
+<P>            transport(cc-collision_pf0)</P>
+<P>        end if</P>
+<P>    end if</P>
+<P>    if key(#KEY_LEFT) then 'move the lemming left</P>
+<P>        tmp=x-3</P>
+<P>        cc = collision_check(tmp,y)</P>
+<P>        if cc = collision_street then</P>
+<P>            x=tmp</P>
+<P>            z_dir=lemming_left</P>
+<P>            update_z_cnt</P>
+<P>        end if</P>
+<P>        if cc &gt;= collision_pf0 and cc &lt;= collision_pf9 then</P>
+<P>            transport(cc-collision_pf0)</P>
+<P>        end if</P>
+<P>    end if</P>
+<P>    if key(#KEY_RIGHT) then 'move the lemming right</P>
+<P>        tmp=x+3</P>
+<P>        cc = collision_check(tmp,y)</P>
+<P>        if cc = collision_street then</P>
+<P>            x=tmp</P>
+<P>            z_dir=lemming_right</P>
+<P>            update_z_cnt</P>
+<P>        end if</P>
+<P>        if cc &gt;= collision_pf0 and cc &lt;= collision_pf9 then</P>
+<P>            transport(cc-collision_pf0)</P>
+<P>        end if</P>
+<P>    end if</P>
+<P>end sub</P>
+
+<P>'''</P>
+<P>''' get a string from the file</P>
+<P>''' a string ends in CR/LF</P>
+<P>'''</P>
+<P>sub getstring(f as int, s[] as char)</P>
+<P>    dim x as char</P>
+<P>    dim n as int</P>
+
+<P>    n=0</P>
+
+<P>    while(true)</P>
+<P>        get f,,x</P>
+<P>        if x&lt;&gt;13 then</P>
+<P>            if x=10 then exit while</P>
+<P>            s[n] = x</P>
+<P>            s[n+1] = 0</P>
+<P>            n=n+1</P>
+<P>        endif</P>
+<P>    wend</P>
+<P>end sub</P>
+
+<P>'''</P>
+<P>''' read the playfield file defined by</P>
+<P>''' 'field' and set up the sprites and</P>
+<P>''' the collision table</P>
+<P>'''</P>
+<P>sub init_playfield(field as int)</P>
+<P>    dim fname[32] as char</P>
+<P>    dim s[32] as char</P>
+
+<P>    ''' create the filename to read</P>
+<P>    sprint fname, "playfield", field, ".dat"</P>
+
+<P>    ''' open the playfield definition file</P>
+<P>    open fname for read as 1</P>
+
+<P>    getstring(1, s) 'get the sprite name</P>
+
+<P>    '''</P>
+<P>    ''' the playfield sprite has 9 bitmaps</P>
+<P>    ''' one for each of the different areas of the</P>
+<P>    ''' playfield</P>
+<P>    sprite sprite_field, s</P>
+
+<P>    '''</P>
+<P>    ''' read the 30 playfield collision rows</P>
+<P>    '''</P>
+<P>    for i=0 to 29</P>
+<P>        getstring(1, collision_table[i])</P>
+<P>    next</P>
+
+<P>    '''</P>
+<P>    ''' close the playfield.dat file</P>
+<P>    '''</P>
+<P>    close 1</P>
+<P>end sub</P>
+
+<P>'''</P>
+<P>''' main subroutine</P>
+<P>'''</P>
+<P>sub mainsub</P>
+<P>    init</P>
+<P>    init_playfield(1)</P>
+
+<P>    while true</P>
+<P>        inline _escape(0); /* check the escape key */</P>
+<P>        repaint</P>
+<P>        get_keys</P>
+<P>    wend</P>
+<P>end sub</P>
+
+<P>'''</P>
+<P>''' call the main subroutine</P>
+<P>'''</P>
+<P>mainsub</P>
+</FONT><FONT SIZE=2><P>&nbsp;</P>
+</FONT><B><I><FONT FACE="Arial"><P>The Variables</P>
+</B></I></FONT><FONT SIZE=2><P>Two new variables are introduced here.  collision_pf0 and collision_pf9 are created and initialized as ‘0’ and ‘9’ respectively.  These variable represent the collision table entries 0,1,2,3,4,5,6,7,8,9 which in turn represent playfields 0-9.  In our program only playfields 1 and 2 are used.</P>
+<P>&nbsp;</P>
+</FONT><B><I><FONT FACE="Arial"><P>sub update_file</P>
+</B></I></FONT><FONT SIZE=2><P>no changes here.</P>
+</FONT><B><I><FONT FACE="Arial"><P>sub init</P>
+</B></I></FONT><FONT SIZE=2><P>Here we initialize the collision_pf0 and collision_pf9 variables.  We also call _load() on the playfield2.dat file.  This will copy playfield2.dat to the flash memory where it can be read.</P>
+</FONT><B><I><FONT FACE="Arial"><P>sub repaint</P>
+</B></I></FONT><FONT SIZE=2><P>there were no changes to this function.</P>
+</FONT><B><I><FONT FACE="Arial"><P>sub update_z_cnt</P>
+</B></I></FONT><FONT SIZE=2><P>No changes here.</P>
+</FONT><B><I><FONT FACE="Arial"><P>function collision_check</P>
+</B></I></FONT><FONT SIZE=2><P>No changes here.</P>
+</FONT><FONT FACE="Courier New" SIZE=2><P>&nbsp;</P>
+</FONT><B><I><FONT FACE="Arial"><P>sub transport</P>
+</B></I></FONT><FONT SIZE=2><P>This new function takes as a parameter the number (0-9) of the playfield to transport to.  The init_playfield() function is called to perform the transportation and then the x, y variables are set to the correct playfield coordinate.</P>
+</FONT><B><I><FONT FACE="Arial"><P>sub get_keys</P>
+</B></I></FONT><FONT SIZE=2><P>get_keys() gets a major upgrade.  Here we do everything we did before to determine if the lemming is allowed to enter a region.  And, we check to see if the region it is entering is a portal to another playfield.  If we are entering a portal, the transport() function is called so that game play may continue there.</P>
+</FONT><B><I><FONT FACE="Arial"><P>sub getstring</P>
+</B></I></FONT><FONT SIZE=2><P>no changes here</P>
+</FONT><B><I><FONT FACE="Arial"><P>sub init_playfield</P>
+</B></I></FONT><FONT SIZE=2><P>no changes here</P>
+</FONT><B><I><FONT FACE="Arial"><P>sub mainsub</P>
+</B></I></FONT><FONT SIZE=2><P>no changes here</P></FONT></BODY>
+</HTML>

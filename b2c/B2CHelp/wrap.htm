@@ -1,0 +1,37 @@
+
+<P>Topic :</B> Wrap</P>
+<B><P>Language Level</B> : B2C Extension</P>
+<B><P>Effectivity :</B> B2C v5</P>
+<B><P>Syntax</B> : </P><DIR>
+<DIR>
+
+<P>n = wrap(x,y,w,h,align,wrap,string)</P>
+</DIR>
+</DIR>
+
+<B><P>Description :</P><DIR>
+<DIR>
+
+</B><P>Wrap will display the ‘string’ at the x/y coordinates inside a rectangle with width ‘w’ and height ‘h’.  The text will fill the rectangle with the text and will perform either character wrapping or word wrapping.  Also, each line of the text will be aligned either on the left, centered, or on the right.</P>
+
+<P>‘align’ can be one of LEFT, CENTER, or RIGHT</P>
+<P>‘wrap’ can be one of CHAR or WORD</P>
+
+<P>Wrap returns the number of characters actually printed in the rectangular region.</P>
+</DIR>
+</DIR>
+
+<B><P>Example : </P>
+</B><P>&#9;OPTION C_COORDS</P><DIR>
+<DIR>
+
+<P>‘ display a centered title</P>
+<P>dim n as int</P>
+<P>n = wrap(0,0,160,15,CENTER,CHAR,&quot;Title Text&quot;)</P>
+
+<P>‘display a block of text left justified and word-wrapped</P>
+<P>rect(0,15,80,30)</P>
+<P>n = wrap(0,15,80,30,LEFT, WORD, &quot;This is a test of the emergency broadcast system.&quot;)</P>
+
+<P ALIGN="CENTER">&nbsp;</P></DIR>
+</DIR>

@@ -1,0 +1,117 @@
+dim bullet_n as int
+bullet_n = 10
+dim bullet_x[10] as int
+dim bullet_y[10] as int
+dim bullet_z[10] as int
+dim bullet_r[10] as int
+dim bullet_dx[10] as int
+dim bullet_dy[10] as int
+dim bullet_delay[10] as int
+dim bullet_on[10] as int
+dim bullet_max_delay[10] as int
+
+sub bullet_init_one(a as int)
+    bullet_on[a] = 0
+    bullet_max_delay[a]=1
+end sub
+
+sub bullet_init_all
+  for i = 0 to bullet_n - 1
+    bullet_init_one(i)
+  next
+end sub
+
+sub bullet_init
+  sprite sprite_bullet, "bullet.pic"
+  bullet_init_all
+end sub
+
+sub bullet_redraw_one(i as int)
+    dim x as int
+    dim y as int
+
+    if bullet_on[i]=0 then exit sub
+
+    x = bullet_x[i]-pf_x
+    if x<-1268 then
+        x = 1280 + x
+    elseif x> 1268 then
+        x = x - 1280
+    elseif x<-12 then
+        x = x + 1280
+    endif
+
+    if -12<=x and x<160 then
+        move sprite_bullet, x, bullet_y[i], bullet_z[i]
+        if not ship_hit and collision(sprite_ship, sprite_bullet) then
+            explosion_begin(ship_x, ship_y, 0, 0, "lander_explode.mus")
+            ship_hit = 1
+        else
+            redraw sprite_bullet
+        endif
+    else
+        bullet_on[i] = 0
+    end if
+end sub
+
+sub bullet_redraw
+  for i = 0 to bullet_n-1
+      bullet_redraw_one(i)
+  next
+end sub
+
+sub bullet_move_one(i as int)
+
+    ' get out early if this guy is dead, jim
+    if NOT bullet_on[i] then exit sub
+
+    ' check if the bullet has timed out
+    bullet_delay[i] = bullet_delay[i] - 1
+    if bullet_delay[i] >= 0 then exit sub
+
+    ' reset the bullet timer
+    bullet_delay[i] = bullet_max_delay[i]
+
+    ' move in the x direction
+    bullet_x[i] = bullet_x[i] + bullet_dx[i]
+    if bullet_x[i] < 0 then bullet_x[i] = bullet_x[i] + 1280        
+    if bullet_x[i] > 1279 then bullet_x[i] = bullet_x[i] - 1280
+
+    ' animate
+    bullet_z[i] = bullet_z[i] + 1
+    if bullet_z[i] > 1 then bullet_z[i] = 0
+
+    'move bullet 
+    bullet_y[i] = bullet_y[i] + bullet_dy[i]
+    if bullet_y[i] >= 80 then bullet_on[i] = 0
+    if bullet_y[i] <= 15 then bullet_on[i] = 0
+
+    bullet_r[i] = bullet_r[i] - 1
+    if bullet_r[i] <= 0 then bullet_on[i] = 0
+
+end sub
+
+sub bullet_move_all
+    for i=0 to bullet_n-1
+        bullet_move_one(i)
+    next
+end sub
+
+sub bullet_begin(x as int , y as int)
+    for i = 0 to bullet_n-1
+        if bullet_on[i]=0 then
+            bullet_x[i]=x
+            bullet_y[i]=y
+            bullet_on[i]=1
+            bullet_dx[i] = rnd(8)-4
+            bullet_dy[i] = rnd(8)-4
+            bullet_max_delay[i] = rnd(3)+1
+            while bullet_dx[i] = 0 and bullet_dy[i]=0
+                bullet_dx[i] = rnd(4)-2
+                bullet_dy[i] = rnd(4)-2
+            wend
+            bullet_r[i] = rnd(160)
+            exit for
+        end if
+    next
+end sub

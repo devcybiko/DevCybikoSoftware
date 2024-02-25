@@ -1,0 +1,105 @@
+dim explosion_n as int
+explosion_n = 5
+dim explosion_x[5] as int
+dim explosion_y[5] as int
+dim explosion_z[5] as int
+dim explosion_dx[5] as int
+dim explosion_dy[5] as int
+dim explosion_delay[5] as int
+dim explosion_max_delay as int
+dim explosion_on[5] as int
+dim explosion_complete as int
+
+sub explosion_init_one(a as int)
+    explosion_on[a] = 0
+    explosion_delay[a] = explosion_max_delay
+end sub
+
+sub explosion_init
+  sprite sprite_explosion, "explosion.pic"
+  explosion_max_delay = 1
+  for i = 0 to explosion_n - 1
+    explosion_init_one(i)
+  next
+  explosion_complete = 1
+end sub
+
+sub explosion_redraw_one(i as int)
+    dim x as int
+    dim y as int
+
+    if explosion_on[i] then
+        explosion_complete=0
+        x = explosion_x[i]-pf_x
+        if x<-1268 then
+            x = 1280 + x
+        elseif x> 1268 then
+            x = x - 1280
+        elseif x<-12 then
+            x = x + 1280
+        endif
+
+        if -12<=x and x<160 then
+            move sprite_explosion, x, explosion_y[i], explosion_z[i]
+            redraw sprite_explosion
+        end if
+    endif
+end sub
+
+sub explosion_redraw
+  explosion_complete = 1
+  for i = 0 to explosion_n-1
+      explosion_redraw_one(i)
+  next
+end sub
+
+sub explosion_move_one(i as int)
+    dim l0 as int
+    dim l1 as int
+    dim l2 as int
+    dim x as int
+    dim seeking as int
+    dim man as int
+
+    if NOT explosion_on[i] then exit sub
+
+    explosion_delay[i] = explosion_delay[i] - 1
+    if explosion_delay[i] <> 0 then exit sub
+
+    explosion_delay[i] = explosion_max_delay
+
+    explosion_x[i] = explosion_x[i] + explosion_dx[i]
+    if explosion_x[i] < 0 then explosion_x[i] = explosion_x[i] + 1280        
+    if explosion_x[i] > 1279 then explosion_x[i] = explosion_x[i] - 1280
+
+    explosion_z[i] = explosion_z[i] + 1
+    if explosion_z[i] > 8 then explosion_on[i] = 0
+
+    explosion_y[i] = explosion_y[i] + explosion_dy[i]
+    if explosion_y[i] >= 80 then explosion_y[i] = 80
+    if explosion_y[i] <= 15 then explosion_y[i] = 15
+
+end sub
+
+sub explosion_move_all
+    for i=0 to explosion_n-1
+        explosion_move_one(i)
+    next
+end sub
+
+sub explosion_begin(x as int, y as int, dx as int, dy as int, mus[] as char)
+    for i=0 to explosion_n-1
+      if NOT explosion_on[i] then
+        explosion_complete = 0
+        explosion_x[i] = x
+        explosion_y[i] = y
+        explosion_z[i] = 2
+        explosion_dx[i] = dx
+        explosion_dy[i] = dy
+        explosion_on[i] = 1
+        music foreground, mus
+        music foreground, play
+        exit for
+      end if
+    next
+end sub

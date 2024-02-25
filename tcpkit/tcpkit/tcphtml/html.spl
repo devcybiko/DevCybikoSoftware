@@ -1,0 +1,7 @@
+telnet
+Version 1.0.0
+Gregory Smith
+(C) 2003 The Alcor Group, Inc.
+
+This is the Telnet Client.
+Make sure both TCPJunction and TCPgate.exe are running.

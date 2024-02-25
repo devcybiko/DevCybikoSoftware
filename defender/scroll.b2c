@@ -1,0 +1,86 @@
+dim scroll_n as int
+scroll_n = 4
+dim scroll_x[10] as int
+dim scroll_y[10] as int
+dim scroll_z[10] as int
+dim scroll_q[10] as int
+dim scroll_delay[10] as int
+dim scroll_on[10] as int
+dim scroll_msg[10,64] as char
+dim scroll_len[10] as char
+dim scroll_max_delay as int
+scroll_max_delay = 1
+
+sub scroll_init_one(a as int)
+    scroll_on[a] = 0
+    scroll_delay[a] = scroll_max_delay
+end sub
+
+sub scroll_init_all
+    for i=0 to scroll_n-1
+        scroll_on[i] = 0
+    next
+end sub
+
+sub scroll_init
+    scroll_init_all
+end sub
+
+sub scroll_redraw_one(i as int)
+    s[64] as char
+'   if scroll_msg[i,scroll_q[i]] = 0 then scroll_on[i] = 0
+   scroll_q[i]=scroll_q[i]+1
+   if scroll_q[i] >=10 then scroll_on[i] = 0
+   if scroll_on[i]=0 then exit sub
+'   inline strcpy(s,&scroll_msg[i][scroll_q[i]]);
+   inline strcpy(s,scroll_msg[i]);
+   inline s[scroll_len[i]]=0;
+   inline DisplayGraphics_set_color(_ptr_main_module->m_gfx, CLR_WHITE);
+   inline DisplayGraphics_set_font(_ptr_main_module->m_gfx, mini_normal_font);
+   inline DisplayGraphics_draw_text(_ptr_main_module->m_gfx, s, scroll_x[i], scroll_y[i]);
+end sub
+
+sub scroll_redraw
+  for i = 0 to scroll_n-1
+      scroll_redraw_one(i)
+  next
+end sub
+
+sub scroll_move_one(i as int)
+
+    ' get out early if this guy is dead, jim
+    if NOT scroll_on[i] then exit sub
+
+    ' check if the scroll has timed out
+    scroll_delay[i] = scroll_delay[i] - 1
+    if scroll_delay[i] <> 0 then exit sub
+
+    ' reset the scroll timer
+    scroll_delay[i] = scroll_max_delay
+
+    ' animate
+    scroll_q[i] = scroll_q[i] + 1
+    if scroll_q[i] > scroll_len[i]+len(scroll_msg[i]) then scroll_on[i]=0
+end sub
+
+sub scroll_move_all
+    dim man
+    for i=0 to scroll_n-1
+        scroll_move_one(i)
+    next
+end sub
+
+sub scroll_begin(x,y,len,s[] as char)
+    for i = 0 to scroll_n-1
+        if scroll_on[i] = 0 then
+'            scroll_msg[i]=s
+            inline strcpy(scroll_msg[i], s);
+            scroll_on[i] = 1
+            scroll_x[i] = x
+            scroll_y[i] = y
+            scroll_q[i] = 0
+            scroll_len[i] = len
+            scroll_delay[i] = scroll_max_delay
+        endif
+    next 
+end sub

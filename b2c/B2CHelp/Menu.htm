@@ -1,0 +1,37 @@
+<B><P>Topic :</B> Menu</P>
+<B><P>Language Level</B> : B2C Extension</P>
+<B><P>Effectivity :</B> B2C v3</P>
+<B><P>Syntax</B> : </P><DIR>
+<DIR>
+
+<P>Menu var,str1,str2…</P></DIR>
+</DIR>
+
+<B><P>Description :</P><DIR>
+<DIR>
+
+</B><P>Menu will display a text menu of strings supplied on the command line.  The user can select one of the strings from the list using the up and down arrow keys.  Pressing the Enter key exits the Menu command.  The variable ‘var’ is set to the number (1,2…) of the menu item selected.  ‘var’ must be of type int. </P>
+
+<P>The menu uses the currently selected font and the currently selected ink and paper colors to display the menu.  The screen is <B>not</B> cleared before displaying the menu, so any graphics displayed is used as a background.  The menu does, however, draw a blank background just large enough to display the menu, centered in the screen. </P></DIR>
+</DIR>
+
+<B><P>Example : </P><DIR>
+<DIR>
+
+</B><P>Dim selection as int</P>
+<P>Top:</P>
+<P>Menu selection, &quot;Start&quot;, &quot;Scores&quot;, &quot;Quit&quot;</P>
+<P>On selection goto begin, high_score, get_out</P>
+<P>Begin: </P>
+<P>    Cls</P>
+<P>    Print &quot;Starting…&quot;</P>
+<P>    …</P>
+<P>    goto top</P>
+<P>High_score:</P>
+<P>    Score</P>
+<P>    Goto top</P></DIR>
+</DIR>
+
+<P>&#9;Get_out:</P>
+<P>&#9;    Exit program</P>
+<B>

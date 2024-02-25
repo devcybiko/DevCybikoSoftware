@@ -1,0 +1,17 @@
+I just remembered this while talking to Greg - but the MP3 Player chip contained in the cartridge is capable of having extra codecs added onto it. By default it only has WAV and MP3 however. If anybody is able to get ahold of extra codecs - one of my internal sources said he would give me the information as to how to get them onto it.
+
+- Joshua Colp. (July 8 2003)
+[josh]
+----
+
+Josh,
+
+seems to me we can reverse engineer the codecs by analyzing the existing ones
+
+[greg] 18-Jul-2003
+
+----
+
+Get info on adding codecs into the chip, then worry about getting the codecs themselves :)
+
+[Professr] 18-Jul-2003

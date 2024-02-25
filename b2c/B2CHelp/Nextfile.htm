@@ -1,0 +1,26 @@
+<B><P>Topic :</B> Nextfile</P>
+<B><P>Language Level</B> : B2C Extension</P>
+<B><P>Effectivity :</B> B2C v3e</P>
+<B><P>Syntax</B> : </P><DIR>
+<DIR>
+
+<P>rc = Nextfile <I>( filename )</P></DIR>
+</DIR>
+
+</I><B><P>Description :</P><DIR>
+<DIR>
+
+</B><P>The Nextfile function will retrieve the next file established by the Findfile command.  It returns FALSE when there are no more files to find and TRUE otherwise.</P></DIR>
+</DIR>
+
+<B><P>Example :</P>
+</B><P>&#9;Dim s[32] as char</P><DIR>
+<DIR>
+
+<P>Findfile &quot;*.app&quot;</P>
+<P>While (nextfile(s))</P>
+<P>&#9;Print s</P>
+<P>wend</P>
+<B></DIR>
+</DIR>
+

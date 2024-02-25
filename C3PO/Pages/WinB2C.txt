@@ -1,0 +1,2 @@
+[greg] 29-Apr-2003\\
+WinB2C is my effort to create an interactive development environment (IDE) for the B2C compiler ([B2C4Palm]).  It is written in Java/JFC.

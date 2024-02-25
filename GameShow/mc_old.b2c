@@ -1,0 +1,183 @@
+OPTION C_COORDS
+OPTION SHOW OFF
+OPTION ESCAPE OFF
+
+include "msg.b2c"
+
+msg_init
+
+dim nplayers as int
+dim players[10] as long
+dim player as long
+dim names[10,20] as char
+dim tmp[64] as char
+dim status[64] as char
+dim winner as int
+dim points[10] as long
+dim locked_out[10] as int
+dim my_cyid as long
+dim my_name[20] as char
+dim nsecs as long
+dim last_secs as long
+dim state as int
+
+last_secs=0
+
+sub timer()
+    dim now as long
+    inline now=clock();
+    if now-last_secs < 5000 then exit sub
+    last_secs = now
+    nsecs=nsecs-5
+    sprint tmp, nsecs
+    Sendmessage -1, msg_mc_timer, "player", tmp
+    if nsecs=0 then
+        Sendmessage -1, msg_mc_gameover, "player", ""
+        Sendmessage players[0], msg_mc_winner, "player", ""
+    endif
+end sub
+
+sub repaint()
+    dim y as int
+
+    ink black
+    paper ltgrey
+    cls
+    font "mini_bold_font"
+    printxy 1,90,nsecs,",",status
+    font "mini_normal_font"
+    for i=0 to nplayers-1
+        y = i*10
+        printxy 1,y, names[i]
+        printxy 50,y, points[i]
+    next
+    redraw show
+end sub
+
+sub add_player(cyid as long, buf[] as char)
+    dim x as int
+    dim time_value as long
+
+    for i=0 to nplayers-1
+        if players[i] = cyid then
+            sprint tmp, points[i]
+            Sendmessage cyid, msg_mc_rejoined, "player", tmp
+            exit sub
+        end if
+    next
+
+    if nplayers = 10 then
+        Sendmessage cyid, msg_mc_player_refused, "player", "Sorry, there are too many players"
+        exit sub
+    endif
+
+    names[nplayers] = buf
+    sprint tmp, names[nplayers], " Would like to play"
+
+    x = dialog("MC", tmp)
+
+    if x = false then
+        Sendmessage cyid, msg_mc_player_refused, "player", "Sorry, you were refused"
+        exit sub
+    endif
+    players[nplayers]=cyid
+    points[nplayers]=0
+    locked_out[nplayers]=false
+    Sendmessage cyid, msg_mc_player_added, "player", ""
+    nplayers=nplayers+1
+    status = buf
+end sub
+
+function lookup_player(cyid as long, name[] as char) as int
+    for i=0 to nplayers-1
+        if cyid = players[i] then
+            lookup_player=i
+            name=names[i]
+            exit function
+        endif
+    next
+    lookup_player = 10
+end function
+
+sub player_buzzed_in(cyid as long, buf[] as char)
+    dim x as int
+    dim name[20] as char
+
+    status = buf    
+    x = lookup_player(cyid, name)
+    if x=10 then
+        beep 10
+        wait 5
+        beep -1
+    else
+        if locked_out[x]=false then
+            winner = x
+            Sendmessage cyid, msg_mc_recognized, "player", ""
+            Sendmessage -1, msg_mc_lockout, "player", ""
+            for i=0 to nplayers-1
+                locked_out[i]=true
+            next
+            locked_out[x]=false
+        endif
+    endif
+end sub
+
+sub onmessage(cyid as long, msgno as int, buf[] as char)
+    if msgno=msg_player_add_player then add_player(cyid,buf)
+    if msgno=msg_player_buzzed_in then player_buzzed_in(cyid, buf)
+end sub
+
+sub init
+    nplayers=0
+    players[nplayers]=0
+    inline my_cyid = get_own_id();
+    inline strcpy(my_name,finder.mf.f_nick);
+end sub
+
+sub high_score
+    sprint tmp, names[winner],"|",points[winner]
+    Sendmessage -1, msg_mc_high_score, "player", tmp
+end sub
+
+sub add_points(x as int, amount as long)
+    points[x] = points[x] + amount
+    sprint tmp, points[x]
+    Sendmessage players[x], msg_mc_score, "player", tmp
+    high_score
+end sub
+
+sub mainsub
+    init
+
+    nsecs = 60
+
+    while true
+        inline _escape(0);
+        timer
+        if key(#KEY_ENTER) then
+            Sendmessage -1, msg_mc_reset, "player", ""
+            add_points(winner, 100)
+            for i=0 to nplayers-1
+                locked_out[i]=false
+            next
+            while key(#KEY_ENTER)
+            wend
+        end if
+        if key(#KEY_DEL) then
+            Sendmessage -1, msg_mc_reset, "player", ""
+            for i=0 to nplayers-1
+                if locked_out[i] then
+                    locked_out[i]=false
+                else
+                    Sendmessage players[i], msg_mc_lockout, "player", ""
+                    locked_out[i] = true
+                endif
+            next
+            while key(#KEY_DEL)
+            wend
+        end if
+        repaint
+    wend
+end sub
+
+mainsub

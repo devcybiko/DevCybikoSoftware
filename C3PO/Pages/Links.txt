@@ -1,0 +1,10 @@
+||Site||Forums
+|[JSP Wiki Home Site | http://www.jspwiki.org/Wiki.jsp?page=Main]
+|[DevCybiko.com - A Developer's site | http://devcybiko.greg-smith.com]|&nbsp;
+|[GSFX - A hardware site | http://www.gsfx.file-radio.com]|[Forums|http://gsfx.file-radio.com/yabbse/index.php]
+|[CyDevr.net - a fan site with some development | http://www.CyDevr.net]|[Forums|http://www.CyDevr.net/forums]
+|[www.kr1st.com - an ameteur radio site with GPS and RF enhancement for Cybiko | http://www.kr1st.com]|&nbsp;
+|[HyperDev|http://tshastry.com:78/hyperdev/]|[Forums|http://tshastry.com:78/hyperdev/yabbse/]
+|[CyBlizzard.com|http://www.cyblizzard.com/index.shtml]|[Forums|http://www.cyblizzard.com/yabbse/index.php]
+|[Devrs.com/cybiko - the original developer's site|http://devrs.com/cybiko]|&nbsp;
+|[Yahoo Groups for Cybiko|http://groups.yahoo.com/group/CybikoDev/]|&nbsp;

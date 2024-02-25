@@ -1,0 +1,4 @@
+MSG_STANDBY is sent to applications when a Cybiko Classic or Xtreme goes into suspend mode - unfortunately I don't have the code for it yet, but I have no doubt I'll get it asap. (Could be useful in CVC for pausing videos when Cybiko goes into suspend).
+
+- Joshua Colp. (July 28 2003)
+[josh]

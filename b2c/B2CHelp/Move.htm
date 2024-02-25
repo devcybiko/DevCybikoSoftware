@@ -1,0 +1,52 @@
+<B><P>Topic :</B> Move</P>
+<B><P>Language Level</B> : B2C Extension</P>
+<B><P>Effectivity :</B> B2C v2c</P>
+<B><P>Syntax</B> : </P><DIR>
+<DIR>
+
+<P>Move n, x, y [, z [,mode]]</P></DIR>
+</DIR>
+
+<B><P>Description :</P>
+</B><P>&#9;Move moves a sprite on the screen.  'n' is the sprite number (0-32), 'x' is the horizontal coordinate, 'y' is the vertical coordinate, 'z' is optional and is the bitmap within the sprite to display (this is usually used for animation), finally the optional 'mode' is the direction to 'flip' the bitmap before displaying (FLIP_X for horizontal flip, FLIP_Y for vertical, and FLIP_X+FLIP_Y for both).  This feature allows you to reuse the bitmap.  For example, when walking to the left, a character should be flipped horizontally while not flipped at all while walking right.</P>
+<P>&#9;You must do a redraw to see the results of the move command.  Because of the cost of doing a redraw, it is advisable to do all the moves for a 'turn' and then a single redraw.</P>
+<B><P>Example</P>
+<P>&#9;</B>Dim x as int</P>
+<P>&#9;Dim y as int</P>
+<P>&#9;Dim z as int</P>
+<P>&#9;Dim mode as int</P>
+<P>&#9;Sprite 1, "lemming.pic"</P>
+<P>&#9;X=0</P>
+<P>&#9;Y=0</P>
+<P>&#9;Z=0</P>
+<P>&#9;Mode=0</P>
+<P>&#9;While 1</P>
+<P>&#9;&#9;If key(#KEY_LEFT) then </P><DIR>
+<DIR>
+<DIR>
+<DIR>
+
+<P>x=x-1</P>
+<P>mode = FLIP_X</P></DIR>
+</DIR>
+</DIR>
+</DIR>
+
+<P>&#9;&#9;endif</P>
+<P>&#9;&#9;If key(#KEY_RIGHT) then </P><DIR>
+<DIR>
+<DIR>
+<DIR>
+
+<P>x=x+1</P>
+<P>mode=FLIP_Y</P></DIR>
+</DIR>
+</DIR>
+</DIR>
+
+<P>&#9;&#9;Endif</P>
+<P>&#9;&#9;Move 1,x,y,z,mode</P>
+<P>&#9;&#9;Redraw</P>
+<P>&#9;wend</P>
+
+<B><P>&nbsp;</P>

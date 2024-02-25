@@ -1,0 +1,23 @@
+<B><P>Topic :</B> Print</P>
+<B><P>Language Level</B> : CyBasic-1</P>
+<B><P>Effectivity :</B> B2C v2</P>
+<B><P>Syntax</B> : </P><DIR>
+<DIR>
+
+<P>Print {expr {,expr…}}</P></DIR>
+</DIR>
+
+<B><P>Description :</P><DIR>
+<DIR>
+
+</B><P>The Print keyword displays a line of output on the Cybiko display.  Print will display any expression.  If the text of the display is greater than the number of lines in the Display, then the display will scroll up to reveal more text.  The number of lines in the display is dependent on the Font used (see Font command).  The number of characters per line is also dependent on the Font used.  If the number of characters printed is greater than the width of the display, the output will be truncated.  Print automatically adds a newline to the end of the line.</P>
+<p>Print will erase the entire screen with each new line of text.  Therefore, do not mix Print commands with Graphics commands as print will erase your graphics.  Use the PrintXY command instead.</DIR>
+</DIR>
+
+<B><P>Example</P>
+<P>&#9;</B>Dim age as int</P>
+<P>&#9;Dim name[32] as char</P>
+<P>&#9;Input "age:", age</P>
+<P>&#9;Input "name:", name</P>
+<P>&#9;Print "You are ", name, "and your age is", age</P>
+<B>

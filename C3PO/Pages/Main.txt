@@ -1,0 +1,65 @@
+<font size=-1>[C3PO Mission Statement] | [C3P0 Etiquette And Guidelines] | [Terms Of Use]</font>
+
+<center><font size=5 style="font-family:sans-serif"><b>Cybiko Third Party Organization</b></font></center>
+----
+!!News (everyone is welcome to post here)
+Updated [Programming tips and tricks|progtips] [ssjx] 06-Feb-2004
+----
+Added [Xtreme and Windows XP' article] [greg] 29-Sep-2003
+----
+Added [Changing The Hourglass Icon] article
+[greg] 24-Sep-2003
+----
+Added a 'How to retrieve a lost password' article.
+[MadPrgmr] 16-Aug-2003
+----
+After some problems with the router for the Wiki, C3PO is back online! [Professr] 16-Aug-2003
+----
+Just uploaded [C3PO Cybiko-Euro-Buzz Proposal] [greg] 08-Aug-2003
+----
+Just uploaded University of Oregon [STDLIB Source Code] [greg] 01-Aug-2003
+----
+What do think of setting up a periodic group chat? It may increase the interest if we bounced around some ideas. [SamNEggs] 30-Jul-2003
+
+''sam - we've been getting together for the last 2 nights on AIM. if you're available we usually are all on around 9pm.  i plan to hold chats everynight for the near future.  Also, all of you, update your wikipage with your contact info. email and AIM especially. \\
+[greg] 31-Jul-2003''
+----
+
+I have some responses from the folks in the UK.  [Cybiko UK Emails]\\
+[greg] 29-Jul-2003
+----
+[Native Mode Compilation]\\
+The 3.x compiler delivered native mode compilation.  It isn't easy to know how to get the benefits of native mode.  The 3.2 help file even proclaims ''The compiler does not generate native code for the HITACHI processor. For more details see Cybiko Bytecode Interpreter'' (in fact it doesn't - but the Assembler does). The article above will detail the steps to making a native mode application. [greg] 25-Jul-2003
+----
+[TELEMETRY]\\
+I wrote this program as an example of how do to a head-to-head telemetry based program.  It doesn't work and i'd like some feedback on it.\\
+[greg] 24-Jul-2003
+
+''lol.  it doesn't work?'' [TimParkin] 25-Jul-2003\\
+Tim - it works but the messages are delayed [greg] 25-Jul-2003\\
+"It doesn't work and i'd like some feedback on it." That confused me. [TimParkin] 25-Jul-2003\\
+''lol2. ic. it was late and i wasnt thinking well. sorry 'bout that [greg] 25-Jul-2003
+----
+!!!READ THIS -- READ THIS -- READ THIS
+!In case it is not abundantly clear, everyone should feel free to add / edit (but not delete) pages and text all over this Wiki.  Check Out [C3P0 Etiquette And Guidelines].  Also check out [Welcome] for editing tips.  This is a Collaborative environment. So contribute at WILL!
+-Thanks [greg]23-Jul-2003
+----
+I am thinking of changing the name of the project.  There have been some concerns over the name "C3PO".  Please post your opinions on the [Name Change Page].
+
+[greg] 22-Jul-2003
+----
+
+I changed the page "Cybiko" to [Articles]
+[greg] 18-Jul-2003
+----
+There is now a guest login.  It does not allow editing.  So, if you are out and about or forget your login, the username/password is guest/guest.  You may share the guest password if you like.  But it is not for widespread publication.
+
+[greg] 17-Jul-2003
+----
+Welcome to the Cybiko Third Party Orgainzation.  I started this Wiki to support the possibility of new hardware and software development for the Cybiko in the United Kingdom.  The people selected for this organization were picked for their contributions to the Cybiko/USA community and their skill as developers.
+
+I have sent an email to the Cybiko/UK hoping to create a relationship with them.  If they are serious about marketing the Cybiko in Europe, then I want to persue creating products for the Cybiko and selling them - possibly through Cybiko/UK.
+
+This Wiki is for members only.  It is expected that members will observe the [Terms Of Use].  The organization's definition will be defined by the members with veto power entrusted to me, the founding member of Cybiko3PO. The goals and direction of the Organization will be spelled out in the [C3PO Mission Statement].  Finally, the conduct of members are detailed in [C3P0 Etiquette And Guidelines].
+
+[greg] 17-Jul-2003

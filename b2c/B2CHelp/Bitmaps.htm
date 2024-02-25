@@ -1,0 +1,233 @@
+<HTML>
+<HEAD>
+<META HTTP-EQUIV="Content-Type" CONTENT="text/html; charset=windows-1252">
+<META NAME="Generator" CONTENT="Microsoft Word 97">
+<TITLE>Bitmapped Graphics</TITLE>
+</HEAD>
+<BODY>
+
+<B><FONT FACE="Arial" SIZE=5><P ALIGN="CENTER">Bitmapped Graphics</P>
+<P ALIGN="CENTER">With B2C</P>
+<a name=introduction>
+</FONT><FONT FACE="Arial" SIZE=4><P>Introduction</P>
+</a>
+</B></FONT><FONT SIZE=2><P>B2C Version 2c introduced Bitmapped Graphics.  Four commands (Sprite, Move, Collision, and Redraw) make for a complete and simple interface to write bitmapped and animated applications.  Other commands introduced with Version 2c are Vibrate and Music to make for a well-rounded gaming experience.  Finally, the key() function was extended to allow checking for a single keystroke, thus improving performance.</P>
+
+<P>The program "gfx.app" in the <B><I>Gfx</B></I> directory demonstrates these capabilities.  It shows 10 lemmings walking around the screen and bouncing off the walls.  One lemming is upside down and when it collides with another lemming the Cybiko vibrates.  Take a minute to "build" this app and download it to your Cybiko to test.</P>
+<P>&nbsp;</P>
+<a name=getting_started>
+</FONT><B><FONT FACE="Arial" SIZE=4><P>Getting Started</P>
+</a>
+</B></FONT><FONT SIZE=2><P>The heart of any video game is the animated character called a "Sprite".  (The word Sprite literally means ghost, spirit, fairy or elf).  To create a sprite, create a bitmap using any draw tool (Paint.exe in MS Windows works fine).  Your sprite bitmap can be any size, but typically they are 8x8 pixels up to 20x20. (The X and Y dimensions don't have to match).  You should use grayscale colors of Black, Light Gray, Dark Gray, and White to draw your sprite. </P>
+<a name=sprite_command>
+</FONT><B><FONT FACE="Arial" SIZE=4><P>Sprite Command</P>
+</a>
+</B></FONT><FONT SIZE=2><P>The Sprite command in B2C allows you to load a sprite into the program from the .app file.  The format of the sprite command is:</P>
+<P ALIGN="CENTER">Sprite n, "filename.pic"</P>
+<P ALIGN="CENTER"></P>
+<P>The 'n' in this case is the sprite number.  There are 32 sprites in B2C.  The sprite number 0 is usually used for the background sprite while sprites 1-31 are used for characters.  In our example you will need to load the sprite "sprite.pic" into sprite number 1…</P>
+
+<P ALIGN="CENTER">Sprite 1,"sprite.pic"</P>
+<P ALIGN="CENTER"></P>
+<P>This merely loads the sprite into memory.  To position it on screen you need the Move command and to display it you need the Redraw command.</P>
+<P>&nbsp;</P>
+<a name=move_command>
+</FONT><B><FONT FACE="Arial" SIZE=4><P>Move Command</P>
+</a>
+</B></FONT><FONT SIZE=2><P>The Move command positions your sprite on the screen.  It is a complicated command - only the simple interface is presented in this section, a later section will detail the more advanced features.</P>
+<P ALIGN="CENTER">Move n,x,y</P>
+<P>The 'n' is the sprite number to move and the x,y are coordinates in the typical CyBasic coordinate system (-80 to 79 in the x direction and -50 to 49 in the y direction).  Suppose we wanted to move the sprite to the middle of the screen, we would do this…</P>
+<P ALIGN="CENTER">Move 1,0,0</P>
+<P>&nbsp;</P>
+<a name=redraw>
+</FONT><B><FONT FACE="Arial" SIZE=4><P>Redraw</P>
+</a>
+</B></FONT><FONT SIZE=2><P>Nothing is shown on the screen until you execute the Redraw command.  This command clears the display and redraws each sprite in its new position.</P>
+<P ALIGN="CENTER">Redraw</P>
+<P>&nbsp;</P>
+<a name=sprite_example_1>
+</FONT><B><FONT FACE="Arial" SIZE=4><P>Sprite Example Program 1 
+: sprite1.app</P>
+</a>
+</B></FONT><FONT SIZE=2><P>Here is a sample sprite program which will load a sprite and move it around the screen based on the arrow keys.  This complete application can be found in the "sprite1" directory:</P>
+</FONT>
+<pre>
+<FONT FACE="Courier New" SIZE=2>
+Dim x as int                       'x coordinate
+Dim y as int                       'y coordinate
+X=0
+Y=0
+Sprite 1, "sprite.pic"             'load the sprite
+While(TRUE)                           'do forever
+    If key(#KEY_LEFT) then x=x-1       'move left
+    If key(#KEY_RIGHT) then x=x+1       'move right
+    If key(#KEY_UP) then y=y+1       'move up
+    If key(#KEY_DOWN) then y=y-1       'move down
+    Move 1, x, y
+    Redraw
+Wend
+</FONT>
+</pre>
+<a name=changing_the_sprite1_bld_file>
+<B><FONT FACE="Arial" SIZE=4><P>Changing the sprite1.bld file</P>
+</a>
+</B></FONT><FONT SIZE=2><P>In order to get your sprite into the sprite1.app program, you need to update the sprite1.bld file.  Add the lines</P>
+<P ALIGN="CENTER">[pic=sprite.pic]</P>
+<P ALIGN="CENTER">sprite01.bmp</P>
+<P ALIGN="CENTER"></P>
+<P>You can now "build" your program as usual and download the result to your cybiko.</P>
+<P>&nbsp;</P>
+<a name=adding_animation>
+</FONT><B><FONT FACE="Arial" SIZE=4><P>Adding Animation</P>
+</a>
+</B></FONT><FONT SIZE=2><P>Our example program is fun, but has some obvious problems.  Firstly, the image is static, it doesn’t look like the lemming is really walking because his feet don't move.  Secondly, when the image is moving to the left it is facing to the right.  Both of these problems will be addressed in the next section.</P>
+
+<P>Animation is what makes programming video games fun.  To create an animation, you must create a set of bitmaps which are each slightly different from the last.  It is also best if the last image leads to the first image naturally.  It makes sense to name these bitmaps similarly, like Sprite01.bmp, Sprite02.bmp, etc…  The example program "Sprite2" can be found in the "sprite2" directory.  In our example we use 5 bitmaps.</P>
+
+<P>Once you have created your animation sequence, you need to store it in the sprite2.bld file like this:</P>
+
+<P ALIGN="CENTER">[pic=sprite.pic]</P>
+<P ALIGN="CENTER">sprite01.bmp</P>
+<P ALIGN="CENTER">sprite02.bmp</P>
+<P ALIGN="CENTER">sprite03.bmp</P>
+<P ALIGN="CENTER">sprite04.bmp</P>
+<P ALIGN="CENTER">sprite05.bmp</P>
+<P>&nbsp;</P>
+<a name=move_revisited>
+</FONT><B><FONT FACE="Arial" SIZE=4><P>Move: Revisited</P>
+</a>
+</B></FONT><FONT SIZE=2><P>The Move command has special parameters specifically for animation.  The format for the animated move command is:</P>
+<P ALIGN="CENTER">Move n, x, y, z, mode</P>
+<P>This is identical to the earlier move command.  'n' is the sprite number and x,y are the coordinates.  'z' is the bitmap number to display when the sprite moves and mode determines the direction the sprite faces.  The mode is 0 for normal, FLIP_X for a flip in the x direction, FLIP_Y for a flip in the y direction, and FLIP_X+FLIP_Y for a flip in both directions.</P>
+<P>&nbsp;</P>
+<a name=sprite_example_program_2>
+</FONT><B><FONT FACE="Arial" SIZE=4><P>Sprite Example Program 2 : sprite2.app</P>
+</a>
+</B></FONT><FONT SIZE=2><P>Here is a sample sprite program which will load a sprite and move it around the screen based on the arrow keys.  It also includes animation.  This complete application can be found in the "sprite2" directory:</P>
+
+</FONT>
+<pre>
+<FONT FACE="Courier New" SIZE=2>
+Dim x as int                       'x coordinate    
+Dim y as int                       'y coordinate    
+Dim z as int                       'bitmap number    
+Dim mode as int                    'mode     
+x=0    
+y=0    
+z=0    
+mode=0    
+Sprite 1, "sprite.pic"             'load the sprites    
+While(TRUE)                           'do forever    
+    If key(#KEY_LEFT) then     
+        x=x-1                  'move left    
+        mode=FLIP_X            'face left    
+        z=z+1                  'move feet    
+        if z&gt;=5 then z=0       'cycle animation    
+        end if    
+    If key(#KEY_RIGHT) then     
+        x=x+1                  'move right    
+        mode=0                 'face right    
+        z=z+1                  'move feet    
+        if z&gt;=5 then z=0       'cycle animation    
+        end if    
+    If key(#KEY_UP) then y=y+1       'move up    
+    If key(#KEY_DOWN) then y=y-1       'move down    
+    Move 1, x, y, z, mode        'move and animate sprite    
+    Redraw    
+Wend    
+</FONT>
+</pre>
+<a name=collisions>
+<B><FONT FACE="Arial" SIZE=4><P>Collisions</P>
+</a>
+</B></FONT><FONT SIZE=2><P>A Collision is when two sprites intersect.  In B2C this intersection is computed using the Bounding Box (rectangle) of the sprite, not the pixels themselves.  The function to detect a collision is</P>
+<P ALIGN="CENTER">Collision(a,b)</P>
+<P>Where 'a' and 'b' are two different sprite numbers.</P>
+
+<P>Collisions are useful for determining if a bullet intersects a character, or a punch intersects another sprite.</P>
+<P>&nbsp;</P>
+<a name=music>
+</FONT><B><FONT FACE="Arial" SIZE=4><P>Music</P>
+</a>
+</B></FONT><FONT SIZE=2><P>Music is added using Cybiko's '.mus' file format.  This file can be created using the "Converter.exe" program which is part of "Cyberload".  The Converter program will read a .midi file and convert it to .mus.  As with the sprite file, you must update the '.bld’ file to include the filename.</P>
+<P ALIGN="CENTER">[music]</P>
+<P ALIGN="CENTER">sprite.mus</P>
+<P>The command to load music into a B2C application is</P>
+<P ALIGN="CENTER">Music Background, "filename.mus"</P>
+<P ALIGN="CENTER">Or</P>
+<P ALIGN="CENTER">Music Foreground, "filename.mus"</P>
+<P>As with the Sprite command, this only loads the music file into memory.  To play the music, you must issue the following command:</P>
+
+<P ALIGN="CENTER">Music Background, Play</P>
+<P ALIGN="CENTER">Or</P>
+<P ALIGN="CENTER">Music Foreground, Play</P>
+<P ALIGN="CENTER"></P>
+<P>Music played in the Background will play over and over again until you stop it.  Music played in the foreground will play only once.  To stop the music from playing issue the following command:</P>
+
+<P ALIGN="CENTER">Music Background, Stop</P>
+<P ALIGN="CENTER">Or</P>
+<P ALIGN="CENTER">Music Foreground, Stop</P>
+<P>&nbsp;</P>
+<a name=vibrate>
+</FONT><B><FONT FACE="Arial" SIZE=4><P>Vibrate</P>
+</a>
+</B></FONT><FONT SIZE=2><P>The Vibrate command turns on the Cybiko's vibration device.  Here is the format:</P>
+<P ALIGN="CENTER">Vibrate n</P>
+<P>Where 'n' is from 0-255.  0 stops vibration, 128 is medium vibration and 255 is maximum vibration.</P>
+<P>&nbsp;</P>
+<a name=sprite_example_program_3>
+</FONT><B><FONT FACE="Arial" SIZE=4><P>Sprite Example Program 3 : sprite3.app</P>
+</a>
+</B></FONT><FONT SIZE=2><P>Here is a sample sprite program which will load a sprite and move it around the screen based on the arrow keys.  It also includes animation, collision detection, music and vibration:</P>
+
+</FONT>
+<pre>
+<FONT FACE="Courier New" SIZE=2>
+Dim x as int                       'x coordinate
+Dim y as int                       'y coordinate
+Dim z as int                       'bitmap number
+Dim mode as int                    'mode 
+x=-80
+y=49
+z=0
+mode=0
+print "Loading..."
+Sprite 1, "sprite.pic"             'load the sprites
+Print "Still Loading..."
+sprite 2, "root.ico"            'the b2c icon
+move 2, -24,24               'put b2c in the middle
+print "Last time Loading..."
+Music Background, "sprite.mus"
+Music Background, Play
+ink WHITE
+print "lets go!"
+While(TRUE)                           'do forever
+    If key(#KEY_LEFT) then 
+        x=x-1                  'move left
+        mode=FLIP_X            'face left
+        z=z+1                  'move feet
+        if z&gt;=5 then z=0       'cycle animation
+    end if
+    If key(#KEY_RIGHT) then 
+        x=x+1                  'move right
+        mode=0                 'face right
+        z=z+1                  'move feet
+        if z&gt;=5 then z=0       'cycle animation
+    end if
+    If key(#KEY_UP) then y=y+1       'move up
+    If key(#KEY_DOWN) then y=y-1       'move down
+    Move 1, x, y, z, mode        'move and animate sprite
+    vibrate 0
+    if collision(1,2) then vibrate 128
+    Redraw
+Wend
+</pre>
+</FONT><FONT FACE="Courier New" SIZE=2><P>&nbsp;</P></DIR>
+<a name=final_thoughts>
+</FONT><B><FONT FACE="Arial" SIZE=4><P>Final Thoughts</P>
+</a>
+</B></FONT><FONT SIZE=2><P>Because sprites are drawn in sprite-number-order, sprite number 31 appears to be 'on top'.  In our last example (sprite3.app) the lemming appears to walk behind the B2C icon because the lemming is drawn first and the  B2C icon is drawn second.</P>
+
+<P>Also, read the document <B><I>Performance.doc</B></I> – it will detail a few features to make your programs run faster.  And also check out the <B><I>playfield</B></I> directory which has a 7-part tutorial on making large games with Playfield Graphics.</P>
+</FONT></BODY>
+</HTML>

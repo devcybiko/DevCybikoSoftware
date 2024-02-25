@@ -1,0 +1,37 @@
+<font size=-1 style="font-family:sans-serif"><b>
+[Main]\\
+[Index]\\
+[Welcome]\\
+[Recent Changes]\\
+[Downloads]\\
+[Articles]\\
+[Links]\\
+[Projects]\\
+</b></font>
+----
+<font style="font-family:sans-serif"><b>Users</b></font>\\
+[Greg]\\
+[Professr]\\
+[TimParkin]\\
+[Josh]\\
+[Tom]\\
+[gengar56]\\
+[klugeroom]\\
+[MadPrgmr]\\
+[ssjx]\\
+[SamNEggs]\\
+----
+<font style="font-family:sans-serif"><b>[Projects]</b></font>\\
+[CySH]\\
+[MP3 API]\\
+[Storm CVC]\\
+[Tanx]\\
+[TCP Kit]\\
+[The Desktop]\\
+[WAV API]\\
+[Wireless FTP]\\
+[Wireless HTML]\\
+[Wireless POP3]\\
+[Wireless Tibia]\\
+----
+<font size=-2><a href="Edit.jsp?page=LeftMenu">.</a></font>

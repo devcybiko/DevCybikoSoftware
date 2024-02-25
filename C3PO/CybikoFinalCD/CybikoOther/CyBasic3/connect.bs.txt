@@ -1,0 +1,104 @@
+'returns 1 if wait for link was 
+'chosen, otherwise 0
+function server
+ dim ser
+ dim k
+ ser=1
+'draw flash
+ line -60,35,-60,-35
+ line 53,35,53,-35
+ line -60,35,53,35
+ line -60,-35,53,-35
+
+ line -62,37,-62,-37
+ line 55,37,55,-37
+ line -62,37,55,37
+ line -62,-37,55,-37
+
+ line -60,15,53,15
+
+'print inscription
+ printxy -50,30,"MINIBATTLESHIP"
+ printxy -17,0,"Wait"
+ printxy -21,-15,"Invite" 
+ printxy -34,0,">"
+ printxy 20,0,"<"
+ k=0
+'choose wait for link or 
+'connect
+ while k<>272
+  k=0
+  while k=0
+   k=key
+  wend
+'if key <Down> is pressed,
+'move the cursor down
+  if k=267 then
+   ser=0
+'delete cursor from the old 
+'place
+   ink 0
+   printxy -34,0,">"
+   printxy 20,0,"<"
+'draw cursor on the new place
+   ink 3
+   printxy -34,-15,">"
+   printxy 20,-15,"<"
+  else
+'if key <Up> is pressed, move 
+'the cursor up
+   if k=265 then
+    ser=1
+'delete cursor from the old 
+'place
+    ink 0
+    printxy -34,-15,">"
+    printxy 20,-15,"<"
+'draw cursor on the new place
+    ink 3
+    printxy -34,0,">"
+    printxy 20,0,"<"
+   end if
+  end if
+ wend
+ server=ser
+end function
+
+'connection 
+sub connect(byref id_dev as long)
+ dim com as int
+ dim tmp as long
+'choose partner
+ id_dev=select()
+'send request
+ if id_dev=0 then
+  exit sub
+ end if
+ for i=1 to 10
+  post id_dev,1,100,100,tmp
+ next
+'wait for replay
+ while com<>2
+  receive id_dev,com,tmp,tmp,tmp
+ wend
+end sub
+
+'wait for link
+sub waitcon(byref id_dev as long)
+ dim com as int
+ dim tmp as long
+ cls
+'print the message
+ printxy -45,10,"Wait for link..."
+'wait for request
+ while com<>1
+  receive id_dev,com,tmp,tmp,tmp
+ wend
+'send replay
+ for i=1 to 10
+  post id_dev,2,100,100,tmp
+ next
+end sub
+
+
+  

@@ -1,0 +1,12 @@
+[path]
+..
+[files]
+tweens.trv
+
+[source]
+tweens.b2c
+
+[splash.text]
+This is the installation program for tweens.TRV - the tweens Trivial file.
+File with the .TRV extension are used by many different trivia programs.
+When this file is installed, the .app file can be deleted.

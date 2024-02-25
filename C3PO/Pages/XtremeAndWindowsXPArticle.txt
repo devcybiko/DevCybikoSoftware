@@ -1,0 +1,17 @@
+Xtreme and XP
+
+by compman
+
+OK, this is for those of you who have Microsoft Windows XP and can't get EZLoader to detect your Cybiko Xtreme. All this article will think is that you can find your way into the System Properties (which can be done by right clicking on my computer and selecting properties out of the menu) and that Windows detects the Cybiko. Now it's time to get started!
+
+1. Connect your Cybiko Xtreme (if not already connected) and close EZLoader (if not already closed).
+
+2. Go into the System Properties and click the "hardware" tab. Now click buttion the says "Device Manager". You will now see the Device Manager Window.
+
+3. Now, find your way to the bottom and click the plus mark beside "Universial Serial Bus controllers". From there right-click on Cybiko Xtreme USB Device (you will not see this if the Cybiko isn't detected), and select uninstall. When is asks you weither you a sure about doing this, hit OK. If it asks you to reboot after this, DON'T.
+
+4. Now, disconnect your Cybiko from the computer and uninstall EZLoader. After this reboot your computer.
+
+5. After the reboot is done, download the latest version of EZLoader (1.1.50) from the Cybiko Xtreme website (www.cybikoxtreme.com) and install it. Now reboot your computer (again).
+
+6. After the last reboot is done, connect your Cybiko to the computer. When the "Found New Hardware" Wizard pops up, tell it to find the driver automaticlly. When it tells you that the driver is unsigned, then just hit OK. EZLoader should, in a few minutes, detect your Cybiko Xtreme

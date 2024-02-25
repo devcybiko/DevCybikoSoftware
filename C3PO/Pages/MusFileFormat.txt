@@ -1,0 +1,27 @@
+From [http://devrs.com/cybiko]
+{{{
+structure of a .mus file
+Offset00:BYTE the value 0x00 (i think this indicates that this is a .mus
+file, picture files are identified by 02)
+Offset01:BYTE the value 0x01 (i believe this is the number of music
+sequences in the file.  there is a similar byte like this in a .pic file,
+indicating the number of pictures in the file)
+Offset02:WORD the length of the musical sequence.  This value will be a
+multiple of 2.
+Offset04:music data, with (note,length) pairs until the end of the file
+
+As far as i've been able to tell, the value 0x08 is C-4 on the midi scale,
+and increases/decreases in half-steps. 0xFF  is a pause.
+i'm not sure what the lengths are measured in, but 0x20 is a pretty decent
+quarter note.
+
+Ernest S. Pazera
+aka TANSTAAFL
+CFO, GameDev.net, LLC
+President, DTM Software
+President, C&M Tax
+tanstaafl@gamedev.net
+dtmsoftware@acronet.net
+http://www.gamedev.net/gamedev.asp
+
+}}}

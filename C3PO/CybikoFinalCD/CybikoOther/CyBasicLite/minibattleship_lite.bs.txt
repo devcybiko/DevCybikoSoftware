@@ -1,0 +1,465 @@
+load "radio.bs.dl"
+dim ser
+dim xf1
+dim xf2
+dim yf
+dim x[3] as int
+dim y[3] as int
+dim bf[5] as char
+dim crd[2] as int
+dim fd[144] as int
+dim anfd[144] as int
+dim re
+dim ind
+dim id as long
+dim mn
+dim tid as long
+dim tnum as long
+dim com as int
+dim t as long
+dim an
+dim gm
+dim shc
+dim anshc
+mn=0
+shc=4
+anshc=4
+'draw flash
+sub dflh(x1,y1,x2,y2)
+ line x1,y1,x1,y2
+ line x2,y1,x2,y2
+ line x1,y1,x2,y1
+ line x1,y2,x2,y2
+end sub
+'returns 1 if wait for link was 
+'chosen, otherwise 0
+function server
+ dim k
+ server=1
+ dflh -60,35,53,-35
+ dflh -62,37,55,-37
+ line -60,15,53,15
+'print inscription
+ printxy -53,30,"MINIBATTLESHIP"
+ printxy -17,0,"Wait"
+ printxy -21,-15,"Invite" 
+ printxy -34,0,">        <"
+ k=0
+'choose wait for link or 
+'connect
+ while k<>272
+  k=0
+  while k=0
+   k=key
+  wend
+'if key <Down> is pressed,
+'move the cursor down
+  if k=267 then
+   server=0
+   ink 0
+   printxy -34,0,">        <"
+   ink 3
+   printxy -34,-15,">        <"
+  else
+'if key <Up> is pressed, move 
+'the cursor up
+   if k=265 then
+    server=1
+    ink 0
+    printxy -34,-15,">        <"
+    ink 3
+    printxy -34,0,">        <"
+   end if
+  end if
+ wend
+end function
+'connection 
+sub connect(byref id as long)
+ dim com as int
+ dim t as long
+ dim name[20] as char
+'choose partner
+ cls
+ input "Enter name:",name
+ id=get_id_user(name)
+ if id=0 then
+  exit sub
+ end if
+'wait for replay
+ while com<>2
+  post id,1,100,100,t
+  receive t,com,t,t,t
+ wend
+end sub
+'wait for link
+sub waitcon(byref id as long)
+ dim com as int
+ dim t as long
+ cls
+ printxy -45,10,"Wait connect..."
+'wait for request
+ while com<>1
+  receive id,com,t,t,t
+ wend
+'send replay
+ for i=1 to 10
+  post id,2,100,100,t
+ next
+end sub
+'draw the field
+sub drawfd(lt,tp)
+ dim ch as char
+'draw flash
+ dflh lt,tp,lt+60,tp-60
+ ink 1
+'draw the fd division on 
+'cells
+ for i=1 to 5
+  line lt+1,tp-i*10,lt+59,tp-i*10
+  line lt+i*10,tp-1,lt+i*10,tp-59
+ next
+ ink 3
+ for i=1 to 6
+  printxy lt-8,tp+10-i*10,i
+  ch=i+96
+  printxy lt-7+i*10,tp+11,ch
+ next
+end sub
+'draws the ship
+sub dshp(lt,tp,x,y)
+ printxy lt+x*10-17,tp-y*10+21,"o"
+end sub
+'draw the miss
+sub dms(lt,tp,x,y)
+ printxy lt+x*10-16,tp-y*10+23,"."
+end sub 
+'draw the hit
+sub dok(lt,tp,x,y)
+ printxy lt+x*10-17,tp-y*10+21,"x"
+end sub 
+sub youwin
+ cls
+ printxy -30,10,"You WIN!!!"
+end sub
+sub anwin
+ cls
+ printxy -23,10,"You lose."
+end sub
+'check if the ship's position data  
+function check(x[3]as int,y[3]as int,b)
+ dim re
+ re=0
+ for i=0 to b-1
+'check whether the ship's 
+'position data exceeds the map 
+'boundaries
+  if x[i]<2 or x[i]>7 or y[i]<2 or y[i]>7 then
+   check=0
+   exit function  
+  else
+'check if the field is 
+'occupied by the other ships
+   for j=-1 to 1
+    for k=-1 to 1
+     if fd[(x[i]+j)+(y[i]+k)*10]=1 then
+      re=1
+      exit for
+     end if
+    next
+   next     
+   if re then
+    check=0
+    exit function
+   end if
+  end if
+ next
+ check=1
+end function
+'add the ship to the array of ships 
+sub ashp(x,y)
+ fd[x+y*10]=1
+end sub
+'initialize the gm fields
+sub fdinit
+'set the fields position data
+ xf1=-70
+ xf2=10
+ yf=33
+ cls
+'draw the fields
+ drawfd xf1,yf
+ drawfd xf2,yf
+ re=1
+'enter the position data and 
+'draw the Battleship
+ while re
+  input "Battleship's coordinates: ",bf
+  x[0]=bf[0]-95
+  y[0]=bf[1]-47
+'if the third symbol equals "v" 
+'then calculate the field 
+'position data on vertical line
+  if compare(bf[2],"v") then
+   x[1]=bf[0]-94
+   y[1]=bf[1]-47
+   x[2]=bf[0]-93
+   y[2]=y[1]
+'otherwise calculate the field 
+'position data on horizontal line
+  else
+   x[1]=bf[0]-95
+   y[1]=bf[1]-46
+   x[2]=x[1]
+   y[2]=bf[1]-45
+  end if
+'if the position data is correct,
+'then draw the ship
+  if check(x,y,3) then
+   for i=0 to 2
+    ashp x[i],y[i]
+    dshp xf1,yf,x[i],y[i]
+   next
+   re=0
+  end if 
+ wend
+ re=1
+'enter the position data and 
+'draw the Frigate
+ while re
+  re=1
+  input "Frigate's coordinates: ",bf
+  x[0]=bf[0]-95
+  y[0]=bf[1]-47
+  if compare(bf[2],"v") then
+   x[1]=bf[0]-94
+   y[1]=bf[1]-47
+  else
+   x[1]=bf[0]-95
+   y[1]=bf[1]-46
+  end if
+  if check(x,y,2) then
+   for i=0 to 1
+    ashp x[i],y[i]
+    dshp xf1,yf,x[i],y[i]
+   next
+   re=0
+  end if 
+ wend
+ re=1
+ ind=0
+'enter the position data and 
+'draw the Brig
+ while re or ind<2
+  re=1
+  input "Brig's coordinates: ",bf
+  x[0]=bf[0]-95
+  y[0]=bf[1]-47
+  if check(x,y,1) then  
+   ashp x[0],y[0]
+   dshp xf1,yf,x[0],y[0]
+   re=0
+   ind=ind+1
+  end if 
+ wend
+end sub
+'the prosedure depicts the sunk 
+'ship with the dots
+sub drmis(x,y)
+ for j=-1 to 1
+  for k=-1 to 1
+   if x+j>1 and x+j<8 and y+k>1 and y+k<8 then
+    if anfd[(x+j)+(y+k)*10]<>1 then
+     dms xf2,yf,x+j,y+k 
+    else
+     if anfd[(x+j)+(y+k)*10]=1 then  
+      anfd[(x+j)+(y+k)*10]=3
+      drmis x+j,y+k
+     end if
+    end if     
+   end if  
+  next
+ next 
+end sub
+'the procedure inputs the 
+'position data, checks it and 
+'sends to an enemy
+sub moution
+ dim ex
+ dim mok
+ dim x as int
+ dim y as int
+ ex=1
+ while ex and gm
+'enter the position data
+  input "Input coordinates: ",bf
+   x=bf[0]-95
+   y=bf[1]-47
+'check the position data
+   if x>1 and x<8 and y>1 and y<8 then
+    crd[0]=x
+    crd[1]=y
+'send the position data to an enemy
+    for i=1 to 10
+     post id,3,mn,0,crd
+    next
+    mn=mn+1
+    tid=0
+    an=-1
+'wait for replay
+    while tid<>id or tnum<>mn-1
+     receive tid,com,tnum,t,an
+    wend
+    if an=0 then
+     beep 3
+'draw the miss
+     dms xf2,yf,x,y
+     ex=0
+    else 
+     beep 2
+     if an=2 then
+'if the ship is sunk then 
+'depict it with the dots
+      drmis x,y         
+      anshc=anshc-1
+      if anshc=0 then
+       gm=0
+      end if
+     end if
+'draw the hit
+     dok xf2,yf,x,y
+     anfd[x+y*10]=1 
+    end if
+   end if
+ wend
+end sub
+
+'the procedure waits for the 
+'enemy's move, checks the hit 
+'and sends the replay
+sub whaitmout
+ dim ex
+ dim x
+ dim y
+ tid=0
+ tnum=-1
+ ex=1
+ while ex and gm
+'wait for an enemy's move
+  while tid<>id or tnum<>mn 
+   receive tid,com,tnum,t,crd
+  wend
+  x=crd[0]
+  y=crd[1]
+  beep 1
+  if com=3 then
+'if there is a hit then draw it
+   if fd[x+y*10]=1 then
+    fd[x+y*10]=2
+    ink 0
+    dshp xf1,yf,x,y
+    ink 3
+    dok xf1,yf,x,y
+    re=0
+'check if the ship is sunk
+    for j=1 to 2
+     if fd[(x+j)+y*10]=1 then
+      re=1
+     elseif fd[(x+j)+y*10]<>2 then
+      exit for
+     end if
+    next
+    for j=1 to 2
+     if fd[(x-j)+y*10]=1 then
+      re=1
+     elseif fd[(x-j)+y*10]<>2 then
+      exit for
+     end if
+    next
+    for j=1 to 2
+     if fd[x+(y+j)*10]=1 then
+      re=1
+     elseif fd[x+(y+j)*10]<>2 then
+      exit for
+     end if
+    next
+    for j=1 to 2
+     if fd[x+(y-j)*10]=1 then
+      re=1
+     elseif fd[x+(y-j)*10]<>2 then
+      exit for
+     end if
+    next
+    if re=1 then
+     an=1
+    else
+     an=2
+     shc=shc-1
+'check if this is the last ship,
+'then end the gm
+     if shc=0 then
+      gm=0
+     end if
+    end if
+   else
+'draw the miss
+    dms xf1,yf,x,y
+    ex=0
+    an=0
+   end if
+'send the replay
+   for i=1 to 10
+    post id,4,mn,0,an
+   next
+   mn=mn+1
+  end if
+ wend
+end sub
+
+'check who is waiting for a link
+id=0
+while id=0
+ cls
+ ser=server()
+ if ser then
+  waitcon id
+ else
+  connect id
+ end if
+wend
+fdinit
+mn=0
+gm=1
+if ser then
+'the main cycle for the player 
+'who is waiting for a link
+ while gm
+  whaitmout
+  moution
+  if anshc=0 then
+   gm=0
+   youwin
+  else
+   if shc=0 then
+    gm=0
+    anwin
+   end if
+  end if
+ wend
+else
+'the main cycle for the player 
+'who is connecting
+ while gm
+  moution
+  whaitmout
+  if anshc=0 then
+   gm=0
+   youwin
+  else
+   if shc=0 then
+    gm=0
+    anwin
+   end if
+  end if
+ wend
+end if
+wait

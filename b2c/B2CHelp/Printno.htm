@@ -1,0 +1,31 @@
+<B><P>Topic :</B> Printno</P>
+<B><P>Language Level</B> : CyBasic-1</P>
+<B><P>Effectivity :</B> B2C v2</P>
+<B><P>Syntax</B> : </P><DIR>
+<DIR>
+
+<P>Print# n {expr {,expr…}}</P></DIR>
+</DIR>
+
+<B><P>Description :</P><DIR>
+<DIR>
+
+</B><P>The Print# keyword writes a line of output on file number ‘n’.  Print# will write any expression.  Print# automatically adds a newline to the end of the line.  This is similar to the Print command for the display but for files.</P></DIR>
+</DIR>
+
+<B><P>Error :</P><DIR>
+<DIR>
+
+</B><P>#ERROR_FILE_NUMBER – the file number specified is out of the valid range</P>
+<P>#ERROR_FILE_UNOPENED – the file has not been opened</P>
+<P>#ERROR_FILE_WRITE – there was an error while attempting to write the file</P></DIR>
+</DIR>
+
+<B><P>Example :</P>
+<P>&#9;</B>Dim age as int</P>
+<P>&#9;Dim name[32] as char</P>
+<P>&#9;Input "age:", age</P>
+<P>&#9;Input "name:", name</P>
+<P>&#9;Print# 1, "You are ", name, "and your age is", age</P>
+<P>&#9;if error then exit program</P>
+<B>

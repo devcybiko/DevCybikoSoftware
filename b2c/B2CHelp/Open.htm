@@ -1,0 +1,44 @@
+<B>
+
+<P>Topic :</B> Open</P>
+<B><P>Language Level</B> : CyBasic-1</P>
+<B><P>Effectivity :</B> B2C v2</P>
+<B><P>Syntax</B> : </P><DIR>
+<DIR>
+
+<P>Open pathname {For mode} As filenumber</P></DIR>
+</DIR>
+
+<B><P>Description :</P><DIR>
+<DIR>
+
+</B><P>Open opens a file for reading, writing or append access.  Pathname is a string expression (constant quoted string or character array variable) which points to the pathname of a file.  Optional mode is one of READ, ARCHIVE, WRITE, or APPEND.  Filename is an integer expression which indicates the handle for the file.  Use filenumber in future calls to get, put, and close.</P>
+
+<P>READ=open a file for read access only</P>
+<P>ARCHIVE=open a file from the archive for read access only</P>
+<P>WRITE=open a file for write access only</P>
+<P>APPEND=open a file for writing to the end of the file</P>
+</DIR>
+</DIR>
+
+<B><P>Errors:</P><DIR>
+<DIR>
+
+</B><P>#ERROR_FILE_NUMBER – the file number is outside the valid range</P>
+<P>#ERROR_FILE_ALREADY_OPEN – the file is already open and should first be closed</P>
+<P>#ERROR_FILE_OPEN – there was a problem opening the file for READ or APPEND access</P>
+<P>#ERROR_FILE_CREATE – there was a problem opening the file for WRITE access</P></DIR>
+</DIR>
+
+<B><P>Example : </P><DIR>
+<DIR>
+
+</B><P>Dim foo as int</P>
+<P>Foo = 1</P>
+<P>Open "a.dat" For Write as 1</P>
+<P>if error then exit program</P>
+<P>Put 1, 0, foo</P>
+<P>Close 1</P>
+<B></DIR>
+</DIR>
+

@@ -1,0 +1,334 @@
+<HTML>
+<HEAD>
+<META HTTP-EQUIV="Content-Type" CONTENT="text/html; charset=windows-1252">
+<META NAME="Generator" CONTENT="Microsoft Word 97">
+<TITLE>B2Cbuild</TITLE>
+</HEAD>
+<BODY>
+
+<B><FONT FACE="Arial" SIZE=5><P ALIGN="CENTER">B2Cbuild</P>
+<P ALIGN="CENTER">The B2C Build Process</P>
+<a name=introduction>
+</FONT><FONT FACE="Arial" SIZE=4><P>Introduction</P>
+</a>
+</B></FONT><FONT SIZE=2><P>B2Cbuild is a process that will read a control file (filename.bld) and create all intermediate files for the Cybiko SDK.  The format of the .bld file is similar to the Windows .ini file:  a bracketed command followed by lines of parameters.</P>
+
+<P>Example:</P>
+<P>[source]</P>
+<P>tardis.b2c</P>
+
+<P>The single command-line argument to b2cbuild is either a .bld file or a .b2c file to build.  If you specify a .b2c file then all defaults are taken and a vanilla application is created.  If the .bld file is specified, it is opened and read.  In this case a [source] command is required.</P>
+
+<P>The [source] command is required.  All other commands are optional.  Order is not important.</P>
+
+<P>Comments are delimited by a ‘#’ (pound-sign) in column one of the line.  Blank lines are also considered comments.</P>
+<a name=3dsprite>
+</FONT><B><FONT FACE="Arial" SIZE=4><P>[3dsprite=filename.spr]
+</a>
+</P>
+</B></FONT><FONT SIZE=2><P>The 3dsprite command creates sprites for 3d gaming.  It requires a parameter which is the name of the .spr file to create.  The 3dsprite command is followed by one or more lines of text each of which is a bitmap (.bmp) to be converted to the .spr format and included within the filename.spr file.  Each bitmap must be 32x32 pixels and 4 color greyscale. Multiple files can be specified allowing for animated sprites.</P>
+<B><P>Default:</B> none</P>
+<B><P>Example:</P><DIR>
+<DIR>
+
+</B><P>[3dsprite=filename.sprite] </P>
+<P>lemming01.bmp</P>
+<P>lemming02.bmp</P>
+<P>lemming03.bmp</P>
+<P>lemming04.bmp</P>
+<P>lemming05.bmp</P>
+<P>&nbsp;</P></DIR>
+</DIR>
+<a name=3dtex>
+</FONT><B><FONT FACE="Arial" SIZE=4><P>[3dtex]</P>
+</a>
+</B></FONT><FONT SIZE=2><P>The 3dtex command creates .tex (texture) files for 3d gaming.  It is followed by a single line with the name of a bitmap file.  The bitmap may be either 32x32 pixels (for a full tile) or 32x16 pixels (for a half tile).  In either case the bitmap must be 4-color greyscale.</P>
+<B><P>Default</B>: none</P>
+<B><P>Example</B>:</P><DIR>
+<DIR>
+
+<P>[3dtex]</P>
+<P>wall.bmp</P></DIR>
+</DIR>
+<a name=author>
+</FONT><B><FONT FACE="Arial" SIZE=4><P>[author]</P>
+</a>
+</B></FONT><FONT SIZE=2><P>A single line with the author’s name follows the author command.  This will appear in the Splash page when the application first shows up.</P>
+<B><P>Default:</B> none</P>
+<B><P>Example:</P><DIR>
+<DIR>
+
+</B><P>[author]</P>
+<P>Gregory Smith</P></DIR>
+</DIR>
+<a name=copyright>
+</FONT><B><FONT FACE="Arial" SIZE=4><P>[copyright]</P>
+</a>
+</B></FONT><FONT SIZE=2><P>The copyright command is followed by a single line with the copyright line of the program.  The copyright appears in the Splash text at the beginning of the program.</P>
+<B><P>Default: </B>(C) Copyright 2001 (*whatever the current year is*)</P>
+<B><P>Example: </P><DIR>
+<DIR>
+
+</B><P>[copyright]</P>
+<P>&copy;2001, The Alcor Group</P></DIR>
+</DIR>
+<a name=cyos>
+</FONT><B><FONT FACE="Arial" SIZE=4><P>[cyos]</P>
+</a>
+</B></FONT><FONT SIZE=2><P>The cyos command is followed by a single line with the minimum CyOS version that is needed to run the application.  </P>
+<B><P>Default: </P>
+</B><P>&#9;For [sdk] &gt; 2 : cyos=1.5.1</P>
+<P>&#9;For other sdk : cyos=1.3.57</P>
+<B><P>Example: </P><DIR>
+<DIR>
+
+</B><P>[cyos]</P>
+<P>1.5.1</P></DIR>
+</DIR>
+<a name=environment>
+</FONT><B><FONT FACE="Arial" SIZE=4><P>[environment]</P>
+</a>
+</B></FONT><FONT SIZE=2><P>The environment command is followed by one or more lines setting environment variables in the form of name=value.  There are 3 special environment variables.  CYBIKO_SDK is the path to where you installed the Cybiko SDK.  PATH is the list of directories where executables can be found.  And CC is the C compiler (normally vcc).  You can modify CC to include optimization options.</P>
+<B><P>Default: </B>CC=vcc</P>
+<B><P>Example: </P><DIR>
+<DIR>
+
+</B><P>[environment]</P>
+<P>CYBIKO_SDK=C:\program files\cybiko\sdk3.0.pro</P>
+<P>PATH=C:\program files\cybiko\sdk3.0.pro\bin;%PATH%</P>
+<P>CC=vcc –V15</P></DIR>
+</DIR>
+<a name=files>
+</FONT><B><FONT FACE="Arial" SIZE=4><P>[files]</P>
+</a>
+</B></FONT><FONT SIZE=2><P>The files command is followed by one or more lines of text each of which is a file name which will be used by the application.</P>
+<B><P>Default: </B>none</P>
+<B><P>Example:</B> </P><DIR>
+<DIR>
+
+<P>[files]</P>
+<P>datafile1.dat</P>
+<P>rooms.dat</P></DIR>
+</DIR>
+<a name=help>
+</FONT><B><FONT FACE="Arial" SIZE=4><P>[help]</P>
+</a>
+</B></FONT><FONT SIZE=2><P>The help command is followed by one or more lines of helpful text.  This text will appear in the help window when the user hits the &quot;?&quot; help key in the application.</P>
+<B><P>Default:</B> none</P>
+<B><P>Example: </P><DIR>
+<DIR>
+
+</B><P>[help]</P>
+<P>Tardis Adventure</P>
+<P>This is the help text for tardis</P>
+<P>N=north</P>
+<P>S=south</P>
+<P>E=east</P>
+<P>W=west</P></DIR>
+</DIR>
+<a name=icon>
+</FONT><B><FONT FACE="Arial" SIZE=4><P>[icon]</P>
+</a>
+</B></FONT><FONT SIZE=2><P>The icon command is followed be a single line of text which is the filename of a bitmap (.bmp) file to be converted into root.ico file for use as the application’s on-screen icon. (48x47 pixels)</P>
+<B><P>Default: </B>inc\b2c.bmp</P>
+<B><P>Example:</P><DIR>
+<DIR>
+
+</B><P>[icon]</P>
+<P>tardis.bmp</P></DIR>
+</DIR>
+<a name=icon0>
+</FONT><B><FONT FACE="Arial" SIZE=4><P>[icon0]</P>
+</a>
+</B></FONT><FONT SIZE=2><P>The icon0 command is followed be a single line of text which is the filename of a bitmap (.bmp) file to be converted into 0.ico file for use as the application’s on-screen icon (SDK 3 only, 30x18 pixels)</P>
+<B><P>Default: </B>inc\0.bmp</P>
+<B><P>Example:</P><DIR>
+<DIR>
+
+</B><P>[icon0]</P>
+<P>tardis.bmp</P></DIR>
+</DIR>
+<a name=icon1>
+</FONT><B><FONT FACE="Arial" SIZE=4><P>[icon1]</P>
+</a>
+</B></FONT><FONT SIZE=2><P>The icon1 command is followed be a single line of text which is the filename of a bitmap (.bmp) file to be converted into 1.ico file for use as the application’s menu icon (SDK 3 only, 9x9 pixels)</P>
+<B><P>Default: </B>inc\1.bmp</P>
+<B><P>Example:</P><DIR>
+<DIR>
+
+</B><P>[icon1]</P>
+<P>tardis.bmp</P></DIR>
+</DIR>
+<a name=include>
+</FONT><B><FONT FACE="Arial" SIZE=4><P> [include=filename.bld]</P>
+</a>
+</B></FONT><FONT SIZE=2><P>The include command suspends reading the current file and starts reading the include file.  Processing will continue in the original file when the included file is completely read.</P>
+<B><P>Default:</B> none</P>
+<B><P>Example:</P><DIR>
+<DIR>
+
+</B><P>[include=sdk3.bld] </P></DIR>
+</DIR>
+<a name=music>
+</FONT><B><FONT FACE="Arial" SIZE=4><P>[music]</P>
+</a>
+</B></FONT><FONT SIZE=2><P>The music command is followed by one or more lines of text each of which is a music file (.mus) which will be used by the application.</P>
+<B><P>Default : </B>none</P>
+<B><P>Example : </P><DIR>
+<DIR>
+
+</B><P>[music]</P>
+<P>tardis.mus</P>
+<P>tada.mus</P>
+<P>theme.mus</P></DIR>
+</DIR>
+<a name=name>
+</FONT><B><FONT FACE="Arial" SIZE=4><P>[name]</P>
+</a>
+</B></FONT><FONT SIZE=2><P>The name command is followed by a single line with the name of the application as it will appear on the Cybiko’s menu.</P>
+<B><P>Default: </B>the name of the source file stripped of the .b2c extension</P>
+<B><P>Example:</P><DIR>
+<DIR>
+
+</B><P>[name]</P>
+<P>Tardis Adventure</P></DIR>
+</DIR>
+<a name=objects>
+</FONT><B><FONT FACE="Arial" SIZE=4><P>[objects]</P>
+</a>
+</B></FONT><FONT SIZE=2><P>The objects command is followed by one or more lines of text, each of which is an object file previously compiled by the vcc command.  The objects will be linked into the resultant program.</P>
+<B><P>Default: </B>none</P>
+<B><P>Example:</P><DIR>
+<DIR>
+
+</B><P>[objects]</P>
+<P>FileListForm.o</P>
+<P>Jed.o</P></DIR>
+</DIR>
+
+<P> </P>
+<a name=option>
+</FONT><B><FONT FACE="Arial" SIZE=4><P>[option]</P>
+</a>
+</B></FONT><FONT SIZE=2><P>The option command is followed by one or more lines of text, each of which is an option to be set.  There is currently only one option – &quot;keep&quot;.  If the keep option is specified then all intermediate files are left behind for user inspection.  If keep is not specified, then the intermediate files are all deleted.</P>
+<B><P>Default: </B>none</P>
+<B><P>Example:</P><DIR>
+<DIR>
+
+</B><P>[option]</P>
+<P>keep</P></DIR>
+</DIR>
+<a name=output>
+</FONT><B><FONT FACE="Arial" SIZE=4><P>[output]</P>
+</a>
+</B></FONT><FONT SIZE=2><P>The output command is followed by one line of text, which is the name of the output program</P>
+<B><P>Default: </B>same as the [source] file with .app (foo.app, for example)</P>
+<B><P>Example:</P><DIR>
+<DIR>
+
+</B><P>[option]</P>
+<P>xfoo.app</P></DIR>
+</DIR>
+<a name=path>
+</FONT><B><FONT FACE="Arial" SIZE=4><P> [path]</P>
+</a>
+</B></FONT><FONT SIZE=2><P>The path command is followed by a single line with the path to the B2C directory.  This path is used to find the executables b2cpp, b2c, the object file b2cuser.o, default icons, and the include file b2cuser.h.</P>
+<B><P>Default</B>: . (*current directory *)</P>
+<B><P>Example:</P><DIR>
+<DIR>
+
+</B><P>[path]</P>
+<P>c:\unzipped\b2cv3d</P></DIR>
+</DIR>
+<a name=pic>
+</FONT><B><FONT FACE="Arial" SIZE=4><P>[pic=filename.pic]</P>
+</a>
+</B></FONT><FONT SIZE=2><P>The pic command requires a parameter which is the name of the .pic file to create.  The pic command is followed by one or more lines of text each of which is a bitmap (.bmp) to be converted to the .pic format and included within the filename.pic file.  Multiple files can be specified allowing for animated sprites.</P>
+<B><P>Default:</B> none</P>
+<B><P>Example:</P><DIR>
+<DIR>
+
+</B><P>[pic=filename.pic] </P>
+<P>lemming01.bmp</P>
+<P>lemming02.bmp</P>
+<P>lemming03.bmp</P>
+<P>lemming04.bmp</P>
+<P>lemming05.bmp</P>
+<P>&nbsp;</P></DIR>
+</DIR>
+<a name=sdk>
+</FONT><B><FONT FACE="Arial" SIZE=4><P>[sdk]</P>
+</a>
+</B></FONT><FONT SIZE=2><P>The sdk command is followed by a single line with the SDK version of your compiler.  Currently only SDK of 2 or 3 is allowed.</P>
+<B><P>Default</B>: 2</P>
+<B><P>Example:</P><DIR>
+<DIR>
+
+</B><P>[sdk]</P>
+<P>3</P></DIR>
+</DIR>
+<a name=source>
+</FONT><B><FONT FACE="Arial" SIZE=4><P> [source]</P>
+</a>
+</B></FONT><FONT SIZE=2><P>The source command is followed by one or more lines with the names of the source files.  This is the only required field.  You may specify both .b2c and .c files.  The first file is considered the &quot;main&quot; file and will be used to name the output file if the [output] command is not specified.</P>
+<B><P>Default</B>: none</P>
+<B><P>Example:</P><DIR>
+<DIR>
+
+</B><P>[source]</P>
+<P>tardis.b2c</P>
+
+<P>or</P>
+
+<P>[source]</P>
+<P>mygame.b2c</P>
+<P>myutils.c</P>
+<P>moreutils.c</P></DIR>
+</DIR>
+<a name=splash_image>
+</FONT><B><FONT FACE="Arial" SIZE=4><P> [splash.image]</P>
+</a>
+</B></FONT><FONT SIZE=2><P>The splash.image command is followed by a single line of text which is the name of a bitmap file (.bmp) which will be converted into the intro.pic file for use as the application’s on-screen splash page (displayed when the app runs).</P>
+<B><P>Default: </B>none</P>
+<B><P>Example: </P><DIR>
+<DIR>
+
+</B><P>[splash.image]</P>
+<P>tardis_intro.bmp</P></DIR>
+</DIR>
+<a name=splash_text>
+</FONT><B><FONT FACE="Arial" SIZE=4><P>[splash.text]</P>
+</a>
+</B></FONT><FONT SIZE=2><P>The splash.text command is followed by one or more lines of text to be displayed at the startup of an application.  The [name], [version], [author] and [copyright] fields are displayed followed by any text entered here.</P>
+<B><P>Default: </B>none</P>
+<B><P>Example:</P><DIR>
+<DIR>
+
+</B><P>[splash.text]</P>
+<P>Welcome to the Tardis Adventure</P>
+<P>To begin playing press any key</P></DIR>
+</DIR>
+<a name=type>
+</FONT><B><FONT FACE="Arial" SIZE=4><P>[type]</P>
+</a>
+</B></FONT><FONT SIZE=2><P>The type command is followed by a single line with the type of the program.  It must be ‘root’, ‘game’ or ‘app’.</P>
+<B><P>Default:</B> game</P>
+<B><P>Example: </P><DIR>
+<DIR>
+
+</B><P>[type]</P>
+<P>game</P></DIR>
+</DIR>
+<a name=version>
+</FONT><B><FONT FACE="Arial" SIZE=4><P>[version]</P>
+</a>
+</B></FONT><FONT SIZE=2><P>The version command is followed by a single line with the version string.  This appears in the Splash page and in the root.inf file.</P>
+<B><P>Default:</B> 1.0.0</P>
+<B><P>Example:</P><DIR>
+<DIR>
+
+</B><P>[version]</P>
+<P>1.0.0</P></DIR>
+</DIR>
+</FONT></BODY>
+</HTML>

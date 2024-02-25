@@ -1,0 +1,44 @@
+<script language="JavaScript">
+document.bgColor = '#D9E8FF'; //'#88AAEE';
+</script>
+<b>Professr's Wiki Page</b><br><br><br>
+''Contact Info:''\\
+__AIM__: Professr3\\
+__Yahoo__: Professr3\\
+__MSN__: gtg395b@prism.gatech.edu\\
+__Email__: gtg395b@prism.gatech.edu\\
+\\
+''Projects:''
+&nbsp;&nbsp;&nbsp;<table>
+<tr><td>[Tanx]</td></tr>
+<tr><td>More to come soon...</td></tr></table>
+<br><br><br>
+__Latest Quote from Slashdot:__
+<br>
+"Programming - The art of making a Swiss watch with a sledgehammer"
+<br>
+<br>
+''When they came for the Kazaa users, I said nothing because I wasn't a Kazaa user; 
+
+When they came for the Grokster users, I said nothing because I wasn't a Grokster user; 
+
+When they came for the Gnutella users, I said nothing because I wasn't a Gnutella user; 
+
+When they came for me there was no one left to speak for me. ''
+<br>
+<img src=http://greg-smith.com:8080/C3PO/attach?page=Professr/noriaa.gif>
+<br>
+[Boycott RIAA!|http://www.boycott-riaa.com]
+<br><br><br><br>
+
+&nbsp;&nbsp;&nbsp;<table>
+<tr><td><b>Stuff Professr likes to do:</b></td></tr>
+<tr><td>1. Hug his teddy bear</td></tr>
+<tr><td>2. Write code (usually Cybiko-related)</td></tr>
+<tr><td>3. Build robots</td></tr>
+</table>
+<br><br><br><br><br><br><br><br><br><br><br><br>
+----
+
+!Professr has edited these pages:
+[{ReferringPagesPlugin separator='\n'}]

@@ -1,0 +1,5 @@
+<a href="Pages/Secrets/xtremeblockdiagram.pdf">Xtreme Block Diagram</a>\\
+<a href="Pages/Secrets/xtremeinternalphotos.pdf">Xtreme Internal Photos</a>\\
+<a href="Pages/Secrets/xtremephotos.pdf">Xtreme Photos</a>\\
+<a href="Pages/Secrets/xtremeschematics.pdf">Xtreme Schematics</a>\\
+<a href="Pages/Secrets/xtremeusersguide.pdf">Xtreme Users Guide</a>\\

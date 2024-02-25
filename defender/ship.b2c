@@ -1,0 +1,75 @@
+dim ship_x as int
+dim ship_y as int
+dim ship_z as int
+dim ship_dx as int
+dim ship_dy as int
+dim ship_mode as int
+dim ship_delay as int
+dim ship_max_delay as int
+dim ship_hit as int
+dim ship_n as int
+
+sub ship_init_all
+  ship_x = 80
+  ship_y = 42
+  ship_mode = 0
+  ship_hit = 0
+  ship_dx=0
+  ship_dy=0
+end sub
+
+sub ship_init
+  sprite sprite_ship, "ship.pic"
+  ship_max_delay = 1
+end sub
+
+sub ship_redraw
+    dim x as int
+
+    if ship_hit then exit sub;
+    x = ship_x - pf_x
+    if (x < 0) then x = x + 1280
+    move sprite_ship, x, ship_y, ship_z, ship_mode
+    redraw sprite_ship
+end sub
+
+sub ship_move
+    dim key_pressed as int
+
+    if ship_hit then exit sub
+    key_pressed = 0
+
+    if key(#KEY_RIGHT) then
+        ship_dx = ship_dx + 1
+        if ship_dx > 8 then ship_dx = 8
+        ship_z = ship_z+1
+        if ship_z >= 3 then ship_z=0
+        key_pressed = 1
+        ship_mode = 0
+    endif
+    if key(#KEY_LEFT) then
+        ship_dx = ship_dx - 1
+        if ship_dx < -8 then ship_dx = -8
+        ship_z = ship_z+1
+        if ship_z >= 3 then ship_z=0
+        key_pressed = 1
+        ship_mode = 1
+    endif
+    ship_x = ship_x + ship_dx
+    
+    if key_pressed = 0 then ship_z = 0
+
+    if key(#KEY_UP) then ship_y = ship_y - 4
+    if key(#KEY_DOWN) then ship_y = ship_y + 4
+
+    if ship_x > 1279 then ship_x = ship_x - 1280
+    if ship_x < 0 then ship_x = 1280 + ship_x
+
+    if ship_y < 15 then ship_y=15
+    if ship_y > 94 then ship_y=94
+
+    pf_x = ship_x - 80 + 11
+    if pf_x < 0 then pf_x = 1280 + pf_x
+
+end sub
+

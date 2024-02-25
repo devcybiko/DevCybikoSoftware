@@ -1,0 +1,211 @@
+<html>
+<body>
+<pre>
+<h1>Build Log</h1>
+<h3>
+--------------------Configuration: b2c - Win32 Release--------------------
+</h3>
+<h3>Command Lines</h3>
+Build : warning : failed to (or don't know how to) build 'C:\Data\Cybiko\Alcor\b2c\bwrap.c'
+
+Build : warning : failed to (or don't know how to) build 'C:\Data\Cybiko\Alcor\b2c\bwait.c'
+
+Build : warning : failed to (or don't know how to) build 'C:\Data\Cybiko\Alcor\b2c\bvibrate.c'
+
+Build : warning : failed to (or don't know how to) build 'C:\Data\Cybiko\Alcor\b2c\busermenu.c'
+
+Build : warning : failed to (or don't know how to) build 'C:\Data\Cybiko\Alcor\b2c\btouser.c'
+
+Build : warning : failed to (or don't know how to) build 'C:\Data\Cybiko\Alcor\b2c\btocyid.c'
+
+Creating temporary file "C:\DOCUME~1\Greg\LOCALS~1\Temp\RSP563D.tmp" with contents
+[
+/nologo /ML /W3 /GX /O2 /D "WIN32" /D "NDEBUG" /D "_CONSOLE" /D "_MBCS" /Fo"Release/" /Fd"Release/" /FD /c 
+"C:\Data\Cybiko\Alcor\b2c\bprint.c"
+"C:\Data\Cybiko\Alcor\b2c\bterm.c"
+]
+Creating command line "cl.exe @C:\DOCUME~1\Greg\LOCALS~1\Temp\RSP563D.tmp" 
+Creating temporary file "C:\DOCUME~1\Greg\LOCALS~1\Temp\RSP563E.tmp" with contents
+[
+kernel32.lib user32.lib gdi32.lib winspool.lib comdlg32.lib advapi32.lib shell32.lib ole32.lib oleaut32.lib uuid.lib odbc32.lib odbccp32.lib kernel32.lib user32.lib gdi32.lib winspool.lib comdlg32.lib advapi32.lib shell32.lib ole32.lib oleaut32.lib uuid.lib odbc32.lib odbccp32.lib /nologo /subsystem:console /incremental:no /pdb:"Release/b2c.pdb" /machine:I386 /out:"Release/b2c.exe" 
+.\Release\b2c.obj
+.\Release\b2cl.obj
+.\Release\b2cy.obj
+.\Release\b3dcollision.obj
+.\Release\b3dget.obj
+.\Release\b3dmove.obj
+.\Release\b3dredraw.obj
+.\Release\b3drmove.obj
+.\Release\b3droom.obj
+.\Release\b3dsprite.obj
+.\Release\b3dwall.obj
+.\Release\bbeep.obj
+.\Release\bbody.obj
+.\Release\bchar.obj
+.\Release\bcircfill.obj
+.\Release\bcircle.obj
+.\Release\bclose.obj
+.\Release\bcls.obj
+.\Release\bcollision.obj
+.\Release\bdialog.obj
+.\Release\bdim.obj
+.\Release\belse.obj
+.\Release\belseif.obj
+.\Release\beof.obj
+.\Release\bexists.obj
+.\Release\bexit.obj
+.\Release\bexitfunction.obj
+.\Release\bexitprogram.obj
+.\Release\bexpr.obj
+.\Release\bfilelist.obj
+.\Release\bfindfile.obj
+.\Release\bfont.obj
+.\Release\bfor.obj
+.\Release\bfunccall.obj
+.\Release\bfunction.obj
+.\Release\bget.obj
+.\Release\bgetchar.obj
+.\Release\bgetkey.obj
+.\Release\bgoto.obj
+.\Release\bif.obj
+.\Release\bink.obj
+.\Release\binline.obj
+.\Release\binput.obj
+.\Release\binputxy.obj
+.\Release\bkey.obj
+.\Release\bkeyclick.obj
+.\Release\blabel.obj
+.\Release\blen.obj
+.\Release\bline.obj
+.\Release\blist.obj
+.\Release\bload.obj
+.\Release\bmath.obj
+.\Release\bmenu.obj
+.\Release\bmenuxy.obj
+.\Release\bmid.obj
+.\Release\bmove.obj
+.\Release\bmusic.obj
+.\Release\bnextfile.obj
+.\Release\bongosub.obj
+.\Release\bongoto.obj
+.\Release\bop.obj
+.\Release\bopen.obj
+.\Release\boutline.obj
+.\Release\bpage.obj
+.\Release\bpagecopy.obj
+.\Release\bpaper.obj
+.\Release\bparam.obj
+.\Release\bpoint.obj
+.\Release\bprint.obj
+.\Release\bprintno.obj
+.\Release\bprintxy.obj
+.\Release\bprogram.obj
+.\Release\bput.obj
+.\Release\brect.obj
+.\Release\brectfill.obj
+.\Release\bredraw.obj
+.\Release\bremove.obj
+.\Release\brename.obj
+.\Release\bright.obj
+.\Release\bscore.obj
+.\Release\bsendmessage.obj
+.\Release\bsprint.obj
+.\Release\bsprite.obj
+.\Release\bsprite_get.obj
+.\Release\bstatement.obj
+.\Release\bterm.obj
+.\Release\bthen.obj
+.\Release\btocyid.obj
+.\Release\btokenize.obj
+.\Release\btouser.obj
+.\Release\btype.obj
+.\Release\busermenu.obj
+.\Release\bvibrate.obj
+.\Release\bwait.obj
+.\Release\bwhile.obj
+.\Release\bwrap.obj
+.\Release\node.obj
+.\Release\yywrap.obj
+]
+Creating command line "link.exe @C:\DOCUME~1\Greg\LOCALS~1\Temp\RSP563E.tmp"
+<h3>Output Window</h3>
+Compiling...
+bprint.c
+bterm.c
+Generating Code...
+Linking...
+bprint.obj : error LNK2001: unresolved external symbol _new_symname
+Release/b2c.exe : fatal error LNK1120: 1 unresolved externals
+Error executing link.exe.
+Build : warning : failed to (or don't know how to) build 'C:\Data\Cybiko\Alcor\b2c\bsendmessage.c'
+
+Build : warning : failed to (or don't know how to) build 'C:\Data\Cybiko\Alcor\b2c\bremove.c'
+
+Build : warning : failed to (or don't know how to) build 'C:\Data\Cybiko\Alcor\b2c\bpoint.c'
+
+Build : warning : failed to (or don't know how to) build 'C:\Data\Cybiko\Alcor\b2c\bpagecopy.c'
+
+Build : warning : failed to (or don't know how to) build 'C:\Data\Cybiko\Alcor\b2c\bpage.c'
+
+Build : warning : failed to (or don't know how to) build 'C:\Data\Cybiko\Alcor\b2c\bnextfile.c'
+
+Build : warning : failed to (or don't know how to) build 'C:\Data\Cybiko\Alcor\b2c\bmove.c'
+
+Build : warning : failed to (or don't know how to) build 'C:\Data\Cybiko\Alcor\b2c\bload.c'
+
+Build : warning : failed to (or don't know how to) build 'C:\Data\Cybiko\Alcor\b2c\bline.c'
+
+Build : warning : failed to (or don't know how to) build 'C:\Data\Cybiko\Alcor\b2c\blen.c'
+
+Build : warning : failed to (or don't know how to) build 'C:\Data\Cybiko\Alcor\b2c\bkeyclick.c'
+
+Build : warning : failed to (or don't know how to) build 'C:\Data\Cybiko\Alcor\b2c\bgetkey.c'
+
+Build : warning : failed to (or don't know how to) build 'C:\Data\Cybiko\Alcor\b2c\bgetchar.c'
+
+Build : warning : failed to (or don't know how to) build 'C:\Data\Cybiko\Alcor\b2c\bfindfile.c'
+
+Build : warning : failed to (or don't know how to) build 'C:\Data\Cybiko\Alcor\b2c\bfilelist.c'
+
+Build : warning : failed to (or don't know how to) build 'C:\Data\Cybiko\Alcor\b2c\bexists.c'
+
+Build : warning : failed to (or don't know how to) build 'C:\Data\Cybiko\Alcor\b2c\beof.c'
+
+Build : warning : failed to (or don't know how to) build 'C:\Data\Cybiko\Alcor\b2c\bdialog.c'
+
+Build : warning : failed to (or don't know how to) build 'C:\Data\Cybiko\Alcor\b2c\bcollision.c'
+
+Build : warning : failed to (or don't know how to) build 'C:\Data\Cybiko\Alcor\b2c\bcls.c'
+
+Build : warning : failed to (or don't know how to) build 'C:\Data\Cybiko\Alcor\b2c\bclose.c'
+
+Build : warning : failed to (or don't know how to) build 'C:\Data\Cybiko\Alcor\b2c\bcircle.c'
+
+Build : warning : failed to (or don't know how to) build 'C:\Data\Cybiko\Alcor\b2c\bcircfill.c'
+
+Build : warning : failed to (or don't know how to) build 'C:\Data\Cybiko\Alcor\b2c\bbeep.c'
+
+Build : warning : failed to (or don't know how to) build 'C:\Data\Cybiko\Alcor\b2c\b3dwall.c'
+
+Build : warning : failed to (or don't know how to) build 'C:\Data\Cybiko\Alcor\b2c\b3dsprite.c'
+
+Build : warning : failed to (or don't know how to) build 'C:\Data\Cybiko\Alcor\b2c\b3droom.c'
+
+Build : warning : failed to (or don't know how to) build 'C:\Data\Cybiko\Alcor\b2c\b3drmove.c'
+
+Build : warning : failed to (or don't know how to) build 'C:\Data\Cybiko\Alcor\b2c\b3dredraw.c'
+
+Build : warning : failed to (or don't know how to) build 'C:\Data\Cybiko\Alcor\b2c\b3dmove.c'
+
+Build : warning : failed to (or don't know how to) build 'C:\Data\Cybiko\Alcor\b2c\b3dget.c'
+
+Build : warning : failed to (or don't know how to) build 'C:\Data\Cybiko\Alcor\b2c\b3dcollision.c'
+
+
+
+
+<h3>Results</h3>
+b2c.exe - 2 error(s), 38 warning(s)
+</pre>
+</body>
+</html>

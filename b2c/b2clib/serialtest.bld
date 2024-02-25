@@ -1,0 +1,6 @@
+[source]
+serialtest.b2c
+[option]
+#keep
+[files]
+comport.dl

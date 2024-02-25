@@ -1,0 +1,29 @@
+<html>
+<body>
+<pre>
+<h1>Build Log</h1>
+<h3>
+--------------------Configuration: tcplib - Win32 Debug--------------------
+</h3>
+<h3>Command Lines</h3>
+Creating temporary file "C:\DOCUME~1\GREGOR~1\LOCALS~1\Temp\RSP7A0.bat" with contents
+[
+@echo off
+make.bat
+]
+Creating command line "C:\DOCUME~1\GREGOR~1\LOCALS~1\Temp\RSP7A0.bat"
+<h3>Output Window</h3>
+Performing Custom Build Step on .\tcpclient.c
+'vcc' is not recognized as an internal or external command,
+operable program or batch file.
+'vcc' is not recognized as an internal or external command,
+operable program or batch file.
+Error executing c:\windows\system32\cmd.exe.
+
+
+
+<h3>Results</h3>
+tcplib.exe - 1 error(s), 0 warning(s)
+</pre>
+</body>
+</html>

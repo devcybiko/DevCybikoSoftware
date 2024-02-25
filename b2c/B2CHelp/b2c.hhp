@@ -1,0 +1,12 @@
+[OPTIONS]
+Auto Index=Yes
+Compatibility=1.1
+Compiled file=b2c.chm
+Contents file=b2c.hhc
+Default topic=_quickstartguide.htm
+Display compile progress=No
+Full-text search=Yes
+Index file=b2c.hhk
+Language=0x409 English (United States)
+Title=B2C Help Documentation
+

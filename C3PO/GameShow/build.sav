@@ -1,0 +1,2 @@
+@echo off
+..\b2cv3d\bin\b2cbuild %1

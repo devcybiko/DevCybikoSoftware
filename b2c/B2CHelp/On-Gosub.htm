@@ -1,0 +1,33 @@
+<B><P>Topic :</B> On-Gosub</P>
+<B><P>Language Level</B> : B2C Extension</P>
+<B><P>Effectivity :</B> B2C v3</P>
+<B><P>Syntax</B> : </P><DIR>
+<DIR>
+
+<P>On n Gosub sub1, sub2…</P></DIR>
+</DIR>
+
+<B><P>Description :</P><DIR>
+<DIR>
+
+</B><P>On Gosub will call a subroutine based on the value of ‘n’.  If n=1 then sub1 is called, if n=2 then sub2 is called, etc…  If n=0 or greater than the number of supplied subs, processing continues at the next command. </P></DIR>
+</DIR>
+
+<B><P>Example : </P>
+<P>&#9;</B>Sub start_sub</P>
+<P>&#9;&#9;Print &quot;started&quot;</P>
+<P>&#9;End sub</P>
+<P>&#9;Sub scores_sub</P>
+<P>&#9;&#9;Score</P>
+<P>&#9;End sub</P>
+<P>&#9;Sub quit_sub</P>
+<P>&#9;&#9;Exit Program</P>
+<P>&#9;End Sub</P>
+<B><P>&#9;</B>Dim n as int</P><DIR>
+<DIR>
+
+<P>Menu n, &quot;Start&quot;, &quot;Scores&quot;, &quot;Quit&quot;</P>
+<P>On n Gosub start_sub, scores_sub, quit_sub</P>
+<B></DIR>
+</DIR>
+

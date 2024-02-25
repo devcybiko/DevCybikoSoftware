@@ -1,0 +1,85 @@
+option c_coords
+option show off
+option escape off
+
+font "mini_normal_font"
+keyclick off
+
+sprite 0, "elements.pic"
+sprite 1, "cursor.pic"
+
+dim x as int
+dim y as int
+dim block as int
+dim text[140,80] as char
+dim tmp[80] as char
+
+x=0
+y=0
+block=0
+init_text
+
+sub repaint
+  dim n as int
+  move 0, 0, 0
+  move 1, x, y
+  redraw 0
+  redraw 1
+  if (block > -1) then
+      n = wrap(24,3,118,24,center,word,text[block])
+      inline strcpy(tmp, &text[block][n]);
+      n = wrap(31,21,76,24,center,word,tmp)
+  else
+      n = wrap(34,5,70,34,center,word,"Elements By Greg Smith")
+  end if
+  redraw show
+end sub
+
+while true
+    if key(#KEY_LEFT) then x=x-2
+    if key(#KEY_RIGHT) then x=x+2
+    if key(#KEY_UP) then y=y-2
+    if key(#KEY_DOWN) then y=y+2
+    if x<0 then x=0
+    if x>159 then x=159
+    if y<0 then y=0
+    if y>99 then y=99
+    block = -1
+    if x>15 and y>18 and x<28 and y<78 then
+        block=0+(x-15)/7+(y-18)/8*2
+    elseif x>33 and y>42 and x<103 and y<78 then
+        block=14+(x-33)/7+(y-42)/8*10
+    elseif x>106 and y>18 and x<148 and y<73 then
+        block=54+(x-107)/7+(y-18)/8*6
+    elseif x>19 and y>78 and x<116 and y<94 then
+        block=96+(x-19)/7+(y-78)/8*14
+    elseif x>128 and y>85 and key(#KEY_ENTER) then
+        exit while
+    endif
+    repaint
+wend
+
+sub nullify_period(s[] as char)
+   for i=0 to 79
+       if s[i] = \.\ then
+           s[i] = 0
+           i=80
+       endif
+   next
+end sub
+
+sub init_text
+    dim i as int
+    i=0
+    open "elements.dat" for archive as 1
+    while not eof(1)
+        get 1,,tmp
+        tmp[78]=0
+        if tmp[0]<>\#\ then
+            text[i]=tmp
+            nullify_period(text[i])
+            i=i+1
+        endif
+    wend
+    close 1
+end sub

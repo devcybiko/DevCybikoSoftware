@@ -1,0 +1,8 @@
+----
+!!Setting the font on cItems
+----
+A response from devsupport:
+{{{
+define function: 
+__cyos "CyWin" 259 void cItem_SetFont( struct cItem* ptr_citem, struct Font* ptr_font );
+}}}

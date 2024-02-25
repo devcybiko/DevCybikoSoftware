@@ -1,0 +1,44 @@
+From [http://www.cs.uoregon.edu/research/wearables/software.html]
+!Download the source
+[STDLIBSourceCode/stdlib.zip]
+
+!assert.h
+{{{
+assert(n)
+}}}
+
+!ctype.h
+{{{
+int isalnum(int c);
+int isalpha(int c);
+int iscntrl(int c);
+int isdigit(int c);
+int isgraph(int c);
+int isprint(int c);
+int islower(int c);
+int ispunct(int c);
+int isspace(int c);
+int isupper(int c);
+int isxdigit(int c);
+}}}
+
+!stdarg.h
+{{{
+va_list
+va_start(ap, parmN)
+va_arg(ap, type)
+va_end(ap)
+}}}
+
+!string.h
+{{{
+void *memchr(const void *s, int c, size_t n);
+int strcoll(const char *s1, const char *s2);
+size_t strcspn(const char *s1, const char *s2);
+char *strerror(int errnum);
+char *strncat(char *s1, const char *s2, size_t n);
+char *strpbrk(const char *s1, const char *s2);
+size_t strspn(const char *s1, const char *s2);
+char *strtok(char *s1, const char *s2);
+size_t strxfrm(char *s1, const char *s2, size_t n);
+}}}

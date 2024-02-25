@@ -1,0 +1,6 @@
+dim k as int
+k=0
+while(k <> -1)
+        k = getkey
+        printxy 80,80,k
+wend

@@ -1,0 +1,391 @@
+JED V1.0
+The Alternative Graphical User Interface
+For the Cybiko Handheld Computer
+By Greg Smith
+Section 1 :  Introduction
+ Part 1.1 :  Audience
+The audience for this document is the Cybiko programmer who wishes to add a simple graphical user interface to their application.  Therefore the reader is expected to be a C programmer and familiar with the Cybiko SDK.  The reader is also expected to have completed the tutorial programs steps 1-5.  The reader should know how to create and modify makefiles or at least create batch files to compile and link applications.  These are the minimum requirements for reading and applying the information in this document.
+ Part 1.2 :  A New GUI
+When I first started programming the Cybiko I was very pleased with the ease with which I could write new programs.  I could easily modify the existing applications to do variations on a theme.  Then I ventured out to create my own applications and delved into Cybiko's Graphical User Interface.  I found it cumbersome as a user and challenging as a programmer.  So I decided to write my own GUI.  I wanted to create something simple to understand, easy to look at, and easy to use - both as a user and as a programmer.
+
+This new GUI borrows its look and feel from the Motif windowing system.  This is a popular windowing environment used in Unix/Linux systems and is a cousin to the Microsoft Windows look and feel.  The design is characterized by using a light gray background and 3-D effects.  I hope that this design will be more familiar to the user community and therefore will be embraced by them.  The font used for the GUI defaults to mini_normal_font but the programmer can set the font for the entire application to any font they like.  Each item can also be tagged individually with its own font.
+ Part 1.3 :  Goals for a new GUI
+The first and most important goal for the new GUI was to make it easier for the programmer to write and maintain the code making up a Cybiko GUI application.  Secondly, the GUI had to be easy to use for the user and be a recognizable interface - something the user may already have used in the past.  Finally, the internal structure of the GUI had to be as simple as possible - making it easy to maintain (for me) and also less prone to errors.  I believe these goals have been met in Jed V1.0.
+ Part 1.4 :  The Deliverables
+The Jed GUI is delivered as a single object module (jed.o) which you link into your application.  It adds less than 5KB to the size of your application.  The header file (jed.h) is included at the top of your source file.  These two files together (and this manual) comprise all of the necessary ingredients to create a Jed application.
+
+There are also 2 sample programs demonstrating how to use the Jed interface.
+ Part 1.5 :  The Name
+I wish that I could say that there is some significance to the acronym J.E.D.  Surely I have tried to come up with one.  But the fact is that the GUI is named after the character Buddy Ebson made famous on the Beverly Hillbillies - Jed Clampett.  I happen to be a big fan of the show, especially the early, black and white episodes.
+
+Jed (the man) is a simple unassuming character.  He dresses in plain grays and whites.  His clothes are worn, but always clean.  Jed (the GUI) is fashioned in his image.  Gray-scales, well-worn metaphors, and a clean interface.
+ Part 1.6 :  Some History
+Jed (the GUI again) was first implemented on a VT100 terminal emulator for a Sun Microsystems Solaris Unix system.  I needed a nice text-based user interface for some software which I ran over the phone lines.  The users had become quite accustomed to GUIs and had come to expect ease of use in their interfaces.  
+
+So I created Jed (the curses based interface).  It was characterized by having only 3 classes of item - the text item (non-modifiable text used for labels), the string item (single-line data entry), and the button item (a field which when highlighted performed some action).  This was a very popular model both with users and with programmers.  Later the model was expanded to include other item classes and was converted to a Graphical User Interface.
+
+Today, Jed is reincarnated for the Cybiko.  This is all new code, only the concepts from the early curses-based Jed are inherited.  Jed for Cybiko makes not only the GUI easier to write, but also makes message processing easier to handle.  All the keyboard events are handled for you and any message that comes to your application is passed to the Jed_process_message() function (which you supply).  You can even handle polling events (timeouts to make your application animated, for instance).
+
+Version 1.0 of Jed does not handle bitmaps directly, but you can still call Cybiko functions to interact with bitmaps and other Cybiko internals.
+Section 2 :  Jed Operating Model
+ Part 2.1 :  Forms
+A Jed form is a collection of items.  Items can be Text (single-line non-modifiable text), String (single-line modifiable text), Console (multi-line non-modifiable text with scrolling), List (selectable text items), and Button (rectangular regions which perform an action).  You may have as many forms in an application as you have RAM to accommodate them.  You may have as many items in a form as you have RAM to accommodate them, too.
+
+Once a form is created, it is displayed  by calling Jed_main().  The Jed_main() function handles all keyboard events which make the Jed GUI operate.  Jed_main() returns when the user presses the Enter key over an item (List, String, or Button).  It is up to the application program to determine which item caused the return and process the form.
+
+During Jed_main() it is possible that another message has come into the application's queue.  When that occurs, the user-supplied function Jed_process_message() is called.  It is passed a pointer to the current form and a pointer to the message.  Jed_process_message() returns either a False or a True value.  If False is returned, the message is assumed to be not handled by you and is passed to the default message handler.  If True is returned, the message is assumed to have been handled by you and is not passed to the default message handler.  In either case, the message is deleted by Jed_main().
+
+Note: In Jed V1.0 all keyboard events are swallowed by Jed_main().  This means that the Help key does not work as expected.  This is considered a bug and will be fixed in the next release.
+
+In the event of a timeout, the message pointer passed to Jed_process_message() will be NULL.  This alerts you to a timeout and allows you to add animation or polling to your application.
+
+When the form is no longer needed, it can be destroyed with Jed_close().  All RAM used by the form is free'd and further calls to the form will guarantee unpredictable results.
+
+ Part 2.2 :  Items
+Items are created with a <itemtype>_new() function and destroyed with a Jed_destroy_item() function.  All items are string based.  This means that you set the item's value by passing it a string, and when you get an item's value you will receive a string.  Note that the string you receive "belongs" to the item.  Modifying it will generate unpredictable results.
+
+The user navigates through the items using the TAB key.  The tab order between items is determined by the order in which they were created.  Only Button, String, List, and Console items can hold the current "selection".  Text items are not selectable.  When an item has the selection, it is painted with a white background and appears to be depressed into the screen.
+
+If an item has the selection, you may use the arrow keys to manipulate it (except Buttons, the arrow keys have no effect on them).  When the item has the selection, then the Enter key becomes active.  If the Enter key is pressed  on a List, Button, or String item the Jed_main_loop() will end and return to the application with a pointer to the item which last held the selection.  (The Console is a read-only item so pressing the Enter key has no effect)
+
+* 
+The Text Item does little more than display text.  The user has no interaction with the Text Item
+* The Button Item is the action item.  When the user Tabs into the button it becomes "depressed" into the screen and turns white.  If the user presses the Enter key, control is returned to the calling application.
+* The String Item allows the user to enter text into a field.  The following keys are operational inside the String Item:
+* Letters and Numbers - inserts characters into the item
+* Left and Right arrow keys - move the cursor left and right
+* Del - delete one character to the right of the cursor
+* Bksp - delete one character to the left of the cursor
+* Enter - returns control back to the application
+* Tab - moves the selection to the next Item
+* Shift-letter - uppercases the letter
+* Shift-Arrow - moves the cursor to the beginning or end of the item
+* Shift-Bksp - delete all text in the item
+* Shift-Del - delete all characters to the right of the cursor
+* The Console Item is a multiline read-only text item.  When selected you can use the Up and Down arrow keys to scroll back and forth within the text.  (The limit to the scrolling is determined at the time the Console Item was created).  Pressing the Enter key in the Console Item has no effect.
+* The List Item displays a list of strings only one of which can be selected at a time.  When the List Item is selected, the Up and Down arrow keys move the current selection up and down.  When the Enter key is pressed, control returns to the calling application.
+ Part 2.3 :  Jed Return Code (Jed_rc)
+All Jed functions (with notable exceptions) return a Jed Return Code (Jed_rc).  This is a short integer describing the relative success of the call.  Currently all Jed functions return JED_SUCCESS - which is defined as zero.  In the future other error codes may be returned.
+ Part 2.4 :  Jed Data Structures
+The Jed data structures are visible to the world, but only for my convenience.  Please, do not rely upon the internals of these structures in any way.  THEY WILL CHANGE WITH THE NEXT RELEASE.  Also in the next release I will have made them opaque so that the internals will be hidden from the caller.  YOU HAVE BEEN WARNED!
+ Part 2.5 :  
+Jed Hello World Program
+1) #include "jed.h"
+
+2) long main(int argc, char* argv[], bool start) {
+3) struct module_t main_module;
+4) Jed *hello_form;
+5) Jed_item *label1;
+6) Jed_item *label2;
+7) Jed_item *button1;
+8) Jed_item *ji;
+
+9) init_module(&main_module);
+
+10) jed_open(&hello_form, &main_module, NULL);
+11) jed_button_new(&button1, hello_form, 64, 46, 32, 32, "Ok", cool_bold_font);
+12) jed_text_new(&label1, hello_form, 55, 23, 0, 0, "Hello World", cool_bold_font);
+13) jed_text_new(&label2, hello_form, 25, 88, 0, 0, "(press enter to continue)", NULL);
+14) jed_main(hello_form, &ji, 0);
+15) jed_close(hello_form);
+16) return 0;
+17) }
+18) Jed_rc jed_process_message(Jed *jed, struct Message *message) {
+19) return 0;
+20) }
+ 
+Line 1) Include the jed.h file.  It also includes CyWin.h
+Line 2) Standard Cybiko main function
+Line 3) Standard module_t structure
+Line 4) Declaration of the form
+Line 5) Delaration of the label for "Hello World"
+Line 6) Declaration of the label for "Press enter..."
+Line 7) Declaration of the button item
+Line 8) Declaration for the return item when enter is pressed
+Line 9) Standard Cybiko Initialization function
+Line 10) Open the jed form using standard font (small font)
+Line 11) Create a new button at 64,64 and 32x32 pixels, text="Ok" and large font
+Line 12) Create a new text object at 55,23, text = "Hello World", and large font
+Line 13) Create a new text object at 25,88, text = "(press enter to continue)", and using the same font as the form
+Line 14) The jed main loop, returns when user presses Enter or Escape
+Line 15) Jed close - deletes all object in the form
+Line 16) Return 0 - end of program
+Line 17) }
+Line 18) jed_process message - called on any messsage not interpretted by Jed_main_loop
+Line 19) return 0 - indicates we did not process the message and default processing is needed
+
+
+
+Section 3 :  Jed Form Functions
+ Part 3.1 :  Introduction
+Jed operates on a concept of items within a form.  To create a form you call Jed_open().  Then, you make calls to <itemtype>_new() one or more times.  When you are through with the form you call Jed_close() to dispose of the form.  A form takes up the entire display.  You may define a default font for the form in the Jed_open() call.
+
+Once all the form's items are defined, you must call Jed_main() to activate the form.  It is possible to define multiple forms in the user interface, but only one may be active at a time.  Jed_main() takes the form as a parameter and repaints the display with the form it is passed.
+
+You are required to create a Jed_process_message() function where messages are processed.  At a minimum, this function must return False.  Returning False indicates to Jed_main() that the message was not handled by your Jed_process_message() function, and therefore will be passed to the default Cybiko OS message handler.
+ Part 3.2 :  Jed_open
+Jed_rc jed_open(Jed **jed, struct module_t *mm, struct Font *font);
+	Jed **jed 		- the address of a jed form pointer
+	Struct module_t *mm 	- a pointer to the value returned by init_module()
+	Struct Font *font 		- any font to use as the default font in the form
+
+Jed_open() creates a new, blank form for use in your application.  You may create as many forms as you like.
+
+Example:
+#include "jed.h"
+long main(int argc, char* argv[], bool start)
+{
+  struct module_t main_module;
+  Jed *main_form;
+  Jed_item *ji;
+  init_module(&main_module);
+  jed_open(&main_form, &main_module, NULL);
+:
+:
+  while(1)
+  {
+      jed_main(main_form, &ji, 1000);
+      if (ji)
+      {
+	// some things to do
+      }
+      else
+      {
+break;  // escape pressed
+      }
+  }  
+  jed_close(main_form);
+}
+ Part 3.3 :  Jed_close
+Jed_rc jed_close(Jed *jed);
+	Jed *jed - pointer to form to close.
+
+Jed_close() frees all memory associated with the form including all items attached to it.
+See Also: jed_open()
+
+ Part 3.4 :  Jed_main
+Jed_rc jed_main(Jed *jed, Jed_item **rtn_ji, long timeout);
+	Jed *jed - pointer to form 
+	Jed_Item **rtn_ji - address of a Jed_item pointer which indicates the item causing return.  
+NULL indicates the Esc key was pressed.
+	Long timeout - the amount of time to wait for messages in milliseconds.  0 indicates no timeout.
+
+Jed_main() is the main loop for Jed forms.  The form and all its items is repainted and Jed_main() begins to wait for a message.  All keyboard messages are processed by Jed_main().  Any other message is passed to the user-supplied function Jed_process_message().  If Jed_process_message() returns 0 (False) then Jed_main() assumes the user-supplied function did not process the message and it is passed to the default Cybiko message processing function and then deleted.  If Jed_process_message() returns any other value (True) then Jed_main() assumes the user-supplied function processed the message and the message is deleted.
+
+If the timeout period elapses before a message is received, Jed_process_message() is called with a NULL pointer in place of the pointer to the message.  Jed_main() returns when either the Enter key or the Esc key is pressed.  If the Enter key is pressed then the item holding the current selection is returned (in the rtn_ji parameter).  Else, if the Esc key is pressed, then rtn_ji is NULL.
+
+See Also: Jed_open(), Jed_process_message()
+ Part 3.5 :  Jed_process_message
+Jed_rc jed_process_message(Jed *jed, struct Message *message);
+	Jed *jed - the form upon which the message was delivered
+	struct Message *message - the message in question (may be NULL)
+
+Jed_process_message() is called by Jed_main() whenever a message arrives.  The parameter jed is a pointer to the form which was being processed by Jed_main() when the message arrived.  The parameter message is a pointer to the message that was received by Jed_main().  If the message is a NULL pointer then Jed_process_message() was called as a result of a timeout.  The function should return True (non-zero) if the message was processed by Jed_process_message() and default processing should not take place.  The function should return False (zero) if the message was not processed by Jed_process_message() and default processing should take place.
+
+See Also : Jed_main()
+ Part 3.6 :  Jed_repaint
+Jed_rc jed_repaint(Jed *jed);
+	Jed *jed - the form to repaint
+
+Repaints all items in the form.  This function is called for you each time you call Jed_main().
+ Part 3.7 :  Jed_repaint_item
+Jed_rc jed_repaint_item(Jed_item *ji, bool repaint);
+	Jed_item *ji - the item to repaint 
+	Bool repaint - whether to call DisplayGraphics_show()
+
+Jed_repaint_item() repaints a single item.  If the repaint parameter is True then DisplayGraphics_show() is called, updating the main Cybiko display memory.  This is a performance optimization.  It is normal to update several items in a row with repaint as False, then the final item is repainted with repaint set to True to display all changes to the user.   (If this is confusing at first, always use repaint = True).  None of the other functions will repaint the item (except Jed_main() as explained in the section Jed_repaint).
+
+See Also: Jed_repaint()
+
+ Part 3.8 :  Jed_error_noise
+void jed_error_noise(Jed *jed);
+	Jed *jed - pointer to a jed form
+
+Makes a low-frequency noise so the user knows something has gone wrong.
+ Part 3.9 :  Jed_get_value
+char *jed_get_value(Jed_item *ji);
+	Jed_item *ji - the item to get a value from
+
+Jed_get_value() will return the string value of an item.  The value returned is "owned" by the item.  Therefore modifying it will produce unpredictable results in the user interface.
+
+See Also: Jed_set_value()
+ Part 3.10 :  Jed_set_value
+Jed_rc jed_set_value(Jed_item *ji, char *s);
+	Jed_item *ji - the item to set 
+	char *s - the value to give to the item
+
+Jed_set_value() will set the value of an item.  All Jed items are string-based.  The memory used "s" is copied into the item.  The item is not automatically repainted when the value is set.  You shouold call jed_repaint_item or allow jed_main() to repaint the item for you.  If you are calling this function from inside Jed_process_message(), then you need to call Jed_repaint_item() to repaint the item.
+
+See Also: Jed_get_value()
+
+ Part 3.11 :  Jed_destroy_item
+Jed_rc jed_destroy_item(Jed_item *ji);
+	Jed_item *ji
+
+Jed_destroy_item() detaches the item from the form and deallocates all memory associated with the item.
+
+Section 4 :  Jed Text Functions
+ Part 4.1 :  Introduction
+The Text item is a simple non-modifiable text object.  It displays a string on a single line of text.
+ Part 4.2 :  Jed_text_new
+Jed_rc jed_text_new(Jed_item **ji, Jed *jed, int x, int y, int w, int h, char *value, struct Font *font);
+	Jed_item **ji - address of a pointer to a Jed_item structure.
+	Jed *jed - the form to create the text item in
+	int x, y - the coordinates of the item on the screen in pixels
+	int w,h - the width and height of the item on the screen in pixels (ignored)
+	char *value - the text of the item
+	struct Font *font - the font for the item.  Inherits its font from the Form if NULL
+
+Jed_text_new() creates a new Text item on the form.  The x, y, w, & h parameters constitute a bounding box for the text item.  The value is centered in this box.  If the w & h parameters are zero, then centering is turned off and the text is displayed at the x & y coordinates.
+
+See Also: Jed_destroy_item(), Jed_get_value(), Jed_set_value()
+
+Section 5 :  Jed Button Functions
+ Part 5.1 :  Introduction
+The Button is used to convey an action in the user interface.   When the user tabs over to a button it appears to be depressed into the screen.  When the user presses the Enter key control is returned from the Jed_main() function to the calling application.
+ Part 5.2 :  Jed_button_new
+Jed_rc jed_button_new(Jed_item **ji, Jed *jed, int x, int y, int w, int h, char *value, struct Font *font);
+	Jed_item **ji - address of a pointer to a Jed_item structure.
+	Jed *jed - the form to create the text item in
+	int x, y - the coordinates of the item on the screen in pixels
+	int w,h - the width and height of the item on the screen in pixels
+	char *value - the text of the item
+	struct Font *font - the font for the item.  Inherits its font from the Form if NULL
+
+Jed_button_new() creates a new Button item on the form.  The x, y, w, & h parameters constitute the bounding box of the item.  The value is centered in the bounding box of the item.
+
+See Also: Jed_destroy_item(), Jed_get_value(), Jed_set_value()
+Section 6 :  Jed String Functions
+ Part 6.1 :  Introduction
+The String Item allows the user to enter text into a field.  The following keys are operational inside the String Item:
+* Letters and Numbers - inserts characters into the item
+* Left and Right arrow keys - move the cursor left and right
+* Del - delete one character to the right of the cursor
+* Bksp - delete one character to the left of the cursor
+* Enter - returns control back to the application
+* Tab - moves the selection to the next Item
+* Shift-letter - uppercases the letter
+* Shift-Arrow - moves the cursor to the beginning or end of the item
+* Shift-Bksp - delete all text in the item
+* Shift-Del - delete all characters to the right of the cursor
+ Part 6.2 :  Jed_string_new
+Jed_rc jed_string_new(Jed_item **ji, Jed *jed, int x, int y, int w, int h, int buflen, char *value, struct Font *font);
+	Jed_item **ji - address of a pointer to a Jed_item structure.
+	Jed *jed - the form to create the text item in
+	int x, y - the coordinates of the item on the screen in pixels
+	int w,h - the width and height of the item on the screen in pixels
+	int buflen - the number of characters the string can hold
+	char *value - the text of the item
+	struct Font *font - the font for the item.  Inherits its font from the Form if NULL
+
+Jed_string_new() creates a string item in the form.
+
+See Also: Jed_destroy_item(), Jed_get_value(), Jed_set_value()
+
+Section 7 :  Jed Console Functions
+ Part 7.1 :  Introduction
+The Console Item is a multiline read-only text item.  When selected you can use the Up and Down arrow keys to scroll back and forth within the text.  (The limit to the scrolling is determined at the time the Console Item was created).  Pressing the Enter key in the Console Item has no effect.
+
+ Part 7.2 :  Jed_console_new
+Jed_rc jed_console_new(Jed_item **ji, Jed *jed, int x, int y, int w, int h, int lines, struct Font *font);
+	Jed_item **ji - address of a pointer to a Jed_item structure.
+	Jed *jed - the form to create the text item in
+	int x, y - the coordinates of the item on the screen in pixels
+	int w,h - the width and height of the item on the screen in pixels
+	int lines - the number of lines the console can hold
+	char *value - the text of the item
+	struct Font *font - the font for the item.  Inherits its font from the Form if NULL
+
+Jed_console_new() will create a new console on the form.
+ Part 7.3 :  Jed_console_add_text
+Jed_rc jed_console_add_text(Jed_item *ji, char *s);
+	Jed_item *ji - the item
+	char *s - the text to add
+
+Jed_console_add_text() adds a line of text to the bottom of the console item.  All previous lines will scroll up.  If the line is too long it is truncated.  The item is not automatically redisplayed so you will need to call Jed_redisplay_item().
+
+ Part 7.4 :  Jed_console_clear
+Jed_rc jed_console_clear(Jed_item *ji);
+	Jed_item *ji - the item
+
+Jed_console_clear() will erase and free all text associated with the Console item. The item is not automatically redisplayed so you will need to call Jed_redisplay_item().
+
+See Also: Jed_destroy_item(), Jed_get_value(), Jed_set_value()
+
+Section 8 :  Jed List Functions
+ Part 8.1 :  Introduction
+The List Item displays a list of strings only one of which can be selected at a time.  When the List Item is selected, the Up and Down arrow keys move the current selection up and down.  When the Enter key is pressed, control returns to the calling application.
+
+ Part 8.2 :  Jed_list_new
+Jed_rc jed_list_new(Jed_item **ji, Jed *jed, int x, int y, int w, int h, int lines, struct Font *font);
+	Jed_item **ji - address of a pointer to a Jed_item structure.
+	Jed *jed - the form to create the text item in
+	int x, y - the coordinates of the item on the screen in pixels
+	int w,h - the width and height of the item on the screen in pixels
+	int lines - the number of lines the list can hold (number of list items)
+	char *value - the text of the item
+	struct Font *font - the font for the item.  Inherits its font from the Form if NULL
+
+Jed_list_new() creates a new List item in the form.
+
+See Also: Jed_destroy_item(), Jed_get_value(), Jed_set_value()
+
+ Part 8.3 :  Jed_list_add_item
+Jed_rc jed_list_add_item(Jed_item *ji, char *s);
+ Part 8.4 :  Jed_list_clear
+Jed_rc jed_list_clear(Jed_item *ji);
+	Jed_item *ji - the item to clear
+
+Jed_list_clear() will clear all the List elements from the List item. The item is not automatically redisplayed so you will need to call Jed_redisplay_item().
+ Part 8.5 :  Jed_set_value
+Jed_rc jed_list_set_value(Jed_item *ji, char *s);
+	Jed_item *ji - the item
+	char *s - the value
+
+Jed_set_value() sets the item's value.  The currently selected text will be scrolled to the center of the list item.  If the item is not in the list, no item will be selected. The item is not automatically redisplayed so you will need to call Jed_redisplay_item(). It is recommended that you use Jed_set_value()
+
+ Part 8.6 :  Jed_get_value
+char *jed_list_get_value(Jed_item *ji);
+	Jed_item *ji - the item to get
+
+Jed_get_value() returns the value of the item.  The return value is a string.  If an error has occurred, then the return value is NULL.  The value returned is memory owned by the item - so modifying it will produce unpredictable results.  It is recommended you copy the string to local storage before manipulating it.  It is recommended you use Jed_get_value().
+Section 9 :  Errors, Warnings, and Omissions
+ Part 9.1 :  Error - Console lines should wrap
+Currently, a line that is too long for the console will truncate.
+ Part 9.2 :  Error - The '?' Help key does not pass through
+This will be fixed in the next release.  You will receive the '?' keyboard event in Jed_process_message() and have an opportunity to process it.  If you choose not to, it will fall through to the Cybiko default message handler and do the usual thing.
+ Part 9.3 :  Error - A DL Approach would be better
+I have found problems with Cybiko's implementation of DLs.  I will continue to work with Cybiko to make Jed a fully compliant DL.
+ Part 9.4 :  Error - Some 3-d effects are wrong
+This will be fixed in the next release.  In particular the string item doesn't look quite right.
+ Part 9.5 :  Warning - Return values belong to Jed
+The return values from Jed_get_value() are Calloc'd space which Jed depends upon.  Modifying these values may lead to unpredictable results.  I recommend that you immediately copy the strings to a buffer over which you have direct control.
+ Part 9.6 :  Warning - The console item doesn't use all available space
+This is because the font height doesn't divide the available space evenly.  If the font height is 12 pixels high and the console box is 71 pixels high, there is only room for 5 rows of text (5*12=60, 6*12=72 - one more pixel than we have room for).  In a future release Jed_console will center the text in the console bounding box to make for a more attractive look.
+ Part 9.7 :  Warning - The background is too dark
+The background color must be light gray so that when an item is active it "lights up" using white for its background.  There are two solutions:
+1) In a later release, Jed can automatically modify the grayscale settings for lighter grays
+2) The user can modify their setting in Main Desktop Settings application
+ Part 9.8 :  Omission - Multi-screen / scrolling screen
+The design of Jed precludes creating forms larger than the visible screen.  I consider this to be a feature.  I do not plan on creating a virtual screen capability for Jed.
+ Part 9.9 :  Omission - Text Editor item
+This is an item which allows full-screen editing.  I don't plan on implementing one because the requirements are so strenuous.  Usually you need some sort of file backing.  I've written editors before and I don't relish the idea of writing one for the Cybiko.
+ Part 9.10 :  Omission - Arrow Keys don't move from item to item
+In a future release I plan to include a key-mask in the next release giving each item the power to move to the next item if the key is not masked.  This should work for up, down, left, and right.  I'm also toying with giving Select a back-tab sort of functionality.
+ Part 9.11 :  Omission - List items are mutually exclusive
+Currently there is no way to select multiple items from the Jed_list item.  In a future release the Select key will select each item and highlight it.  The returned value will be a single comma-separated-values (CSV) string.
+ Part 9.12 :  Omission - Radio Buttons and Checkboxes
+Radio buttons and checkboxes are planned for a future release
+ Part 9.13 :  Omission - Group Boxes
+The group box is a beveled rectangular region encompassing one or more objects.  Usually there is a text string describing the meaning of the group.  I have purposely left group boxes out of the Jed interface because there is so little real estate for placing them.
+ Part 9.14 :  Omission - Bit Maps
+Jed V1.0 does not offer bit map operations.  I have no immediate plans to add bit maps.
+
+	Jed V1.0
+	User's Guide
+
+	16 / 1	3/10/2001
+
+	(c) Copyright 2001
+	The Alcor Group, Inc.
+

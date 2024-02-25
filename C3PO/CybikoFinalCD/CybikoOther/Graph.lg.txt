@@ -1,0 +1,31 @@
+;First, we determine the scope
+;of the graph sin(x)
+;on the axis x
+lim_left=-180;
+lim_right=180;
+;Then, we determine the scope
+;of the graph sin(x)
+;on the axis y
+scale = 40;
+
+;Now, let's draw
+;the system axes
+x=-80;
+moveto 160,0;
+y=-45;
+x=lim_left/(lim_right-lim_left)*160+80;
+angle=90;
+forward 90;
+
+penup;
+while i<160
+{ 
+  f_x=lim_left+(lim_right-lim_left)/160*i;
+;At the end, we'll calculate
+;a value of the function
+  f_y=sin(f_x);
+  moveto 160/(lim_right-lim_left)*f_x, f_y*scale;
+  pendown;
+  i=i+1;
+} 
+hide;

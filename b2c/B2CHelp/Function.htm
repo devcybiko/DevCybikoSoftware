@@ -1,0 +1,47 @@
+<B><P>Topic :</B> Function</P>
+<B><P>Language Level</B> : CyBasic-1</P>
+<B><P>Effectivity :</B> B2C v2</P>
+<B><P>Syntax</B> : </P><DIR>
+<DIR>
+
+<P>Function funcname {(param1{[]} {As datatype1} {, param2 {As datatype2} …})} {As datatype}</P>
+<P>&#9;{Exit Function}</P>
+<P>&#9;Body</P>
+<P>End Function</P></DIR>
+</DIR>
+
+<B><P>Description :</P><DIR>
+<DIR>
+
+</B><P>Function initiates the definition of a new function .  funcname is the name of the function.  An optional parameter list may be specified.  Zero, one, or more parameters may be specified.  Each parameter may have a datatype as specified in Dim.  However, no array parameters may be passed.  If the datatype is not specified, the variable is defined as Double.  Likewise, the function itself may be declared as a particular datatype, and if this datatype is unspecified the function is defined as Double.</P>
+
+<P>To return a value from the function, assign a value to a variable with the same name as the function.</P>
+
+<P>If the Exit Function statement is encountered, the function will return immediately.</P>
+
+<P>With version 3a of B2C, single-dimensioned arrays may be passed into functions.  The format of the parameter is p[] – indicating an array of arbitrary length.  This now allows strings to be passed into functions and subroutines.</P></DIR>
+</DIR>
+
+<B><P>Example</P><DIR>
+<DIR>
+
+</B><P>Function foo as Int</P>
+<P>&#9;foo = random(100);</P>
+<P>End Function</P>
+
+<P>Funciton bar(div as Int) as Int</P>
+<P>&#9;Bar = foo /div;</P>
+<P>End Function</P>
+
+<P>Function len(s[] as char) as int</P>
+<P>&#9;Len=0</P>
+<P>&#9;For I=0 to 1000</P>
+<P>&#9;&#9;If s[I] = 0 then exit function</P>
+<P>&#9;&#9;Len = len + 1</P>
+<P>&#9;Next I</P>
+<P>End Function</P>
+
+<P>Print bar(2)</P>
+<B></DIR>
+</DIR>
+

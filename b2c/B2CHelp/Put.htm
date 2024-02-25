@@ -1,0 +1,36 @@
+<B><P>Topic :</B> Put</P>
+<B><P>Language Level</B> : CyBasic-1</P>
+<B><P>Effectivity :</B> B2C v2</P>
+<B><P>Syntax</B> : </P><DIR>
+<DIR>
+
+<P>Put filenumber, {bytepos},{ variable}</P></DIR>
+</DIR>
+
+<B><P>Description :</P><DIR>
+<DIR>
+
+</B><P>Put writes a variable to a file at the current or specified byte position.  The filenumber must be the number of a file already openned for Write or Append access.  If bytepos is specified, the variable will be written at that position in the file.  If bytepos is unspecified, then the current position is used.  If the variable is left unspecied, then the file pointer is changed to bytepos and no data is written.</P></DIR>
+</DIR>
+
+<B><P>Error : </P><DIR>
+<DIR>
+
+</B><P>#ERROR_FILE_NUMBER – the file number is outside the valid range</P>
+<P>#ERROR_FILE_UNOPENED – the file has not been opened</P>
+<P>#ERROR_FILE_WRITE – the file could not be written</P>
+<P>#ERROR_FILE_SEEK – the file could not be positioned</P></DIR>
+</DIR>
+
+<B><P>Example : </P><DIR>
+<DIR>
+
+</B><P>Dim foo as int</P>
+<P>Foo = 1</P>
+<P>Open "a.dat" For Write as 1</P>
+<P>Put 1, 0, foo</P>
+<P>if error then exit program</P>
+<P>Close 1</P>
+<B></DIR>
+</DIR>
+

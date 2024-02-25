@@ -1,0 +1,102 @@
+<H1>Sorting</H1>
+<h2>Introduction</h2>
+There are many algorithms which will sort data.  In part one I'll present the simplest to understand - a sorting algorithm for character pointers.  But all of these algorithms will be of the same form...
+<pre><code>
+void sort(char **data, int n);
+</code></pre>
+Does that look DAUNTING?  Don't let it.  I'll cover each keyword in detail, then I'll present the sort.
+<p>
+void - it means the function returns nothing
+sort - the name of our sorting function
+char ** - an array of pointers to character strings. a fancy way to say "an array of stuff". 
+int n - the number of things we're sorting.
+<p>
+<h2>Bubble Sort</h2>
+The "Bubble Sort" is the simplest sorting algorithm to create.  It works much the same way you might sort your crayons or other sortable items.
+<p>
+The idea is to list the items from 0 to 'n'.  Then you start at the top (item 0) and find the smallest item in the list.  take that item out and put it at the top.  Next, start at item 1 and find the next smallest item in the list - make it item 2.  And so on.  Eventually, the entire list is sorted.
+<p>
+Sound simple?  Good!  Because we're working with a computer we need to sort the items in place.  So instead of making a second list of items, we're going to merely swap two items.  So it goes like this... (this is pseudocode - an english-like language that is used to describe an algorithm. it resembles basic but it wont compile)...
+<pre><code>
+for i = 0 to n-1 do
+  for j = i+1 to n-1 do
+    if item[[i] &lt; item[[j] then swap(item, i, j)
+  next j
+next i
+
+function swap(item[[], i, j)
+  tmp = item[[i]
+  item[[i] = item[[j]
+  item[[j] = item[[i]
+end function
+</code></pre>
+So... what we do here is start with the first item.  Scan the entire list for a smaller item.  If we find one, we swap the two items.  After the first iteration, the smallest item in the list will be at the top.
+<p>
+What about the swap() function?  Why not do this...
+<pre><code>
+  item[[i]=item[[j]
+  item[[j]=item[[i]
+</code></pre>
+
+Well you have to store the first item or you will overwrite it.  Suppose item[[0] holds '1' and item[[1] holds '2'.  Now try the last example.
+<pre><code>
+  item[[0]=item[[1] (item[[0] now holds '2' and item[[1] also holds '2')
+  item[[1]=item[[0] (since item[[0] holds '2' item[[1] is also set to '2'.)
+</code></pre>
+Now both items hold '2'.  Not what we were hoping for is it?  Now try this...
+<pre><code>
+  tmp = item[[0] (now tmp holds '1')
+  item[[0] = item[[1] (now item[[0] holds '2')
+  item[[1] = tmp (now item[[1] holds '1')
+</code></pre>
+So, item[[0] holds '2' and item[[1] holds '1' - just what we want!
+<p>
+Now that we have an algorithm that sorts items let's write it in C!
+<pre><code>
+void bubble_sort(char **data, int n)
+{
+  char *tmp; // a temp pointer for swapping
+  char *a;  //a pointer to one item
+  char *b;  //a pointer to another item;
+  int i;    //a counter for one loop
+  int j;    //a counter for another loop
+
+  for(i=0; i&lt;n; i++)
+  {
+    for (j=i+1; j&lt;n; j++)
+    {
+       a = data[[i];
+       b = data[[j];
+       if (strcmp(a, b) &lt; 0) 
+       {
+          tmp = a;
+          a = b;
+          b = tmp;
+       }
+     }
+  }
+}
+</code></pre>
+<h2>Program</h2>
+Now, lets write a complete program with our sample...
+<pre><code>
+char *names[[] = {"greg", "amber", "heather", "galen", "sean"};
+main()
+{
+    int i;
+    bubble_sort(names, 5);
+    for (i=0; i<5; i++)
+       TRACE("%s", names[[i]);
+}
+</code></pre>
+<h2>Results</h2>
+Our program should print...
+<pre><code>
+amber
+galen
+greg
+heather
+sean
+</code></pre>
+<h2>Conclusions</h2>
+In this tutorial we've laid the groundwork for sorting strings.  In the next tutorial I will generalize the algorithm to take any type of data.  As it turns out, bubble_sort() is reasonably fast for small numbers of items.  However, as the number of items reaches 100, the poor Cybiko will bog down and find it very hard to sort items.  A later tutorial will improve the bubble_sort() into something that is very very fast.

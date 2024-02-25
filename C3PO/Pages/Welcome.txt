@@ -1,0 +1,20 @@
+
+----
+!!Welcome
+Welcome to the Cybiko Third Party Organization Wiki.  Wiki is Hawaiian for Quick.  The "big" idea behind Wiki pages is that they are editable right in the web browser.  Click on the "Edit This Page" link at the bottom of this page now!
+\\
+\\
+Wikis support collaboration by allowing anyone and everyone to create content (pages and text) immediately using the Web Browser.
+\\
+!!HTML or Wiki Tags
+You can use HTML or Wiki Quick tags.  Click on the [Edit Page Help|http://www.jspwiki.org/Wiki.jsp?page=TextFormattingRules] link to the left to learn more about Wiki Quick Tags.  Click the [Intro to Wiki|http://www.jspwiki.org/Wiki.jsp?page=OneMinuteWiki] link to the left to learn more about Wikis.
+\\
+Some important tags are:\\
+[[MakeALocalWikiLink]\\
+[[Label|URL] {{makes an off-wiki link}}\\
+{{!!!Level 1 Text}}\\
+{{!!Level 2 Text}}\\
+{{!Level 3 Text}}\\
+
+!!Your own Page
+To get started, find your name on the menu on the left, and click on it.  That will show your page.  You can edit it and create more pages just by TypingTextInUpperAndLowerCaseLikeThis.  All HTML tags are valid too!

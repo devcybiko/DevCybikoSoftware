@@ -1,0 +1,115 @@
+'
+' side1 - side scrolling demo
+'
+' Greg Smith
+' 9/11/02
+'
+OPTION C_COORDS
+OPTION SHOW OFF
+OPTION ESCAPE OFF
+
+'
+' global variables
+'
+dim land as int
+dim land_x as int ' x position of land (0-land_w*land_n-1)
+dim land_y as int ' y position of land
+dim land_w as int ' width of landscape panel
+dim land_n as int ' number of landscape panels
+
+dim lemming as int
+dim lemming_x as int ' lemming position on the screen
+dim lemming_y as int ' lemming position on the screen
+dim lemming_z as int ' lemming animation
+dim lemming_w as int ' lemming width
+dim lemming_h as int ' lemming height
+dim lemming_n as int ' number of lemmings
+dim lemming_mode as int ' lemming flipped?
+
+dim speed as int ' background movement speed
+
+'
+' init subroutine - init globals
+'
+sub init
+    dim dummy as int
+    land = 1
+    lemming = 2
+    speed = 2
+
+    sprite land,"land.pic"
+    sprite_get land, land_x, land_y, dummy, dummy, land_w, dummy
+    land_x = 0
+    land_y = 0
+    land_n = sprite_n(land)
+
+    sprite lemming,"lemming.pic"
+    sprite_get lemming, lemming_x, lemming_y, lemming_z, lemming_mode, lemming_w, lemming_h
+    lemming_x = 80
+    lemming_y = 50
+    lemming_z = 0
+    lemming_mode = 0
+    lemming_n = sprite_n(lemming)    
+end sub
+
+'
+' a useful but alas missing function from B2Cuser
+function sprite_n(spriteno as int) as int
+    inline return(BitmapSequence_get_size(b2c->sprites[spriteno].bitmap));
+end function
+
+sub draw_everything
+    dim x as int
+    dim y as int
+    dim z as int
+
+    x = land_x mod land_w
+    y = land_y
+    z = land_x / land_w
+
+    cls
+    move land, 0-x, y, z
+    redraw land
+    move land, land_w-x, y, z+1
+    redraw land
+    move lemming, lemming_x, lemming_y, lemming_z, lemming_mode
+    redraw lemming
+    redraw show
+end sub
+
+sub land_move(delta_x as int)
+    land_x=land_x + delta_x*speed
+    if land_x < 0 then
+        land_x = land_w * land_n + land_x
+    endif
+    if land_x > land_w * land_n then
+        land_x = 0
+    endif
+end sub
+
+sub lemming_move(delta_x as int)
+    lemming_z = lemming_z + 1
+    if lemming_z >= lemming_n then lemming_z = 0
+    lemming_mode = 0
+    if delta_x < 0 then lemming_mode = FLIP_X
+    land_move(delta_x)
+end sub
+
+sub handle_keys
+    if key(#KEY_DEL) then speed=speed-1
+    if key(#KEY_INS) then speed=speed+1
+    if speed < 1 then speed = 1
+
+    if key(#KEY_LEFT) then lemming_move(-1)
+    if key(#KEY_RIGHT) then lemming_move(1)
+end sub
+
+sub run_program
+    init
+    while key(#KEY_SPACE)=0
+        draw_everything
+        handle_keys
+    wend
+end sub
+
+run_program

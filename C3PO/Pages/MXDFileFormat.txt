@@ -1,0 +1,28 @@
+!!Inside MXD Videos by [josh]
+ 
+This article is separated into 3 sections. General, audio, and video. The general and audio sections are pretty complete while the video section has a few theories.
+
+!!General:
+All MXD videos use the same playing program. The difference between them all is the data contained in the resource portion. It contains music.mp3 which is the music of course, and clip.pic which contains possibly an AVI video with a custom codec or a proprietary format.
+
+!!Audio:
+The audio contained inside of an MXD video is a standard MPEG 1 Layer 3 music file at a bitrate of 128kbps and 44100Hz with stereo. The audio is simply fed to the MP3 Player cartridge for decoding.
+
+!!Video:
+
+!Theory #1:
+I had originally thought that the video was just a simple Cybiko pic file with multiple frames - unfortunately picview and the converter application failed to open the file. So I moved on to theory 2.
+
+!Theory #2:
+After disproving my previous theory I thought that the video may be in some custom format with compression and such - this is still a theory.
+
+!Theory #3:
+I was getting deseperate so I opened up the main.e file with notepad and it had some text regarding AVI - such as "AVI started" and "avi flag_load flag_free". I thus concluded that the movie is an AVI file. Further investigation yielded that it uses a custom codec. (I used Media Player, Virtualdub, and Gspot to check the codec).
+
+!Theory #4:
+When attempting to play the movie in media player it claimed there was an MPEG stream encoded in the movie. Professr hypothesized that the movie frames could be encoded as MPEG frames as well.
+
+That's it I'm afraid - if I'm able to figure out anything else I'll post it. If you find this information useful, use it as you wish.
+
+Your's truly,\\
+[Josh]

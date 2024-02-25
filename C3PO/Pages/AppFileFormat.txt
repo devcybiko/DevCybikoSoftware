@@ -1,0 +1,61 @@
+From [http://devrs.com/cybiko]
+{{{
+[Info from Greg added at very bottom]
+
+I've got everything except for how the compression works:
+
+[APP]
+  [APPHDR] (3 WORDs)//at the start of file
+    [FILEID] WORD Value=0x4379 ("Cy")
+    [RESCOUNT] WORD //counts number of resources in file
+    [RESTBLLEN] WORD //length of the table containing resources
+  [/APPHDR]
+  [RESTBL]
+    //resource descriptors (5 WORDs for each resource)
+    //resource names (null terminated)
+  [/RESTBL]
+  [RESDATA]
+    //data for the resources
+  [/REDATA]
+[/APP]
+
+detail of resource description found within RESTBL
+[RESDESC]
+  [NAMEOFFSET] WORD //points to the name for this resource
+  [UNK1] WORD //??(0x0000)
+  [RESOFFSET] WORD //points to the resource data
+  [UNK2] WORD //??(0x0000)
+  [RESLENGTH] WORD //length of resource data
+[/RESDESC]
+//all of the offsets are absolute offsets into the .app archive
+
+as for the resource data itself, i haven't figured out the compression
+method, but i do know that the first byte stored in the resource indicates
+what kind of compression is used.  0x00 is no compression (i.e. used - in
+filer), and 0x02 is normal compression (i.e. used + in filer).  i dont know
+about other values.
+
+Ernest S. Pazera
+-----------------------
+
+I took your dissection one step farther...
+
+For Compressed data ...
+[RESDATA]
+   [COMP] - BYTE Compression 00=Uncompressed 02=Compressed
+   [EXPLEN] - LONG, if COMP==02 then EXPLEN = uncompressed (expanded) 
+length
+   [COMPDATA] - if COMP==02 then COMPDATA is the compressed data
+[/RESDATA]
+
+For UnCompressed data ...
+[RESDATA]
+   [COMP] - BYTE Compression 00=Uncompressed 02=Compressed
+   [DATA] - if COMP==00 then DATA is the uncompressed data
+[/RESDATA]
+
+i also don't know what type of compression is done
+
+-greg
+
+}}}

@@ -1,0 +1,30 @@
+<B><P>Topic :</B> Sendmessage</P>
+<B><P>Language Level</B> : B2C Extension</P>
+<B><P>Effectivity :</B> B2C v3d</P>
+<B><P>Syntax</B> : </P><DIR>
+<DIR>
+
+<P>Sendmessage cyid, message_number, appname, text_string</P></DIR>
+</DIR>
+
+<B><P>Description :</P><DIR>
+<DIR>
+
+</B><P>Sendmessage sends an RF messages as a &quot;text_string&quot; to the Cybiko with associated &quot;cyid&quot;.  The awaiting Cybiko must be running the app called &quot;appname&quot;.  The message will appear in the receiving Cybiko’s OnMessage function.  CyIDs can be selected using the UserMenu function.  CyIDs must be a Long integer.  Message numbers are in the range 0-1023.  </P>
+<P><BR>
+THE RECEIVING CYBIKO MUST BE RUNNING APPNAME OR THE MESSAGE WILL NOT GET THROUGH.</P></DIR>
+</DIR>
+
+<B><P>Example : </P><DIR>
+<DIR>
+
+</B><P>Sendmessage cyid, 0, &quot;chat&quot;, &quot;hello world&quot;</P></DIR>
+</DIR>
+
+<P>See Also:</P><DIR>
+<DIR>
+
+<P>OnMessage, UserMenu, toCyid, toUser, Tokenize</P>
+<B></DIR>
+</DIR>
+

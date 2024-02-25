@@ -1,0 +1,106 @@
+load "radio.bs.dl"
+'Variables declaration
+dim name[30] as char
+dim id as long
+dim idf as long
+dim com as int
+dim t as long
+dim tnum as long
+dim buf[30] as char
+dim bn[30] as char
+dim k
+dim ids[10] as long
+dim nums[10] as int
+'This is a character array
+'in which the CyNames
+'of your partners
+'are stored. 
+dim names[10*10] as char
+dim cur
+dim num
+num=1
+cur=0
+
+'This is a function
+'of drawing the frame.
+sub drflash(x1,y1,x2,y2)
+ line x1,y1,x1,y2
+ line x2,y1,x2,y2
+ line x1,y1,x2,y1
+ line x1,y2,x2,y2
+end sub
+
+'This is a procedure
+'of entering a name.
+sub reg
+ drflash -60,35,53,-20
+ drflash -62,37,55,-22
+ printxy -30,20,"RadioCHAT"
+ input "Input name: ",name
+end sub
+
+'This is the procedure
+'of sending a message.
+sub sendmes
+ for i=1 to 10
+  post -1,111,num,0,buf
+ next
+ num=num+1
+end sub
+
+'This is a procedure
+'of finding an ID.
+function idfind(id as long)
+ for i=0 to cur
+  if ids[i]=id then
+   idfind=i
+   exit function
+  end if
+ next
+ idfind=-1
+end function
+
+'This is the main program.
+reg
+buf=name
+sendmes
+cls
+while 1
+ while com<>111
+  k=key
+'Here, we enter a message
+'by keyboard.
+  if k=272 then
+   input "-> ", buf
+   sendmes
+   print name,": ",buf
+   k=0
+  end if
+  receive id,com,tnum,t,buf
+ wend
+ idf=idfind(id)
+'This is the procedure
+'of processing
+'the receiving message.
+ if idf<>-1 then
+  if tnum>nums[idf] then
+   nums[idf]=tnum
+   mid bn,names,idf*10,10
+   print bn,": ",buf
+   beep 1
+  end if
+ else
+  ids[cur]=id
+  nums[cur]=1
+  for i=0 to 9
+   names[cur*10+i]=buf[i]
+  next
+  cur=cur+1
+  print buf," connected."
+  beep 2
+  for i=1 to 10
+   post id,111,0,0,name
+  next
+ end if 
+ com=0
+wend

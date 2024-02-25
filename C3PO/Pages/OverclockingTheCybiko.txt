@@ -1,0 +1,65 @@
+From [http://4cybiko.com]
+{{{
+20MHz Cybiko Nearly 2x Faster
+From CybiMunk.com 
+
+Article: 20MHz Cybiko Nearly 2x Faster! 
+Post by: Munk 
+Date: 1/1/2001 9:16:56 PM 
+Area: Hardware 
+}}}
+I don't know if anyone has noticed in the developer's portion of the Cybiko web site they mention that the Cybiko uses a 16MHz 32bit processor. But when you look at your manual or other parts of the Cybiko site they mention it runs at 11MHz (11.059MHz to be exact). So what you have here is a processor that is rated to run at 16MHz but is being "under-clocked" to run at 11MHz! And even more interesting is the fact that this Hitachi CPU is actually rated to run at 20MHz which makes it even a stranger cituation. Slowing the speed of the CPU was a necessary step for the developers since the speed of the crystal also controls the communication port of the Cybiko. Without proper timing the Cybiko would not be able to communicate with your PC or other Units.
+
+!!MHz explained:
+I'd better stop for a second and explain to those that might not know that MHz is an abbreviation for "megahertz" or millions of hertz. Hertz is named after a German Physicist named Heinrich Rudolf Hertz and is a measurement of how many complete cycles take place in one second. And since we are applying this measurement to the CPU (Brain) of the Cybiko we are saying that the Cybiko is capable of processing 11 million instructions in one second. Basically faster is better when it comes to CPU MHz. You will also notice that I keep mentioning "crystals". Crystals are used to control the MHz and look like little silver canisters. When power is applied to a crystal that is of a specific size it will oscillate at a specific frequency and is very accurate. 
+
+!!Disclaimer:
+What you are about to see is a modification I did to my own machine. As a result of these modifications there is NO POSSIBLE way for me to ever get any service on my Cybiko. I am displaying my experiment and related data to you merely for informational purposes only. I don't condone this action to your own unit and take no responsibility for any crazy things that you do to your Cybiko. Please do not e-mail me on this subject.
+
+!!My Experiment:
+Now that we talked about MHz and the ability of the Cybiko's CPU let's talk about the experiment. I decided that I was going to crack the case of my Cybiko (voiding any warranty) and see if I could reclaim any of the lost speed. If the test was successful I decided to allow for different variations of speed including a slow setting, a normal setting and a fast setting via a switch. And last I was going to make it a permanent part of my Cybiko which includes drilling.
+
+When I first started down the path of over clocking the Cybiko I made a decision to keep the controls outside of the unit. This image shows how I ran the switch and two extra crystals to the PCMCIA port. This was a safer route since I didn't want to drill into the case if the project were to fail. 
+
+After the experiment proved to work with little hitches I moved the controls from the outside to the inner portion of the Cybiko. This image shows the case open with the controls moved to the inside. This image also shows the older 16MHz crystal that I used and have since replaced with a 20MHz. Click on the image to get a closer look. 
+
+After moving the controls to the inner case it was time to drill. I, as carefully as possible, marked out where the whole needed to be and began to drill. This was kind of difficult since I didn't have any precision equipment and just held a drill in mid-air, used a chunk of metal as the guide and proceeded onward. The switch which I haven't mentioned yet allows three positions that equates to Slow, Normal and Fast. 
+
+Here is the finished product shown with the battery pack enhancement. If you haven't read the article on piggy-backing batteries you can click here. 
+
+!!Speed Results:
+The three speeds that I ended up with are 6MHz(Slow), 11MHz(Standard) and 20MHz(Turbo). And here are some of the results based on speed:
+{{{
+Tested: 6 MHz 11 MHz 16 MHz 20 MHz 
+Boot the Cybiko
+OS 1.2.52 1:32 Mins 49 Secs 34 Secs Untested 
+Boot the Cybiko
+OS 1.2.54 55 Secs 30 Secs 21 Secs Untested 
+Boot the Cybiko
+OS 1.2.55 54 Secs 29 Secs Untested 16 Secs 
+Start Lost in Labyrinth
+OS 1.2.55 18 Secs 9 Secs Untested 5 Secs 
+
+Tested: 4 MHz Micro-Controller 6 MHz Micro-Controller 
+Boot the Cybiko
+OS 1.2.55 29 Secs 28 Secs 
+}}}
+
+You will notice from these results that the Cybiko consistently performed at approximately 50% faster using the 16MHz setting. 20MHz results were around 80% faster but feel so much nicer. As for overclocking the Micro-Controller: It really had many bad results with only one very tiny itsy bitsy advantage, 1 second of boot time was shaved off. The bad results were: 1) RF Communications stops working, 2) Some games actually ran slower! CyRace probably ran at about half the speed and one second is not worth the problems.
+
+!!The Downside:
+Yes there is a downside. When I switch from Normal speed to Turbo I run the risk of locking up the Cybiko. Not that I should be doing that in the middle of operation but guess I'm just too impatient to turn the unit off, change the speed and restart it. Putting the Cybiko to sleep and changing the speed will work about 75% of the time but at least they are better odds. The other major drawback is that communications to the PC or to other Cybiko users stops! This goes back to the timing issue that was discussed above. The last and biggest downside is by opening the case I voided my warranty. 
+
+!!Summary:
+I waited til January 1st to post this article. Why? Mainly because of a certain contest that Cybiko has been running for $10,000 CyBucks? The "Cybiko SuperBike National Championship" required you to get the best score (Lowest Score). You can obviously see that there is a benefit in slowing the Cybiko unit down and be given more decision time during turns. This is why I never entered the contest and why I waited til January 1st to post this article. I didn't want someone to run out and do something very similar and win the contest unfairly. Of course this also could have been resolved if the programmers of the game stored the "Start Time", "Stop Time" and "Duration" of the game. This way Cybiko could do the math and have found that a person did the course in under 6 minutes duration but subtracting the Stop time from the Start Time found that it took about 12 minutes total to finish the track.
+
+Your friendly neighborhood rodent,
+
+
+Munk
+
+!01/19/2001 Update
+Finally added some timings using the 20MHz crystal. The 6MHz microcontroller is a bad thing and have since removed it from my Cybiko.
+
+!01/03/2001 Update
+I have just put in a 22MHz crystal and a 20MHz crystal. The 22MHz does not boot properly and locks up before it makes it to the desktop. The 20MHz runs perfectly fine and has become my new "Fast" mode. I will post some speed results soon. On top of that I have replaced the 4MHz co-processor crystal with a 6MHz one. There might not be any difference in speeding up this Micro Controller but we will soon see. Check back probably Friday.

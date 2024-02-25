@@ -1,0 +1,53 @@
+'draw the field with position 
+'data of left higher corner 
+'lt and tp 
+sub drawfield(lt,tp)
+ dim ch as char
+'draw flash 
+ line lt,tp,lt+60,tp
+ line lt,tp,lt,tp-60
+ line lt,tp-60,lt+60,tp-60
+ line lt+60,tp,lt+60,tp-60
+ ink 1
+'draw the field division on 
+'cells
+ for i=1 to 5
+  line lt+1,tp-i*10,lt+59,tp-i*10
+  line lt+i*10,tp-1,lt+i*10,tp-59
+ next
+'draw the characters and numeric
+'keys that denote the position 
+'data
+ ink 3
+ for i=1 to 6
+  printxy lt-8,tp+10-i*10,i
+  ch=i+96
+  printxy lt-7+i*10,tp+11,ch
+ next
+end sub
+
+'draws the ship
+sub drawship(lt,tp,x,y)
+ printxy lt+(x-1)*10-7,tp-(y-1)*10+11,"o"
+end sub
+
+'draw the miss
+sub drawmist(lt,tp,x,y)
+ printxy lt+(x-1)*10-6,tp-(y-1)*10+13,"."
+end sub 
+
+'draw the hit
+sub drawok(lt,tp,x,y)
+ printxy lt+(x-1)*10-7,tp-(y-1)*10+11,"x"
+end sub 
+
+sub youwin
+ cls
+ printxy -30,10,"You WIN!!!"
+end sub
+
+sub anwin
+ cls
+ printxy -23,10,"You lose."
+end sub
+

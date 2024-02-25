@@ -1,0 +1,36 @@
+;Let's draw the curbs
+x=-10;
+y=42;
+moveto -20,-42;
+x=10;
+y=42;
+moveto 20,-40;
+x=-12.5;
+y=42;
+moveto -25,-40;
+x=12.5;
+y=42;
+moveto 25,-40;
+
+;Now we'll draw
+;the bricks on the road
+shift=0.25;
+i=20;
+while i>9 
+{ 
+  x=-i;
+  y=-8*i+120;
+  forward 2*i;
+  i=i-1; 
+  j=0;
+  shift=-shift;
+  while j<5
+  { 
+    x=-i+(j+shift+0.75)*i/20*8+shift;
+    y=-8*i+120;
+    moveto -(i+1)+(j+shift+0.75)*(i+1)/20*8+shift,-8*(i+1)+120;
+    j=j+1;
+    if j=4 AND shift>0 j=5;
+  }
+}
+hide;

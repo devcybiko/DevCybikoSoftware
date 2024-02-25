@@ -1,0 +1,4 @@
+I obviously don't like making my own sprites so I borrow them from others. When Tejas released his Zelda bitmaps, I grabbed them up for the background. The tank image was just a place holder too since I didn't quite know how this would turn out. After witnessing the result, the tank might just as well be a race car since thats how fast the screen scrolling is - at least on an Xtreme.
+
+To start choose between single and multi-player. The single player is just for demonstration purposes if you don't have two Cybikos. Then drive around and try to find the other tank and shoot it. As far as a game - it's not. But it does demonstrate multi-player RF and full screen scrolling. Also the missile collision is flaky. The code should work - it does with single player games.\\
+[SamNEggs] 27-Jul-2003

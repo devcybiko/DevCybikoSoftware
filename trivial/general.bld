@@ -1,0 +1,13 @@
+[path]
+..
+[files]
+general.trv
+
+[source]
+general.b2c
+
+[splash.text]
+This is the installation program for GENERAL.TRV - the General Trivial file.
+File with the .TRV extension are used by many different trivia programs.
+When this file is installed, the .app file will be deleted and you will need to
+reboot your Cybiko computer.

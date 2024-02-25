@@ -1,0 +1,12 @@
+!3d Projection
+
+Simply, to turn a set of 3d points (x,y,z) to a 2d point (x,y) you scale
+by the z value. The center point of the screen is 80,50 and your 2d points
+are relative to this.
+
+If the z value of a point is negative is is further away so you reduce the
+value of the x,y (e.g. 100,100 to 50,50).
+
+If the z value is positive (closer )you increase the value of x and y accordingly.
+
+The attached example demostrates the above.

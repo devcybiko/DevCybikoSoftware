@@ -1,0 +1,85 @@
+dim bk as int
+dim bq as int
+dim bb as int
+dim bn as int
+dim br as int
+dim bp as int
+dim wk as int
+dim wq as int
+dim wb as int
+dim wn as int
+dim wr as int
+dim wp as int
+
+dim spr_bk as int
+dim spr_bq as int
+dim spr_bb as int
+dim spr_bn as int
+dim spr_br as int
+dim spr_bp as int
+dim spr_wk as int
+dim spr_wq as int
+dim spr_wb as int
+dim spr_wn as int
+dim spr_wr as int
+dim spr_wp as int
+dim spr_board as int
+dim spr_marker as int
+dim spr_xmarker as int
+dim spr_waitplease as int
+dim spr_yourmove as int
+dim spr_wbar as int
+dim spr_bbar as int
+dim spr_check as int
+dim spr_win as int
+dim spr_lose as int
+dim spr_quit as int
+dim spr_lnums as int
+dim spr_rtnums as int
+dim spr_ah as int
+dim spr_ha as int
+
+bk = 1
+bq = 2
+bb = 3
+bn = 4
+br = 5
+bp = 6
+wk = 7
+wq = 8 
+wb = 9
+wn = 10
+wr = 11
+wp = 12
+
+spr_bk = 0
+spr_bq = 1
+spr_bb = 2
+spr_bn = 3
+spr_br = 4
+spr_bp = 5
+spr_wk = 6
+spr_wq = 7 
+spr_wb = 8
+spr_wn = 9
+spr_wr = 10
+spr_wp = 11
+spr_board = 12
+spr_marker = 13
+spr_xmarker = 14
+spr_waitplease = 15
+spr_yourmove = 16
+spr_wbar = 17
+spr_bbar = 18
+spr_check = 19
+spr_win = 20
+spr_lose = 21
+spr_quit = 22
+spr_lnums = 23
+spr_rtnums = 24
+spr_ah = 25
+spr_ha = 26
+
+sprite 1,"chess.pic"
+
+

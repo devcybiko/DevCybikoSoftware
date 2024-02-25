@@ -1,0 +1,23 @@
+                <TABLE BORDER=0 CELLSPACING=0 CELLPADDING=0 WIDTH=656 NOF=LY>
+                    <TR VALIGN=TOP ALIGN=LEFT>
+                        <TD WIDTH=656>
+                            <P ALIGN=CENTER><B><FONT COLOR="#0000FF" SIZE="+2">Learning to Program in CyBasic with the <BR>Cybiko Handheld Computer</FONT></B><BR>By Greg Smith</P>
+                            <P>Learn the fine art of computer programming by reading my CyBasic Tutorial.  Also, download the tutorial example programs including <B>The TARDIS Adventure</B>.</P>
+                            <P>When Cybasic-3 and CybasicLite software were released,  Cybasic-1 and -2 were taken off the Cybiko website.  You can download Cybasic1 and CyBasic-2 and their associated files from here:</P>
+                            <UL>
+                                <P><A HREF="attach?page=LearnCyBasic/CyBasic1.zip">CyBasic1.zip</A> - Cybasic.app and sample files<BR><A HREF="attach?page=LearnCyBasic/CyBasic2.zip">CyBasic2.zip</A> - Cybasic2.app and sample files (you must have 1MB memory)
+                                </P>
+                            </UL>
+                            <P><FONT SIZE="+1">Be sure to check out the </FONT>[B2C Basic Compiler]<FONT SIZE="+1"> (B2C)!</FONT></P>
+                            <UL>
+                                <P><HR ID="HRRule1" WIDTH="95%" ALIGN=CENTER SIZE=2></P>
+                            </UL>
+                            <P ALIGN=CENTER><FONT SIZE="+1">Click here for my </FONT><A HREF="attach?page=LearnCyBasic/whirl.rtf"><FONT SIZE="+1">Whirlwind Tour of CyBasic.</FONT></A></P>
+                            <P ALIGN=CENTER><FONT SIZE="+1">Click here for my </FONT><A HREF="attach?page=LearnCyBasic/cybasic.rtf"><FONT SIZE="+1">CyBasic</FONT></A><FONT SIZE="+1"> Tutorial.</FONT></P>
+                            <P ALIGN=CENTER><FONT SIZE="+1">Click here for the </FONT><A HREF="attach?page=LearnCyBasic/cybasictutorial.zip"><FONT SIZE="+1">ZIP File</FONT></A><FONT SIZE="+1"> of all programs in the Tutorial including 
+                                <BR>The TARDIS ADVENTURE</FONT></P>
+                            
+                        </TD>
+                    </TR>
+                </TABLE>
+  

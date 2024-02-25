@@ -1,0 +1,37 @@
+<B><P>Topic :</B> Error</P>
+<B><P>Language Level</B> : CyBasic-3</P>
+<B><P>Effectivity :</B> B2C v3e</P>
+<B><P>Syntax</B> : </P><DIR>
+<DIR>
+
+<P>error (a variable)</P></DIR>
+</DIR>
+
+<B><P>Description :</P><DIR>
+<DIR>
+
+</B><P>The Error variable receives a value during certain operations (like File I/O).  It can be used to make a decision if a command fails.</P>
+
+<P>#ERROR_FILE_SEEK 52</P>
+<P>#ERROR_FILE_WRITE 53</P>
+<P>#ERROR_FILE_READ 54</P>
+<P>#ERROR_FILE_OPEN 56</P>
+<P>#ERROR_FILE_CREATE 57</P>
+<P>#ERROR_FILE_CLOSE 100</P>
+<P>#ERROR_FILE_NUMBER 101</P>
+<P>#ERROR_FILE_ALREADY_OPEN 102</P>
+<P>#ERROR_FILE_ALREADY_CLOSED 103</P>
+<P>#ERROR_FILE_UNOPENED 104</P></DIR>
+</DIR>
+
+<B><P>Example</P><DIR>
+<DIR>
+
+</B><P>open &quot;myfile.txt&quot; for READ as 0</P>
+<P>if error &lt;&gt; 0 then</P>
+<P>   print &quot;Error opening myfile.txt&quot;</P>
+<P>   exit program</P>
+<P>end if</P>
+<B></DIR>
+</DIR>
+

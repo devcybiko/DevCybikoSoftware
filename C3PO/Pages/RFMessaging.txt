@@ -1,0 +1,6 @@
+send_remote_msg(cyid, appname, msgno, 0, 0, buffer, buflen);
+
+a cyid of -1 indicates broadcast
+
+cybiko packets are broadcast as 192-bytes at 19200 baud. which means you can only get 10 messages (frames) per second.
+

@@ -1,0 +1,5 @@
+<a href="Pages/Secrets/blockdiagram.pdf">Classic Block Diagram</a>\\
+<a href="Pages/Secrets/blockdiagram2.pdf">Classic Block Diagram 2</a>\\
+<a href="Pages/Secrets/earlycybiko.pdf">Early Cybiko Picture</a>\\
+<a href="Pages/Secrets/earlycybiko2.pdf">Early Cybiko Picture 2</a>\\
+<a href="Pages/Secrets/classicschematics.pdf">Classic Schematics</a>\\

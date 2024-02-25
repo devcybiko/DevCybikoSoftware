@@ -1,0 +1,42 @@
+'
+' this file is a set of constants describing message numbers
+'
+
+dim msg_player_add_player
+dim msg_player_buzzed_in
+
+dim msg_mc_player_added
+dim msg_mc_player_refused
+dim msg_mc_lockout
+dim msg_mc_recognized
+dim msg_mc_rejoined
+dim msg_mc_reset
+dim msg_mc_timer
+dim msg_mc_high_score
+dim msg_mc_score
+dim msg_mc_gameover
+dim msg_mc_winner
+dim msg_mc_standby
+dim msg_mc_right
+dim msg_mc_wrong
+
+sub msg_init
+    msg_player_add_player=101
+    msg_player_buzzed_in=102
+
+    msg_mc_player_added=201
+    msg_mc_player_refused=202
+    msg_mc_lockout=203
+    msg_mc_recognized=204
+    msg_mc_rejoined=205
+    msg_mc_reset=206
+    msg_mc_timer=207
+    msg_mc_high_score=208
+    msg_mc_score=209
+    msg_mc_gameover=210
+    msg_mc_winner=211
+    msg_mc_standby=212
+    msg_mc_right=213
+    msg_mc_wrong=214
+end sub
+

@@ -1,0 +1,27 @@
+!!!Name Change Page
+
+Enter your idea for the rename of the project below.  Enter your name along with the new project name.
+
+
+
+__CTPO__ Cybiko Third Party Organization (not c3po)  Some people have voiced
+concerns over the name C3PO.  Hopefully this will help.  Also, it gives us
+some lattitude if we decide to branch out in some other direction. [greg]
+
+
+''There is nothing wrong with the name C3PO.  It was a clever play on words.'' [TimParkin] 23-Jul-2003
+
+''I don't know... I think CTPO has a more professional-sounding ring to it.'' [Professr] 23-Jul-2003
+
+''I think the current name is fine also.'' [Tom] 24-Jul-2003
+
+''I think that although the name C3PO is a good play on words, it is probably copyrighted by LucasArts Inc.'' [MadPrgmr] 26-Jul-2003
+
+I'm not worried about the copyright issue. It's not a product or a corporation.  There are other organizations that use the same name.  And I dont think you can copyright an abbreviation.\\
+[http://sourceforge.net/projects/c3p0]\\
+[http://www.nsoul.com/artdisp.cfm?artistnum=83]\\
+[http://www.fastcompany.com/magazine/38/jtshannon.html]\\
+[http://www.novell.com/coolsolutions/gwmag/qna/c3po_questions.html]\\
+[http://www-3.ibm.com/software/success/cssdb.nsf/CS/NAVO-4LYMUY?OpenDocument&Site=default]\\
+
+"Psygnosis, Ambrosia and Hercules are cool names. I will conduct research into names of gods and legends and we may be able to go under a name without abbreviation. These names have a feeling of adventure to them which is relevant to the games." [EddAllanwood] 5-Aug-2003

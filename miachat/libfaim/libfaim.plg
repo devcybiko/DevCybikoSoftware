@@ -1,0 +1,110 @@
+<html>
+<body>
+<pre>
+<h1>Build Log</h1>
+<h3>
+--------------------Configuration: libfaim - Win32 Debug--------------------
+</h3>
+<h3>Command Lines</h3>
+Creating temporary file "c:\windows\TEMP\RSP6100.TMP" with contents
+[
+/nologo /MLd /W3 /Gm /GX /ZI /Od /I "." /D "_DEBUG" /D "_WIN32" /D "_MBCS" /D "_LIB" /Fp"Debug/libfaim.pch" /YX /Fo"Debug/" /Fd"Debug/" /FD /D /D /GZ /c 
+"C:\aimtest\libfaim\admin.c"
+"C:\aimtest\libfaim\adverts.c"
+"C:\aimtest\libfaim\auth.c"
+"C:\aimtest\libfaim\bos.c"
+"C:\aimtest\libfaim\buddylist.c"
+"C:\aimtest\libfaim\chat.c"
+"C:\aimtest\libfaim\chatnav.c"
+"C:\aimtest\libfaim\conn.c"
+"C:\aimtest\libfaim\ft.c"
+"C:\aimtest\libfaim\im.c"
+"C:\aimtest\libfaim\info.c"
+"C:\aimtest\libfaim\login.c"
+"C:\aimtest\libfaim\meta.c"
+"C:\aimtest\libfaim\misc.c"
+"C:\aimtest\libfaim\msgcookie.c"
+"C:\aimtest\libfaim\rxhandlers.c"
+"C:\aimtest\libfaim\rxqueue.c"
+"C:\aimtest\libfaim\search.c"
+"C:\aimtest\libfaim\snac.c"
+"C:\aimtest\libfaim\stats.c"
+"C:\aimtest\libfaim\tlv.c"
+"C:\aimtest\libfaim\txqueue.c"
+"C:\aimtest\libfaim\util.c"
+]
+Creating command line "cl.exe @c:\windows\TEMP\RSP6100.TMP" 
+Creating temporary file "c:\windows\TEMP\RSP6101.TMP" with contents
+[
+/nologo /out:"Debug\libfaim.lib" 
+.\Debug\admin.obj
+.\Debug\adverts.obj
+.\Debug\auth.obj
+.\Debug\bos.obj
+.\Debug\buddylist.obj
+.\Debug\chat.obj
+.\Debug\chatnav.obj
+.\Debug\conn.obj
+.\Debug\ft.obj
+.\Debug\im.obj
+.\Debug\info.obj
+.\Debug\login.obj
+.\Debug\md5.obj
+.\Debug\meta.obj
+.\Debug\misc.obj
+.\Debug\msgcookie.obj
+.\Debug\rxhandlers.obj
+.\Debug\rxqueue.obj
+.\Debug\search.obj
+.\Debug\snac.obj
+.\Debug\stats.obj
+.\Debug\tlv.obj
+.\Debug\txqueue.obj
+.\Debug\util.obj
+]
+Creating command line "link.exe -lib @c:\windows\TEMP\RSP6101.TMP"
+<h3>Output Window</h3>
+Compiling...
+admin.c
+adverts.c
+auth.c
+bos.c
+C:\aimtest\libfaim\auth.c(143) : warning C4761: integral size mismatch in argument; conversion supplied
+C:\aimtest\libfaim\auth.c(143) : warning C4761: integral size mismatch in argument; conversion supplied
+buddylist.c
+chat.c
+chatnav.c
+conn.c
+C:\aimtest\libfaim\conn.c(914) : warning C4133: 'function' : incompatible types - from 'int *' to 'char *'
+ft.c
+im.c
+C:\aimtest\libfaim\im.c(79) : warning C4244: 'return' : conversion from 'unsigned long ' to 'unsigned short ', possible loss of data
+info.c
+C:\aimtest\libfaim\im.c(934) : warning C4761: integral size mismatch in argument; conversion supplied
+C:\aimtest\libfaim\im.c(945) : warning C4761: integral size mismatch in argument; conversion supplied
+login.c
+C:\aimtest\libfaim\login.c(302) : warning C4018: '<' : signed/unsigned mismatch
+meta.c
+C:\aimtest\libfaim\login.c(335) : warning C4761: integral size mismatch in argument; conversion supplied
+misc.c
+msgcookie.c
+rxhandlers.c
+C:\aimtest\libfaim\rxhandlers.c(109) : warning C4244: '=' : conversion from 'unsigned long ' to 'unsigned short ', possible loss of data
+rxqueue.c
+search.c
+snac.c
+stats.c
+tlv.c
+C:\aimtest\libfaim\tlv.c(372) : warning C4028: formal parameter 2 different from declaration
+txqueue.c
+C:\aimtest\libfaim\txqueue.c(312) : warning C4018: '<' : signed/unsigned mismatch
+util.c
+Creating library...
+
+
+
+<h3>Results</h3>
+libfaim.lib - 0 error(s), 11 warning(s)
+</pre>
+</body>
+</html>

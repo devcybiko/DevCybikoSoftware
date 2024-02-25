@@ -1,0 +1,13 @@
+----
+!!Xtreme Folders
+----
+SDGAF found this<br>
+try to define <br>
+{{{
+__cyos 1478 bool File_create_dir(struct File* ptr_file, const char_t* fname); 
+}}}
+<p>
+but it will not work on the Cybiko Classic! 
+<p>
+to delete directory use File_remove function 
+<p>

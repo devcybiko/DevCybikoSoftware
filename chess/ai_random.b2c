@@ -1,0 +1,31 @@
+dim ai_pieces_row[16] as int
+dim ai_pieces_col[16] as int
+dim npieces as int
+
+sub ai(color as int)
+  dim piece as int
+  dim choice_piece as int
+  dim x as int
+
+  npieces = 0
+  for i=1 to 8
+    for j=1 to 8
+	piece = board[i,j]
+	if piece_color(piece) = color then
+	  move_getall(i,j)
+	  if nmoves then 
+	    ai_pieces_row[npieces]=i
+	    ai_pieces_col[npieces]=j
+	    npieces = npieces + 1
+	  endif
+	endif
+    next
+  next
+  if npieces then
+    choice_piece = rnd(npieces-1)
+    move_getall(ai_pieces_row[choice_piece],ai_pieces_col[choice_piece])
+    x = rnd(nmoves-1)
+    move_make(moves[x].from_row, moves[x].from_col, moves[x].to_row, moves[x].to_col)
+    repaint
+  end if
+end sub

@@ -1,0 +1,23 @@
+I already typed this out but here I go again.
+
+The MP3 Player application is simply a front end to the DLL. It displays the MP3s available using FileFind most likely. It then sends the filename/path to the DLL which then streams it to the MP3 Player Cartridge.
+
+The DLL communicates with the cartridge and streams the MP3, does volume control, etc.
+
+The actual cartridge contains an embedded chip which decodes the MP3 data and WAV and sends it immediately out the headphone jack. Unfortunately in test versions the data also travelled back to the Xtreme (the decoded MP3) but in massproduced versions they left that out to cut costs (in my opinion).
+
+Oh - read my other article about alternate codecs and such.
+[http://greg-smith.com:8080/C3PO/Wiki.jsp?page=MP3ChipExtraCodecs]
+
+- Joshua Colp. (July 18 2003).
+[josh]
+
+----
+''this article was written by [josh] earlier but for some reason got lost. i'm pasting it here so [josh] can edit in / out whatever he decides he needs to''
+----
+The MP3 Player application is merely a front end to the MP3 Player DLL. It is responsible for displaying available files (using a FileFind on /MP3) and changing various settings. It makes CyOS calls to the DLL for everything it does, and to play an MP3 it simply sends the filename. The DLL is responsible for direct contact to the MP3 Player cartridge. It streams the contents of the MP3 to the MP3 Player for decoding. Inside the MP3 Player is a chip which has a codec onboard for decoding MP3s along with WAVs. (Yes - it is possible to update it with support for other codecs, you just need to get them... for example... OGG anyone?). 
+
+What else... oh... the MP3 Player is branded with a version number so that the MP3 Player application will know if it is capable of recording voice/listening to the radio. 
+
+- Joshua Colp (July 18 2003). 
+

@@ -1,0 +1,119 @@
+!Pages I have edited:
+
+[Cybiko Wave API|WAVAPI]
+
+[Storm Cvc|StormCVC]
+
+[3d Projection|3dproj] (I plan on updating this)
+
+[Programming tips|progtips]
+
+!Contact Information
+
+You pm me on cydevr, or write at the bottom of this page if you have
+any comments or suggestions. 
+
+!Projects:
+
+__Apps__
+
+''StormPlayer (Latest release 0.8.3a)''
+
+Cybiko media player that play/show avi,fli,bmp,pic,txt and html files,
+as well as the cybiko specific cvc and cvi file type.
+
+The next version will (with luck) include:
+
+* reduced memory usage
+* VideoNow support (already working, tested with gregs videonow java program)
+* Improved menu (also done)
+
+I am holding off releasing because i don't want to fall into
+the trap of releasing versions each week with only minor
+differences.
+
+I am also considering making the browser a seperate program (StormBrowser?), one
+problem at the moment is that the larger storm.app becomes, the less
+memory is available for image buffers.
+
+''Avi2Cvc (included with Stormplayer)''
+
+Tool for the PC that can quickly convert a compatible avi to a cybiko cvc file.
+
+The next version may include:
+
+*pic sequence to cvc (possibly, or i make this a seperate program)
+
+
+''Bmp2Cvi  (included with Stormplayer)''
+
+PC Tool to create .cvi image file from bitmaps. One problem with the cybiko
+is that other than the .pic format their are no native image formats and .pic
+seems limited to 160x100.
+
+The bmp viewing in stormplayer will allow you to view larger images but
+most bitmap are very big file and take time to load.
+
+I wanted to use the same compression as the cvc video to make less programming
+but those functions would only work on a frame basis, up to a max frame size of 4000k. The new system reads the file as it goes, which reduces memory and
+allows for much bigger images. 
+
+The bmp2cvi uses ordered dithering and all four frame types from cvc video.
+
+All of which means big images, small filesizes and half decent quality!
+
+cvi source/example is also in the bundle i upload to cydevr.
+
+''WaveStorm (Not released)''
+
+Audio player, it is more of a test program while I try and get wave,mus and 
+midi working. Odds are it will never be released as any working audio modules
+would be included in StormPlayer.
+
+
+__Games__
+
+''Sensitve''
+
+Based on the C64 tile game game where you must run over all the tiles and
+reach the exit.
+
+''Starship Command'' (Working title, released in the bundle uploaded on cydevr)
+
+Currently working on a 2D Elite style game. All the objects are vectors (it looks like asteroids..) and it will feature (with luck) trading,mining and shooting. 
+
+''Spyhunter clone'' (50% done, not released yet)
+
+I want to make a vertical scroller so i thought i might try a
+spyhunter clone.
+
+''Vector (working title)'' (30% done)
+
+Top down driving game, made using 3d wireframe graphics.
+I will upload the current 3d test here soon, so people can give me
+some feedback about the speed (seems a little sluggish on a classic
+but i am hoping that it will be better on an extreme).
+
+update 6-4-2004
+*3d core is finally working, had some overflow problems.
+*faster rendering, changed the method of storing the object
+
+I might use this to release a 3d pacman just to see what people think.
+
+
+''Generic platform game'' (released in the bundle uploaded on cydevr)
+
+This is really just a core, it feature:
+
+* multiple moving enemies
+* fullscreen scrolling
+* easy to edit map system (just use paint)
+
+The aim is that all someone need to do is design some sprites, make a map
+and add a few minor bits to the source and you have a game.
+
+----
+''Please write any suggestions or messages below:''
+----
+
+[ssjx] Updated: 06-Feb-2004

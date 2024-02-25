@@ -1,0 +1,45 @@
+<B><P>Topic :</B> Dim</P>
+<B><P>Language Level</B> : CyBasic-1</P>
+<B><P>Effectivity :</B> B2C v2</P>
+<B><P>Syntax</B> : </P><DIR>
+<DIR>
+
+<P>Dim varname{[arraysize] {As datatype}</P></DIR>
+</DIR>
+
+<B><P>Description :</P><DIR>
+<DIR>
+
+</B><P>The Dim keyword defines a variable in anticipation of its use.  With the exception of For loop variables, a variable must be defined before it can be used.  The "As datatype" portion must be specified and causes the variable to  be created as the defined datatype:</P><DIR>
+<DIR>
+
+<P>Char : 1-byte signed integer or character (+/- 127)</P>
+<P>Int : 2-byte signed integer (+/- 32767) </P>
+<P>Long : 4-byte signed integer (+/- 2billion)</P>
+<P>Double : 4-byte fixed-point integer (16 bits int part and 16 bits decimal - range of -32767.0000 to 32767.0000 [4 digits of accuracy])</P></DIR>
+</DIR>
+
+<P>If the [arraysize] portion is included, the variable is declared as an array.  B2C Supports 1 and 2 dimensions.  For 2-dimensions specify the dimensions with a comma separator:</P><DIR>
+<DIR>
+
+<P>Dim a[10] as int  ‘one-dimension</P>
+<P>Dim a[10,5] as int ‘ two dimensions</P></DIR>
+</DIR>
+
+<P>You can defereference the array the same way:</P><DIR>
+<DIR>
+
+<P>A[0] = 1 ‘one dimension</P>
+<P>A[1,2] = 1 ‘ two dimension</P>
+</DIR>
+</DIR>
+</DIR>
+</DIR>
+
+<B><P>Example</P>
+<P>&#9;</B>Dim age as int</P>
+<P>&#9;Dim name[32] as char</P>
+<P>&#9;Input "age:", age</P>
+<P>&#9;Input "name:", name</P>
+<P>&#9;Print "You are ", name, "and your age is", age</P>
+<B>

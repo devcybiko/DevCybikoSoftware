@@ -1,0 +1,111 @@
+hide;
+;First, let's draw
+;the outer circle
+x=40;
+while i<=360
+{
+  moveto 40*cos(i),40*sin(i);
+  i=i+10;
+}
+
+;Now let's draw
+;the internal circle
+x=35;
+y=0;
+i=0;
+while i<=360
+{
+  moveto 35*cos(i),35*sin(i);
+  i=i+10;
+}
+
+;Now we'll drawing
+;the center of the clock
+;it’s a small circle
+x=5;
+y=0;
+i=0;
+while i<=360
+{
+  moveto 5*cos(i),5*sin(i);
+  i=i+20;
+}
+
+;Now let's divide 
+;the clock-face
+;into 12 equal parts
+i=0;
+while i<12
+{
+  x=0;
+  y=0;
+  angle=30*i+15;
+  penup;
+  forward 5;
+  pendown 1;
+  forward 29;
+  i=i+1;
+}
+pendown 3;
+
+;Let's mark out a clock-face
+;on each part
+i=0;
+while i<12
+{
+  x=0;
+  y=0;
+  angle=30*i+3;
+  penup;
+  forward 35;
+  pendown;
+  forward 5;
+  x=0;
+  y=0;
+  angle=30*i-3;
+  penup;
+  forward 35;
+  pendown;
+  forward 5;
+  i=i+1;
+}
+
+;Now we are going to draw
+;a second hand of the clock
+i=-1;
+while key=0 
+{ 
+  if i=12 i=0;  
+;Here we'll delete
+;the previous hand
+  x=0;
+  y=0;
+  angle=-30*i+90;
+  pendown 0;
+  forward 4;
+  penup;
+  forward 2;
+  pendown;
+  forward 28;
+  penup;
+  forward 2;
+  pendown;
+  forward 2;
+;Then we'll draw a hand
+;on the new space
+  i=i+1; 
+  x=0;
+  y=0;
+  angle=-30*i+90;
+  pendown 3;
+  forward 4;
+  penup;
+  forward 2;
+  pendown;
+  forward 28;
+  penup;
+  forward 2;
+  pendown;
+  forward 2;
+  wait 22;
+}

@@ -1,0 +1,15 @@
+dim x as int
+dim y as int
+dim done as int
+done = 0
+while not done
+  circfill 80,80,25
+  while penx<>-1
+    x=penx
+    y=peny
+    cls
+    circfill x,y,25
+    x=key
+  wend
+  if key = -1 then done=1
+wend

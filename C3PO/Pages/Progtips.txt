@@ -1,0 +1,16 @@
+!! Programming tips and tricks
+
+This page contains programming tricks and tips that may be of use to people.
+Hopefully people will add on to this list.
+
+* Always make sure you remember to free memory after you have allocated it, the cybiko does not have much memory to start with so making sure you free to keep as much available as possible. ''ssjx''
+
+* Handy maths : a=1-a  assuming a starts as 0, this will result in a alternating between 0,1. This can be really useful for frame animations. ''ssjx''
+
+* By creating a few commonly used functions, you can massively speed up developement time. Functions i re-use include keyboard input, sprite functions. ''ssjx''
+
+* Keep as much out of loops as possible, this is easy to forget but the less that is in a loop the faster the program will be. ''ssjx''
+
+* Try to limit the use of divide and multiply, these are usually much slower than add or subtract. If you need to multiply you may be able to use ''shifts'' instead eg a*2 becomes a<<1.  ''ssjx 14-Jan-2004''
+
+* The sin and cos functions are strange in that (int)sin() will return a number between 0 and 255, this is then divided by 255 to get the actual sin/cos answers. This however, can easily result in overflow errors if multiplied by large numbers. The solution i used was to divide the multiplier by 20, perform the equation, and then multiply the result by 20. This sort of solution may however result in a loss of acurracy but whether this is aceptable depends on the application. ''ssjx 06-Feb-2004 ''

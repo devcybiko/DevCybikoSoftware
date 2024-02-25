@@ -1,0 +1,24 @@
+dim k as int
+dim s[32] as char
+dim n as int
+dim clr as int
+s[0]=0
+n=0
+k=0
+clr=0
+inputxy 0,0,"Enter your name",s
+while k<>-1        
+        paper penx mod 10
+        ink peny mod 10
+        cls
+        printxy 80,80,penx,",",peny
+        line 0,0,penx,peny
+        k=key
+        if k=65 then k=-1
+        if k<>0 then
+            s[n]=k
+            n=n+1
+            s[n]=0
+            stringxy 0,10,s
+        endif
+wend

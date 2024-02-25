@@ -1,0 +1,33 @@
+----
+!!Battery Charge
+You can use this functions for obtaining battery charge: <br>
+{{{
+__cyos 632 unsigned int get_battery_charge(); 
+__cyos 805 bool is_battery_charging(); <br>
+}}}
+<br>
+define this function prototypes in your program and call them. 
+<br>
+more correct way is in the example: 
+<br>
+{{{
+#include <cybiko.h> 
+
+__cyos 929 void* cyos_charger; 
+__cyos 632 int get_battery_charge( void* charger ); 
+__cyos 805 bool is_battery_charging( void* charger ); 
+
+int main() 
+{ 
+  TRACE( "is_battery_charging : %d",  is_battery_charging( cyos_charger ) ); 
+  TRACE( "get_battery_charge : %d",  get_battery_charge( cyos_charger ) ); 
+  return 0; 
+} 
+}}}
+<br>
+but if you want to get batteries charge in millivolts define function<br>
+{{{
+__cyos 1455 unsigned get_ubat( void* charger );
+}}}
+and use the same way as function get_battery_charge().
+

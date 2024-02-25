@@ -1,0 +1,8 @@
+----
+!!Setting Alarms
+----
+{{{
+define and use functions: 
+__cyos 1318 bool Time_get_alarm( struct Time* ptr_time ); 
+__cyos 1319 bool Time_set_alarm( struct Time* ptr_time );
+}}}

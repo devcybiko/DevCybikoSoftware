@@ -1,0 +1,12 @@
+[greg] 29-Apr-2003\\
+I have been playing with the Cybiko for 2.5 years now.  It's a handheld Wireless (900Mhz) PDA.  I've released a bunch of software for it on my website [DevCybiko|http://devcybiko.greg-smith.com].  here are a few of the one's i'm most pleased with:
+
+*MiaChat - wireless AIM
+*QuiniChat - wireless ICQ
+*JED - alternative GUI
+*B2C - Basic-to-C Compiler
+*TCPKit - Adds TCP capability to Cybiko
+
+Check out the company's website (if its still up!) [Cybiko.com|http://Cybiko.com]
+
+[Cybiko]

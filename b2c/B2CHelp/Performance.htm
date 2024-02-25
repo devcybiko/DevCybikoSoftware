@@ -1,0 +1,167 @@
+<HTML>
+<HEAD>
+<META HTTP-EQUIV="Content-Type" CONTENT="text/html; charset=windows-1252">
+<META NAME="Generator" CONTENT="Microsoft Word 97">
+<TITLE>Chapter 1 : Introducing the Cybiko</TITLE>
+</HEAD>
+<BODY LINK="#0000ff" VLINK="#800080">
+
+<B><FONT FACE="Arial" SIZE=5><P ALIGN="CENTER">Performance Enhancements</P>
+<P ALIGN="CENTER">For</P>
+<P ALIGN="CENTER">B2C</P>
+</B></FONT><FONT FACE="Arial"><P ALIGN="CENTER">By Greg Smith</P>
+<OL START=0>
+
+</FONT><B><FONT FACE="Arial" SIZE=4><LI>Introduction</LI></OL>
+
+</B></FONT><FONT SIZE=2><P>Before reading this guide you should already have read the &quot;Quick Start Guide&quot; (docs/_QuickStart.doc), the &quot;B2C Tutorial&quot; (tutorials/b2c.doc), and the &quot;Bitmapped Graphics Guide&quot; (docs/Bitmaps.doc).  These documents are the foundation for all B2C programs.  You should also be very familiar with the &quot;Language Reference Guide&quot; (docs/LanguageReference.doc).</P>
+
+<P>There are only a few &quot;tricks&quot; to improving performance in a B2C application.  They are</P>
+<OL>
+
+<LI>KEY(keynumber)</LI>
+<LI>OPTION ESCAPE OFF</LI>
+<LI>OPTION SHOW OFF</LI>
+<LI>PAGECOPY</LI></OL>
+
+<P>&nbsp;</P>
+<OL START=0>
+
+</FONT><B><FONT FACE="Arial" SIZE=4><LI><a name=key>KEY</a>(keynumber)</LI>
+</B></FONT><FONT SIZE=2><P>If you are a seasoned (or even a beginner) CyBasic programmer, then you may be accustomed to checking for a keystroke like this:</P>
+
+</FONT><FONT FACE="Courier New" SIZE=2><P>If key = 267 then</P>
+<P>   Print &quot;You hit Enter&quot;</P>
+<P>End if</P>
+
+</FONT><FONT SIZE=2><P>This is fine if you are just checking a key once in a while, but for most gaming applications you may want to check for a key in a loop, like this:</P>
+
+</FONT><FONT FACE="Courier New" SIZE=2><P>While key &lt;&gt; #KEY_ENTER </P>
+<P>  ‘ wait for the enter key</P>
+<P>wend</P>
+
+</FONT><FONT SIZE=2><P>The problem with this loop is that the &quot;key&quot; function calls the cWinApp_get_message() function.  This function never takes less than 1/10 of a second to execute.  Which means you will never get more than 10 frames per second, and probably less.  To gain maximum performance, you must use the key(n) function (now that’s the word <I>key</I> with a number in parenthesis).  It takes as a parameter a key to sample.  If the key is pressed down – it returns TRUE (non-zero).  And if the key is not pressed, it returns FALSE (0).  Try this, instead…</P>
+
+</FONT><FONT FACE="Courier New" SIZE=2><P>While key(#KEY_ENTER)=FALSE  ‘ key is not depressed</P>
+<P>    ‘ wait for the enter key</P>
+<P>wend</P>
+
+</FONT><FONT SIZE=2><P>But wait, there’s more!  Another problem people fall into is that they call the key (no parens) function too often.  Like if you are writing an editor and you want to know what key is currently depressed.  The code may look like this:</P>
+
+</FONT><FONT FACE="Courier New" SIZE=2><P>If key = #KEY_LEFT then x=x-1</P>
+<P>If key = #KEY_RIGHT then x=x+1</P>
+<P>If key = #KEY_UP then y=y+1</P>
+<P>If key = #KEY_DOWN then y=y-1</P>
+
+</FONT><FONT SIZE=2><P>In this case you can expect major performance problems and possibly even errors (since you are throwing away keystrokes with each call to key).  This is a much better solution…</P>
+
+</FONT><FONT FACE="Courier New" SIZE=2><P>DIM keystroke as char</P>
+
+<P>Keystroke = key  ‘called just once</P>
+<P>If keystroke = #KEY_LEFT then x=x-1</P>
+<P>If keystroke = #KEY_RIGHT then x=x+1</P>
+<P>If keystroke = #KEY_UP then y=y+1</P>
+<P>If keystroke = #KEY_DOWN then y=y-1</P>
+
+</FONT><FONT SIZE=2><P>You can even improve upon this using the key(n) function as follows:</P>
+</FONT><FONT FACE="Courier New" SIZE=2><P>If key(#KEY_LEFT) then x=x-1</P>
+<P>If key(#KEY_RIGHT) then x=x+1</P>
+<P>If key(#KEY_UP) then y=y+1</P>
+<P>If key(#KEY_DOWN) then y=y-1</P>
+</FONT><B><FONT FACE="Arial" SIZE=4><LI><a name=option_escape_off>OPTION ESCAPE OFF</a></LI>
+</B></FONT><FONT SIZE=2><P>The B2C compiler is shipped with certain options in effect.  These options are designed to make programming for the novice much easier.  One of these features is ESC key detection.  At the top of each WHILE or FOR loop an inline call is made to the C function &quot;escape(0)&quot;.  This function detects if the ESC key has been pressed, and if it has will display the standard &quot;ESC Pressed -Quit?&quot; dialog.  Unfortunately, this function takes about 1/10 of a second to execute.  For many programs this is not a problem, but for high performance graphics applications, it’s much too slow.  This problem can be compounded by nested loops which call &quot;escape(0)&quot; not just 2x as often but as much as x<SUP>2</SUP>.</P>
+
+<P>The fix is to declare &quot;OPTION ESCAPE OFF&quot; at the top of the program.  Since this removes escape processing from your program, it will run much faster.  However, it also means that your user has no easy way to exit from your program.  And to make matters worse, you cannot use KEY(#KEY_ESC) to detect the escape key (CyOS does not allow it for unknown reasons).  The only recourse is to use some other key as the exit key.  Many people use the SPACE key.</P>
+
+</FONT><FONT FACE="Courier New" SIZE=2><P>While KEY(#KEY_SPACE)=FALSE</P>
+<P>If key(#KEY_LEFT) then x=x-1</P>
+<P>If key(#KEY_RIGHT) then x=x+1</P>
+<P>If key(#KEY_UP) then y=y+1</P>
+<P>If key(#KEY_DOWN) then y=y-1</P>
+<P>Move 1,x,y</P>
+<P>Redraw</P>
+<P>Wend</P>
+</FONT><B><FONT FACE="Arial" SIZE=4><LI><a name=option_show_off>OPTION SHOW OFF</a></LI>
+</B></FONT><FONT SIZE=2><P>Normally, when we use any of the graphic functions like printxy, or redraw, or line, the result of the command is immediately apparent on the screen.  That is because an internal drawing function called &quot;Show&quot; is executed right away.  You see, all graphics commands are actually drawn on a backing display called a buffer.  The buffer is drawn on until a &quot;Show&quot; is performed.  Then it becomes visible to the user.  This technique of buffering graphics is called &quot;double-buffering&quot;.</P>
+
+<P>Because B2C was created for the first time programmer, this Show was performed after each graphics command.  The problem is it’s very inefficient.  It makes more sense to draw everything in the buffer then do a Show at the end (rather than a Show after every command).  This is why so many B2C programs are both slow and display lots of flicker.</P>
+
+<P>To save memory, and have more control over how things are drawn you need to specify &quot;OPTION SHOW OFF&quot; which turns off the &quot;Show&quot; after each command.  Since you now have more power over the graphics engine, you also have more responsibility.  You must call a &quot;Redraw Show&quot; when you are done drawing the display.</P>
+
+<P>Another benefit of &quot;OPTION SHOW OFF&quot; is that you can reuse the same sprite over and over again.  For example, in the &quot;Playfield Graphics Tutorial&quot; (in the playfield directory) there are 19 &quot;money&quot; icons.  It would be much more practical to load that icon once and use it over and over again.</P>
+
+<P>To use the same sprite over and over again, we have to first load the sprite into memory.  Then we move the sprite to the first location, call the redraw function for that sprite (and that sprite only).  Then move the sprite to the next location and redraw it.  And so on.  Each time we redraw the sprite it acts like a &quot;stamp&quot; imprinting an image of the sprite on the buffered display.  Finally, when all the sprites have been imprinted, we call &quot;Redraw Show&quot; and the buffer is copied to the main display for the user to see.  Here is a sample :</P>
+
+</FONT><FONT FACE="Courier New" SIZE=2><P>Sprite 1, &quot;money.pic&quot;</P>
+<P>CLS</P>
+<P>Move 1, 0, 0 ‘upper left of screen</P>
+<P>Redraw 1 ‘ imprint the money on the buffered display</P>
+<P>Move 1, 50, 50 ‘middle of screen</P>
+<P>Redraw 1 ‘imprint the money on the buffered display </P>
+<P>Move 1, 100, 75 ‘lower right of screen</P>
+<P>Redraw 1 ‘imprint the money on the buffered display</P>
+<P>Redraw Show ‘ show the buffer to the user &quot;Show me the Money!&quot;</P>
+</FONT><FONT SIZE=2>
+<P>For more information, check out Part 7 of the &quot;Playfield Graphics Tutorial&quot; (playfield/part7/playfield7.doc)</P>
+</FONT><B><FONT FACE="Arial" SIZE=4><LI><a name="pagecopy">PAGECOPY</a></LI></OL>
+
+</B></FONT><FONT SIZE=2><P>There are 2 graphic pages in the Cybiko: Page 0 and Page 1.  Normally Page 0 is in effect.  Whenever you perform a graphics command it is sent to the currently selected page.  If OPTION SHOW OFF is in effect the results of the graphics command are deferred until you do a REDRAW SHOW and the currently selected page is copied to the real display.  With the PAGE command you can set the currently selected page to either 0 or 1.</P>
+
+<P>The PAGECOPY command will quickly copy a rectangle from one page to another.</P>
+
+</FONT><FONT FACE="Courier New" SIZE=2><P>PAGECOPY from, to, x, y, w, h</P>
+</FONT><FONT SIZE=2>
+<P>The ‘from’ parameter is the page to copy from and the ‘to’ parameter is the page to copy to.  The ‘x’ and ‘y’ parameters indicate the upper left corner of the rectangle to copy and the ‘w’ and ‘h’ parameters indicate the width and height.  This function is 50% faster than a regular SPRITE command.</P>
+
+<P>This is most useful for redrawing a single sprite.  Usually Page 1 is initialized with the background sprite.  Then Page 0 is painted with all the sprites.  Moving a single sprite is accomplished by doing a PAGECOPY from Page 1 into Page 0 (thereby erasing the sprite) then redrawing the moved sprite.  It sounds complicated but its very simple and is 50% faster than ordinary sprite commands.</P>
+<DIR>
+<DIR>
+
+</FONT><FONT FACE="Courier New" SIZE=1><P>OPTION SHOW OFF</P>
+<P>OPTION ESCAPE OFF</P>
+<P>OPTION C_COORDS</P>
+<P>dim x as int</P>
+<P>dim x1 as int</P>
+<P>dim y as int</P>
+<P>Sub redraw_mario</P><DIR>
+<DIR>
+
+<P>pagecopy 1, 0, x1, y, 20, 20 'erase mario from old x,y with the background</P>
+<P>move 1,x,y 'paint mario</P>
+<P>redraw 1</P>
+<P>x1 = x 'set the old x to the current x</P>
+<P>redraw show ' show page 0</P></DIR>
+</DIR>
+
+<P>end sub</P>
+
+<P>Sprite 0, "background.pic"</P>
+<P>Sprite 1, "mario.pic"</P>
+<P>page 1 'switch to page1</P>
+<P>move 0, 0, 0 ' paint the background to page 1</P>
+<P>redraw 0</P>
+<P>page 0 ' back to page 0</P>
+<P>move 0, 0, 0</P>
+<P>redraw 0 ' paint the background to page 0</P>
+<P>' initialize mario’s position</P>
+<P>x=0</P>
+<P>x1=x</P>
+<P>y=50</P>
+<P>move 1, x, y 'paint mario</P>
+<P>redraw 1</P>
+<P>redraw show 'show page 0 to the user</P>
+<P>while true</P>
+<P>&#9;if key(#KEY_LEFT) then </P>
+<P>&#9;&#9;x=x-1</P>
+<P>&#9;&#9;redraw_mario</P>
+<P>&#9;endif</P>
+<P>&#9;if key(#KEY_RIGHT) then </P>
+<P>&#9;&#9;x=x+1</P>
+<P>&#9;&#9;redraw_mario</P>
+<P>&#9;endif</P>
+<P>if key(#KEY_SPACE) then exit program</P>
+<P>wend</P>
+</FONT><FONT FACE="Courier" SIZE=1></DIR>
+</DIR>
+</FONT></BODY>
+</HTML>

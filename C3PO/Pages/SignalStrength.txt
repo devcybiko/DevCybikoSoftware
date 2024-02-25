@@ -1,0 +1,63 @@
+----
+!!Signal Strength
+----
+Message has been sended by deliver method in contrast to post method must be
+delivered to another Cybiko in the fixed timeout. But post method is faster and good
+in pinging. send_msg() function sends a message to another application in the same
+Cybiko computer using local message queue.<br>
+<br>
+There are two types of channels numbering. First is for low level close to hardware.
+Total sum of these channels is 64 numbered from 0 to 63. This number included in every
+frame put on the air. Another numbering of the same channels starts from 1 for debugging
+radio part created several programs. It is "phisical" channels corresponded with certain
+value of transmission frequency. Unfortunatly these channel slightly overlap each other.
+For applications only 30 channels were choosen from 64 with purpose of prevent overlaping
+and leaving permissible frequency range. They are numbered from 0 to 29. On different
+cybiko devices these channels can correspond with different phisical channels. For example,
+on one device tenth application channel can be 22th phisical channel on the another function
+get_appchannel_of(cyid of the first device) can return another application channel, e.g. 12th.
+However it is the same phisical channel. For these concepts division "appcahnnel" was
+introduced into practice. For the application programers zero is the base channel.<br>
+ <br>
+For those applications that have not specialized channels there are special groups of
+channels: for games - RF_GROUP_GAMES, for applicaions RF_GROUP_APPS.
+Notice again, it is not channels. It is groups of channels. Channels from these groups
+can be selected by index inside group (start from 0) using function <br>
+{{{
+byte_t set_groupchannel(byte_t channel_group, byte_t channel).
+}}}
+Number of channel in the
+group can be obtained from function byte_t get_group_size(byte_t group). However the
+most proper method is to request CyOS to set the least busy channel from the certain
+group by calling function byte_t set_best_appchannel(byte_t group).
+Order of two cyiko device transition to separate channel can be following:
+two devices are taking part - one starts the game: M (master), another answers with agree:<br>
+S (slave).<br>
+1. Located on the base channel (appchannel(0)).<br>
+2. M: send invitation (select_partner()) and with the aid of it determine CyID of the opponent S.<br>
+3. M: switch to separated channel by calling set_best_appchannel( RF_GROUP_GAMES ).<br>
+4. M: send S message that it is time to change channel too.<br>
+5. S: when receive message change channel by calling function
+set_appchannel(get_appchannel_of(master_cyid)).<br>
+6. Start transmition.<br>
+ <br>
+The question is that on the step 4 device M know (remember) on what channel device S is
+situated. Device S just after receiving message from M will know on what channel device M
+is switched and will change channel to it.M<br>
+ <br>
+Our device has half-duplex transmit-receiver. In the same time it can receive or send using
+one frequency. Therefore "working" channel is the frequency that device listens the most part
+of time. Other part of time it spends to transmitting. Device can transmit not only on "working"
+channel. On the base channel it sends pings once in five seconds. On the "working" channel
+pings are sent only if device did not send any packets more then 5 seconds.<br>
+<br>
+To measure signal strength define function: <br>
+{{{
+__cyos 1357 unsigned int get_device_level( cyid_t cyid );
+}}}
+<br>
+Returns device's avarage RSSI.<br>
+RSSI - Received Signal Strength Indicator. Result is in range 0..100.<br>
+<br>
+devsupport<br>
+

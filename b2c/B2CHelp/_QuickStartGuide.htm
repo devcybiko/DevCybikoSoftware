@@ -1,0 +1,135 @@
+<HTML>
+<HEAD>
+<META HTTP-EQUIV="Content-Type" CONTENT="text/html; charset=windows-1252">
+<META NAME="Generator" CONTENT="Microsoft Word 97">
+<TITLE>Chapter 1 : Introducing the Cybiko</TITLE>
+</HEAD>
+<BODY LINK="#0000ff" VLINK="#800080">
+
+<B><FONT FACE="Arial" SIZE=5><P ALIGN="CENTER">QUICKSTART GUIDE TO</P>
+<P ALIGN="CENTER">The Basic to C Compiler</P>
+<P ALIGN="CENTER">(B2C)</P>
+<P ALIGN="CENTER">for the </P>
+<P ALIGN="CENTER">Cybiko Handheld Computer</P>
+</B></FONT><FONT FACE="Arial"><P ALIGN="CENTER">By Greg Smith</P>
+<OL>
+
+<a name=introduction>
+</FONT><B><FONT FACE="Arial" SIZE=4><LI>Introduction</LI>
+</a>
+</B></FONT><FONT SIZE=2><P>B2C is a language translator.  It converts your CyBasic file (foobar.b2c) into a 'C' file (foobar.c).  The 'C' file is then ready to be converted into an application (foobar.app) which can be uploaded to your Cybiko handheld computer.  The ‘B2Cbuild&quot; program handles all this conversion for you.  It’s a simple one-command process.</P>
+
+<P>B2C is designed to convert programs written for CyBasic2.  It has all the language elements of CyBasic2.  <B><I>There are also many language features not found in Cybasic2.</b></i>  Please read the Command Summary for a complete listing of language features. Also, read the <a href=tutorial.htm>Tutorial</a> and the accompanying samples in the Tutorials directory.</P>
+
+<P>To convert the resultant 'C' files into a .app file, you must download the Cybiko SDK.  Any version of the SDK will do as long as it is version 2.0 or better.  You may choose the Standard Edition (free) or Professional Edition ($49.95). This software can be downloaded from Cybiko at </FONT><A HREF="http://www.cybiko.com/devsarea"><FONT SIZE=2>www.cybiko.com/devsarea</FONT></A><FONT SIZE=2>.  Or from </FONT><A HREF="http://www.devcybiko.com/basiccompiler.html"><FONT SIZE=2>www.devcybiko.com/basiccompiler.html</FONT></A><FONT SIZE=2> </P>
+<a name=compiling>
+</FONT><B><FONT FACE="Arial" SIZE=4><LI>Compiling a program</LI>
+</a>
+</B></FONT><FONT SIZE=2><P>All programs input to the compiler must have the extension .b2c.  To compile the program you may use the delivered &quot;build.bat&quot; file in DOS mode, or you may create your own makefile and use vmake.  To make a program you must run the "MSDOS Prompt" window.  This is usually found in the "Start-&gt;Programs-&gt;MSDOS Prompt" menu.  Once inside the MSDOS Prompt window type "cd C:\…\b2cv5" (where … is the directory where you installed B2Cv5).  Once in that directory, type in "build filename.b2c&quot;.  The resulting file will be "filename.app".  </P>
+
+<P>A sample program has been delivered with the compiler.  Try typing "build tardis.bld" and run the resulting application - tardis.app.</P>
+<a name=resource>
+</FONT><B><FONT FACE="Arial" SIZE=4><LI>Resource Files and Build</LI></OL>
+</a>
+
+</B></FONT><FONT SIZE=2><P>The Cybiko SDK expects a number of files to make up an application.  Here are the ones used by B2C if "foobar.b2c" is to be compiled:</P>
+
+<UL>
+<LI>foobar.bmp (a 48x47 pixel bitmap for the on-screen icon)</LI>
+<LI>foobar.help (a file to be displayed when the help button is pressed)</LI>
+<LI>foobar.inf (a file with technical information about the app - edit this and replace all "Tardis" info with "fobar")</LI>
+<LI>foobar.spl (the text that is displayed when the program first runs)</LI>
+<LI>foobar.list - (don’t touch this file)</LI>
+<LI>score.inf (a high score file for games, don’t edit this)</LI></UL>
+
+
+<P>If you were compiling a ‘C’ file with the Cybiko/SDK you would have to supply one of each of these files or the make.bat file would not succeed.  To simplify this process, we have supplied the command "build.bat" which reads a &quot;filename.bld&quot; file and gets all the needed information from there.</P>
+
+<P>Here is a copy of the BLD file for Tardis.app.  The full documentation is supplied in <B><I>docs\B2Cbuild.doc</B></I>.  To &quot;build&quot; this program you would simply type &quot;build tardis.bld&quot;.  The b2cbuild process would then read the tardis.bld file and generate all necessary files to create the app.  It’s that simple!</P>
+</FONT>
+<TABLE BORDER CELLSPACING=1 CELLPADDING=7 WIDTH=590>
+<TR><TD WIDTH="39%" VALIGN="TOP">
+<FONT FACE="Courier New" SIZE=2><P>[option]</P>
+<P>#keep</P>
+
+<P>[name]</P>
+<P>Tardis Adventure</P>
+
+<P>[source]</P>
+<P>tardis.b2c</P>
+
+<P>[author]</P>
+<P>Gregory Smith</P>
+
+<P>[copyright]</P>
+<P>(C) Copyright 2001, Gregory Smith</P>
+
+<P>[help]</P>
+<P>tardis help file</P>
+<P>n=Go North</P>
+<P>s=Go South</P>
+<P>e=Go East</P>
+<P>w=Go West</P>
+<P>eat=eat something</P>
+<P>drop=drop something</P>
+<P>take=take something</P>
+<P>i=inventory</P>
+
+<P>[splash.text]</P>
+
+<P>This game is an adventure based on the British TV Show "Dr. Who".</FONT></TD>
+<TD WIDTH="61%" VALIGN="TOP">
+<B><I><FONT FACE="Courier New" SIZE=2><P>[option] indicates Special options</P>
+<P># indicates a comment.  The keep option tells build not to remove any files</P>
+<P>[name] indicates the name of the program</P>
+
+<P>&nbsp;</P>
+<P>[source]indicates the source file name to be compiled</P>
+
+<P>&nbsp;</P>
+<P>[author] indicates the name of the author</P>
+
+<P>&nbsp;</P>
+<P>[copyright] indicates the copyright info</P>
+
+<P>&nbsp;</P>
+<P>[help] everything to appear when the user hits help (?)</P>
+
+<P>&nbsp;</P>
+<P>&nbsp;</P>
+<P>&nbsp;</P>
+<P>&nbsp;</P>
+<P>&nbsp;</P>
+<P>&nbsp;</P>
+<P>&nbsp;</P>
+<P>&nbsp;</P>
+<P>[splash.text] indicates the text to display when the program first shows up on the screen</B></I></FONT></TD>
+</TR>
+</TABLE>
+
+<FONT SIZE=2><P>&nbsp;</P>
+<ol start=4>
+<a name=support>
+</FONT><B><FONT FACE="Arial" SIZE=4><LI>Support</LI></OL>
+</a>
+
+</B></FONT><FONT SIZE=2><P>We here at The Alcor Group are eager to see you succeed in your programming endeavors.  Version 2a offered full access to the SDK functions and with version 2c we include complete bitmapped graphics capabilities.  Version 3 completes the sprite (bitmapped) graphics capabilities.  Version 3a added Types, String handling and the Build procedure.  Version 3d adds 3d graphics, dialog boxes, and RF messaging for multi-player games.  Version 4.0 added features to support the 3.x version of Cybiko SDK.  Finally B2cv5 (the final release) included Help file processing, word wrapping, keyboard input for the Xtreme, Rename, Remove, and Exists functions for files, Load, Len, Menuxy, Rect, Circle, Page/Pagecopy, stringwidth/height, and Archive file input.</P>
+
+<P>There is abundant documentation on B2C in this delivery.  The new B2C.chm file holds plenty of documentation.  The following files are also offered in case you want to read the original Word documents:</P>
+
+<UL>
+<B><I><LI>LanguageReference.doc</B></I> - information on the B2C language capabilities.  </LI>
+<B><I><LI>ReleaseNotes.doc</B></I> - features and bugs delivered with which version of B2C</LI>
+<B><I><LI>Bitmaps.doc</B></I> – Bitmapped graphics</LI>
+<B><I><LI>3d.doc</B></I> – three-dimensional graphics</LI>
+<B><I><LI>rf.doc</B></I> - RF messaging (multi-player games)</LI>
+<B><I><LI>B2cBuild.doc</B></I> - describes the commands you can use inside your .bld files</LI>
+<B><I><LI>Performance.doc</B></I> – how to make your programs run faster</LI>
+<B><I><LI>README.txt</B></I> - in the B2C home directory.</LI></UL>
+
+
+<P>Finally, don't hesitate to contact us with any questions you may have regarding CyBasic or the B2C compiler.  As always please read the documentation before asking for help.  It's our goal to help you create as many programs as possible using B2C.  And of course, if there is something you like about B2C - we wouldn't mind hearing that too!</P>
+
+<P>If you have questions - <U>or if you have created a program you want to see posted on our website</U> - contact us at </FONT><A HREF="mailto:support@alcorgrp.com"><FONT SIZE=2>CyBasic@alcorgrp.com</FONT></A><FONT SIZE=2> or on AIM/AOL Screen Name: DevCybiko.</P>
+</FONT></BODY>
+</HTML>

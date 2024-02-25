@@ -1,0 +1,288 @@
+<HTML>
+<HEAD>
+<META HTTP-EQUIV="Content-Type" CONTENT="text/html; charset=windows-1252">
+<META NAME="Generator" CONTENT="Microsoft Word 97">
+<TITLE>Part 1 : Creating the Playfield</TITLE>
+</HEAD>
+<BODY>
+
+<B><FONT FACE="Arial" SIZE=5><P ALIGN="CENTER">Playfield Graphics Tutorial</P>
+<P ALIGN="CENTER">Part I – Creating the Playfield</P>
+</B></FONT><FONT SIZE=2><P ALIGN="CENTER">by Greg Smith</P>
+</FONT><B><FONT FACE="Arial" SIZE=4><P>Introduction:</P>
+</B></FONT><FONT SIZE=2><P>The graphics behind such games as Zelda and Super Mario Brothers allows for a large playing field where the Cybiko screen is merely a window into the larger world.  This type of graphics is complex and memory consuming.  This tutorial will describe how to set up a 480x300 pixel playfield with an animated object and is the basis for just such games.</P>
+<P>&nbsp;</P>
+</FONT><B><FONT FACE="Arial" SIZE=4><P>The Playfield:</P>
+</B></FONT><FONT SIZE=2><P>A playfield is an extended bitmapped screen.  In our case it will be 480x300 pixels.  This is really 9 160x100 screens in a 3x3 array.  The screens are called &quot;screen0.bmp&quot; through &quot;screen8.bmp&quot;.  They are combined into a single sprite in the &quot;playfield.bld&quot; file and are called &quot;playfield.pic&quot;.</P>
+
+<P><HR ALIGN="LEFT" WIDTH="30%" SIZE=1></P>
+<P></P>
+
+<P><HR ALIGN="LEFT" WIDTH="16%" SIZE=4></P>
+<P>playfield.pic</P>
+<P><HR ALIGN="LEFT" WIDTH="16%" SIZE=4></P>
+<P></P>
+<P><HR ALIGN="LEFT" WIDTH="16%" SIZE=4></P>
+
+<P>&nbsp;</P>
+<P></P>
+
+<P>Our playfield is a highway system with roads leading from one screen to the next.</P>
+
+<P>As the character (a car in our example) moves from one edge of the screen to the next, the next screen is displayed and the car is displayed in the appropriate place.  This is handled automatically and with ease by the &quot;repaint&quot; routine listed below.</P>
+<P>&nbsp;</P>
+</FONT><B><FONT FACE="Arial" SIZE=4><P>The Program</P>
+
+</B></FONT>
+<pre>
+<FONT FACE="Courier New" SIZE=2>
+OPTION C_COORDS
+
+dim x as int  'position of car from 0-480
+dim y as int  'position of car from 0-300
+dim z as int  'which image of car
+
+dim sprite_field as int 'the sprite number of the playfield sprites
+dim sprite_car as int   'the sprite number of the car sprites
+dim car_left as int     'index into car sprite for going left
+dim car_right as int    'index into car sprite for going right
+dim car_up as int       'index into car sprite for going up
+dim car_down as int     'index into car sprite for going down
+
+'''
+''' initialization
+'''
+sub init
+	sprite_field = 0  'playfield sprite
+	sprite_car = 1    'car sprite
+
+	car_left=0        'car left image
+	car_right=1       'car right image
+	car_up=2          'car up image
+	car_down=3        'car down image
+
+	'''
+	''' the playfield sprite has 9 bitmaps
+	''' one for each of the different areas of the
+	''' playfield
+	sprite sprite_field, "playfield.pic"
+
+	'''
+	''' the car has 4 bitmaps one for each direction
+	sprite sprite_car, "car.pic"
+
+	'''
+	''' the car can be anywhere on the playfield from
+	''' x = 0-480
+	''' y = 0-300
+	x=240  'center of the playfield
+	 y=150  'center of the playfield
+	z=car_right
+end sub
+
+sub repaint
+	dim field_x as int   '0,1,2 for the horizontal bitmap
+	dim field_y as int   '0,1,2 for the vertical bitmap
+	dim field as int     '0-8 for the bitmap currently visible
+	dim car_x as int     '0-159 for the x coord on the screen
+	dim car_y as int     '0-99  for the y coord on the screen
+
+	field_x = x / 160    ' compute the horizontal bitmap
+	field_y = y / 100    ' compute the vertical bitmap
+	field = field_y*3 + field_x ' combine them to compute the bitmap number
+
+	car_x = x mod 160  ' compute the car's position on the screen
+	car_y = y mod 100  ' compute the car's position on the screen
+
+	move sprite_field, 0, 0, field  'display the current field
+	move sprite_car, car_x, car_y, z 'display the car 
+
+	paper dkgrey  'transparent color for the car
+	redraw        'redraw all the sprites
+
+end sub
+
+'''
+''' process the keyboard
+'''
+sub get_keys
+	if key(#KEY_UP) then   'move the car up
+		y=y-3
+		z=car_up
+	end if
+	if key(#KEY_DOWN) then 'move the car down
+		y=y+3
+		z=car_down
+	end if
+	if key(#KEY_LEFT) then 'move the car left
+		x=x-3
+		z=car_left
+	end if
+	if key(#KEY_RIGHT) then 'move the car right
+		x=x+3
+		z=car_right
+	end if
+end sub
+
+'''
+''' main subroutine
+'''
+sub mainsub
+	init
+
+	while true
+		repaint
+		get_keys
+	wend
+end sub
+
+'''
+''' call the main subroutine
+'''
+mainsub
+</pre>
+</FONT><FONT SIZE=2><P>&nbsp;</P>
+</FONT><B><I><FONT FACE="Arial"><P>Option C_Coords</P>
+</B></I></FONT><FONT SIZE=2><P>The compiler option C_COORDS is used in this program to switch the coordinate system from CyBasic mode ([-80,-50] to [79,49]) into C mode ([0,0] to [159,99]).  The zero-based coordinates make the mathematics of computing the screen coordinates easier.  This is true for most nearly any video game.</P>
+</FONT><B><I><FONT FACE="Arial"><P>The Variables</P>
+</B></I></FONT><FONT SIZE=2><P>In our program we are extending the concept of the sprite position on the screen.  The x and y coordinates define our position in the playfield – not our position on the Cybiko screen.  So, the X variable can range from 0 (the leftmost position on the playfield) to 479 (the rightmost position on the playfield).  Likewise the Y variable will range from 0 (top) to 299 (bottom).   The Z variable is used to indicate which image of the car is currently being shown.</P>
+
+<pre>
+</FONT><FONT FACE="Courier New" SIZE=2>
+dim x as int  'position of car from 0-480
+dim y as int  'position of car from 0-300
+dim z as int  'which image of car
+</pre>
+
+</FONT><FONT SIZE=2><P>The remainder of the variables are actually constants used to make the program easier to read. SPRITE_FIELD and SPRITE_CAR are the sprite numbers for the playfield and the car respectively.  The variables CAR_LEFT, CAR_RIGHT, CAR_UP, and CAR_DOWN are the indexes into the SPRITE_CAR sprite.  These constants are initialized in the INIT function.</P>
+</FONT>
+<pre>
+<FONT FACE="Courier New" SIZE=2>
+dim sprite_field as int 'the sprite number of the playfield sprites
+dim sprite_car as int   'the sprite number of the car sprites
+dim car_left as int     'index into car sprite for going left
+dim car_right as int    'index into car sprite for going right
+dim car_up as int       'index into car sprite for going up
+dim car_down as int     'index into car sprite for going down
+</pre>
+</FONT><FONT SIZE=2><P>&nbsp;</P>
+
+</FONT><B><I><FONT FACE="Arial"><P>sub init</P>
+</B></I></FONT><FONT SIZE=2><P>Here we initialize all the &quot;constants&quot; in the program.  Again, the SPRITE_FIELD and SPRITE_CAR are the sprite numbers.  Later, when we actually load and move the sprites we will use these variables instead of the literals &quot;0&quot; and &quot;1&quot;.  This practice makes the code much easier to read.  This is also true of the car’s left, right, up and down images.  We use CAR_LEFT, etc. to make the program easier to read.</P>
+
+</FONT>
+<pre>
+<FONT FACE="Courier New" SIZE=2>
+sprite_field = 0  'playfield sprite
+sprite_car = 1    'car sprite
+
+car_left=0        'car left image
+car_right=1       'car right image
+car_up=2          'car up image
+car_down=3        'car down image
+</pre>
+
+</FONT><FONT SIZE=2><P>The playfield is a set of 9 bitmaps arranged in a 3x3 matrix.  The car is a set of 4 bitmaps showing the car pointing left, right, up, and down.  Here we load them into memory.  Note that the playfield is 4K x 9 screens or 36K.  Later we will investigate multiplayfield programs (where keeping all sprites in memory at one time will be impossible).</P>
+
+</FONT>
+<pre>
+<FONT FACE="Courier New" SIZE=2>
+sprite sprite_field, "playfield.pic"
+sprite sprite_car, "car.pic"
+</pre>
+
+</FONT><FONT SIZE=2><P>As I mentioned earlier, the playfield can be from (0,0) to (479,299).  So, we position the car in the middle of the playfield with x=240 and y=150.  And we start the car out pointing to the right.  Remember all coordinates for x &amp; y are in the playfield coordinate system.  Later, in the REPAINT subroutine we will convert the playfield coordinates into Cybiko screen coordinates.</P>
+
+</FONT>
+<pre>
+<FONT FACE="Courier New" SIZE=2>
+x=240  'center of the playfield
+y=150  'center of the playfield
+z=car_right
+</pre>
+</FONT><FONT SIZE=2><P>&nbsp;</P>
+
+</FONT><B><I><FONT FACE="Arial"><P>sub repaint</P>
+</B></I></FONT><FONT SIZE=2><P>The repaint subroutine does most of the hard work in this program – and still the computations are fairly simple.  The local variables FIELD_X and FIELD_Y are the x and y values of the 3x3 playfield matrix.  So, the upper left corner of the playfield is 0,0 and the middle segment is 1,1.  These values can then be combined to select one of the 9 bitmaps from the playfield sprite.</P>
+
+<P>CAR_X and CAR_Y are the coordinates for the car on the Cybiko screen.  Remember that X and Y are the position of the car on the playfield, so we need to convert the playfield coordinates into Cybiko coordinates.</P>
+
+</FONT>
+<pre>
+<FONT FACE="Courier New" SIZE=2>
+dim field_x as int   '0,1,2 for the horizontal bitmap
+dim field_y as int   '0,1,2 for the vertical bitmap
+dim field as int     '0-8 for the bitmap currently visible
+dim car_x as int     '0-159 for the x coord on the screen
+dim car_y as int     '0-99  for the y coord on the screen
+</pre>
+
+</FONT><FONT SIZE=2><P>The calculation for finding the playfield screen is simple but uses some mathematical tricks.  The first trick is that we are using the position of the car to determine which screen is to be displayed.  The second trick is that the playfield screens are exactly the same size as the Cybiko screen.  So, it is easy to determine which screen to display by dividing the car’s x coordinate by 160 (which will result in 0, 1, or 2) and the car’s y coordinate by 100 (which will also result in 0, 1, or 2).  The final trick is that the playfield screens are stored in a special order from upper left corner to lower right corner (see picture above).  So if we multiply the FIELD_Y variable by 3 and add the FIELD_X variable we get the correct playfield screen.   Simple, huh?</P>
+
+</FONT>
+<pre>
+<FONT FACE="Courier New" SIZE=2>
+field_x = x / 160    ' compute the horizontal bitmap
+field_y = y / 100    ' compute the vertical bitmap
+field = field_y*3 + field_x ' combine them to compute the bitmap number
+</pre>
+
+</FONT><FONT SIZE=2><P>The car’s position on the screen is very simple to compute too.  We just take the remainder of the X variable divided by 160.  This is what the MOD function does.  Likewise for the Y variable.</P>
+
+</FONT>
+<pre>
+<FONT FACE="Courier New" SIZE=2>
+car_x = x mod 160  ' compute the car's position on the screen
+car_y = y mod 100  ' compute the car's position on the screen
+</pre>
+</FONT><FONT SIZE=2>
+
+<P>Since the car determines the screen to be displayed, moving the car around the screen makes a natural and easy interface for updating the playfield with the right screen.</P>
+
+<P>Now all we have to do is display the sprites.  The SPRITE_FIELD is displayed at 0,0 and the SPRITE_CAR is displayed at car_x and car_y.</P>
+
+</FONT>
+<pre>
+<FONT FACE="Courier New" SIZE=2>
+move sprite_field, 0, 0, field  'display the current field
+move sprite_car, car_x, car_y, z 'display the car 
+</pre>
+</FONT><FONT SIZE=2>
+
+<P>Finally we redraw the display.  The &quot;PAPER DKGREY&quot; command sets the transparent color for the car.  Otherwise we’d see a dark gray rectangle surrounding the car.</P>
+
+</FONT>
+<pre>
+<FONT FACE="Courier New" SIZE=2>
+paper dkgrey  'transparent color for the car
+redraw        'redraw all the sprites
+</pre>
+
+</FONT><B><I><FONT FACE="Arial"><P>sub get_keys</P>
+</B></I></FONT><FONT SIZE=2><P>There is nothing special here.  We check each key and move the car in one of 4 directions.  There is plenty missing from this function.  Like, what if we go off the left edge of the playfield?  There is also nothing that keeps the car on the pavement.  These capabilities will be covered in a future tutorial.</P>
+
+</FONT>
+<pre>
+<FONT FACE="Courier New" SIZE=2>
+if key(#KEY_UP) then   'move the car up
+	y=y-3
+	z=car_up
+end if
+if key(#KEY_DOWN) then 'move the car down
+	y=y+3
+	z=car_down
+end if
+if key(#KEY_LEFT) then 'move the car left
+	x=x-3
+	z=car_left
+end if
+if key(#KEY_RIGHT) then 'move the car right
+	x=x+3
+	z=car_right
+end if
+</pre>
+</FONT><FONT SIZE=2><P>&nbsp;</P>
+
+</FONT><B><I><FONT FACE="Arial"><P>sub mainsub</P>
+</B></I></FONT><FONT SIZE=2><P>The main subrouting is &quot;mainsub&quot;.  It calls the initialization routine &quot;init&quot; and the proceeds to loop forever calling &quot;repaint&quot; and &quot;get_keys&quot;.</P></FONT></BODY>
+</HTML>

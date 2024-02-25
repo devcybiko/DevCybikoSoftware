@@ -1,0 +1,45 @@
+;Let's draw the 9 petals
+;of our flower
+x=10;
+y=-5;
+while i<9 
+{
+  right 10;
+  forward 15;
+  j=0;
+  while j<20 
+  {
+    left 10;
+    forward 1;
+    j=j+1;
+  }
+  forward 15;
+  right 100;
+  forward 3;
+  right 50;
+  i=i+1;	
+}
+;Now, we are drawing
+;one of the internal circles
+i=0;
+left 80;
+while i<36
+{
+  forward 2.1;
+  left 10;
+  i=i+1;
+}
+
+;And, at the end, we will draw
+;second of the internal circles
+i=0;
+x=6.5;
+y=-2.5;
+angle=90;
+while i<36
+{
+  forward 1.5;
+  left 10;
+  i=i+1;
+} 
+hide;

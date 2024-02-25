@@ -1,0 +1,4 @@
+[greg] 29-Apr-2003\\
+B2C4Palm is an effort to convert my Cybiko BASIC compiler to the Palm platform.  It's going fairly well so far.  It's in Version Beta 0.5 now.
+
+[B2C4Palm Website|http://b2c4palm.greg-smith.com]

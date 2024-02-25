@@ -1,0 +1,2 @@
+!!Recent Changes
+[{INSERT RecentChangesPlugin since=7}]

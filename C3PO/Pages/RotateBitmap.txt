@@ -1,0 +1,21 @@
+It's a slow routine and that number at the top is frames per second. The animated GIF is not at the actual speed but it's close. The smaller the bitmap, the faster the rotation. It probably could be optimized more. One possible use is to start with one bitmap and create multiple (8, 16...) during program initialization. That way you can have more bitmaps with less memory or customize bitmaps on-the-fly.
+
+In your program before the main routine you need to add:
+
+Outline #include "sam.h" 
+
+Which contains these two lines:
+
+struct Graphics bitmap_graphics; // Destination for drawing on/from bitmaps.
+
+struct Graphics background_graphics; // Destination for drawing on/from bitmaps.
+
+And at the end of the program before you exit add:
+
+' Free up memory before exiting 
+
+Inline Graphics_dtor(&bitmap_graphics, LEAVE_MEMORY);
+
+Inline Graphics_dtor(&background_graphics, LEAVE_MEMORY);
+
+See tankx.b2c for an example.

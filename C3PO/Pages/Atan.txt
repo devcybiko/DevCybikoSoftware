@@ -1,0 +1,21 @@
+Arc Tangent Function
+
+Returns the degrees a vector with X and Y magnitudes.
+
+Good if you want to convert X-acceleration and Y-acceleration into a direction measured in degrees. Lets say you have a sprite moving diagonally down and to the right. This movement would be defined as:
+
+X=X+1:Y=Y+1
+
+Then atan(1,1) = 135 degrees.
+
+If the sprite only moves straight down then:
+
+X=X+0:Y=Y+1
+
+Then atan(0,1) = 180 degrees.
+
+I used this function to choose which sprite to use depending on which direction the sprite was moving. If you have 8 sprites representing 8 directions then you just use:
+
+direction=atan(xaccel,yaccel)/8
+\\
+[SamNEggs] 27-Jul-2003

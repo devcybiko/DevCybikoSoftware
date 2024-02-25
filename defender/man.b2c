@@ -1,0 +1,169 @@
+dim man_ctr as int
+dim man_x[10] as int
+dim man_y[10] as int
+dim man_z[10] as int
+dim man_dx[10] as int
+dim man_dy[10] as int
+dim man_delay[10] as int
+dim man_max_delay[10] as int
+dim man_on[10] as int
+dim man_lifting[10] as int
+dim man_falling[10] as int
+dim man_carried[10] as int
+dim man_seeking[10] as int
+dim man_n as int
+
+man_n = 10
+
+sub man_init_one(i as int)
+    man_falling[i] = 0
+    man_max_delay[i] = 4
+    man_on[i] = 1
+    man_delay[i] = man_max_delay[i]
+    man_y[i] = 90
+    man_x[i] = rnd(1280)
+    man_z[i] = 0
+    man_lifting[i]=0
+    man_dx[i] = rnd(1)
+    if man_dx[i]=0 then
+        man_dx[i]=-1
+    endif
+end sub
+
+sub man_init_all
+  for i = 0 to man_ctr-1
+    man_init_one(i)
+  next
+  for i=man_ctr to man_n-1
+    man_on[i] = 0
+  next
+end sub
+
+sub man_init
+  sprite sprite_man, "man.pic"
+  man_ctr = man_n
+end sub
+
+sub man_redraw_one(i as int)
+    dim x as int
+    dim left as int
+
+    left=0
+    if man_on[i]=0 then exit sub
+
+    x = man_x[i]-pf_x
+    if x<-1268 then
+        x = 1280 + x
+    elseif x> 1268 then
+        x = x - 1280
+    elseif x<-12 then
+        x = x + 1280
+    endif
+    if man_dx[i] < 0 then left = 1
+    if -12<=x and x<160 then
+        move sprite_man, x, man_y[i], man_z[i], left
+        redraw sprite_man
+        if collision(sprite_ship, sprite_man) and man_falling[i] then
+            man_carried[i] = 1
+            man_falling[i] = 0
+            points = points + 500
+            points_begin(man_x[i], man_y[i], 500)
+            beep -1
+            music foreground, "man_capture.mus"
+            music foreground, play
+        end if
+
+        if shot_collision(sprite_man) then
+            man_explode(i)
+        end if
+    end if
+end sub
+
+sub man_redraw
+  for i = 0 to man_n-1
+      man_redraw_one(i)
+  next
+end sub
+
+sub man_explode(i as int)
+    man_on[i] = 0
+    beep -1  ' stop making noise
+    if man_lifting[i] then
+        lander_explode(man_lifting[i]-1)
+    endif
+    man_falling[i] = 0
+    man_ctr = man_ctr - 1
+    explosion_begin(man_x[i], man_y[i], 0, 0, "man_explode.mus")
+end sub
+
+sub man_move_one(i as int)
+    if man_on[i]=0 then exit sub
+    if man_lifting[i] then exit sub 'lander controls man's x/y
+
+    if man_carried[i] then
+        man_x[i] = ship_x + 15
+        man_y[i] = ship_y + 6
+        if man_y[i] >= 90 then
+            points = points + 500
+            points_begin(man_x[i], man_y[i], 500)
+            man_carried[i] = 0
+            music foreground, "man_landed.mus"
+            music foreground, play
+        end if
+        exit sub
+    end if
+
+    man_delay[i] = man_delay[i] - 1
+    if man_delay[i] <> 0 then exit sub
+    man_delay[i] = man_max_delay[i]
+
+    man_x[i] = man_x[i] + man_dx[i]
+
+    if man_x[i] < 0 then man_x[i] = man_x[i] + 1280
+    if man_x[i] > 1279 then man_x[i] = 1280 - man_x[i]
+
+    if man_falling[i] and ((man_y[i] MOD 5) = 0) then
+        man_dy[i] = man_dy[i] + 1
+    end if
+
+    man_y[i] = man_y[i] + man_dy[i]
+
+    if man_falling[i] then
+        if (man_y[i] > 90) then
+            beep -1  ' stop making noise
+            man_falling[i] = 0
+            if (man_dy[i] > 5) then
+                man_explode(i)
+            else
+                points = points + 250
+                points_begin(man_x[i], man_y[i], 250)
+                man_dy[i] = 0
+                man_dx[i] = rnd(1)
+                man_y[i] = 90
+                if (man_dx[i] = 0) then man_dx[i] = -1
+                man_max_delay[i] = 4
+            endif
+        else
+            beep 90-man_y[i]
+        end if
+    end if
+    man_z[i] = man_z[i] + 1
+    if man_z[i]=2 then man_z[i] = 0
+end sub
+
+sub man_move_all
+    for i=0 to man_n-1
+        man_move_one(i)
+    next
+end sub
+
+sub man_drop(i as int)
+    man_dy[i] = 1
+    man_max_delay[i] = 1
+    man_falling[i] = 1
+    man_lifting[i] = 0
+    man_seeking[i] = 0
+    music foreground, "man_falling.mus"
+    music foreground, play
+end sub
+

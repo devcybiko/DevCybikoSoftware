@@ -1,0 +1,86 @@
+
+<B><P>Topic :</B> If / Then / Else / Elseif / End If | Endif</P>
+<B><P>Language Level</B> : CyBasic-1</P>
+<B><P>Effectivity :</B> B2C v2</P>
+<B><P>Syntax</B> : </P><DIR>
+<DIR>
+
+<P>If conditional1 Then</P><DIR>
+<DIR>
+
+<P>Body1</P></DIR>
+</DIR>
+
+<P>{ElseIf conditional2 Then</P><DIR>
+<DIR>
+
+<P>Body2</P></DIR>
+</DIR>
+
+<P>}</P>
+<P>{Else</P><DIR>
+<DIR>
+
+<P>Body3</P></DIR>
+</DIR>
+
+<P>}</P>
+<P>End If | Endif</P></DIR>
+</DIR>
+
+<B><P>Description :</P><DIR>
+<DIR>
+
+</B><P>The If keyword will perform the Body1 section of code if conditional1 is true.  A conditional is any numeric expression.  If the conditional evaluates to zero (0) it is considered false - and the Body1 will not be executed.  All other values for conditional1 are considered true and result in the Body1 being executed.</P>
+
+<P>If conditional1 is false, then the optioanal ElseIf statements are evaluated (there may be zero, one, or more ElseIf statements).  If conditional1 is false and an ElseIf statement exists then conditional2 is evaluated.  If it is true (see previous paragraph) then Body2 is executed.  If it is false, then subsequent ElseIf statements are evaluated.</P>
+
+<P>If all previous If and ElseIf statements are false, the optional Else statements are executed (Body3).</P>
+
+<P>The If statement must be terminated with an End If or Endif statement.</P>
+</DIR>
+</DIR>
+
+<B><P>Example</P>
+<P>&#9;</B>Dim a as int</P>
+<P>&#9;Dim b as int</P>
+<P>&#9;Input "a:", a</P>
+<P>&#9;Input "b:", b</P>
+
+<P>&#9;If a=b Then</P>
+<P>&#9;&#9;Print "A is equal to B"</P>
+<P>&#9;ElseIf a &gt; b Then</P>
+<P>&#9;&#9;Print "A is Greater Than B"</P>
+<P>&#9;ElseIf a &lt; b Then</P>
+<P>&#9;&#9;Print "A is Less Than B"</P>
+<P>&#9;Else</P>
+<P>&#9;&#9;Print "ERROR - we should never get here"</P>
+<P>&#9;End If</P>
+
+<P>&nbsp;</P>
+<B><P>Topic :</B> If / Then</P>
+<B><P>Language Level</B> : B2C Extension</P>
+<B><P>Effectivity :</B> B2C v2c</P>
+<B><P>Syntax</B> : </P><DIR>
+<DIR>
+
+<P>If conditional1 Then statement</P>
+</DIR>
+</DIR>
+
+<B><P>Description :</P><DIR>
+<DIR>
+
+</B><P>The single-line if statement allows an abbreviated conditional check and statement execution.  No Else or Elseif is allowed and no End If is necessary.</P></DIR>
+</DIR>
+
+<B><P>Example</P>
+<P>&#9;</B>Dim a as int</P>
+<P>&#9;Dim b as int</P>
+<P>&#9;Input "a:", a</P>
+<P>&#9;Input "b:", b</P>
+
+<P>&#9;If a=b Then Print "A is equal to B"</P>
+<P>&#9;If a &gt; b Then Print "A is Greater Than B"</P>
+<P>&#9;If a &lt; b Then Print "A is Less Than B"</P>
+<B>

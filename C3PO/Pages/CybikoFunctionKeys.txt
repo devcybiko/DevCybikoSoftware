@@ -1,0 +1,17 @@
+This from HyperDrive Forums [http://tshastry.com:78/hyperdev/yabbse/index.php]
+
+Here is the Complete List of Cybiko Function Buttons.
+
+
+Fn+F1 -- Toggle Sound\\
+Fn+F2 -- Brightness Control\\
+Fn+F3 -- Toggle Vibration\\
+Fn+F4 -- Toggle Alarm\\
+Fn+F5 -- Toggle Communications\\
+Fn+F6 (Classic Only) -- Toggle Power Saver\\
+Fn+F7 -- Unread/Unsent E-mail Messages\\
+
+
+Very useful if you're like me and are too lazy to go into System Settings to change prefs.
+
+Accidentally discovered this on my Xtreme a little while ago. Hold F1 down for a few seconds, and it locks the keyboard. Hold it for 2 seconds after that, and it will unlock. Cool

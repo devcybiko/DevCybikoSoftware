@@ -1,0 +1,4 @@
+insert into cybikoapps set app_size=1278911, app_author='Cybiko Inc.', filename='Cybiko/CybikoOther/BookCreatorInstall.exe', app_name='BookCreatorInstall', app_release='2001-01-01', app_windows=1, app_xtreme=1, app_classic=1;
+insert into cybikoapps set app_size=5448121, app_author='Cybiko Inc.', filename='Cybiko/CybikoOther/CybikoGameCreationSystem.exe', app_name='CybikoGameCreationSystem', app_release='2001-01-01', app_windows=1, app_xtreme=1, app_classic=1;
+insert into cybikoapps set app_size=1350921, app_author='Cybiko Inc.', filename='Cybiko/CybikoOther/InstallMensRoomKit.exe', app_name='InstallMensRoomKit', app_release='2001-01-01', app_windows=1, app_xtreme=1, app_classic=1;
+insert into cybikoapps set app_size=1392323, app_author='Cybiko Inc.', filename='Cybiko/CybikoOther/PinballCreatorSetup.exe', app_name='PinballCreatorSetup', app_release='2001-01-01', app_windows=1, app_xtreme=1, app_classic=1;

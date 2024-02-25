@@ -1,0 +1,321 @@
+<HTML>
+<HEAD>
+<META HTTP-EQUIV="Content-Type" CONTENT="text/html; charset=windows-1252">
+<META NAME="Generator" CONTENT="Microsoft Word 97">
+<TITLE>Part 3 : Background Collision Detection</TITLE>
+</HEAD>
+<BODY>
+
+<B><FONT FACE="Arial" SIZE=5><P ALIGN="CENTER">Playfield Graphics Tutorial</P>
+<P ALIGN="CENTER">Part 3 – Background Collision Detection</P>
+</B></FONT><FONT SIZE=2><P ALIGN="CENTER">by Greg Smith</P>
+</FONT><B><FONT FACE="Arial" SIZE=4><P>Introduction:</P>
+</B></FONT><FONT SIZE=2><P>In Part-1 we learned how to create a 480x300-pixel playfield and move a car around.  In part two, we replaced the car with an animated lemming.  While the program is more interesting, it lacks a certain &quot;reality&quot; – we can still walk all over the screen.  Part-3 of the Playfield Graphics Tutorial introduces the concept of Background Collision Detection.  This is the logic that will constrain our lemming to walk only on the road.</P>
+<P>&nbsp;</P>
+</FONT><B><FONT FACE="Arial" SIZE=4><P>The Collision Table:</P>
+</B></FONT><FONT SIZE=2><P>As you will recall, the playfield is 480x300 pixels.  One way to constrain the lemming to walk only on the road is to look at the color of the pixel the lemming is standing on.  If the pixel is white then the lemming can walk there.  If the pixel is any other color, then the lemming cannot.  This works fine except that the lemming would be bumping into &quot;safe&quot; objects like the dotted line in the road.</P>
+
+<P>A better way would be to have a separate bitmap of all the regions the lemming is allowed to walk on.  This bitmap would have a black pixel for regions the lemming is not allowed to walk on, and a white pixel for every region it is allowed to walk on.  This would take a bitmap of 480x300 pixels – or 36K of memory.  Not very economical.</P>
+
+<P>When you look at the playfield, its clear that large sections are &quot;legal&quot; to walk on.  You might be able to represent a rectangular region by a single yes or no value.   Thus create a table of legal/illegal regions.  This is just what we do with the Collision Table.</P>
+
+<P>The Collision Table is a two-dimensional array of characters.  It is 30x30 characters – just 900 bytes.  Each element of the array represents a 16x10-pixel region on the playfield.  If the array element has an ‘x’ in it, then the lemming is allowed to walk on that part of the playfield.  If the array element has a ‘.’ in it, the lemming is not allowed to walk there.</P>
+
+<P>So, if COLLISION_TABLE[0,0] has an ‘x’ in it, then the lemming is allowed to walk on pixels in the rectangle represented by pixels (0,0) through (15,9).</P>
+
+<P>The Collision Table is initialized with a series of assignments.  Each one looks like this:</P>
+
+<P>collision_table[ 4]="..xxxxxxxxxxxxxxxxxxxxxxxxx..." 'y=40-49</P>
+
+<P>Here, each ‘.’ represents a region the lemming is not allowed to walk, and each ‘x’ is a region where it is.  There is a new subroutine called &quot;INIT_PLAYFIELD()&quot; which sets up this table.</P>
+
+<P>Some changes have to be made to the GET_KEYS() logic so that whenever we hit a key, we check to make sure the lemming is allowed to move in that direction. If moving in that direction puts the lemming in an illegal region, the move is ignored.  And of course, if moving in that direction puts the lemming in a legal region, then the move is performed as usual.</P>
+</FONT><B><FONT FACE="Arial" SIZE=4><P>&nbsp;</P>
+<P>The Program</P>
+</B></FONT><FONT FACE="Courier New" SIZE=2><P>'''</P>
+<P>''' playfield tutorial - part 3</P>
+<P>''' Simple Collision Detection</P>
+<P>'''</P>
+<P>''' by greg smith</P>
+<P>'''</P>
+
+<P>'''</P>
+<P>''' use c coordinates</P>
+<P>'''</P>
+<P>OPTION C_COORDS</P>
+
+<P>dim x as int  'position of lemming from 0-480</P>
+<P>dim y as int  'position of lemming from 0-300</P>
+<P>dim z_dir as int  'which direction of lemming</P>
+<P>dim z_cnt as int  'animation image of lemming</P>
+
+<P>dim sprite_field as int 'the sprite number of the playfield sprites</P>
+<P>dim sprite_lemming as int   'the sprite number of the lemming sprites</P>
+<P>dim lemming_left as int     'index into lemming sprite for going left</P>
+<P>dim lemming_right as int    'index into lemming sprite for going right</P>
+<P>dim lemming_up as int       'index into lemming sprite for going up</P>
+<P>dim lemming_down as int     'index into lemming sprite for going down</P>
+
+<P>dim collision_street as char     'the street's collision value</P>
+
+<P>dim collision_table[30,31] as char 'the collision table</P>
+
+<P>'''</P>
+<P>''' initialization</P>
+<P>'''</P>
+<P>sub init</P>
+<P>    sprite_field = 0  'playfield sprite</P>
+<P>    sprite_lemming = 31    'lemming sprite is largest possible sprite - on top</P>
+
+<P>    lemming_left=0        'lemming left image</P>
+<P>    lemming_right=5       'lemming right image</P>
+<P>    lemming_up=10         'lemming up image</P>
+<P>    lemming_down=15       'lemming down image</P>
+
+<P>    '''</P>
+<P>    ''' the playfield sprite has 9 bitmaps</P>
+<P>    ''' one for each of the different areas of the</P>
+<P>    ''' playfield</P>
+<P>    sprite sprite_field, "playfield.pic"</P>
+
+<P>    '''</P>
+<P>    ''' the lemming has 20 bitmaps 5 for each direction</P>
+<P>    sprite sprite_lemming, "lemming.pic"</P>
+
+<P>    '''</P>
+<P>    ''' the lemming can be anywhere on the playfield from</P>
+<P>    ''' x = 0-480</P>
+<P>    ''' y = 0-300</P>
+<P>    x=240  'center of the playfield</P>
+<P>    y=150  'center of the playfield</P>
+<P>    z_dir=lemming_right  ' lemming faces right</P>
+<P>    z_cnt=0              ' animation counter</P>
+
+<P>    '''</P>
+<P>    ''' set the collision flags</P>
+<P>    '''</P>
+<P>    collision_street = \x\</P>
+<P>end sub</P>
+
+<P>sub repaint</P>
+<P>    dim field_x as int   '0,1,2 for the horizontal bitmap</P>
+<P>    dim field_y as int   '0,1,2 for the vertical bitmap</P>
+<P>    dim field as int     '0-8 for the bitmap currently visible</P>
+<P>    dim lemming_x as int     '0-159 for the x coord on the screen</P>
+<P>    dim lemming_y as int     '0-99  for the y coord on the screen</P>
+
+<P>    field_x = x / 160    ' compute the horizontal bitmap</P>
+<P>    field_y = y / 100    ' compute the vertical bitmap</P>
+<P>    field = field_y*3 + field_x ' combine them to compute the bitmap number</P>
+
+<P>    lemming_x = x mod 160  ' compute the lemming's position on the screen</P>
+<P>    lemming_y = y mod 100  ' compute the lemming's position on the screen</P>
+
+<P>    move sprite_field, 0, 0, field  'display the current field</P>
+<P>    move sprite_lemming, lemming_x, lemming_y, z_dir+z_cnt 'display the lemming </P>
+
+<P>    paper white  'transparent color for the lemming</P>
+<P>    ink ltgrey</P>
+
+<P>    redraw        'redraw all the sprites</P>
+<P>    </P>
+<P>end sub</P>
+
+<P>'''</P>
+<P>''' increment the z_cnt variable</P>
+<P>'''</P>
+<P>sub update_z_cnt</P>
+<P>    z_cnt=(z_cnt+1) MOD 5</P>
+<P>end sub</P>
+
+<P>'''</P>
+<P>''' check for collision against table</P>
+<P>'''</P>
+<P>function collision_check(x as int, y as int) as char</P>
+<P>    collision_check = collision_table[y/10,x/16]</P>
+<P>end function</P>
+
+<P>'''</P>
+<P>''' process the keyboard</P>
+<P>'''</P>
+<P>sub get_keys</P>
+<P>    dim tmp as int</P>
+<P>    if key(#KEY_UP) then   'move the lemming up</P>
+<P>        tmp=y-3</P>
+<P>        if collision_check(x,tmp) = collision_street then</P>
+<P>            y=tmp</P>
+<P>            z_dir=lemming_up</P>
+<P>            update_z_cnt</P>
+<P>        end if</P>
+<P>    end if</P>
+<P>    if key(#KEY_DOWN) then 'move the lemming down</P>
+<P>        tmp=y+3</P>
+<P>        if collision_check(x,tmp) = collision_street then</P>
+<P>            y=tmp</P>
+<P>            z_dir=lemming_down</P>
+<P>            update_z_cnt</P>
+<P>        end if</P>
+<P>    end if</P>
+<P>    if key(#KEY_LEFT) then 'move the lemming left</P>
+<P>        tmp=x-3</P>
+<P>        if collision_check(tmp,y) = collision_street then</P>
+<P>            x=tmp</P>
+<P>            z_dir=lemming_left</P>
+<P>            update_z_cnt</P>
+<P>        end if</P>
+<P>    end if</P>
+<P>    if key(#KEY_RIGHT) then 'move the lemming right</P>
+<P>        tmp=x+3</P>
+<P>        if collision_check(tmp,y) = collision_street then</P>
+<P>            x=tmp</P>
+<P>            z_dir=lemming_right</P>
+<P>            update_z_cnt</P>
+<P>        end if</P>
+<P>    end if</P>
+<P>end sub</P>
+
+<P>sub init_playfield(field as int)</P>
+<P>    collision_table[ 0]=".............................." 'y=0-9</P>
+<P>    collision_table[ 1]=".............................." 'y=10-19 </P>
+<P>    collision_table[ 2]=".............................." 'y=20-29</P>
+<P>    collision_table[ 3]=".............................." 'y=30-39</P>
+<P>    collision_table[ 4]="..xxxxxxxxxxxxxxxxxxxxxxxxx..." 'y=40-49</P>
+<P>    collision_table[ 5]="..x...........x...........x..." 'y=50-59</P>
+<P>    collision_table[ 6]="..x...........x...........x..." 'y=60-69</P>
+<P>    collision_table[ 7]="..x...........x...........x..." 'y=70-79</P>
+<P>    collision_table[ 8]="..x...........x...........x..." 'y=80-89</P>
+<P>    collision_table[ 9]="..x...........x...........x..." 'y=90-99</P>
+<P>    collision_table[10]="..x...........x...........x..." 'y=100-109</P>
+<P>    collision_table[11]="..x...........x...........x..." 'y=110-119</P>
+<P>    collision_table[12]="..x...........x...........x..." 'y=120-129</P>
+<P>    collision_table[13]="..x...........x...........x..." 'y=130-139</P>
+<P>    collision_table[14]="..xxxxxxxxxxxxxxxxxxxxxxxxx..." 'y=140-149</P>
+<P>    collision_table[15]="..x...........x...........x..." 'y=150-159</P>
+<P>    collision_table[16]="..x...........x...........x..." 'y=160-169</P>
+<P>    collision_table[17]="..x...........x...........x..." 'y=170-179</P>
+<P>    collision_table[18]="..x...........x...........x..." 'y=180-189</P>
+<P>    collision_table[19]="..x...........x...........x..." 'y=190-199</P>
+<P>    collision_table[20]="..x...........x...........x..." 'y=200-209</P>
+<P>    collision_table[21]="..x...........x...........x..." 'y=210-219</P>
+<P>    collision_table[22]="..x...........x...........x..." 'y=220-229</P>
+<P>    collision_table[23]="..x...........x...........x..." 'y=230-239</P>
+<P>    collision_table[24]="..xxxxxxxxxxxxxxxxxxxxxxxxx..." 'y=240-249</P>
+<P>    collision_table[25]=".............................." 'y=250-259</P>
+<P>    collision_table[26]=".............................." 'y=260-269</P>
+<P>    collision_table[27]=".............................." 'y=270-279</P>
+<P>    collision_table[28]=".............................." 'y=280-289</P>
+<P>    collision_table[29]=".............................." 'y=290-299</P>
+<P>end sub</P>
+
+<P>'''</P>
+<P>''' main subroutine</P>
+<P>'''</P>
+<P>sub mainsub</P>
+<P>    init</P>
+<P>    init_playfield(0)</P>
+
+<P>    while true</P>
+<P>        repaint</P>
+<P>        get_keys</P>
+<P>    wend</P>
+<P>end sub</P>
+
+<P>'''</P>
+<P>''' call the main subroutine</P>
+<P>'''</P>
+<P>mainsub</P>
+</FONT><FONT SIZE=2><P>&nbsp;</P>
+</FONT><B><I><FONT FACE="Arial"><P>The Variables</P>
+</B></I></FONT><FONT SIZE=2><P>Two new variables are introduced.  The COLLISION_STREET variable is a constant.  It is initialized to ‘x’ – the character representing a valid region for the lemming to walk upon.   COLLISION_TABLE is a 30x31-character array.  Note that while we need only 30x30 characters we allocate an extra byte per row – that is because strings require a null-terminator byte at the end of each string.</P>
+<DIR>
+<DIR>
+
+</FONT><FONT FACE="Courier New" SIZE=2><P>dim collision_street as char     'the street's collision value</P>
+<P>dim collision_table[30,31] as char 'the collision table</P>
+
+</FONT><FONT SIZE=2><P>&nbsp;</P></DIR>
+</DIR>
+
+</FONT><B><I><FONT FACE="Arial"><P>sub init</P>
+</B></I></FONT><FONT SIZE=2><P>The only change here is the initialization of the COLLISION_STREET flag.</P><DIR>
+<DIR>
+
+</FONT><FONT FACE="Courier New" SIZE=2><P>collision_street = \x\</P></DIR>
+</DIR>
+
+</FONT><B><I><FONT FACE="Arial"><P>sub repaint</P>
+</B></I></FONT><FONT SIZE=2><P>Amazingly, there were no changes to this function.</P>
+</FONT><B><I><FONT FACE="Arial"><P>sub update_z_cnt</P>
+</B></I></FONT><FONT SIZE=2><P>No changes here.</P>
+</FONT><B><I><FONT FACE="Arial"><P>function collision_check</P>
+</B></I></FONT><FONT SIZE=2><P>This function checks the collision table for a value and returns it.  Notice the division of the Y variable by 10 and the X variable by 16.  This divides the entire 480x300-pixel playfield into a 30x30 region.  Also notice that the X and Y values are reversed from the normal convention.  This is because the Y value is the row selector of the array and the X value is the column selector.</P><DIR>
+<DIR>
+
+</FONT><FONT FACE="Courier New" SIZE=2><P>function collision_check(x as int, y as int) as char</P>
+<P>    collision_check = collision_table[y/10,x/16]</P>
+<P>end function</P>
+</FONT><FONT SIZE=2><P>&nbsp;</P></DIR>
+</DIR>
+
+</FONT><B><I><FONT FACE="Arial"><P>sub get_keys</P>
+</B></I></FONT><FONT SIZE=2><P>Sub get_keys() performs pretty much as it did before, with an important difference.  We first compute the location of  the lemming and store it in a TMP variable.  It is important to store it in TMP because we don’t want to modify the position until we have verified it is a legal move. </P>
+
+<P>Here, in the case of the UP key, we compute TMP=Y-3.  Then we call COLLISION_CHECK() to determine if the square <B>we <U>would</U> move to</B> is on the street (COLLISION_STREET).  If it is, then we update the Y variable, and do all the things we would normally do when moving (update Z_DIR and Z_CNT).</P>
+
+<P>This same logic applies to moving in the other directions as well.</P><DIR>
+<DIR>
+
+</FONT><FONT FACE="Courier New" SIZE=2><P>dim tmp as int</P>
+<P>    if key(#KEY_UP) then   'move the lemming up</P>
+<P>        tmp=y-3</P>
+<P>        if collision_check(x,tmp) = collision_street then</P>
+<P>            y=tmp</P>
+<P>            z_dir=lemming_up</P>
+<P>            update_z_cnt</P>
+<P>        end if</P>
+<P>    end if</P></DIR>
+</DIR>
+
+</FONT><B><I><FONT FACE="Arial"><P>sub init_playfield</P>
+</B></I></FONT><FONT SIZE=2><P>INIT_PLAYFIELD is actually going to  grow in the near future.  Its job right now is to initialize the COLLISION_TABLE.  But soon it will be a portal to adding multiple playfields.</P>
+
+<P>The purpose of the COLLISION_TABLE is to have 1 character represent a 16x10-pixel region on the screen.  Each character has either a ‘.’ or an ‘x’ to represent where the lemming is allowed to roam.  If you look at the code below, you should see a small resemblance to the actual playfield.  This is because it is a reduced image of the playfield.</P>
+
+<P>To create this table, I first inspected the bitmaps in Paint Shop Pro V5.  With it I was able to determine the actual pixel locations of the road in the playfield.  I then divided the x coordinates by 16.  That told me what column the ‘x’ would belong in - in the table below.  Likewise, I divided the y coordinates by 10 and it told me which row it would belong in.</P>
+
+<P>Frankly, there is a bit of error in this process.  If you plan your playfield out in advance you can arrange it so all walkways are on 16x10 boundaries.  In the case of our playfield, you can see that the top and bottom roads allow the lemming to walk just over the line.  This can easily be fixed by editing the bitmaps in a paint program.</P>
+
+</FONT><FONT FACE="Courier New" SIZE=2><P>    collision_table[ 0]=".............................." 'y=0-9</P>
+<P>    collision_table[ 1]=".............................." 'y=10-19 </P>
+<P>    collision_table[ 2]=".............................." 'y=20-29</P>
+<P>    collision_table[ 3]=".............................." 'y=30-39</P>
+<P>    collision_table[ 4]="..xxxxxxxxxxxxxxxxxxxxxxxxx..." 'y=40-49</P>
+<P>    collision_table[ 5]="..x...........x...........x..." 'y=50-59</P>
+<P>    collision_table[ 6]="..x...........x...........x..." 'y=60-69</P>
+<P>    collision_table[ 7]="..x...........x...........x..." 'y=70-79</P>
+<P>    collision_table[ 8]="..x...........x...........x..." 'y=80-89</P>
+<P>    collision_table[ 9]="..x...........x...........x..." 'y=90-99</P>
+<P>    collision_table[10]="..x...........x...........x..." 'y=100-109</P>
+<P>    collision_table[11]="..x...........x...........x..." 'y=110-119</P>
+<P>    collision_table[12]="..x...........x...........x..." 'y=120-129</P>
+<P>    collision_table[13]="..x...........x...........x..." 'y=130-139</P>
+<P>    collision_table[14]="..xxxxxxxxxxxxxxxxxxxxxxxxx..." 'y=140-149</P>
+<P>    collision_table[15]="..x...........x...........x..." 'y=150-159</P>
+<P>    collision_table[16]="..x...........x...........x..." 'y=160-169</P>
+<P>    collision_table[17]="..x...........x...........x..." 'y=170-179</P>
+<P>    collision_table[18]="..x...........x...........x..." 'y=180-189</P>
+<P>    collision_table[19]="..x...........x...........x..." 'y=190-199</P>
+<P>    collision_table[20]="..x...........x...........x..." 'y=200-209</P>
+<P>    collision_table[21]="..x...........x...........x..." 'y=210-219</P>
+<P>    collision_table[22]="..x...........x...........x..." 'y=220-229</P>
+<P>    collision_table[23]="..x...........x...........x..." 'y=230-239</P>
+<P>    collision_table[24]="..xxxxxxxxxxxxxxxxxxxxxxxxx..." 'y=240-249</P>
+<P>    collision_table[25]=".............................." 'y=250-259</P>
+<P>    collision_table[26]=".............................." 'y=260-269</P>
+<P>    collision_table[27]=".............................." 'y=270-279</P>
+<P>    collision_table[28]=".............................." 'y=280-289</P>
+<P>    collision_table[29]=".............................." 'y=290-299</P>
+</FONT><FONT SIZE=2><P>&nbsp;</P>
+</FONT><B><I><FONT FACE="Arial"><P>sub mainsub</P>
+</B></I></FONT><FONT SIZE=2><P>The mainsub now calls the INIT_PLAYFIELD subroutine.</P></FONT></BODY>
+</HTML>

@@ -1,0 +1,213 @@
+{{{
+cyucon readme
+December 2001
+Charles Shapiro
+
+The cyucon program allows you to control your Cybiko palmtop computer
+from your linux box.  So far it works only with the year 2000 and
+before model Cybikos, which use an RS232 port to communicate with the
+PC.  The "Cybiko Extreme" uses a Universal Serial Bus connection;
+rewriting cyucon to use a USB connection is in the TODO list,
+below. This program was originally written and released under the GPL 
+by Jeff Frohwein, then rewritten and documented by Charles Shapiro.
+
+Compiling cyucon
+
+To create the cyucon executable, gunzip and untar the distribution
+tarfile, cd to "./cyucon.0.2.0", and run make(1):
+
+gunzip -c cyucon.0.2.0.tgz | tar -xvf -
+cd cyucon.0.2.0
+make
+
+This should create a cyucon executable, which you can then copy to
+/usr/local/bin or run locally.
+
+The code compiles with no errors or warnings on my Debian "slink"
+system, with gcc 2.95.2 and gnu make 3.78.1. The make(1) command
+should create "cyucon" just fine on any Linux after 2.0.36.  The
+make(1) command also creates the "mangletest" program, which tests the
+kewl filename-mangling code. It's handy if you wish to debug that part
+of cyucon.
+
+Running cyucon
+
+Filenames
+
+The version of CyOS (1.3.57) on my cybiko limits the names of
+uploaded files to 9 characters, a dot, and a 3-character
+extension. This version of cyucon will use the basename and extension
+of the file you specify to upload as the uploaded filename. If this
+name contains more than one dot, all dots before the last one will
+become underscore characters.  If the name is longer than 9
+characters, cyucon will try to fix it first by removing all _ and
+punctuation characters, then by removing all vowels from the filename. If
+the name is still too long, cyucon will truncate it at the 9th
+character. The file extension will be truncated at 3 characters, but
+otherwise unchanged, since you cannot rename a file to the ".app" 
+extension with the Cybiko file manager.
+
+Serial Ports
+
+This version of cyucon has a default device name of "/dev/cybiko".
+The proper way to set your Linux box up to talk to your cybiko is to
+figure out which comm port you're using to talk to the device, then
+make a "/dev/cybiko" softlink to it. Hence, if you're using comm port
+1 (/dev/ttyS0), then you should su to root and type "ln -s /dev/ttyS0
+/dev/cybiko". If you do not have root access to the box you're using,
+or if for some other reason you prefer not to take this step, you can
+use the "-d" argument to pass the device your cybiko is plugged in to
+directly to the cyucon program.  Be sure also that you have privilege
+to write to the device you use; if not, "chmod a+rw /dev/device"
+should do the trick at the root prompt.  
+
+Downloading files to the cybiko
+
+When you download a file to the cybiko with the Windows fat client
+distributed from Cybiko.com, the fat client sneaks a few commands to
+your toy which change its behavior. The command "pc on" puts the k00l
+little "Connected to the PC" window on your cybiko's window. The
+command "pc root" reboots your cybiko and apparently rereads part of
+the file table; after you execute it, executable files turn up in
+their proper places on the menus, instead of being runnable only from
+the file manager.
+
+Uploading files from the cybiko
+
+This code is still very buggy.  To properly load a file into your
+cybiko, you must use different runs of cyucon to send the "pc on"
+command, send the file, then send the "pc root" command.  But the
+command to pull a file from the cybiko works only if the cybiko is
+already in "pc on" mode, so the "-r" function automagically sends "pc
+on" and "pc off" commands to the cybiko before and after pulling a
+file from it.
+
+I have only succeeded in pulling text files made with the cybiko
+editor or downloaded from my PC out of the cybiko; other files give a
+"* Can't execute" message. Alas and so it goes.
+
+Power
+
+The cybiko seems to eat a lot of power when it's talking over its
+serial port. You'll be wise to plug it into the wall while it's
+connected, especially for extended sessions. Otherwise you're quite
+likely to run the battery down to nothing before you realize it.
+
+Errors and problems
+
+If the cybiko is running a program other than the desktop (such as the
+file manager), you will get the error "* Can't execute". Be sure that
+your cybiko's screen is at the desktop if you wish to hack on it from
+your Linux box.
+
+If the cybiko is in standby mode, then it will not respond to commands 
+from the PC. The "pc on" command appears to disable the sleep timeout 
+feature on the cybiko. This means that if you send a "pc on" command to 
+your cybiko while it's on battery power and then leave it, you are quite 
+likely to run the battery to nothing and lose your settings. 
+
+The message "Receive successfull" is from the cybiko; I can't change
+the misspelling, crazy as it makes me.
+
+If you start to upload a file and find that the upload fails with a
+"can" (cancel) message after a few packets, the problem is usually
+that the device memory on your cybiko is full. Try deleting some files
+or moving them to your memory card to make room for the new files
+you're trying to upload.
+
+Usage
+
+This version of cyucon takes the following arguments:
+
+-c --command command 
+
+Send a command to your cybiko. Example commands include "ls", "ver",
+and "pc on" (see above) If you press a key on the keyboard while the
+command is happening, cyucon will exit. The command can return no more
+than 32K of text (see "TODO", below). If your command contains spaces,
+as for example the 'pc on' command, then enclose it in quotation marks
+on the cyucon command line: cyucon -c "ls -l" gives a long listing,
+for example. See the excellent "conscmds.txt" document by Mr. Frohwein
+for a list of possible cybiko commands.
+
+-d (--device) device 
+
+The device which talks to your cybiko. Defaults to
+"/dev/cybiko" (see above).
+ 
+-L --listen 
+
+Print everything transmitted from the cybiko to stdout.  Try
+connecting the cybiko to your pc while it is powered off, then turning
+it on to experiment with this. Pressing a key on the keyboard will end
+this command. 
+
+-m 
+
+Look for files on card flash rather than device flash.  This option makes 
+sense only for the file movement commands (-r and -s). Hence,
+"cyucon -m -s rage.app" sends the file rage.app to the memory card rather than 
+the device flash.  See Jeff Frohwein's "conscmds.txt" file for a discussion of 
+the syntax for addressing the memory card.
+
+-M
+
+Turn filename mangling off. This disables cyucon's edit filename feature.
+If you wish to send "/foo/bar/baz.app" as named to the cybiko, this allows
+you to do so. 
+
+-r --receive filename
+
+Receive the named file from the cybiko.  The filename requested from
+the cybiko is the root filename and extension; I do no filename
+editing on this string beyond removing the path. So, for example,
+the command "cyucon -r /my/big/path/rage.app" looks for rage.app on
+the cybiko, then transfers it to /my/big/path/rage.app.
+
+
+TODO
+
+Fix 32K size limit on text returned from a command
+Add a truly interactive terminal mode
+Debug file upload from cybiko more thoroughly
+Add a multi-file download command which handles "pc on" and "pc root"
+commands by itself (see above)
+Add USB support for Cybiko Extreme
+
+BUGS AND LIMITATIONS
+
+This version of cyucon uses a static 32K buffer for output from 
+cybiko commands. A command which returns more than 32K of text at a
+time will result in undefined behavior.
+
+The code which pulls text files from the cybiko is still very fragile.
+
+HISTORY
+
+Cyucon 0.2.0
+Rewritten and debugged by Charles Shapiro
+Replaced Hand-coded command-line parser in main() with a call to getopt_long
+Fixed counter bug in download code (255th packet failed due to overflow)
+Fixed #include of crctab.c and reorganized code to use ld(1) and make(1) 
+efficiently
+Rewrote Makefile
+Added -L feature to easily capture cybiko boot messages
+Added -r feature to receive files from the cybiko
+Removed cruft (unused global variables and structures) from cyucon.h 
+and cyucon.c
+Changed default device to a sensible value
+Made sure code is at one and only one version number 
+Changed commands from a series of #defines to a single enum
+Moved global defs and extern  declarations to cyucon.h
+Added filename mangling to download or upload files in other directories easily
+Added ability to move files to and from the memory card
+
+Cyucon 0.1231 (1.0101?)
+Jeff Frohwein's original.  
+
+
+
+
+
+
+}}}

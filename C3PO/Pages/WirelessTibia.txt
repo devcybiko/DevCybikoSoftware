@@ -1,0 +1,1 @@
+I have the majority of the necessary packets figured out and I have considered writing a Tibia client for Cybiko.  Tibia is a free mmorpg that you can find out more about at <a href="http://www.tibia.com">www.tibia.com</a>. [TimParkin] 23-Jul-2003

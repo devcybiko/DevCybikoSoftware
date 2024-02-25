@@ -1,0 +1,5 @@
+<a href="Pages/Secrets/cywigblockdiagram.pdf">CyWig Block Diagram</a>\\
+<a href="Pages/Secrets/cywigblockdiagram2.pdf">CyWig Block Diagram 2</a>\\
+<a href="Pages/Secrets/cywigphotos.pdf">CyWig Photos</a>\\
+<a href="Pages/Secrets/cywigdescription.pdf">CyWig Description</a>\\
+<a href="Pages/Secrets/cywigschematics.pdf">CyWig Schematics</a>\\

@@ -1,0 +1,48 @@
+From [http://cydevr.net]
+
+  <p align="center"><em><strong>Cybiko STDIO Tutorial</strong></em> </p>
+  <p align="left">In this tutorial we will learn an easier way to print text on 
+    screen and also how to get input from the user by using a simple library created 
+    by Greg Smith. You must have the STDIO starter kit to continue, download it 
+    stdio_kit.zip below.</a><br>
+    <br>
+    By downloading the STDIO kit, everything is basically done for you. All you 
+    have to do is write the coding to print or get input. Within the code.c file 
+    located in the <b>src</b> folder you will see a comment that tells you where 
+    to put your coding. To print something with STDIO all you have to type is...<br>
+    <br>
+    <font face="System">printf (&quot;text to print\n&quot;);</font> <br>
+    <br>
+    Replace 'text to print' with what you want displayed onscreen. Whenever printing 
+    text you must always have <b>\n</b> at the end before your closing quote.<br>
+    <br>
+    Now to get input from the user we do this... <br>
+    <br>
+    <font face="System">char varname[[32];<br>
+    <br>
+    printf (&quot;Enter your name: &quot;);<br>
+    gets ( varname ); </font><br>
+    <br>
+    Notice we did not include <b>\n</b> at the end of our printing line and there 
+    is a new command below it. The <b>gets</b> command waits until the user enters 
+    a value and presses enter. Then whatever the user inputs is assigned to <b>varname</b>.<br>
+    <br>
+    There is only one basic command left to learn, and that is <b>getchar</b>. 
+    Getchar waits until a single key is pressed, then continues on. It is very 
+    useful at the end of your programs. Here is an example...<br>
+    <br>
+    <font face="System">printf (&quot;Press any key to exit.&quot;);<br>
+    getchar (); </font><br>
+    <br>
+    The example above would display 'Press any key to exit.' onscreen then wait 
+    for the user to press a key.<br>
+    <br>
+    If your coding does not work, download (step3_complete.zip below) the premade project.</a><br>
+    <br>
+    As you can see, STDIO is very simple to use, yet extremely useful. There are 
+    many more functions available, but they are a bit more advanced. Use what 
+    you have learned in previous lessons combined with this to create some simple 
+    programs.<br>
+    <br>
+    - Tom Reece<br>
+    - Written: 07.19.02</p>

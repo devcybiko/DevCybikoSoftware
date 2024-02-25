@@ -1,0 +1,485 @@
+<h2>What defines Object Oriented Programming?</h2>
+There are 3 important elements to creating an object oriented language.  The first is Encapsulation - the ability of a language to group data elements together.  The second is Inheritance - the ability to create a class of objects, and for subclasses to inherit all the attributes of the parent, and extend the class with more data elements.  Finally, the third element is Polymorphism - the ability of an object to "look" like another object. 
+<h2>Encapsulation</h2>
+As a classic example, consider the class called Shape.  The Shape class is the superclass that all the other classes will inherit from.  Using C syntax, we will declare a structure that describes all the elements of a Shape:
+<p>
+<pre>
+struct Shape {
+  int x, y; //the position of the shape
+};
+</pre>
+<p>
+To further the example and begin emulating the C++ look and feel, we use the typedef command to create a new datatype:
+<p>
+<pre>
+typedef struct {
+  int x,y; //the position of the shape
+} Shape;
+</pre>
+<p>
+We'll want to perform some operations on Shapes.  These are called Methods.  Ultimately we'll want these methods to be attached to the class itself, but for now we'll just create them with a naming convention.  The naming convention is Classname_methodname(Classname *this, ...). 
+<p>
+The most important method is the constructor - it creates what is called an instance of the class.  We'll call the constructor Shape_new().  It returns a newly allocated Shape.  Secondly, we have to declare a destructor - Shape_destroy().  Another method will initialize the object - Shape_init(). It is called by the constructor to initialize the instance.  Also a de-initializer called Shape_uninit() which is called by the destructor to do anything that must be done before the object is deallocated. Finally, we'll create methods that moves and draw any shape to the defined x,y coordinate - Shape_move() and Shape_draw().  Note that all method functions (except the constructor) take a Shape parameter called <b>this</b> as the first paramater.
+<pre>
+//convenience macro for allocating data
+#CALLOC(a,b) (b *) calloc(a, sizeof(b))
+
+//
+// initialize the shape.  just set the x,y to 0
+void Shape_init(Shape *this)
+{
+  this->x=0;
+  this->y=0;
+}
+
+//
+// This is just a placeholder. later we'll declare real stuff
+void Shape_uninit(Shape *this)
+{
+  // no opertion
+}
+
+//
+// allocate a shape object. then initialize it.
+Shape *Shape_new()
+{
+  Shape this = CALLOC(1, Shape);
+  Shape_init(this);
+  return this;
+}
+
+//
+// uninitialize the shape and free it.
+void Shape_destroy(Shape *this)
+{
+  Shape_uninit(this);
+  free(this);
+}
+
+//
+// set x,y to the values passed in
+void Shape_move(Shape *this, int x, int y)
+{
+  this->x=x;
+  this->y=y;
+}
+
+//
+// another placeholder. no real operation
+void Shape_draw(Shape *this)
+{
+  //no draw method for a shape
+}
+</pre>
+<h2>Inheritance</h2>
+As you can see, C already offers some amount of encapsulation.  Later, we'll encapsulate the methods as well.  The next step is to implement inheritance.  To do this we'll create a subclass called Circle:
+<p>
+<pre>
+typedef struct {
+  Shape parent;
+  int r; //the radius
+} Circle;
+</pre>
+<p>
+Now, we'll create the set of functions to implement the suite of methods for a circle.
+<pre>
+//
+// here we just call the parent init method.
+// because the 1st part of the Circle structure is exactly
+// the same as a Shape, the Shape_init() method will
+// operate on the Shape and ignore the elements
+// describing the Circle (namely, 'r')
+void Circle_init(Circle*this)
+{
+  Shape_init(this); //initialize the Shape portion of the structure
+}
+
+//
+// as with the init function we call the Shape uninit function
+void Circle_uninit(Circle*this)
+{
+  Shape_uninit(this);
+}
+
+//
+// We allocate the structure and call the init function
+Circle *Circle_new()
+{
+  Circle this = CALLOC(1, Circle);
+  Circle_init(this);
+  return this;
+}
+
+//
+// We uninitialize the structure and free the Circle
+void Circle_destroy(Circle *this)
+{
+  Circle_uninit(this);
+  free(this);
+}
+
+//
+// We just call the Shape move function.  Later, we'll make 
+// true virtual functions.
+void Circle_move(Circle *this, int x, int y)
+{
+  Shape_move(this, x, y);
+}
+
+//
+// Now we draw the circle.  Notice that this completely
+// replaces the Shape_draw function - which did nothing
+void Circle_draw(Circle *this)
+{
+ // notice that to access the x and y coordinates
+ // we have to use the parent structure.  this could
+ // get tedious over time.  we'll fix this in the next section.
+  DrawCircle(this->parent.x, this->parent.y, this->r);
+}
+</pre>
+<p>
+True inheritance is not achieved here for a number of reasons.  For one, we have to redefine a function for each method.  In a true inheritance environement, we would be able to reuse the methods from Shape.
+<p>
+Now you may have noticed that we called some Shape functions, but passed a Circle object.  This uses a capability called Polymorphism - the ability of one object to act (or look) like another object.  Because the Circle is a subclass of Shape, we can pass a Circle to any Shape method without concern.
+<p>
+There are 2 more features we need to implement before we have a decent object oriented environement in C.  The first thing we need to do is release the structures from the constraint of using the "parent" structure.  The second thing is to encapsulate the methods into the Class (or structure) so that the object carries its methods around with it.
+<h2>More Inheritance</h2>
+The solution to the first problem is messy, but once you are accustomed to it, seems very second nature.  We'll deploy macros in the preprocessor to create a way of extending a class without using the structure.  From now on, all classes will be defined in their own .c and .h files.
+<pre>
+--------------------------
+Shape.h
+--------------------------
+//convenience macro for allocating data
+#CALLOC(a,b) (b *) calloc(a, sizeof(b))
+
+//define the members of the Shape
+// remember the backslashs \ or it wont work!
+#define Class_Shape \
+int x;\
+int y;
+
+//
+// now create the Class itself
+typedef struct {
+Class_Shape   // this expands the members
+} Shape;
+
+--------------------------
+Shape.c
+--------------------------
+#include "Shape.h"
+//
+// initialize the shape.  just set the x,y to 0
+void Shape_init(Shape *this)
+{
+  this->x=0;
+  this->y=0;
+}
+
+//
+// This is just a placeholder. later we'll declare real stuff
+void Shape_uninit(Shape *this)
+{
+  // no opertion
+}
+
+//
+// allocate a shape object. then initialize it.
+Shape *Shape_new()
+{
+  Shape this = CALLOC(1, Shape);
+  Shape_init(this);
+  return this;
+}
+
+//
+// uninitialize the shape and free it.
+void Shape_destroy(Shape *this)
+{
+  Shape_uninit(this);
+  free(this);
+}
+
+//
+// set x,y to the values passed in
+void Shape_move(Shape *this, int x, int y)
+{
+  this->x=x;
+  this->y=y;
+}
+
+//
+// another placeholder. no real operation
+void Shape_draw(Shape *this)
+{
+  //no draw method for a shape
+}
+
+-----------------------
+Circle.h
+-----------------------
+#include "Shape.h" //get the parent class
+
+#define Class_Circle \
+Class_Shape \  //notice here that we inherit the parent members
+int r; //radius
+
+//
+// create the Circle class
+typedef struct {
+  Class_Circle
+} Circle;
+
+-----------------------
+Circle.c
+-----------------------
+#include "Circle.h"
+//
+// here we just call the parent init method.
+// because the 1st part of the Circle structure is exactly
+// the same as a Shape, the Shape_init() method will
+// operate on the Shape and ignore the elements
+// describing the Circle (namely, 'r')
+void Circle_init(Circle*this)
+{
+  Shape_init(this); //initialize the Shape portion of the structure
+}
+
+//
+// as with the init function we call the Shape uninit function
+void Circle_uninit(Circle*this)
+{
+  Shape_uninit(this);
+}
+
+//
+// We allocate the structure and call the init function
+Circle *Circle_new()
+{
+  Circle this = CALLOC(1, Circle);
+  Circle_init(this);
+  return this;
+}
+
+//
+// We uninitialize the structure and free the Circle
+void Circle_destroy(Circle *this)
+{
+  Circle_uninit(this);
+  free(this);
+}
+
+//
+// We just call the Shape move function.  Later, we'll make 
+// true virtual functions.
+void Circle_move(Circle *this, int x, int y)
+{
+  Shape_move(this, x, y);
+}
+
+//
+// Now we draw the circle.  Notice that this completely
+// replaces the Shape_draw function - which did nothing
+void Circle_draw(Circle *this)
+{
+ // notice NOW that to access the x and y coordinates
+ // we dont have to access the parent structure.
+  DrawCircle(this->x, this->y, this->r);
+}
+</pre>
+<p>
+The important feature here is the manipulation of the preprocessor to create structures that have similar constructions.  This allows us to access the member variables without using the "parent" structure.
+<h2>Polymorphism</h2>
+The final step in creating an object oriented environment within C is to attach methods to the objects themselves.  This will allow true polymorphism.
+<p>
+The trick to this is to use function pointers.  Function pointers are just like other pointers, except instead of pointing to a variable, they point to functions.  We'll declare a generic pointer as a typedef and use it to insert pointers to methods into the Classes.
+<pre>
+typedef (void *)Method();
+</pre>
+This typedef creates a new type called Method that is a pointer to a function.  Now, we'll redefine our Classes using Method to set aside space for each method in the class.
+<pre>
+--------------------------
+Shape.h
+--------------------------
+//convenience macro for allocating data
+#CALLOC(a,b) (b *) calloc(a, sizeof(b))
+
+//define the members of the Shape
+// remember the backslashs \ or it wont work!
+#define Class_Shape \
+int x;\
+int y;\
+Method init; \
+Method uninit; \
+Method destroy; \
+Method move; \
+Method draw;
+
+//
+// now create the Class itself
+typedef struct {
+Class_Shape   // this expands the members
+} Shape;
+
+</pre>
+<p>
+Now, we have to update the Shape_init method to link up the Methods to the actual functions.
+<pre>
+--------------------------
+Shape.c
+--------------------------
+#include "Shape.h"
+
+//
+// This is just a placeholder. later we'll declare real stuff
+void Shape_uninit(Shape *this)
+{
+  // no opertion
+}
+
+//
+// allocate a shape object. then initialize it.
+Shape *Shape_new()
+{
+  Shape this = CALLOC(1, Shape);
+  Shape_init(this);
+  return this;
+}
+
+//
+// uninitialize the shape and free it.
+void Shape_destroy(Shape *this)
+{
+  Shape_uninit(this);
+  free(this);
+}
+
+//
+// set x,y to the values passed in
+void Shape_move(Shape *this, int x, int y)
+{
+  this->x=x;
+  this->y=y;
+}
+
+//
+// another placeholder. no real operation
+void Shape_draw(Shape *this)
+{
+  //no draw method for a shape
+}
+
+//
+// initialize the shape.  set up the 
+// Methods by linking them to the
+// functions above
+void Shape_init(Shape *this)
+{
+  this->x=0;
+  this->y=0;
+  this->init = Shape_init;
+  this->unint = Shape_uninit;
+  this->destroy = Shape_destroy;
+  this->move = Shape_move;
+  this->draw = Shape_draw;
+}
+
+</pre>
+<p>
+Now, we can do the same thing with the Circle methods.
+<pre>
+-----------------------
+Circle.h
+-----------------------
+#include "Shape.h" //get the parent class
+
+#define Class_Circle \
+Class_Shape \  //notice here that we inherit the parent members
+int r; //radius
+
+//
+// create the Circle class
+typedef struct {
+  Class_Circle
+} Circle;
+
+-----------------------
+Circle.c
+-----------------------
+#include "Circle.h"
+
+//
+// as with the init function we call the Shape uninit function
+void Circle_uninit(Circle*this)
+{
+  Shape_uninit(this);
+}
+
+//
+// We allocate the structure and call the init function
+Circle *Circle_new()
+{
+  Circle this = CALLOC(1, Circle);
+  Circle_init(this);
+  return this;
+}
+
+//
+// We uninitialize the structure and free the Circle
+void Circle_destroy(Circle *this)
+{
+  this->uninit(this);
+  free(this);
+}
+
+// NOTICE WE DONT NEED A CIRCLE_MOVE
+// BECAUSE SHAPE_MOVE DOES THE JOB
+
+//
+// Now we draw the circle.  Notice that this completely
+// replaces the Shape_draw function - which did nothing
+void Circle_draw(Circle *this)
+{
+ // notice NOW that to access the x and y coordinates
+ // we dont have to access the parent structure.
+  DrawCircle(this->x, this->y, this->r);
+}
+
+//
+// here we just call the parent init method.
+// because the 1st part of the Circle structure is exactly
+// the same as a Shape, the Shape_init() method will
+// operate on the Shape and ignore the elements
+// describing the Circle (namely, 'r')
+//
+// notice that all the Shape methods are linked up
+// but now we override the Shape methods
+// and use the circle's methods.
+void Circle_init(Circle*this)
+{
+  Shape_init(this); //initialize the Shape portion of the structure
+
+  //now we override the Shape methods with Circle methods
+  this->init = Circle_init;
+  this->uninit = Circle_uninit;
+  this->destroy = Circle_destroy;
+  this->draw = Circle_draw;
+}
+
+---------------------
+main.c
+---------------------
+#include "Circle.h"
+
+main()
+{
+  Circle *myCircle = Circle_new();
+  myCircle->move(myCircle,50,50);  //call the Shape_move method
+  myCircle->draw(myCircle); //call the Circle_draw method
+  myCircle->destroy(myCircle);
+}
+</pre>
+<h2>Conclusions</h2>
+Now you have all the capabilities necessary to write object oriented programs in C.  Its a little more work than in C++, but offers all the capabilities of Encapsulation, Inheritance, and Polymorphism.
+<p>
+-Greg Smith

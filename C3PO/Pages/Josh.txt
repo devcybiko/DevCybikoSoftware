@@ -1,0 +1,49 @@
+To C or not to C<br>
+Apologies to William Shakespeare<br>
+<br>
+To C or not to C: that is the question:<br>
+Whether 'tis nobler in the mind to suffer<br>
+The slings and arrows of outrageous malloc(),<br>
+Or to take arms against a sea of garbage collectors,<br>
+And by opposing end them? To die(): to sleep();<br>
+No more; and by a sleep() to say we exit()<br>
+The machine failure and the thousand natural shocks<br>
+That hardware is heir to, 'tis a computation<br>
+Devoutly to be wish'd. To die(), to sleep();<br>
+To sleep(): perchance to dream(): ay, there's the bug;<br>
+For in that sleep() of suspend what dreams() may come<br>
+When we have compiled off our mortal source code,<br>
+Must give us pause(): there's the respect<br>
+That 'make calamity' of so long a life;<br>
+For who would bear the gmtime_r's and nanosleeps of time.h,<br>
+The hacker's wrong, the admin's contumely,<br>
+The pangs of uncompiling source, the law's delay(),<br>
+The insolence of code jockeys and the spurns<br>
+That lusers merit of the tech support takes,<br>
+When he himself might his algorithm make<br>
+With a faster processor? who would bandwidth bear,<br>
+To switch and route under a weary power supply,<br>
+But that the dread of something after crash,<br>
+The undiscover'd silicon heaven from whose bourn<br>
+No consumer device returns, puzzles the will<br>
+And makes us rather bear those packets we have<br>
+Than drop them to route others that we know not of?<br>
+Thus poor development techniques make cowards of us all;<br>
+And thus the native depth of resolution<br>
+Is sicklied o'er with the poor quality of the monitor,<br>
+And enterprises of great money and lawyers<br>
+With this regard their actions become litigious<br>
+And lose the goal of happy benevolence.--Soft reboot now!<br>
+The fair GNU! Mascot, in thy GPL<br>
+Be all my code remember'd.<br><br>
+Contact Info:<br>
+AIM: JoshonThinkpad<br>
+Yahoo: joshnet_1<br>
+ICQ: 121057880<br>
+MSN: joshnet@nbnet.nb.ca<br>
+Email: joshnet@nbnet.nb.ca<br>
+
+----
+
+!Josh has editted these pages:
+[{ReferringPagesPlugin separator='\n'}]

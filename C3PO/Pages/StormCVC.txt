@@ -1,0 +1,49 @@
+!!!Storm CVC
+
+CVC is the Cybiko Video Container, it is like the avi system in that
+it can hold video,audio and anything else that may be needed in the future.
+
+The header file (cvc.h) details the main header and frame headers. Although
+an audio struct is listed, ignore this as it is not used and is subject to 
+change. Also note that the cvc source assumes a lot about the video file,
+this is not a problem at present but is something that you need to be aware of.
+
+At the moment their is only one video codec - CVD1. Below i will detail the
+four frame types:
+
+!!Introduction to CVD1
+
+Due to the cybikos four pixel per byte screen, it is much faster to change
+four pixels at once then one individual pixel. To this end CVD1 works with
+pixels in groups of four.
+
+Frame types 0 and 1 are both full frames, they contain the entire image. Types
+2 and 3 only hold the difference between the current frame and the previous
+frame.
+
+!CVD1 Frame types
+!0 : Raw image
+
+This is not compressed, this is for when the compression does not work. It
+is just copied to the screen.
+
+!1 : Full Run Length Encoding
+
+The first byte of the frame is the number of time to repeat the next byte.
+
+!2 : Delta 1
+
+If the first byte is negative then the positive of that is the number of screen
+bytes to skip.
+
+If the first byte is positive, the next byte is repeated to the screen that many times.
+
+!3 : Delta 2
+
+If the first byte is negative then the positive of that is the number of screen
+bytes to skip.
+
+If the first byte is positive, that number of bytes is directly copied from the
+file to the screen.
+
+[ssjx] 27-Jul-2003

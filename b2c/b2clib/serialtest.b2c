@@ -1,0 +1,69 @@
+'/**
+'  * The B2C project is a set of programs and libraries
+'  * that comprise a languate translator.  B2C compiles
+'  * a BASIC program into C which is compiled by the Cybiko
+'  * SDK 2.10 into an application.
+'  *
+'  *  Copyright 2004 by Gregory Smith
+'  *  (greg@alcorgrp.com)
+'  *
+'  *  This program is free software; you can redistribute it and/or
+'  *  modify it under the terms of the GNU General Public License
+'  *  as published by the Free Software Foundation; either version 2
+'  *  of the License, or (at your option) any later version.
+'  *
+'  *  This program is distributed in the hope that it will be useful,
+'  *  but WITHOUT ANY WARRANTY; without even the implied warranty of
+'  *  MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
+'  *  GNU General Public License for more details.
+'  *
+'  *  You should have received a copy of the GNU General Public License
+'  *  along with this program; if not, write to the Free Software
+'  *  Foundation, Inc., 59 Temple Place - Suite 330, Boston, MA  02111-1307, USA.
+'  *
+'  * @author Gregory Smith (http://www.greg-smith.com, Greg@AlcorGrp.com)
+'  * @version 1.0
+'  */OPTION C_COORDS     'use c coordinates
+OPTION ESCAPE OFF   'turn off escape processing
+OPTION SHOW OFF     'turn of redraw
+
+include "serial.b2c"  ' read in the serial software
+
+dim k as int        'the keyboard character
+dim i as int        'the pointer into the screen buffer
+dim dirty as int    'whether the screen needs updating
+dim s[1024] as char 'the screen buffer
+
+s="" 'set the screen buffer empty
+i = 0 'set the pointer into the buffer to first char
+dirty = false 'the screen is clean
+font "mini_normal_font"
+
+serial_open 'open the serial port
+
+while true
+    k = serial_read 'get a character from the serial port
+    while k<>-1     'if there was a character read then redisplay
+      s[i] = k      'add the character to the screen buffer
+      i=i+1         'point to the next character
+      s[i]=0        'terminate the string
+      dirty=true
+      k = serial_read 'get a character from the serial port
+    wend
+    if dirty then  'redraw the screen
+      cls           'clear the screen
+      k=wrap(0,0,160,100,LEFT,CHAR,s) 'draw the text
+      dirty = false  'reset the dirty bit
+      redraw show    'display the screen
+    end if
+    k = key          ' get keyboard input
+    if k then        'if the key was pressed then...
+      if k = #KEY_ESC then exit while  'if ESC then exit program
+      serial_write(k) 'write the key to the serial port
+    end if
+wend
+'
+' YOU MUST CLOSE THE PORT BEFORE YOU EXIT
+' OR THE PORT WILL NOT WORK FOR THE NEXT
+' APP INCLUDING CYBERLOAD
+serial_close

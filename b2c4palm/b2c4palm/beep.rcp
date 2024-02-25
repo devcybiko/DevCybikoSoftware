@@ -1,0 +1,4 @@
+VERSION "1.0.0"
+
+SMALLICONFAMILY "inc/smb2c.bmp" "" "" "inc/smb2c256.bmp" TRANSPARENT 255 255 255
+ICONFAMILY "inc/b2c.bmp" "" "" "inc/b2c256.bmp" TRANSPARENT 255 255 255

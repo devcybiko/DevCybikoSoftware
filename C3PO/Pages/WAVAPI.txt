@@ -1,0 +1,14 @@
+!Cybiko Wave API
+
+Here is a program i have made to handle wave files. I have not
+been able to get it to play but it does parse the file and send
+the results to the console. At the moment it just generates noise.
+
+The source is fairly well documented, it will not work on its own
+though  and need to be called from another program (eg wave("test.wav") ).
+
+The main problem is that the Cybiko cannot play the few thousand samples
+per second needed. It may be possible to get around this using the native
+compiler.
+
+[ssjx] 28-Jul-2003

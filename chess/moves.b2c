@@ -1,0 +1,337 @@
+type movetype
+  from_row as int
+  from_col as int
+  to_row as int
+  to_col as int
+end type
+
+dim moves[32] as movetype
+dim nmoves as int
+
+sub move_add(fr as int, fc as int, tr as int, tc as int)
+  moves[nmoves].from_row = fr
+  moves[nmoves].from_col = fc
+  moves[nmoves].to_row = tr
+  moves[nmoves].to_col = tc
+  nmoves=nmoves+1
+end sub
+
+sub move_make(fr as int, fc as int, tr as int, tc as int)
+  board[tr,tc] = board[fr,fc]
+  board[fr,fc] = 0
+end sub
+
+sub move_getall(from_row as int, from_col as int)
+  dim piece as int
+
+  nmoves=0
+  piece = board[from_row,from_col]
+  if piece=wk then move_king(from_row, from_col)
+  if piece=bk then move_king(from_row, from_col)
+  if piece=wq then move_queen(from_row, from_col)
+  if piece=bq then move_queen(from_row, from_col)
+  if piece=wr then move_rook(from_row, from_col)
+  if piece=br then move_rook(from_row, from_col)
+  if piece=wb then move_bishop(from_row, from_col)
+  if piece=bb then move_bishop(from_row, from_col)
+  if piece=wn then move_knight(from_row, from_col)
+  if piece=bn then move_knight(from_row, from_col)
+  if piece=wp then move_pawn(from_row, from_col)
+  if piece=bp then move_pawn(from_row, from_col)
+end sub
+
+function move_legal(from_row as int, from_col as int, to_row as int, to_col as int) as int
+  dim piece as int
+
+  move_legal = true
+  piece = board[from_row,from_col]
+  if (piece=0) then 'its an empty square
+    move_legal = false
+    exit function
+  endif
+
+  move_getall(from_row, from_col)
+
+  if nmoves=0 then
+    move_legal=false
+    exit function
+  endif
+
+  for i=0 to nmoves-1
+    if moves[i].to_row = to_row and moves[i].to_col = to_col then
+	move_legal=true
+	exit function
+    endif
+  next
+
+move_legal=false
+end function
+
+function piece_color(piece as int) as int
+  piece_color=ltgrey
+  if piece>=wk and piece<=wp then piece_color=white
+  if piece>=bk and piece<=bp then piece_color=black
+end function
+
+sub move_king(row as int, col as int)
+  dim piece as int
+  dim color as int
+
+  piece = board[row,col]
+  color=piece_color(piece)
+  for i=-1 to 1
+    for j=-1 to 1
+	piece=board[row+i,col+j]
+	if piece<>-1 then 'off the board?
+	  if piece_color(piece)<>color then 
+	    move_add(row,col,row+i,col+j)
+	  endif
+	endif
+    next
+  next
+end sub
+
+sub move_queen(row as int, col as int)
+  move_rook(row, col)
+  move_bishop(row, col)
+end sub
+
+sub move_rook(row as int, col as int)
+  dim piece as int
+  dim color as int
+  dim othercolor as int
+  dim itscolor as int
+
+  piece = board[row,col]
+  color=piece_color(piece)
+  othercolor=white
+  if color=white then othercolor=black
+
+  for i=1 to 8
+    piece=board[row+i,col]
+    if piece=-1 then goto rook1
+    itscolor=piece_color(piece)
+    if itscolor=color then goto rook1
+    if itscolor=othercolor then
+	move_add(row,col,row+i,col)
+	goto rook1
+    endif
+    move_add(row,col,row+i,col)
+  next
+rook1:
+  for i=1 to 8
+    piece=board[row-i,col]
+    if piece=-1 then goto rook2
+    itscolor=piece_color(piece)
+    if itscolor=color then goto rook2
+    if itscolor=othercolor then
+	move_add(row,col,row-i,col)
+	goto rook2
+    endif
+    move_add(row,col,row-i,col)
+  next
+rook2:
+  for i=1 to 8
+    piece=board[row,col+i]
+    if piece=-1 then goto rook3
+    itscolor=piece_color(piece)
+    if itscolor=color then goto rook3
+    if itscolor=othercolor then
+	move_add(row,col,row,col+i)
+	goto rook3
+    endif
+    move_add(row,col,row,col+i)
+  next
+rook3:
+  for i=1 to 8
+    piece=board[row,col-i]
+    if piece=-1 then goto rook4
+    itscolor=piece_color(piece)
+    if itscolor=color then goto rook4
+    if itscolor=othercolor then
+	move_add(row,col,row,col-i)
+	goto rook4
+    endif
+    move_add(row,col,row,col-i)
+  next
+rook4:
+end sub
+
+sub move_knight(row as int, col as int)
+  dim piece as int
+  dim color as int
+  dim othercolor as int
+  dim itscolor as int
+  dim row2 as int
+  dim col2 as int
+
+  piece = board[row,col]
+  color=piece_color(piece)
+  othercolor=white
+  if color=white then othercolor=black
+
+  piece = board[row+1,col+1]
+  if piece<>-1 then
+    piece = board[row+2, col+1]
+    if piece<>-1 then
+	if piece_color(piece)<>color then
+	  move_add(row,col,row+2,col+1)
+	endif
+    endif
+    piece = board[row+1, col+2]
+    if piece<>-1 then
+	if piece_color(piece)<>color then
+	  move_add(row,col,row+1,col+2)
+	endif
+    endif
+  endif
+
+  piece = board[row+1,col-1]
+  if piece<>-1 then
+    piece = board[row+2, col-1]
+    if piece<>-1 then
+	if piece_color(piece)<>color then
+	  move_add(row,col,row+2,col-1)
+	endif
+    endif
+    piece = board[row+1, col-2]
+    if piece<>-1 then
+	if piece_color(piece)<>color then
+	  move_add(row,col,row+1,col-2)
+	endif
+    endif
+  endif
+
+  piece = board[row-1,col-1]
+  if piece<>-1 then
+    piece = board[row-1, col-2]
+    if piece<>-1 then
+	if piece_color(piece)<>color then
+	  move_add(row,col,row-1,col-2)
+	endif
+    endif
+    piece = board[row-2, col-1]
+    if piece<>-1 then
+	if piece_color(piece)<>color then
+	  move_add(row,col,row-2,col-1)
+	endif
+    endif
+  endif
+
+  piece = board[row-1,col+1]
+  if piece<>-1 then
+    piece = board[row-2, col+1]
+    if piece<>-1 then
+	if piece_color(piece)<>color then
+	  move_add(row,col,row-2,col+1)
+	endif
+    endif
+    piece = board[row-1, col+2]
+    if piece<>-1 then
+	if piece_color(piece)<>color then
+	  move_add(row,col,row-1,col+2)
+	endif
+    endif
+  endif
+end sub
+
+sub move_bishop(row as int, col as int)
+  dim piece as int
+  dim color as int
+  dim othercolor as int
+  dim itscolor as int
+
+  piece = board[row,col]
+  color=piece_color(piece)
+  othercolor=white
+  if color=white then othercolor=black
+
+  for i=1 to 8
+    piece=board[row+i,col+i]
+    if piece=-1 then goto bishop1
+    itscolor=piece_color(piece)
+    if itscolor=color then goto bishop1
+    if itscolor=othercolor then
+	move_add(row,col,row+i,col+i)
+	goto bishop1
+    endif
+    move_add(row,col,row+i,col+i)
+  next
+bishop1:
+  for i=1 to 8
+    piece=board[row-i,col+i]
+    if piece=-1 then goto bishop2
+    itscolor=piece_color(piece)
+    if itscolor=color then goto bishop2
+    if itscolor=othercolor then
+	move_add(row,col,row-i,col+i)
+	goto bishop2
+    endif
+    move_add(row,col,row-i,col+i)
+  next
+bishop2:
+  for i=1 to 8
+    piece=board[row+i,col-i]
+    if piece=-1 then goto bishop3
+    itscolor=piece_color(piece)
+    if itscolor=color then goto bishop3
+    if itscolor=othercolor then
+	move_add(row,col,row+i,col-i)
+	goto bishop3
+    endif
+    move_add(row,col,row+i,col-i)
+  next
+bishop3:
+  for i=1 to 8
+    piece=board[row-i,col-i]
+    if piece=-1 then goto bishop4
+    itscolor=piece_color(piece)
+    if itscolor=color then goto bishop4
+    if itscolor=othercolor then
+	move_add(row,col,row-i,col-i)
+	goto bishop4
+    endif
+    move_add(row,col,row-i,col-i)
+  next
+bishop4:
+end sub
+
+sub move_pawn(row as int, col as int)
+  dim piece as int
+  dim color as int
+  dim othercolor as int
+  dim itscolor as int
+  dim drow as int
+  dim drow2 as int
+
+  piece = board[row,col]
+  color=piece_color(piece)
+  othercolor=white
+  if color=white then othercolor=black
+
+  drow=-1
+  drow2=7
+  if color=white then
+    drow=1
+    drow2=2
+  endif
+
+  piece=board[row+drow,col]
+  if piece=0 then
+    move_add(row,col,row+drow,col)
+    if row=drow2 then
+      piece=board[row+drow+drow,col]
+      if piece=0 then move_add(row,col,row+drow+drow,col)
+    endif
+  endif
+
+  piece=board[row+drow,col+1]
+  itscolor=piece_color(piece)
+  if itscolor=othercolor then move_add(row,col,row+drow,col+1)
+
+  piece=board[row+drow,col-1]
+  itscolor=piece_color(piece)
+  if itscolor=othercolor then move_add(row,col,row+drow,col-1)
+
+end sub
+

@@ -1,0 +1,62 @@
+From [http://cydevr.net]
+
+  <p align="center"><em><strong>Stamping Sprites Tutorial</strong></em></p>
+                          <p align="left">Are you using a single image multiple 
+                            times on screen in different positions? If so, there 
+                            is no need to load more than one sprite for it. You 
+                            can use an efficient method called stamping. This 
+                            procedure is very effective in shooting games where 
+                            you can fire multiple bullets, or in sidescrollers 
+                            with a definite tile for the floor. ( Mario )</p>
+                          <p align="left"><strong>Setup<br>
+                            </strong>In order for stamping to work, you must have 
+                            a few options modified at the top of your .b2c file. 
+                            Here is an example of what you'll need.<br>
+                            <br>
+                            <font face="System">OPTION C_COORDS</font><br>
+                            <font face="System">OPTION SHOW OFF<br>
+                            OPTION ESCAPE OFF<br>
+                            <br>
+                            </font>C_COORDS isn't necessarily needed, but it's 
+                            what the tutorial uses. SHOW OFF enhances performance 
+                            greatly. You may also want to ESCAPE OFF, this turns 
+                            off the ESC key processing enhancing you program even 
+                            more. However, if you turn Esc processing off, there 
+                            is no way to exit your program unless you add it yourself.</p>
+                        </div>
+                        <div align="left"> 
+                          <p><strong>Method<br>
+                            </strong>Stamping is quite simple; you move the sprite 
+                            one place, redraw it, and repeat as many times as 
+                            desired.<br>
+                            <br>
+                            <font face="System">move 1,0,0<br>
+                            redraw 1<br>
+                            <br>
+                            move 1,10,10<br>
+                            redraw 1<br>
+                            <br>
+                            move 1,60,50<br>
+                            redraw 1</font></p>
+                          <p><strong>Example Source File<br>
+                            <font face="System"><br>
+                            OPTION SHOW OFF<br>
+                            OPTION C_COORDS<br>
+                            OPTION ESCAPE OFF<br>
+                            <br>
+                            Sprite 1, &quot;tile.pic&quot;<br>
+                            <br>
+                            dim esc_program as int<br>
+                            <br>
+                            while (esc_program = 0)<br>
+                            &nbsp;cls <br>
+                            &nbsp;if key(#KEY_DEL) then esc_program = 1<br>
+                            <br>
+                            &nbsp;for tmp = 0 to 150 step 10<br>
+                            &nbsp;&nbsp;move 1,tmp,90<br>
+                            &nbsp;&nbsp;redraw 1<br>
+                            &nbsp;next<br>
+                            &nbsp;redraw show</font></strong><strong><font face="System"><br>
+                            wend</font></strong></p>
+                          <p>- Tom Reece<br>
+                            - Written: 12.25.02</p>

@@ -1,0 +1,5 @@
+!!!Basis
+
+[greg] 29-Apr-2003\\
+Basis is my attempt to create a generic website (like PHPNuke) based on Java Foundation Classes.
+

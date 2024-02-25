@@ -1,0 +1,322 @@
+OPTION ESCAPE OFF
+OPTION C_COORDS
+OPTION SHOW OFF
+
+include "msg.b2c"
+
+msg_init
+
+dim mc as long
+dim status[60] as char
+dim my_name[20] as char
+dim tmp[64] as char
+dim points as long
+dim high_points as long
+dim high_name[20] as char
+dim sstatus[32] as char
+dim current_buzzed_in[10] as char
+
+dim STATE as int
+dim WAITING as int
+dim BUZZING as int
+dim RECOGNIZED as int
+dim LOCKOUT as int
+dim READY as int
+dim GAMEOVER as int
+dim WINNER as int
+dim STANDBY as int
+dim CORRECT as int
+dim WRONG as int
+dim BEGINNING as int
+
+dim my_cyid as long
+dim nsecs as long
+
+sub init
+    inline my_cyid = get_own_id();
+    inline strcpy(my_name,finder.mf.f_nick);
+
+    WAITING=0
+    BUZZING=1
+    RECOGNIZED=2
+    LOCKOUT=3
+    READY=4
+    GAMEOVER=5
+    WINNER=6
+    STANDBY=7
+    CORRECT=9
+    WRONG=10
+    BEGINNING=11
+
+    state = WAITING
+    sprite 0, "bgnd.pic"
+    points=0
+    high_points=0
+    high_name="high"
+end sub
+
+function cool_normal_len(s[] as char)
+    inline _cool_normal_len = Font_string_width(cool_normal_font, s);
+end function
+function cool_bold_len(s[] as char)
+    inline _cool_bold_len = Font_string_width(cool_bold_font, s);
+end function
+function mini_normal_len(s[] as char)
+    inline _mini_normal_len = Font_string_width(mini_normal_font, s);
+end function
+function mini_bold_len(s[] as char)
+    inline _mini_bold_len = Font_string_width(mini_bold_font, s);
+end function
+
+sub onmessage(cyid as long, msgno as int, buf[] as char)
+    dim a as int
+
+    if msgno=msg_mc_right then
+        state=CORRECT
+        status=buf
+        current_buzzed_in=""
+        music foreground, "right.mus"
+        music foreground, play
+        repaint
+    endif
+    if msgno=msg_mc_wrong then
+        state=wrong
+        status=buf
+        current_buzzed_in=""
+        music foreground, "wrong.mus"
+        music foreground, play
+        repaint
+    endif
+    if msgno=msg_mc_standby then
+        state=STANDBY
+        status=buf
+        current_buzzed_in=""
+        repaint
+    endif
+    if msgno=msg_mc_player_added then
+        state=BEGINNING
+        status=buf
+        repaint
+    endif
+    if msgno=msg_mc_player_refused then
+        status = buf
+        a=dialog("REFUSED", buf);
+        exit program
+    end if
+    if msgno=msg_mc_recognized then
+        status=buf
+        state=RECOGNIZED
+        music foreground, "player.mus"
+        music foreground, play
+        vibrate 128
+        repaint
+        vibrate 0
+    endif
+    if msgno=msg_mc_lockout and state<>RECOGNIZED then
+        status=buf
+        state=LOCKOUT
+        current_buzzed_in=buf
+        repaint
+    endif
+    if msgno=msg_mc_rejoined then
+        status=buf
+        inline points=xtoi(buf);
+        state=READY
+        repaint
+    endif
+    if msgno=msg_mc_reset then
+        status=buf
+        state=READY
+        current_buzzed_in=""
+        repaint
+    endif
+    if msgno=msg_mc_timer then
+        status=buf
+        inline nsecs=xtoi(buf);
+        repaint
+    endif
+    if msgno=msg_mc_score then
+        status=buf
+        inline points=xtoi(buf);
+        repaint
+    endif
+    if msgno=msg_mc_high_score then
+        status=buf
+        tokenize buf, "|", high_name, tmp
+        inline high_points=xtoi(tmp);
+        repaint
+    endif
+    if msgno=msg_mc_gameover then
+        state=GAMEOVER
+        status=buf
+        repaint
+    endif
+    if msgno=msg_mc_winner then
+        state=WINNER
+        status=buf
+        music foreground, "winner.mus"
+        music foreground, play
+        vibrate 255
+        repaint
+        wait 5
+        vibrate 0
+    endif
+end sub
+
+sub bold_print(x as int, y as int, s[] as char)
+    ink white
+    printxy x-1, y-1, s
+    printxy x-1, y, s
+    printxy x-1, y+1, s
+    printxy x, y-1, s
+    printxy x, y+1, s
+    printxy x+1, y-1, s
+    printxy x+1, y, s
+    printxy x+1, y+1, s
+    ink black
+    printxy x, y, s
+end sub
+
+sub repaint
+    dim mins as int
+    dim secs as int
+
+    if state=READY then
+        sprite 1,"ready.pic"
+        sstatus="READY"
+    elseif state=WAITING then
+        sprite 1
+        sstatus="WAITING"
+    elseif state=BEGINNING then
+        sprite 1, "standby.pic"
+        sstatus="BEGINNING"
+    elseif state=STANDBY then
+        sprite 1
+        sstatus="STANDBY"
+    elseif state=CORRECT then
+        sprite 1,"right.pic"
+        sstatus="RIGHT"
+    elseif state=WRONG then
+        sprite 1,"wrong.pic"
+        sstatus="WRONG"
+    elseif state=BUZZING then
+        sprite 1,"buzzing.pic"
+        sstatus="BUZZING"
+    elseif state=LOCKOUT then
+        sprite 1,"lockout.pic"
+        sstatus="LOCKOUT"
+    elseif state=RECOGNIZED then
+        sprite 1,"yes.pic"
+        sstatus="RECOGNIZED"
+    elseif state=GAMEOVER then
+        sprite 1,"gameover.pic"
+        sstatus="GAMEOVER"
+    elseif state=WINNER then
+        sprite 1,"winner.pic"
+        sstatus="WINNER"
+    end if
+
+    cls
+
+    paper white
+    move 0,0,0
+    redraw 0
+    move 1,29,19
+    redraw 1
+
+    font "cool_bold_font"
+    sprint tmp, my_name, ": ", points
+    bold_print(80-cool_bold_len(tmp)/2,3,tmp)
+
+    font "cool_normal_font"
+    sprint tmp, high_name, ": ", high_points
+    bold_print(80-cool_normal_len(tmp)/2,83,tmp)
+
+    if current_buzzed_in[0] then
+        font "mini_normal_font"
+        printxy 130,45,"Buzzed:"
+        printxy 130,55,current_buzzed_in
+    end if
+
+'    paper ltgrey
+'    font "mini_normal_font"
+'    printxy 1,90,sstatus,",",status
+
+    mins=nsecs/60
+    secs=nsecs mod 60
+    inline sprintf(tmp,"%2d:%02d",mins, secs);
+    font "cool_normal_font"
+    bold_print(2,45,tmp)
+
+    redraw show
+end sub
+
+sub join
+    dim waiting_to_play as int
+    mc = usermenu("Select Your MC", 0)
+    if mc=0 then exit program
+    waiting_to_play = true
+    while state=WAITING
+        inline _escape(0);
+        repaint
+        sendmessage mc, msg_player_add_player, "mc", my_name
+        wait 30
+    wend
+
+    keyclick off
+
+end sub
+
+sub get_enter
+    
+    if key(#KEY_ENTER) then
+        Sendmessage mc, msg_player_buzzed_in, "mc", my_name
+        state=BUZZING
+        beep 20
+        repaint
+        beep -1
+    end if
+end sub
+
+sub do_nothing
+    points=points
+end sub
+
+sub do_right
+    wait 5
+end sub
+
+sub do_wrong
+    points=points
+end sub
+
+sub participate
+    repaint
+    while true
+        inline _escape(0);
+        if state=WAITING then join
+        if state=READY then get_enter
+        if state=BUZZING then do_nothing
+        if state=LOCKOUT then do_nothing
+        if state=RECOGNIZED then do_nothing
+        if state=GAMEOVER then do_nothing
+        if state=WINNER then do_nothing
+        if state=STANDBY then do_nothing
+        if state=CORRECT then do_right
+        if state=WRONG then do_wrong
+        if state=BEGINNING then do_nothing
+    wend
+end sub
+
+sub mainsub
+    init
+
+    dim a as int
+    a = dialog("Player", "Enter your name", my_name, 20)
+
+    participate
+
+end sub
+
+
+mainsub

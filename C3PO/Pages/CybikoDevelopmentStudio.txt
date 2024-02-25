@@ -1,0 +1,45 @@
+<font face=Tahoma>
+<b><u>Approximate percentage of completion:<br></u></b>
+<br>
+<b>Essential parts</b><br>
+</font><font face=Arial>
+GUI - 99%<br>
+Project Manipulation - 90%<br>
+<s>Simple syntax highlighting - 98%</s><br>
+Syntax highlighting with simple code comprehendation - 80%<br>
+Support for both Pro and Standard Cybiko SDK versions - 100%<br>
+</font><font face=Tahoma>
+<br>
+<b>Not entirely necessary components</b><br>
+</font><font face=Arial>
+Capturing compilation results - 55%<br>
+Auto-update feature - 20%<br>
+Bug reporting - 5%<br>
+</font><font face=Tahoma>
+<br>
+<b>Command references</b><br>
+</font><font face=Arial>
+GSFX Basic command support - 100%<br>
+Cybiko C command support - 7%<br>
+B2C command support - 1%<br>
+</font><font face=Tahoma>
+<br>
+<br>
+<b><u>Updates</u></b><br>
+</font><font face=Arial>
+<i>August 16, 2003</i><br>
+Implemented a <i>much</i> faster and neater syntax highlighting routine.  It still needs a little working on for it to know not to highlight command key words in string and comments and to allow for multiple colors.  Unfortunately, further progress will be somewhat hindered with (1) school starting Monday and (2) VB5 has decided to crash 10-15 seconds after I hit 'run'.<br>
+</font><font face=Tahoma>
+<br>
+<br>
+<b><u>Planned updates:</u></b><br>
+<br>
+</font><font face=Arial>
+The auto-update feature and removing the few remaining bugs out of the syntax highlighting are the two main updates i'm working on finishing.  The help file that I had previousely is now seriously outdated, so that will need major work.  The capturing of compiliation results should be fairly easy, so it shouldn't take long to do.  Still trying to figure out exactly how to go about doing the bug reporting, but have a few ideas.  The command references are going to be the hardest part of it all, at least the Cybiko C one.
+</font>
+<br>
+<br>
+<font face=Tahoma>
+<i>Comments:</i><br></font><font face=Arial>
+<hr>
+Put comments here...

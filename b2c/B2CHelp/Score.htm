@@ -1,0 +1,29 @@
+<B><P>Topic :</B> Score</P>
+<B><P>Language Level</B> : B2C Extension</P>
+<B><P>Effectivity :</B> B2C v3</P>
+<B><P>Syntax</B> : </P>
+<P>&#9;Score</P><DIR>
+<DIR>
+
+<P>Score high_score</P></DIR>
+</DIR>
+
+<B><P>Description :</P><DIR>
+<DIR>
+
+</B><P>The Score command has two modes.  If no parameter is supplied, it will show the top 5 scores for the game in the current font and the current ink and paper colors.  If a high_score is supplied, then the high_score is compared to existing high scores in the score.inf file and will replace one of them with the new high_score (if the high_score is higher). </P>
+
+<P>Note: You must include a score.inf file (supplied) in your .list file.</P></DIR>
+</DIR>
+
+<B><P>Example :</P>
+<P>&#9;</B>Dim high_score as long</P>
+<P>&#9;…</P>
+<P>&#9;High_score = High_score + 100</P>
+<P>&#9;…</P>
+<P>&#9;Score high_score ‘set the high score</P>
+<P>&#9;cls</P>
+<P>&#9;Score ‘show the high scores</P>
+<P>&#9;While key(#KEY_ENTER) = 0</P>
+<P>&#9;wend</P>
+<B>

@@ -1,0 +1,18 @@
+<B><P>Topic :</B> OPTION-SHOW</P>
+<B><P>Language Level</B> : B2C Extension</P>
+<B><P>Effectivity :</B> B2C v3</P>
+<B><P>Syntax</B> : </P><DIR>
+<DIR>
+
+<P>OPTION SHOW OFF</P>
+<P>OPTION SHOW ON (default)</P></DIR>
+</DIR>
+
+<B><P>Description :</P>
+<P>&#9;</B>Normally the B2C graphics commands (line, point, printxy) immediately display their results on the Cybiko screen. This mode is OPTION SHOW ON and is the default.  However, if OPTION SHOW OFF is selected then the graphics commands are buffered until a Redraw Show command is executed.  This is a significant performance enhancement.</P>
+<B><P>Example :</P>
+<P>&#9;</B>OPTION SHOW OFF</P>
+<P>&#9;For I=0 to 99</P>
+<P>&#9;Line 0,0,79,i  ‘draw a fan</P>
+<P>&#9;Next</P>
+<P>&#9;Redraw Show<B> </P>

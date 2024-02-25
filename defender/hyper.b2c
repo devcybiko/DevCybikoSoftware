@@ -1,0 +1,31 @@
+sub hyperspace
+    dim x as int
+    dim y as int
+    x = ship_x - pf_x
+    if (x < 0) then x = x + 1280
+    x=x+6
+    y=ship_y+3
+    music background, "hyperspace.mus"
+    music background, play
+    for i=0 to 160 step 8
+        line i,15,x,y
+        redraw show
+    next
+    for i=15 to 99 step 8
+        line 159,i,x,y
+        redraw show
+    next
+    for i=160 to 0 step -8
+        line i,99,x,y
+        redraw show
+    next
+    for i=99 to 15 step -8
+        line 0,i,x,y
+        redraw show
+    next
+    music background, stop
+    ship_x = rnd(1279)
+    ship_y = rnd(99-15)+15
+
+end sub
+

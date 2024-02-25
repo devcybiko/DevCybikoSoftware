@@ -1,0 +1,305 @@
+option sprites 16
+option c_coords
+option show off
+option escape off
+
+dim points as long
+dim sprite_playfield as int
+dim sprite_ship as int
+dim sprite_lander as int
+dim sprite_mutant as int
+dim sprite_man as int
+dim sprite_shot as int
+dim sprite_explosion as int
+dim sprite_bullet as int
+dim sprite_points as int
+
+dim in_space as int
+dim wave_n as int
+dim true as int
+dim false as int
+true=1
+false=0
+
+include "landscape.b2c"
+include "util.b2c"
+include "playfield.b2c"
+include "ship.b2c"
+include "explosion.b2c"
+include "points.b2c"
+include "shot.b2c"
+include "intro.b2c"
+include "man.b2c"
+include "lander.b2c"
+include "bullet.b2c"
+include "scroll.b2c"
+include "smart.b2c"
+include "hyper.b2c"
+
+dim lander_maximum[10] as int
+lander_maximum[0]=10
+lander_maximum[1]=15
+lander_maximum[2]=20
+lander_maximum[3]=25
+lander_maximum[4]=30
+lander_maximum[5]=35
+lander_maximum[6]=40
+lander_maximum[7]=45
+lander_maximum[8]=50
+lander_maximum[9]=50
+
+dim lander_hunger_max[5] as int
+lander_hunger_max[0] = 5
+lander_hunger_max[1] = 10
+lander_hunger_max[2] = 15
+lander_hunger_max[3] = 20
+lander_hunger_max[4] = 25
+lander_hunger_max[5] = 30
+lander_hunger_max[6] = 35
+lander_hunger_max[7] = 40
+lander_hunger_max[8] = 45
+lander_hunger_max[9] = 50
+
+dim loading_cnt
+loading_cnt = 0
+sub loading
+    font "mini_bold_font"
+    paper white
+    ink black
+    cls
+    printxy 0,50,"Loading...",loading_cnt
+    loading_cnt = loading_cnt + 1
+    redraw show
+end sub
+
+sub init
+    sprite_playfield  = 1
+    sprite_lander = 2
+    sprite_mutant = 3
+    sprite_ship = 4
+    sprite_man = 5
+    sprite_shot = 6
+    sprite_explosion = 7
+    sprite_bullet = 8
+    sprite_points = 9
+
+    in_space = false
+
+    pf_init
+    loading
+    ship_init
+    loading
+    lander_init
+    loading
+    man_init
+    loading
+    shot_init
+    loading
+    explosion_init
+    loading
+    bullet_init
+    loading
+    points_init
+    loading
+    scroll_init
+    loading
+    smart_init
+
+    points = 0
+end sub
+
+sub status_scroll
+    dim s[64] as char
+'    sprint s,"     STATUS...", " Score=", points, " Landers=", lander_cnt, " Ships=", ship_n, " Men=", men_cnt, " Wave=", wave
+    inline sprintf(s,"Wave=%d Ships=%d Men=%d Landers=%d", wave_n, ship_n, man_ctr, lander_ctr);
+    scroll_begin(0,16,40,s)
+end sub
+
+sub play_game
+    dim esc as int
+
+    while true
+      inline _escape(0);
+      if key(#KEY_SHIFT) then status_scroll
+
+      ship_move
+      lander_move_all
+      man_move_all
+      shot_move_all
+      explosion_move_all
+      bullet_move_all
+      points_move_all
+      scroll_move_all
+
+      pf_redraw_lines
+      ship_redraw
+      lander_redraw
+      man_redraw
+      shot_redraw
+      explosion_redraw
+      bullet_redraw
+      points_redraw
+      scroll_redraw
+
+      redraw show
+
+      if key(#KEY_ENTER) and (not ship_hit) then
+        shot_shoot
+      end if
+
+      if key(#KEY_DEL) and (not ship_hit) then
+        smart_destroy
+      end if
+
+      if key(#KEY_SPACE) and (not ship_hit) then
+        hyperspace
+      end if
+
+      if ship_hit and explosion_complete then
+        ship_n = ship_n - 1
+        exit while
+      end if
+
+      if in_space=0 and man_ctr=0 then
+        xor_display
+        music foreground, "inspace.mus"
+        music foreground, play
+        in_space=1
+        xor_display
+      end if
+
+      if lander_ctr = 0 then exit while
+
+    wend
+
+end sub
+
+sub prewave
+    cls
+    ink white
+    paper black
+    font "cool_bold_font"
+    printxy 40, 40, "Wave  ", wave_n
+    printxy 40, 55, "Ships ", ship_n
+    redraw show
+    wait 20
+end sub
+
+sub postwave
+    dim bonus as int
+
+    bonus = man_ctr * 100
+    cls
+    ink white
+    paper black
+    font "cool_bold_font"
+    printxy 40, 40, "Men   ", man_ctr
+    printxy 40, 55, "Ships ", ship_n
+    printxy 40, 70, "Bonus ", bonus
+    points = points + bonus
+    redraw show
+    wait 20
+end sub
+
+sub wave(wave_num as int)
+
+    lander_ctr = lander_maximum[wave_num MOD 10]
+    lander_hunger = lander_hunger_max[wave_num MOD 10]
+    if (wave_num mod 5)=0 then man_ctr = 10
+
+    while true
+
+        lander_init_all
+        ship_init_all
+        man_init_all
+        bullet_init_all
+        points_init_all
+        scroll_init_all
+        shot_init_all
+        prewave
+
+        play_game
+
+        if ship_hit=0 then postwave
+
+        if lander_ctr = 0 then exit while
+        if ship_n = 0 then exit while
+
+    wend
+end sub
+
+sub start
+    init
+
+    keyclick off
+
+    wave_n = 1
+    ship_n = 3
+
+    while true
+      wave(wave_n-1)
+      wave_n = wave_n + 1
+      if ship_n = 0 then exit while
+    wend
+
+end sub
+
+sub high_scores
+    sprite 0, "intro.pic"
+    move 0,0,0
+    redraw 0
+
+    font "cool_bold_font"
+    ink white
+    for i=65 to 67
+        for j=10 to 12
+           printxy i, j, points
+        next
+    next
+    ink black
+    printxy i-2, j-2, points
+    redraw show
+
+    font "mini_bold_font"
+    paper white
+    ink black
+    score
+
+    while key(#KEY_ENTER)=0
+    wend
+    while key(#KEY_ENTER)<>0
+    wend
+
+    sprite 0 'delete sprite
+end sub
+
+function menu_list
+    dim x as int
+    font "cool_bold_font"
+    paper white
+    ink black
+    sprite 0, "intro.pic"
+    move 0,0,0
+    redraw 0
+    redraw show
+    menu x,"START", "SCORE", "QUIT"
+    menu_list = x
+    while key(#KEY_ENTER)<>0
+    wend
+    sprite 0
+end sub
+
+sub defender
+    dim x as int
+    attract
+top:
+    start
+    score points
+do_score:
+    high_scores
+    x = menu_list
+    on x goto top, do_score, quit
+quit:
+end sub
+
+defender

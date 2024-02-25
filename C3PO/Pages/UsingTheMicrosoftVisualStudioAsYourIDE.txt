@@ -1,0 +1,16 @@
+Using Microsoft® Developer StudioTM as CybikoTM SDK Development Environment 
+<p>
+
+Make sure that the Cybiko SDK 'bin' directory is listed in MSDEV executable search path (Tools -> Options -> Directories -> Executable files)
+<p>
+
+Create new project. Go to File -> New... -> Projects, select 'Makefile' (important!), fill in project name and location, then click 'OK'. For instance, name: 'highway_hitman', location: 'C:\Program Files\Cybiko\SDK\demos\highway_hitman'
+<p>
+
+Fill in project options. Specify 'vmake' in the 'Command line' field, the name of your application in the 'Output' field ('highway_hitman.app', for example), and the rebuild target in the 'Rebuild All Switch' field (that should be 'new' for any makefile supplied with the SDK)
+<p>
+
+Repeat previous step for the 'Release' options. You may want to use special targets in your makefile to build a release version of your project
+<p>
+
+At this point, your project should be ready -- you can use the 'Build' command to build your application. For your convenience, the Cybiko SDK error and warning message format is made fully compatible with that of the Developer Studio, so that you could 'jump' to a source line for which a warning (or an error) message is issued -- by clicking on a respective line in the output window (its 'Build' tab, if more exactly). 

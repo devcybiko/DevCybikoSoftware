@@ -1,0 +1,1 @@
+I made/modified a function screenshot.c that creates one large file containing many .PIC files. Every time this function is called, a new screen is appended to the file. You only have to copy one file to your PC and then use FILER Cybiko DOS command to extract.

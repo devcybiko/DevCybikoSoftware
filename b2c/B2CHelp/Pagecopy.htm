@@ -1,0 +1,68 @@
+<B><P>Topic :</B> Pagecopy</P>
+<B><P>Language Level</B> : B2C Extension</P>
+<B><P>Effectivity :</B> B2C v5</P>
+<B><P>Syntax</B> : </P><DIR>
+<DIR>
+
+<P>Pagecopy from, to, x, y, w, h</P></DIR>
+</DIR>
+
+<B><P>Description :</P><DIR>
+<DIR>
+
+</B><P>The Cybiko has 2 graphics pages (see the Page command, above).  Pagecopy will transfer a rectangle from one page to another.  The graphics &quot;patch&quot; will be transferred from the FROM page to the TO page and to the same X, Y coordinates.  This is useful for quickly rendering a piece of a background page to the currently displayed page, especially video games.  One can erase a sprite from page 0 by copying a rectangle from the background screen in page 1.  This is faster than repainting the entire background sprite and repainting all the character sprites.</P></DIR>
+</DIR>
+
+<B><P>Example : </P><DIR>
+<DIR>
+
+</B></FONT><FONT FACE="Courier New" SIZE=1><P>OPTION SHOW OFF</P>
+<P>OPTION ESCAPE OFF</P>
+<P>OPTION C_COORDS</P>
+
+<P>dim x as int</P>
+<P>dim x1 as int</P>
+<P>dim y as int</P>
+
+<P>Sub redraw_mario</P>
+<P>    pagecopy 1, 0, x1, y, 20, 20 'erase mario from old x,y with the background</P>
+<P>    move 1,x,y 'paint mario</P>
+<P>&#9;redraw 1</P>
+<P>    x1 = x 'set the old x to the current x</P>
+<P>    redraw show ' show page 0</P>
+<P>end sub</P>
+
+<P>Sprite 0, "background.pic"</P>
+<P>Sprite 1, "mario.pic"</P>
+
+<P>page 1 'switch to page1</P>
+<P>move 0, 0, 0 ' paint the background to page 1</P>
+<P>redraw 0</P>
+
+<P>page 0 ' back to page 0</P>
+<P>move 0, 0, 0</P>
+<P>redraw 0 ' paint the background to page 0</P>
+
+<P>' initialize mario’s position</P>
+<P>x=0</P>
+<P>x1=x</P>
+<P>y=50</P>
+
+<P>move 1, x, y  'paint mario</P>
+<P>redraw 1</P>
+<P>redraw show    'show page 0 to the user</P>
+
+<P>while true</P>
+<P>&#9;if key(#KEY_LEFT) then </P>
+<P>&#9;&#9;x=x-1</P>
+<P>&#9;&#9;redraw_mario</P>
+<P>&#9;endif</P>
+<P>&#9;if key(#KEY_RIGHT) then </P>
+<P>&#9;&#9;x=x+1</P>
+<P>&#9;&#9;redraw_mario</P>
+<P>&#9;endif</P>
+<P>    if key(#KEY_SPACE) then exit program</P>
+<P>wend</P>
+</FONT><B><FONT SIZE=2></DIR>
+</DIR>
+

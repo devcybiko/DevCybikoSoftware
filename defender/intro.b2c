@@ -1,0 +1,47 @@
+function intro
+  dim z as int
+  dim foo[8] as int
+  dim timeout as int
+  foo[0] = 1
+  foo[1] = 2
+  foo[2] = 3
+  foo[3] = 4
+  foo[4] = 3
+  foo[5] = 2
+  foo[6] = 1
+  z=0
+  sprite 1, "defintro.pic"
+  intro = 0        ' enter pressed
+  timeout = 0
+  move 1,0,5,0
+  redraw 1
+  while key(#KEY_ENTER)=0
+    if z>=7 then z=0
+    paper black
+    cls
+    move 1,0,5,0
+    redraw 1
+    move 1,51,54,foo[z]
+    redraw 1
+    redraw show
+    z=z+1
+    wait 1
+    timeout = timeout + 1
+    if timeout > 1000 then
+        intro = 1  ' timed out
+        goto early_exit
+    endif
+  wend
+early_exit:
+  sprite 1 ' delete the sprite
+end sub
+
+sub attract
+  dim intro_loop as int
+  intro_loop = 1
+  while intro_loop
+    if intro_loop then intro_loop = intro '1=timeout, 0=enter pressed
+  wend
+end sub
+
+

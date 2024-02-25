@@ -1,0 +1,3 @@
+!!These projects have been marked as ''__NEW__''
+
+[{ReferringPagesPlugin separator='\n'}]

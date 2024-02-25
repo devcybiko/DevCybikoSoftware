@@ -1,0 +1,58 @@
+dim pf_h as int
+dim pf_w as int
+dim pf_x as int 'current left edge of whats on screen
+dim pf_y as int 'current top edge of whats on screen
+pf_h = 66
+pf_w = 256
+pf_x = 0
+pf_y = 0
+
+sub pf_init
+  sprite 1, "playfield.pic"
+end sub
+
+sub show_score
+  inline char s[16];
+  inline sprintf(s, "  %8ld", points);
+  inline DisplayGraphics_set_color(_ptr_main_module->m_gfx, CLR_WHITE);
+  inline DisplayGraphics_set_font(_ptr_main_module->m_gfx, mini_normal_font);
+  inline DisplayGraphics_draw_text(_ptr_main_module->m_gfx, s, 1, 1);
+end sub
+
+sub show_smarts
+  inline char s[16];
+  inline sprintf(s, "Smart:%3d", smart_n);
+  inline DisplayGraphics_set_color(_ptr_main_module->m_gfx, CLR_WHITE);
+  inline DisplayGraphics_set_font(_ptr_main_module->m_gfx, mini_normal_font);
+  inline DisplayGraphics_draw_text(_ptr_main_module->m_gfx, s, 114, 1);
+end sub
+
+sub pf_redraw_lines
+    dim x0 as int
+    dim x1 as int
+    dim xx as int
+
+    paper black
+    ink white
+    cls
+
+    if in_space=0 then
+        x0 = pf_x/20
+        x1 = (pf_x+180)/20
+        xx = 0-(pf_x mod 20)
+        for i = x0 to x1
+            xline(xx, landscape[i MOD 64]+58, xx+20, landscape[(i+1) MOD 64]+58)
+            xx = xx + 20
+        next
+    end if
+    xline( 0,  15, 159, 15)
+    xline( 48,  0,  48, 15)
+    xline( 112, 0, 112, 15)
+    xline( 76, 0, 76, 2)
+    xline( 84, 0, 84, 2)
+    xline( 76, 0, 84, 0)
+    xline( 76, 15, 76, 13)
+    xline( 84, 15, 84, 13)
+    show_score
+    show_smarts
+end sub

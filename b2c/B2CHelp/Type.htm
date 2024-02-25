@@ -1,0 +1,41 @@
+<B><P>Topic :</B> Type</P>
+<B><P>Language Level</B> : Cybasic-2</P>
+<B><P>Effectivity :</B> B2C v3a</P>
+<B><P>Syntax</B> : </P><DIR>
+<DIR>
+
+<P>Type name</P>
+<P>    Member{[a{,b}]} as type</P>
+<P>    …</P>
+<P>End Type</P></DIR>
+</DIR>
+
+<B><P>Description :</P><DIR>
+<DIR>
+
+</B><P>Type allows the creation of user-defined data types.  Each line after the Type command is a member definition, much like a Dim command.  Once a Type is defined variables can be defined as that type.  Members are dereferenced with dot specifiers.</P></DIR>
+</DIR>
+
+<B><P>Example :</P><DIR>
+<DIR>
+
+</B><P>Type coord</P>
+<P>    X as int</P>
+<P>    Y as int</P>
+<P>End type</P>
+
+<P>Type line</P>
+<P>    P0 as coord</P>
+<P>    P1 as coord</P>
+<P>End Type</P>
+
+<P>Dim line0 as line</P>
+
+<P>Line0.p0.x=0</P>
+<P>Line0.p0.y=0</P>
+<P>Line0.p1.x=50</P>
+<P>Line0.p1.y=50</P>
+
+<B><P>&nbsp;</P></DIR>
+</DIR>
+

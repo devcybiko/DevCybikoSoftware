@@ -1,0 +1,318 @@
+<HTML>
+<HEAD>
+<META HTTP-EQUIV="Content-Type" CONTENT="text/html; charset=windows-1252">
+<META NAME="Generator" CONTENT="Microsoft Word 97">
+<TITLE>Part 2 : Adding Animation</TITLE>
+</HEAD>
+<BODY>
+
+<B><FONT FACE="Arial" SIZE=5><P ALIGN="CENTER">Playfield Graphics Tutorial</P>
+<P ALIGN="CENTER">Part 2 – Adding Animation</P>
+</B></FONT><FONT SIZE=2><P ALIGN="CENTER">by Greg Smith</P>
+</FONT><B><FONT FACE="Arial" SIZE=4><P>Introduction:</P>
+</B></FONT><FONT SIZE=2><P>In Part-1 we learned how to create a 480x300-pixel playfield and move a car around.  The car is not very interesting because it’s not animated.  In Part-2 I selected a lemming character to move around.  Why? Because I happened to have an animated lemming in my library and no animated cars.  The lemming is black and grey with a white background.  This didn’t fit the playfield I created in Part-1, so I inverted the playfield colors.  So don’t be shocked by the changes, it’s still the same basic playfield logic as in Part-1.  Now let’s look at the animated lemming.</P>
+<P>&nbsp;</P>
+</FONT><B><FONT FACE="Arial" SIZE=4><P>The Lemming:</P>
+</B></FONT><FONT SIZE=2><P>The character sprite is composed of 4 sets of 5 bitmaps (20 in all).  The 5 bitmaps comprise a walking lemming.  Each bitmap is rotated to create a lemming walking in one of the four directions: Left, Right, Up, and Down.  The images are stored in one sprite as &quot;lemming.pic&quot;.</P>
+
+<P>It’s important to remember how the images are stored because we will be setting the ‘z’ parameter of the move command based on the direction the lemming is moving.  Images 0-4 are the bitmaps of the lemming walking to the left.  Images 5-9 are the bitmaps of the lemming walking to the right.  Images 10-14 are the bitmaps of the lemming walking up. And finally images 15-19 are the bitmaps of the lemming walking down.  </P>
+
+<P>We’ll keep track of the direction of the lemming with the Z_DIR variable.  So, to show the lemming walking to the left, we set the Z_DIR variable to 0.  To show the lemming walking to the right, Z_DIR is set to 5.  For walking up, Z_DIR is set to 10.  Finally, to show the lemming walking down, Z_DIR is set to 15.</P>
+
+<P>To make the lemming walk, we add 0,1,2,3 or 4 to the Z_DIR variable.  The Z_CNT variable will be constantly incremented from 0-4.  When the lemming is moved, we set the move’s ‘z’ parameter to Z_DIR+Z_CNT.</P>
+</FONT><B><FONT FACE="Arial" SIZE=4><P>The Program</P>
+<OL>
+
+</B></FONT><FONT FACE="Courier New" SIZE=2><LI>OPTION C_COORDS</LI>
+
+<LI>dim x as int  'position of lemming from 0-480</LI>
+<LI>dim y as int  'position of lemming from 0-300</LI>
+<LI>dim z_dir as int  'which direction of lemming</LI>
+<LI>dim z_cnt as int  'animation image of lemming</LI>
+
+<LI>dim sprite_field as int 'the sprite number of the playfield sprites</LI>
+<LI>dim sprite_lemming as int   'the sprite number of the lemming sprites</LI>
+<LI>dim lemming_left as int     'index into lemming sprite for going left</LI>
+<LI>dim lemming_right as int    'index into lemming sprite for going right</LI>
+<LI>dim lemming_up as int       'index into lemming sprite for going up</LI>
+<LI>dim lemming_down as int     'index into lemming sprite for going down</LI>
+
+<LI>'''</LI>
+<LI>''' initialization</LI>
+<LI>'''</LI>
+<LI>sub init</LI>
+<LI>sprite_field = 0  'playfield sprite</LI>
+<LI>sprite_lemming = 31    'lemming sprite is largest possible sprite - on top</LI>
+
+<LI>lemming_left=0        'lemming left image</LI>
+<LI>lemming_right=5       'lemming right image</LI>
+<LI>lemming_up=10         'lemming up image</LI>
+<LI>lemming_down=15       'lemming down image</LI>
+
+<LI>'''</LI>
+<LI>''' the playfield sprite has 9 bitmaps</LI>
+<LI>''' one for each of the different areas of the</LI>
+<LI>''' playfield</LI>
+<LI>sprite sprite_field, "playfield.pic"</LI>
+
+<LI>'''</LI>
+<LI>''' the lemming has 20 bitmaps 5 for each direction</LI>
+<LI>sprite sprite_lemming, "lemming.pic"</LI>
+
+<LI>'''</LI>
+<LI>''' the lemming can be anywhere on the playfield from</LI>
+<LI>''' x = 0-480</LI>
+<LI>''' y = 0-300</LI>
+<LI>x=240  'center of the playfield</LI>
+<LI>y=150  'center of the playfield</LI>
+<LI>z_dir=lemming_right  ' lemming faces right</LI>
+<LI>z_cnt=0              ' animation counter</LI>
+<LI>end sub</LI>
+
+<LI>sub repaint</LI>
+<LI>dim field_x as int   '0,1,2 for the horizontal bitmap</LI>
+<LI>dim field_y as int   '0,1,2 for the vertical bitmap</LI>
+<LI>dim field as int     '0-8 for the bitmap currently visible</LI>
+<LI>dim lemming_x as int     '0-159 for the x coord on the screen</LI>
+<LI>dim lemming_y as int     '0-99  for the y coord on the screen</LI>
+
+<LI>field_x = x / 160    ' compute the horizontal bitmap</LI>
+<LI>field_y = y / 100    ' compute the vertical bitmap</LI>
+<LI>field = field_y*3 + field_x ' combine them to compute the bitmap number</LI>
+
+<LI>lemming_x = x mod 160  ' compute the lemming's position on the screen</LI>
+<LI>lemming_y = y mod 100  ' compute the lemming's position on the screen</LI>
+
+<LI>move sprite_field, 0, 0, field  'display the current field</LI>
+<LI>move sprite_lemming, lemming_x, lemming_y, z_dir+z_cnt 'display the lemming </LI>
+
+<LI>paper white  'transparent color for the lemming</LI>
+<LI>redraw        'redraw all the sprites</LI>
+
+<LI>end sub</LI>
+
+<LI>'''</LI>
+<LI>''' increment the z_cnt variable</LI>
+<LI>'''</LI>
+<LI>sub update_z_cnt</LI>
+<LI>z_cnt=(z_cnt+1) MOD 5</LI>
+<LI>end sub</LI>
+
+<LI>'''</LI>
+<LI>''' process the keyboard</LI>
+<LI>'''</LI>
+<LI>sub get_keys</LI>
+<LI>if key(#KEY_UP) then   'move the lemming up</LI>
+<LI>y=y-3</LI>
+<LI>z_dir=lemming_up</LI>
+<LI>update_z_cnt</LI>
+<LI>end if</LI>
+<LI>if key(#KEY_DOWN) then 'move the lemming down</LI>
+<LI>y=y+3</LI>
+<LI>z_dir=lemming_down</LI>
+<LI>update_z_cnt</LI>
+<LI>end if</LI>
+<LI>if key(#KEY_LEFT) then 'move the lemming left</LI>
+<LI>x=x-3</LI>
+<LI>z_dir=lemming_left</LI>
+<LI>update_z_cnt</LI>
+<LI>end if</LI>
+<LI>if key(#KEY_RIGHT) then 'move the lemming right</LI>
+<LI>x=x+3</LI>
+<LI>z_dir=lemming_right</LI>
+<LI>update_z_cnt</LI>
+<LI>end if</LI>
+<LI>end sub</LI>
+
+<LI>'''</LI>
+<LI>''' main subroutine</LI>
+<LI>'''</LI>
+<LI>sub mainsub</LI>
+<LI>init</LI>
+
+<LI>while true</LI>
+<LI>repaint</LI>
+<LI>get_keys</LI>
+<LI>wend</LI>
+<LI>end sub</LI>
+
+<LI>'''</LI>
+<LI>''' call the main subroutine</LI>
+<LI>'''</LI>
+<LI>mainsub</LI></OL>
+
+</FONT><FONT SIZE=2><P>&nbsp;</P>
+</FONT><B><I><FONT FACE="Arial"><P>Option C_Coords</P>
+</B></I></FONT><FONT SIZE=2><P>As with last time, the compiler option C_COORDS is used to switch the coordinate system from CyBasic mode ([-80,-50] to [79,49]) into C mode ([0,0] to [159,99]).  The zero-based coordinates make the mathematics of computing the screen coordinates easier.  This is true for most nearly any video game.</P>
+</FONT><B><I><FONT FACE="Arial"><P>The Variables</P>
+</B></I></FONT><FONT SIZE=2><P>As in Part-1 the x and y variables designate the lemming’s position on the playfield.  However, this time, instead of a single ‘z’ variable, we have two new variables.  Z_DIR will hold a value of 0, 5, 10, or 15 – for the direction the lemming is facing.  Z_CNT will range from 0-4 for the image of the lemming walking.</P>
+<DIR>
+<DIR>
+
+</FONT><FONT FACE="Courier New" SIZE=2><P>dim x as int  'position of car from 0-480</P>
+<P>dim y as int  'position of car from 0-300</P>
+<P>dim z_dir as int  'which direction of lemming</P>
+<P>dim z_cnt as int  'animation image of lemming</P>
+</DIR>
+</DIR>
+
+</FONT><FONT SIZE=2><P>The remainder of the variables are actually constants used to make the program easier to read. SPRITE_FIELD and SPRITE_LEMMING are the sprite numbers for the playfield and the lemming respectively.  The variables LEMMING_LEFT, LEMMING_RIGHT, LEMMING_UP, and LEMMING_DOWN are the indexes into the SPRITE_LEMMING sprite.  These constants are initialized in the INIT function.</P>
+</FONT><FONT FACE="Courier New" SIZE=2><DIR>
+<DIR>
+
+<P>dim sprite_field as int </P>
+<P>dim sprite_lemming as int</P>
+<P>dim lemming_left as int</P>
+<P>dim lemming_right as int</P>
+<P>dim lemming_up as int</P>
+<P>dim lemming_down as int </P>
+</FONT><FONT SIZE=2><P>&nbsp;</P></DIR>
+</DIR>
+
+</FONT><B><I><FONT FACE="Arial"><P>sub init</P>
+</B></I></FONT><FONT SIZE=2><P>Here we initialize all the &quot;constants&quot; in the program.  Again, the SPRITE_FIELD and SPRITE_LEMMING are the sprite numbers.  Later, when we actually load and move the sprites we will use these variables instead of the literals &quot;0&quot; and &quot;31&quot;. </P>
+
+<P> Notice that we have set the lemming up as sprite 31.  This puts the lemming &quot;on top&quot; of all other sprites.  As you may recall, sprite 0 is the background sprite and all other sprites are painted on top of it.  The sprites are painted starting with 0 and on up to 31.</P>
+<P>So, since sprite 31 is painted last, it appears on top of all others.</P>
+<DIR>
+<DIR>
+
+</FONT><FONT FACE="Courier New" SIZE=2><P>sprite_field = 0  'playfield sprite</P>
+<P>sprite_lemming = 31 'lemming is largest possible sprite - on top</P>
+</DIR>
+</DIR>
+
+<P>LEMMING_LEFT is the index into the lemming sprite.  LEMMING_LEFT is the first sprite that looks to the left. Likewise, LEMMING_RIGHT points to the first sprite that looks right.  And so on with LEMMING_UP and LEMMING_DOWN.</P>
+<DIR>
+<DIR>
+
+<P>lemming_left=0        'lemming left image</P>
+<P>lemming_right=5       'lemming right image</P>
+<P>lemming_up=10         'lemming up image</P>
+<P>lemming_down=15       'lemming down image</P>
+
+</FONT><FONT SIZE=2><P>&nbsp;</P>
+<P>&nbsp;</P></DIR>
+</DIR>
+
+<P>Here we load the sprites into memory.</P><DIR>
+<DIR>
+
+</FONT><FONT FACE="Courier New" SIZE=2><P>sprite sprite_field, "playfield.pic"</P>
+<P>sprite sprite_lemming, "lemming.pic"</P>
+</DIR>
+</DIR>
+
+</FONT><FONT SIZE=2><P>As in Part-1, we position the lemming in the middle of the playfield by positioning it at (240,150).  The Z_DIR variable is set to the LEMMING_RIGHT value, and Z_CNT is set to zero.  Later, Z_DIR and Z_CNT will be added together to determine the bitmap to display on the screen.</P><DIR>
+<DIR>
+
+</FONT><FONT FACE="Courier New" SIZE=2><P>x=240  'center of the playfield</P>
+<P>y=150  'center of the playfield</P>
+<P>z_dir=lemming_right  ' lemming faces right</P>
+<P>z_cnt=0              ' animation counter</P>
+<P>&nbsp;</P></DIR>
+</DIR>
+
+</FONT><B><I><FONT FACE="Arial"><P>sub repaint</P>
+</B></I></FONT><FONT SIZE=2><P>As in Part-1, the repaint routine selects the playfield screen to display and positions the character on the screen.  First we define the variables</P><DIR>
+<DIR>
+
+</FONT><FONT FACE="Courier New" SIZE=2><P>dim field_x as int   '0,1,2 for the horizontal bitmap</P>
+<P>dim field_y as int   '0,1,2 for the vertical bitmap</P>
+<P>dim field as int     '0-8 for the bitmap currently visible</P>
+<P>dim lemming_x as int     '0-159 for the x coord on the screen</P>
+<P>dim lemming_y as int     '0-99  for the y coord on the screen</P>
+</DIR>
+</DIR>
+
+</FONT><FONT SIZE=2><P>Here we compute the playfield screen.</P><DIR>
+<DIR>
+
+</FONT><FONT FACE="Courier New" SIZE=2><P>field_x = x / 160    ' compute the horizontal bitmap</P>
+<P>field_y = y / 100    ' compute the vertical bitmap</P>
+<P>field = field_y*3 + field_x ' combine them to compute the bitmap number</P>
+</FONT><FONT SIZE=2></DIR>
+</DIR>
+
+<P>Here we compute the position of the lemming on the screen.</P><DIR>
+<DIR>
+
+</FONT><FONT FACE="Courier New" SIZE=2><P>lemming_x = x mod 160  ' compute the lemming's position on the screen</P>
+<P>lemming_y = y mod 100  ' compute the lemming's position on the screen</P>
+</FONT><FONT SIZE=2></DIR>
+</DIR>
+
+<P>Now we position the playfield sprite on the screen.</P><DIR>
+<DIR>
+
+</FONT><FONT FACE="Courier New" SIZE=2><P>move sprite_field, 0, 0, field  'display the current field</P>
+</FONT><FONT SIZE=2></DIR>
+</DIR>
+
+<P>This is the &quot;magic&quot; – the ‘z’ parameter is computed as the Z_DIR variable plus the Z_CNT variable.  Z_DIR is the pointer to the first image of Left, Right, Up, Down.  Z_CNT is a value from 0-4 that selects which set of &quot;feet&quot; the lemming will display for the current direction we are going.</P><DIR>
+<DIR>
+
+</FONT><FONT FACE="Courier New" SIZE=2><P>move sprite_lemming, lemming_x, lemming_y, z_dir+z_cnt 'display the lemming </P>
+</FONT><FONT SIZE=2></DIR>
+</DIR>
+
+<P>Finally we set the transparent color and redraw all the sprites on the screen.</P><DIR>
+<DIR>
+
+</FONT><FONT FACE="Courier New" SIZE=2><P>paper white  'transparent color for the lemming</P>
+<P>redraw        'redraw all the sprites</P></DIR>
+</DIR>
+
+</FONT><B><I><FONT FACE="Arial"><P>sub update_z_cnt</P>
+</B></I></FONT><FONT SIZE=2><P>This very short subroutine is designed to march Z_CNT from 0 to 4 and back again.  Since Z_CNT is the animation counter it mustn’t go over 4.  Here we use a little mathematical magic.  MOD returns the remainder of a division.  So dividing by 5 will always have a remainder from 0-4.</P><DIR>
+<DIR>
+
+</FONT><FONT FACE="Courier New" SIZE=2><P>z_cnt=(z_cnt+1) MOD 5</P>
+</FONT><B><I><FONT FACE="Arial"><P>&nbsp;</P></DIR>
+</DIR>
+
+<P>sub get_keys</P>
+</B></I></FONT><FONT SIZE=2><P>This function operates similarly to the one in Part-1.  When a key is pressed, the Z_DIR variable is pointed to the first lemming pointing in the direction of the key.  Then, the UPDATE_Z_CNT subroutine is called to increment the animation variable, Z_CNT.  And of course the appropriate X or Y variable is incremented or decremented to move the lemming around.  Still we are not restricting the lemming to the road, that will happen in the next tutorial.</P><DIR>
+<DIR>
+
+</FONT><FONT FACE="Courier New" SIZE=2><P>if key(#KEY_UP) then   'move the lemming up</P><DIR>
+<DIR>
+
+<P>y=y-3</P>
+<P>z_dir=lemming_up</P>
+<P>update_z_cnt</P></DIR>
+</DIR>
+
+<P>end if</P>
+<P>if key(#KEY_DOWN) then 'move the lemming down</P><DIR>
+<DIR>
+
+<P>y=y+3</P>
+<P>z_dir=lemming_down</P>
+<P>update_z_cnt</P></DIR>
+</DIR>
+
+<P>end if</P>
+<P>if key(#KEY_LEFT) then 'move the lemming left</P><DIR>
+<DIR>
+
+<P>x=x-3</P>
+<P>z_dir=lemming_left</P>
+<P>update_z_cnt</P></DIR>
+</DIR>
+
+<P>end if</P>
+<P>if key(#KEY_RIGHT) then 'move the lemming right</P><DIR>
+<DIR>
+
+<P>x=x+3</P>
+<P>z_dir=lemming_right</P>
+<P>update_z_cnt</P></DIR>
+</DIR>
+
+<P>end if</P></DIR>
+</DIR>
+
+</FONT><B><I><FONT FACE="Arial"><P>sub mainsub</P>
+</B></I></FONT><FONT SIZE=2><P>The main subroutine is &quot;mainsub&quot;.  It calls the initialization routine &quot;init&quot; and the proceeds to loop forever calling &quot;repaint&quot; and &quot;get_keys&quot;.</P></FONT></BODY>
+</HTML>

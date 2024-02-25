@@ -1,0 +1,32 @@
+<b>
+<P>Topic :</B> Stringheight()</P>
+<B><P>Language Level</B> : B2C Extension</P>
+<B><P>Effectivity :</B> B2C v5</P>
+<B><P>Syntax</B> : </P><DIR>
+<DIR>
+
+<P>n = stringheight(string)</P></DIR>
+</DIR>
+
+<B><P>Description :</P><DIR>
+<DIR>
+
+</B><P>Stringheight returns the number of y-pixels the ‘string’ will take if displayed in the current font.</P></DIR>
+</DIR>
+
+<B><P>Example : </P>
+</B><P>&#9;OPTION C_COORDS</P><DIR>
+<DIR>
+
+<P>Dim x as int</P>
+<P>Dim y as int</P>
+<P>Dim s[32] as char</P>
+<P>Input &quot;enter your name&quot;, s</P>
+<P>x = stringwidth(s)</P>
+<P>y = stringheight(s)</P>
+<P>‘ center text</P>
+<P>cls</P>
+<P>printxy (160-x)/2, (100-y)/2, s</P>
+<B></DIR>
+</DIR>
+

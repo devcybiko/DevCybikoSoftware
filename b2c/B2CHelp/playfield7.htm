@@ -1,0 +1,517 @@
+<HTML>
+<HEAD>
+<META HTTP-EQUIV="Content-Type" CONTENT="text/html; charset=windows-1252">
+<META NAME="Generator" CONTENT="Microsoft Word 97">
+<TITLE>Part 7 : Sprite Reuse</TITLE>
+</HEAD>
+<BODY>
+
+<B><FONT FACE="Arial" SIZE=5><P ALIGN="CENTER">Playfield Graphics Tutorial</P>
+<P ALIGN="CENTER">Part 7 – Sprite Reuse</P>
+</B></FONT><FONT SIZE=2><P ALIGN="CENTER">by Greg Smith</P>
+</FONT><B><FONT FACE="Arial" SIZE=4><P>Introduction:</P>
+</B></FONT><FONT SIZE=2><P>Part-7 is perhaps the most difficult of this series – because we don’t really add anything new to the program except the method used to display sprites.  Up until now we have let the graphics engine display all the sprites.  We gave it the X/Y coordinates and said &quot;redraw&quot; and everything came out lovely.</P>
+
+<P>But as the program gets more advanced we need more control over the way the sprites are displayed.  Did you wonder to yourself during Part-6 &quot;Why are we using the same sprite 19 times for the money?  Wouldn’t it be more efficient to use the same sprite over and over again?&quot;  And of course the answer is &quot;Yes&quot;.</P>
+</FONT><B><FONT FACE="Arial" SIZE=4><P>Double Buffering</P>
+</B></FONT><FONT SIZE=2><P>In this part of the tutorial, we’ll load the &quot;money.pic&quot; sprite once into Sprite 1 and use it to &quot;stamp&quot; pictures of the money on each of the screens.  To accomplish this we have to turn automatic &quot;Show&quot; off.</P>
+
+<P>OPTION SHOW OFF</P>
+
+<P>Normally, when we use any of the graphic functions like printxy, or redraw, or line, the result of the command is immediately apparent on the screen.  That is because an internal drawing function called &quot;Show&quot; is executed right away.  You see, all graphics commands are actually drawn on a backing display called a buffer.  The buffer is drawn on until a &quot;Show&quot; is performed.  Then it becomes visible to the user.  This technique of buffering graphics is called &quot;double-buffering&quot;.</P>
+
+<P>Because B2C was created for the first time programmer, this Show was performed after each graphics command.  The problem is it’s very inefficient.  It makes more sense to draw everything in the buffer then do a Show at the end (rather than a Show after every command).  This is why so many B2C programs are both slow and display lots of flicker.</P>
+<P>&nbsp;</P>
+</FONT><B><FONT FACE="Arial" SIZE=4><P>Sprite Reuse</P>
+</B></FONT><FONT SIZE=2><P>To use the same sprite over and over again, we have to first load the sprite into memory.  Then we move the sprite to the first location, call the redraw function for that sprite (and that sprite only).  Then move the sprite to the next location and redraw it.  And so on.  Each time we redraw the sprite it acts like a &quot;stamp&quot; imprinting an image of the sprite on the buffered display.  Finally, when all the sprites have been imprinted, we call &quot;Redraw Show&quot; and the buffer is copied to the main display for the user to see.  Here is a sample :</P>
+
+<P>Sprite 1, &quot;money.pic&quot;</P>
+<P>CLS</P>
+<P>Move 1, 0, 0 ‘upper left of screen</P>
+<P>Redraw 1 ‘ imprint the money on the buffered display</P>
+<P>Move 1, 50, 50 ‘middle of screen</P>
+<P>Redraw 1 ‘imprint the money on the buffered display </P>
+<P>Move 1, 100, 75 ‘lower right of screen</P>
+<P>Redraw 1 ‘imprint the money on the buffered display</P>
+<P>Redraw Show ‘ show the buffer to the user &quot;Show me the Money!&quot;</P>
+<P>&nbsp;</P>
+</FONT><B><FONT FACE="Arial" SIZE=4><P>What We’re Doing</P>
+</B></FONT><FONT SIZE=2><P>In this part of the program we are actually gearing up for a fully data-driven program.  Instead of loading the same sprite over and over again, we create a little list of names of sprites we’ve already loaded.  A function (Load_sprite) is created which takes a sprite’s filename and returns a sprite number.  If the sprite’s filename is not in our list, we add it to the list and load the sprite and return the sprite number.  If the sprite’s filename IS in our list we just return the sprite number.</P>
+
+<P>We are also modifying the repaint logic to use sprites over and over again.  And we change the collision logic.  I’ll explain those in more detail below.</P>
+</FONT><B><FONT FACE="Arial" SIZE=4><P>The Program</P>
+</B></FONT><FONT FACE="Courier New" SIZE=2><P>'''</P>
+<P>''' playfield tutorial - part 7</P>
+<P>''' sprite sharing</P>
+<P>'''</P>
+<P>''' by greg smith</P>
+<P>'''</P>
+
+<P>'''</P>
+<P>''' use c coordinates</P>
+<P>'''</P>
+<P>OPTION C_COORDS</P>
+
+<P>'''</P>
+<P>''' turn off escape processing for speed</P>
+<P>'''</P>
+<P>OPTION ESCAPE OFF</P>
+
+<P>'''</P>
+<P>''' turn off automatic graphics show</P>
+<P>'''</P>
+<P>OPTION SHOW OFF</P>
+
+<P>dim x as int  'position of lemming from 0-480</P>
+<P>dim y as int  'position of lemming from 0-300</P>
+<P>dim z_dir as int  'which direction of lemming</P>
+<P>dim z_cnt as int  'animation image of lemming</P>
+
+<P>dim sprite_field as int 'the sprite number of the playfield sprites</P>
+<P>dim sprite_lemming as int   'the sprite number of the lemming sprites</P>
+<P>dim lemming_left as int     'index into lemming sprite for going left</P>
+<P>dim lemming_right as int    'index into lemming sprite for going right</P>
+<P>dim lemming_up as int       'index into lemming sprite for going up</P>
+<P>dim lemming_down as int     'index into lemming sprite for going down</P>
+
+<P>dim collision_street as char     'the street's collision value</P>
+<P>dim collision_pf0 as char        'playfield 0</P>
+<P>dim collision_pf9 as char        'playfield 9</P>
+
+<P>dim collision_table[30,31] as char 'the collision table</P>
+
+<P>dim obj_ctr as int        'the next object to be allocated</P>
+<P>dim current_playfield as int 'the current playfield onscreen</P>
+<P>dim current_screen as int</P>
+<P>dim points as long           'your score</P>
+<P>dim n_playfields as int      'the number of playfields</P>
+<P>dim current_sprite as int    'the number of loaded sprites</P>
+
+<P>type obj                     'the sprite object</P>
+<P>    mysprite as int          'my sprite number</P>
+<P>    x as int                 'x coord on screen (0-159)</P>
+<P>    y as int                 'y coord on screen (0-99)</P>
+<P>    playfield as int         'playfield this sprite belongs on</P>
+<P>    screen as int            'screen within playfield (0-9)</P>
+<P>    amt as int               'points for catching this sprite</P>
+<P>    sound[32] as char        'the sound to make</P>
+<P>end type</P>
+
+<P>dim objs[40] as obj        'all the sprites</P>
+<P>dim sprite_names[30,32] as char ' sprite names</P>
+
+<P>'''</P>
+<P>''' update file - copy file from app to flash</P>
+<P>'''</P>
+<P>sub update_file(fname[] as char)</P>
+<P>    inline File_remove(fname);</P>
+<P>    inline _load(fname);</P>
+<P>end sub</P>
+
+<P>'''</P>
+<P>''' initialization</P>
+<P>'''</P>
+<P>sub init</P>
+<P>    update_file("playfield1.dat") 'get the .dat file into flash</P>
+<P>    update_file("playfield2.dat")</P>
+
+<P>    sprite_field = 0       'playfield sprite</P>
+<P>    sprite_lemming = 31    'lemming sprite is largest possible sprite - on top</P>
+
+<P>    lemming_left=0        'lemming left image</P>
+<P>    lemming_right=5       'lemming right image</P>
+<P>    lemming_up=10         'lemming up image</P>
+<P>    lemming_down=15       'lemming down image</P>
+
+<P>    '''</P>
+<P>    ''' the lemming has 20 bitmaps 5 for each direction</P>
+<P>    sprite sprite_lemming, "lemming.pic"</P>
+
+<P>    '''</P>
+<P>    ''' the lemming can be anywhere on the playfield from</P>
+<P>    ''' x = 0-480</P>
+<P>    ''' y = 0-300</P>
+<P>    x=240  'center of the playfield</P>
+<P>    y=150  'center of the playfield</P>
+<P>    z_dir=lemming_right  ' lemming faces right</P>
+<P>    z_cnt=0              ' animation counter</P>
+
+<P>    '''</P>
+<P>    ''' set the collision flags</P>
+<P>    '''</P>
+<P>    collision_street = \x\</P>
+<P>    collision_pf0 = \0\</P>
+<P>    collision_pf9 = \9\</P>
+
+<P>    obj_ctr=0    'initialize the object counter</P>
+<P>    points = 0      'reset points</P>
+
+<P>    n_playfields = 2   'maximum number of playfields</P>
+<P>    current_sprite = 1 'the next sprite number available</P>
+
+<P>    obj_init_all    'init all objects</P>
+
+<P>end sub</P>
+
+<P>sub repaint</P>
+<P>    dim field_x as int   '0,1,2 for the horizontal bitmap</P>
+<P>    dim field_y as int   '0,1,2 for the vertical bitmap</P>
+<P>    dim lemming_x as int     '0-159 for the x coord on the screen</P>
+<P>    dim lemming_y as int     '0-99  for the y coord on the screen</P>
+<P>    dim obj_x as int        ' position of the object</P>
+<P>    dim obj_y as int        ' position of the object</P>
+<P>    dim obj_field_x as int</P>
+<P>    dim obj_field_y as int</P>
+<P>    dim obj_field as int</P>
+<P>    dim i as int</P>
+
+<P>    field_x = x / 160    ' compute the horizontal bitmap</P>
+<P>    field_y = y / 100    ' compute the vertical bitmap</P>
+<P>    current_screen = field_y*3 + field_x ' combine them to compute the bitmap number</P>
+
+<P>    lemming_x = x mod 160  ' compute the lemming's position on the screen</P>
+<P>    lemming_y = y mod 100  ' compute the lemming's position on the screen</P>
+
+<P>    move sprite_field, 0, 0, current_screen 'display the current field</P>
+<P>    redraw sprite_field</P>
+
+<P>    paper white  'transparent color for the lemming</P>
+<P>    ink ltgrey</P>
+
+<P>    '''</P>
+<P>    ''' iterate across all sprites and display</P>
+<P>    '''</P>
+<P>    for i=0 to obj_ctr-1</P>
+<P>        '''</P>
+<P>        ''' if the sprite is on the current playfield</P>
+<P>        ''' and the sprite is not hidden (x=-1) then</P>
+<P>        ''' if the sprite is on the current screen then display it</P>
+<P>        '''</P>
+<P>        if objs[i].playfield=current_playfield and objs[i].x &gt;= 0 then</P>
+<P>            if objs[i].screen = current_screen then ' is the sprite on-screen?</P>
+<P>                move objs[i].mysprite, objs[i].x, objs[i].y</P>
+<P>                redraw objs[i].mysprite</P>
+<P>             endif</P>
+<P>        endif</P>
+<P>    next 'i</P>
+
+<P>    '''</P>
+<P>    ''' display points</P>
+<P>    '''</P>
+<P>    ink white</P>
+<P>    font "mini_bold_font"</P>
+<P>    printxy 0,0,points</P>
+
+<P>    move sprite_lemming, lemming_x, lemming_y, z_dir+z_cnt 'display the lemming </P>
+<P>    redraw sprite_lemming</P>
+
+<P>    redraw show        'redraw all the sprites</P>
+<P>end sub</P>
+
+<P>'''</P>
+<P>''' increment the z_cnt variable</P>
+<P>'''</P>
+<P>sub update_z_cnt</P>
+<P>    z_cnt=(z_cnt+1) MOD 5</P>
+<P>end sub</P>
+
+<P>'''</P>
+<P>''' check for collision against table</P>
+<P>'''</P>
+<P>function collision_check(x as int, y as int) as char</P>
+<P>    collision_check = collision_table[y/10,x/16]</P>
+<P>end function</P>
+
+<P>'''</P>
+<P>''' transport lemming to another playfield</P>
+<P>'''</P>
+<P>sub transport(f as int)</P>
+<P>    init_playfield(f)</P>
+<P>    if f=1 then</P>
+<P>        x=240</P>
+<P>        y=150</P>
+<P>    elseif f=2 then</P>
+<P>        x=230</P>
+<P>        y=150</P>
+<P>    endif</P>
+<P>end sub</P>
+
+<P>'''</P>
+<P>''' process the keyboard</P>
+<P>'''</P>
+<P>sub get_keys</P>
+<P>    dim tmp as int</P>
+<P>    dim cc as int</P>
+
+<P>    if key(#KEY_UP) then   'move the lemming up</P>
+<P>        tmp=y-3</P>
+<P>        cc = collision_check(x,tmp)</P>
+<P>        if cc = collision_street then</P>
+<P>            y=tmp</P>
+<P>            z_dir=lemming_up</P>
+<P>            update_z_cnt</P>
+<P>        end if</P>
+<P>        if cc &gt;= collision_pf0 and cc &lt;= collision_pf9 then</P>
+<P>            transport(cc-collision_pf0)</P>
+<P>        end if</P>
+<P>    end if</P>
+<P>    if key(#KEY_DOWN) then 'move the lemming down</P>
+<P>        tmp=y+3</P>
+<P>        cc = collision_check(x,tmp)</P>
+<P>        if cc = collision_street then</P>
+<P>            y=tmp</P>
+<P>            z_dir=lemming_down</P>
+<P>            update_z_cnt</P>
+<P>        end if</P>
+<P>        if cc &gt;= collision_pf0 and cc &lt;= collision_pf9 then</P>
+<P>            transport(cc-collision_pf0)</P>
+<P>        end if</P>
+<P>    end if</P>
+<P>    if key(#KEY_LEFT) then 'move the lemming left</P>
+<P>        tmp=x-3</P>
+<P>        cc = collision_check(tmp,y)</P>
+<P>        if cc = collision_street then</P>
+<P>            x=tmp</P>
+<P>            z_dir=lemming_left</P>
+<P>            update_z_cnt</P>
+<P>        end if</P>
+<P>        if cc &gt;= collision_pf0 and cc &lt;= collision_pf9 then</P>
+<P>            transport(cc-collision_pf0)</P>
+<P>        end if</P>
+<P>    end if</P>
+<P>    if key(#KEY_RIGHT) then 'move the lemming right</P>
+<P>        tmp=x+3</P>
+<P>        cc = collision_check(tmp,y)</P>
+<P>        if cc = collision_street then</P>
+<P>            x=tmp</P>
+<P>            z_dir=lemming_right</P>
+<P>            update_z_cnt</P>
+<P>        end if</P>
+<P>        if cc &gt;= collision_pf0 and cc &lt;= collision_pf9 then</P>
+<P>            transport(cc-collision_pf0)</P>
+<P>        end if</P>
+<P>    end if</P>
+<P>end sub</P>
+
+<P>'''</P>
+<P>''' get a string from the file</P>
+<P>''' a string ends in CR/LF</P>
+<P>'''</P>
+<P>sub getstring(f as int, s[] as char)</P>
+<P>    dim x as char</P>
+<P>    dim n as int</P>
+
+<P>    n=0</P>
+
+<P>    while(true)</P>
+<P>        get f,,x</P>
+<P>        if x&lt;&gt;13 then</P>
+<P>            if x=10 then exit while</P>
+<P>            s[n] = x</P>
+<P>            s[n+1] = 0</P>
+<P>            n=n+1</P>
+<P>        endif</P>
+<P>    wend</P>
+<P>end sub</P>
+
+<P>'''</P>
+<P>''' load_sprite will find a previously loaded sprite and return its</P>
+<P>''' sprite number or load the sprite and add its name to the list</P>
+<P>''' and return the new sprites index</P>
+<P>'''</P>
+<P>function load_sprite(name[] as char)</P>
+<P>    dim found as int</P>
+<P>    found = false</P>
+<P>    for i=0 to current_sprite-1</P>
+<P>        if name = sprite_names[i] then</P>
+<P>            found = true</P>
+<P>            load_sprite = i+1</P>
+<P>            exit for</P>
+<P>        end if</P>
+<P>    next 'i</P>
+<P>    if not found then</P>
+<P>        load_sprite = current_sprite</P>
+<P>        sprite current_sprite, name</P>
+<P>        sprite_names[current_sprite-1]=name</P>
+<P>        current_sprite = current_sprite + 1</P>
+<P>    end if</P>
+<P>end function</P>
+
+<P>'''</P>
+<P>''' obj_init will allocate a single object and attach it to a sprite</P>
+<P>'''</P>
+<P>sub obj_init(pfld as int, fname[] as char, x as int, y as int, amt as int, sound[] as char)</P>
+<P>    objs[obj_ctr].playfield = pfld</P>
+<P>    objs[obj_ctr].x = x mod 160</P>
+<P>    objs[obj_ctr].y = y mod 100</P>
+<P>    objs[obj_ctr].screen = (x/160)+(y/100)*3</P>
+<P>    objs[obj_ctr].mysprite = load_sprite(fname)</P>
+<P>    objs[obj_ctr].amt = amt</P>
+<P>    objs[obj_ctr].sound = sound</P>
+<P>'   sprite command deleted</P>
+<P>'   move obj_ctr, 160, 100 'hide sprite</P>
+<P>    obj_ctr = obj_ctr+1</P>
+<P>end sub</P>
+
+<P>'''</P>
+<P>''' init all objects</P>
+<P>'''</P>
+<P>sub obj_init_all</P>
+
+<P>    print "Loading Sprites..."</P>
+
+<P>    obj_init(0, "money.pic", 32,50,100, "money.mus")</P>
+<P>    obj_init(0, "money.pic", 20,140,100, "money.mus")</P>
+<P>    obj_init(0, "money.pic", 20,240,100, "money.mus")</P>
+<P>    obj_init(0, "money.pic", 224,40,100, "money.mus")</P>
+<P>    obj_init(0, "money.pic", 224,140,100, "money.mus")</P>
+<P>    obj_init(0, "money.pic", 224,240,100, "money.mus")</P>
+<P>    obj_init(0, "money.pic", 432,40,100, "money.mus")</P>
+<P>    obj_init(0, "money.pic", 432,110,100, "money.mus")</P>
+<P>    obj_init(0, "money.pic", 432,170,100, "money.mus")</P>
+<P>    obj_init(0, "money.pic", 432,240,100, "money.mus")</P>
+
+<P>    print "Still Loading Sprites..."</P>
+
+<P>    obj_init(1, "money.pic", 64, 40, 100, "money.mus")</P>
+<P>    obj_init(1, "money.pic", 64,140, 100, "money.mus")</P>
+<P>    obj_init(1, "money.pic", 64,260, 100, "money.mus")</P>
+<P>    obj_init(1, "money.pic",224, 40, 100, "money.mus")</P>
+<P>    obj_init(1, "money.pic",224,140, 100, "money.mus")</P>
+<P>    obj_init(1, "money.pic",224,260, 100, "money.mus")</P>
+<P>    obj_init(1, "money.pic",384, 40, 100, "money.mus")</P>
+<P>    obj_init(1, "money.pic",384,140, 100, "money.mus")</P>
+<P>    obj_init(1, "money.pic",384,260, 100, "money.mus")</P>
+<P>end sub</P>
+
+<P>'''</P>
+<P>''' read the playfield file defined by</P>
+<P>''' 'field' and set up the sprites and</P>
+<P>''' the collision table</P>
+<P>'''</P>
+<P>sub init_playfield(field as int)</P>
+<P>    dim fname[32] as char</P>
+<P>    dim s[32] as char</P>
+
+<P>    current_playfield = field-1</P>
+
+<P>    ''' create the filename to read</P>
+<P>    sprint fname, "playfield", field, ".dat"</P>
+
+<P>    ''' open the playfield definition file</P>
+<P>    open fname for read as 1</P>
+
+<P>    getstring(1, s) 'get the sprite name</P>
+
+<P>    '''</P>
+<P>    ''' the playfield sprite has 9 bitmaps</P>
+<P>    ''' one for each of the different areas of the</P>
+<P>    ''' playfield</P>
+<P>    sprite sprite_field, s</P>
+
+<P>    '''</P>
+<P>    ''' read the 30 playfield collision rows</P>
+<P>    '''</P>
+<P>    for i=0 to 29</P>
+<P>        getstring(1, collision_table[i])</P>
+<P>    next</P>
+
+<P>    '''</P>
+<P>    ''' close the playfield.dat file</P>
+<P>    '''</P>
+<P>    close 1</P>
+<P>end sub</P>
+
+<P>'''</P>
+<P>''' check collisions</P>
+<P>'''</P>
+<P>sub check_collisions</P>
+<P>    for i=0 to obj_ctr-1</P>
+<P>      if objs[i].playfield = current_playfield and objs[i].screen = current_screen and objs[i].x&gt;=0 then</P>
+<P>        move objs[i].mysprite, objs[i].x, objs[i].y</P>
+<P>        if collision(sprite_lemming, objs[i].mysprite) then</P>
+<P>            objs[i].x=-1 ' turn off this sprite</P>
+<P>            points = points + objs[i].amt</P>
+<P>            music foreground, objs[i].sound</P>
+<P>            music foreground, play</P>
+<P>            exit for</P>
+<P>        end if</P>
+<P>      endif</P>
+<P>    next</P>
+<P>end sub</P>
+
+<P>'''</P>
+<P>''' main subroutine</P>
+<P>'''</P>
+<P>sub mainsub</P>
+<P>    init</P>
+<P>    init_playfield(1)</P>
+
+<P>    while true</P>
+<P>        inline _escape(0); /* check the escape key */</P>
+<P>        repaint</P>
+<P>        get_keys</P>
+<P>        check_collisions</P>
+<P>    wend</P>
+<P>end sub</P>
+
+<P>'''</P>
+<P>''' call the main subroutine</P>
+<P>'''</P>
+<P>mainsub</P>
+</FONT><FONT SIZE=2><P>&nbsp;</P>
+</FONT><B><I><FONT FACE="Arial"><P>New Variables</P>
+</B></I></FONT><FONT SIZE=2><P>Current_screen is added, it is the number of the screen currently on display.  </P>
+
+<P>Obj_ctr is the number of objects loaded so far.  This is not to be confused with sprites.  An object (see  Type Obj command) is something that appears on the screen.  It has sound, and position, and point value (amt) and a playfield and screen it belongs to.  But most importantly it has a sprite number (mysprite in the type declaration).</P>
+
+<P>We increased the objs[] array to 40 elements, though we still only use 19. This is the list of objects in the game.  It used to be a 2-dimensional array, but for future purposes makes more sense as a single list.</P>
+
+<P>N_playfields is the number of playfields in our game (2 for us).</P>
+<P>Current_sprite is the number of sprites we have loaded into memory.  Sprite_names[] is the list of filenames of sprites we have loaded. </P>
+<P>&nbsp;</P>
+</FONT><B><I><FONT FACE="Arial"><P>sub update_file</P>
+</B></I></FONT><FONT SIZE=2><P>no changes here.</P>
+</FONT><B><I><FONT FACE="Arial"><P>sub init</P>
+</B></I></FONT><FONT SIZE=2><P>We reset the obj_ctr, set the n_playfields to 2 and the current_sprite to 1 (because sprite 0 is the background - Sprite 1 is the first sprite we can load into memory).  A call to Obj_init_all was moved to the bottom of the function because it depends on the current_sprite variable being initialized.</P>
+</FONT><B><I><FONT FACE="Arial"><P>sub repaint</P>
+</B></I></FONT><FONT SIZE=2><P>This function got the most attention in this part of the tutorial.  We changed the &quot;field&quot; variable to the global &quot;current_screen&quot; because a) it’s a better name anyway and b) we need it later for collision detection.</P>
+
+<P>The first thing we do is draw the background sprite.</P>
+
+</FONT><FONT FACE="Courier New" SIZE=2><P>move sprite_field, 0, 0, current_screen 'display the current field</P>
+<P>redraw sprite_field</P>
+
+</FONT><FONT SIZE=2><P>Notice that we called &quot;redraw sprite_field&quot; this stamps the image of the background screen over the entire display.  No need to call CLS because everything is covered up by this operation.  So we save a couple milliseconds by not calling CLS, heh.</P>
+
+<P>Next we iterate over all the objects in the program.  This is different than the last program where we iterated across a 2-dimensional array.  Here we iterate across all objects defined and check to see if each object is a) on the current playfield b) enabled (x&gt;=0) and c) on the current_screen.  If so then we call Move followed by Redraw.  Note that we use whatever &quot;mysprite&quot; points to.  In this program it will always be the money.pic sprite.  Ahhh… reuse at it’s best.</P>
+
+<P>Finally we printxy the points and Move/Redraw the lemming.  And as the last thing to do – Redraw Show to display the buffer to the display screen.</P>
+
+<P>You may notice slightly better gameplay and less flicker in this version of the game.</P>
+<P>&nbsp;</P>
+</FONT><B><I><FONT FACE="Arial"><P>sub update_z_cnt</P>
+</B></I></FONT><FONT SIZE=2><P>No changes here.</P>
+</FONT><B><I><FONT FACE="Arial"><P>function collision_check</P>
+</B></I></FONT><FONT SIZE=2><P>No changes here.</P>
+</FONT><FONT FACE="Courier New" SIZE=2><P>&nbsp;</P>
+</FONT><B><I><FONT FACE="Arial"><P>sub transport</P>
+</B></I></FONT><FONT SIZE=2><P>No Changes here.</P>
+</FONT><B><I><FONT FACE="Arial"><P>sub get_keys</P>
+</B></I></FONT><FONT SIZE=2><P>No Changes Here.</P>
+</FONT><B><I><FONT FACE="Arial"><P>sub getstring</P>
+</B></I></FONT><FONT SIZE=2><P>no changes here</P>
+</FONT><B><I><FONT FACE="Arial"><P>function load_sprite</P>
+</B></I></FONT><FONT SIZE=2><P>This new function is called to load a sprite if it hasn’t already been loaded, and return the value of a sprite if it already has been.  The logic should be pretty easy to follow.</P>
+</FONT><B><I><FONT FACE="Arial"><P>sub obj_init</P>
+</B></I></FONT><FONT SIZE=2><P>This subroutine changed a little since I changed the objs[] array to a single dimension.   The obj_ctr points to the current object to create.  We set the playfield to the pfld value passed in.  We compute the x/y/screen for the coordinates passed in and call load_sprite to get the sprite number.  We also took out the sprite command and the move command since they are handled in our new redraw subroutine.</P>
+</FONT><B><I><FONT FACE="Arial"><P>sub obj_init_all</P>
+</B></I></FONT><FONT SIZE=2><P>Again, this subroutine changed a little bit because we no longer have the 2-d array of objs.</P>
+</FONT><B><I><FONT FACE="Arial"><P>sub init_playfield</P>
+</B></I></FONT><FONT SIZE=2><P>no changes here</P>
+<P>&nbsp;</P>
+</FONT><B><I><FONT FACE="Arial"><P>sub check_collisions</P>
+</B></I></FONT><FONT SIZE=2><P>This subroutine changed substantially because the position of the sprites is no longer stored in the sprite itself but in the objs[] array.  So for each object we must move the sprite into position and call the collision() function to see if they overlap.  If they do overlap we play music and increment points.</P>
+</FONT><B><I><FONT FACE="Arial"><P>sub mainsub</P>
+</B></I></FONT><FONT SIZE=2><P>no changes here</P></FONT></BODY>
+</HTML>

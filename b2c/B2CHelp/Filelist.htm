@@ -1,0 +1,27 @@
+<B><P>Topic :</B> Filelist</P>
+<B><P>Language Level</B> : B2C Extension</P>
+<B><P>Effectivity :</B> B2C v3e</P>
+<B><P>Syntax</B> : </P><DIR>
+<DIR>
+
+<P>rc = Filelist <I>( title, pattern, return_string )</P></DIR>
+</DIR>
+
+</I><B><P>Description :</P><DIR>
+<DIR>
+
+</B><P>The Filelist function will display a file dialog with filenames matching pattern.  Pattern is a wildcarded string using ‘*’ as the wildcard character (for example &quot;*.app&quot; matches all app files).  When the user highlights one of the filenames and presses ENTER the <I>return_string</I> is filled with the selected filename and TRUE is returned.  If the user cancels the filelist dialog by pressing ESC then FALSE is returned.</P></DIR>
+</DIR>
+
+<B><P>Example :</P>
+</B><P>&#9;Dim s[32] as char</P><DIR>
+<DIR>
+
+<P>Dim rc as int</P>
+<P>Rc = filelist(&quot;Select App&quot;, &quot;*.app&quot;, s)</P>
+<P>If (rc) then print s, &quot; Selected&quot;</P>
+<P>Else print &quot;Cancelled&quot;</P></DIR>
+</DIR>
+
+<B><P>Note</B>  : Original Dialog code by Ernest Pazera</P>
+<B>

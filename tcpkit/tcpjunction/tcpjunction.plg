@@ -1,0 +1,41 @@
+<html>
+<body>
+<pre>
+<h1>Build Log</h1>
+<h3>
+--------------------Configuration: tcpjunction - Win32 Debug--------------------
+</h3>
+<h3>Command Lines</h3>
+Creating temporary file "C:\DOCUME~1\GREGOR~1\LOCALS~1\Temp\RSP192.bat" with contents
+[
+@echo off
+make.bat
+]
+Creating command line "C:\DOCUME~1\GREGOR~1\LOCALS~1\Temp\RSP192.bat"
+<h3>Output Window</h3>
+Performing Custom Build Step on .\tcpjunction.c
+
+
+Cybiko 2.0.6 Archiver / Compressor.
+Copyright (C) 1999-2001 Cybiko, Inc.
+Written by Vadim Sytnikov.
+
+Reading root.inf... compressed (81%).
+Reading root.ico... compressed (25%).
+Reading root.spl... compressed (80%).
+Reading bytecode.bin... compressed (81%).
+Reading C:\program files\cybiko\sdk2.0.8.pro\lib\main.e... compressed (71%).
+Writing archive tcpjunction.app...
+Done: 5 files.
+tcpjunction.c
+root.inf
+root.ico
+root.spl
+
+
+
+<h3>Results</h3>
+tcpjunction.exe - 0 error(s), 0 warning(s)
+</pre>
+</body>
+</html>

@@ -1,0 +1,375 @@
+load "radio.bs.dl"
+include "draw.bs.txt"
+include "connect.bs.txt"
+dim ser
+dim xf1
+dim xf2
+dim yf
+dim x[3]
+dim y[3]
+dim buf[5] as char
+dim crd[2] as int
+dim field[144] as int
+dim anfield[144] as int
+dim re
+dim ind
+dim id_dev as long
+dim mes_num
+dim tmpid as long
+dim tmpnum as long
+dim com as int
+dim tmp as long
+dim an
+dim game
+dim sh_col
+dim ansh_col
+
+'the message number
+mes_num=0
+'the number of your ships
+sh_col=4
+'the number of enemies ships
+ansh_col=4
+
+'check if the ship's position
+'data exceeds the map 
+'boundaries and whether the 
+'field is occupied by the other
+'ships  
+function check(x[3],y[3],b)
+ dim re
+ re=0
+ for i=0 to b-1
+'check whether the ship's 
+'position data exceeds the map 
+'boundaries
+  if x[i]<2 or x[i]>7 or y[i]<2 or y[i]>7 then
+   check=0
+   exit function  
+  else
+'if the ship's position data 
+'doesn't exceed the map 
+'boundaries, then check if the 
+'field is occupied by the other
+'ships
+   for j=-1 to 1
+    for k=-1 to 1
+     if field[(x[i]+j)+(y[i]+k)*10]=1 then
+      re=1
+      exit for
+     end if
+    next
+   next     
+   if re then
+    check=0
+    exit function
+   end if
+  end if
+ next
+ check=1
+end function
+
+'add the ship to the array of ships 
+sub addship(x,y)
+ field[x+y*10]=1
+end sub
+
+'initialize the game fields
+sub fieldinit
+'set the fileds' position data
+ xf1=-70
+ xf2=10
+ yf=33
+ cls
+'draw the fields
+ drawfield xf1,yf
+ drawfield xf2,yf
+ re=1
+'enter the position data and 
+'draw the Battleship
+ while re
+  input "Battleship's coordinates: ",buf
+  x[0]=buf[0]-95
+  y[0]=buf[1]-47
+'if the third symbol equals "v" 
+'then calculate the field 
+'position data on vertical line
+  if compare(buf[2],"v") then
+   x[1]=buf[0]-95+1
+   y[1]=buf[1]-47
+   x[2]=buf[0]-95+2
+   y[2]=y[1]
+'otherwise calculate the field 
+'position data on horizontal line
+  else
+   x[1]=buf[0]-95
+   y[1]=buf[1]-47+1
+   x[2]=x[1]
+   y[2]=buf[1]-47+2
+  end if
+'if the position data is correct,
+'then draw the ship
+  if check(x,y,3) then
+   for i=0 to 2
+    addship x[i],y[i]
+    drawship xf1,yf,x[i],y[i]
+   next
+   re=0
+  end if 
+ wend
+ re=1
+'enter the position data and 
+'draw the Frigate
+ while re
+  re=1
+  input "Frigate's coordinates: ",buf
+  x[0]=buf[0]-95
+  y[0]=buf[1]-47
+'if the third symbol equals "v" 
+'then calculate the field
+'position data on vertical line
+  if compare(buf[2],"v") then
+   x[1]=buf[0]-95+1
+   y[1]=buf[1]-47
+'otherwise calculate the field 
+'position data on horizontal line
+  else
+   x[1]=buf[0]-95
+   y[1]=buf[1]-47+1
+  end if
+'if the position data is correct,
+'then draw the ship
+  if check(x,y,2) then
+   for i=0 to 1
+    addship x[i],y[i]
+    drawship xf1,yf,x[i],y[i]
+   next
+   re=0
+   ind=ind+1
+  end if 
+ wend
+ re=1
+ ind=0
+'enter the position data and 
+'draw the Brig
+ while re or ind<2
+  re=1
+  input "Brig's coordinates: ",buf
+  x[0]=buf[0]-95
+  y[0]=buf[1]-47
+'if the position data is correct,
+'then draw the ship
+  if check(x,y,1) then  
+   addship x[0],y[0]
+   drawship xf1,yf,x[0],y[0]
+   re=0
+   ind=ind+1
+  end if 
+ wend
+end sub
+'the procedure depicts the sunk 
+'ship with the dots
+sub drmis(x,y)
+ for j=-1 to 1
+  for k=-1 to 1
+   if x+j>1 and x+j<8 and y+k>1 and y+k<8 then
+    if anfield[(x+j)+(y+k)*10]<>1 then
+     drawmist xf2,yf,x+j,y+k 
+    else
+     if anfield[(x+j)+(y+k)*10]=1 then  
+      anfield[(x+j)+(y+k)*10]=3
+      drmis x+j,y+k
+     end if
+    end if     
+   end if  
+  next
+ next 
+end sub
+'the procedure inputs the 
+'position data, checks it and 
+'sends to an enemy
+sub moution
+ dim ex
+ dim mok
+ dim x
+ dim y
+ ex=1
+ while ex and game
+'enter the position data
+  input "Input coordinates: ",buf
+   x=buf[0]-95
+   y=buf[1]-47
+'check the position data
+   if x>1 and x<8 and y>1 and y<8 then
+    crd[0]=x
+    crd[1]=y
+'send the position data to an enemy
+    for i=1 to 10
+     post id_dev,3,mes_num,0,crd
+    next
+'increase the message number
+    mes_num=mes_num+1
+    tmpid=0
+    an=-1
+'wait for replay
+    while tmpid<>id_dev or tmpnum<>mes_num-1
+     receive tmpid,com,tmpnum,tmp,an
+    wend
+    if an=0 then
+     beep 3
+'draw the miss
+     drawmist xf2,yf,x,y
+     ex=0
+    else 
+     beep 2
+     if an=2 then
+'if the ship is sunk then 
+'depict it with the dots
+      drmis x,y         
+      ansh_col=ansh_col-1
+      if ansh_col=0 then
+       game=0
+      end if
+     end if
+'draw the hit
+     drawok xf2,yf,x,y
+     anfield[x+y*10]=1 
+    end if
+   end if
+ wend
+end sub
+
+'the procedure waits for the 
+'enemy's move, checks the hit 
+'and sends the replay
+sub whaitmout
+ dim ex
+ dim x
+ dim y
+ tmpid=0
+ tmpnum=-1
+ ex=1
+ while ex and game
+'wait for an enemy's move
+  while tmpid<>id_dev or tmpnum<>mes_num 
+   receive tmpid,com,tmpnum,tmp,crd
+  wend
+  x=crd[0]
+  y=crd[1]
+  beep 1
+  if com=3 then
+'if there is a hit then draw it
+   if field[x+y*10]=1 then
+    field[x+y*10]=2
+    ink 0
+    drawship xf1,yf,x,y
+    ink 3
+    drawok xf1,yf,x,y
+    re=0
+'check if the ship is sunk
+    for j=1 to 2
+     if field[(x+j)+y*10]=1 then
+      re=1
+     elseif field[(x+j)+y*10]<>2 then
+      exit for
+     end if
+    next
+    for j=1 to 2
+     if field[(x-j)+y*10]=1 then
+      re=1
+     elseif field[(x-j)+y*10]<>2 then
+      exit for
+     end if
+    next
+    for j=1 to 2
+     if field[x+(y+j)*10]=1 then
+      re=1
+     elseif field[x+(y+j)*10]<>2 then
+      exit for
+     end if
+    next
+    for j=1 to 2
+     if field[x+(y-j)*10]=1 then
+      re=1
+     elseif field[x+(y-j)*10]<>2 then
+      exit for
+     end if
+    next
+    if re=1 then
+     an=1
+    else
+     an=2
+     sh_col=sh_col-1
+'check if this is the last ship,
+'then end the game
+     if sh_col=0 then
+      game=0
+     end if
+    end if
+   else
+'draw the miss
+    drawmist xf1,yf,x,y
+    ex=0
+    an=0
+   end if
+'send the replay
+   for i=1 to 10
+    post id_dev,4,mes_num,0,an
+   next
+   mes_num=mes_num+1
+  end if
+ wend
+end sub
+
+'check who is waiting for a link
+id_dev=0
+while id_dev=0
+ cls
+ ser=server()
+ if ser then
+'if waiting for a link is chosen,
+'then wait for a link
+  waitcon id_dev
+ else
+'otherwise connect 
+  connect id_dev
+ end if
+wend
+'initialize the field 
+fieldinit
+mes_num=0
+game=1
+if ser then
+'the main cycle for the player 
+'who is waiting for a link
+ while game
+  whaitmout
+  moution
+  if ansh_col=0 then
+   game=0
+   youwin
+  else
+   if sh_col=0 then
+    game=0
+    anwin
+   end if
+  end if
+ wend
+else
+'the main cycle for the player 
+'who is connecting
+ while game
+  moution
+  whaitmout
+  if ansh_col=0 then
+   game=0
+   youwin
+  else
+   if sh_col=0 then
+    game=0
+    anwin
+   end if
+  end if
+ wend
+end if
+wait

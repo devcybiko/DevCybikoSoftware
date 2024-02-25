@@ -1,0 +1,22 @@
+<B><P>Topic :</B> Inputxy</P>
+<B><P>Language Level</B> : B2C Extension</P>
+<B><P>Effectivity :</B> B2C v5</P>
+<B><P>Syntax</B> : </P><DIR>
+<DIR>
+
+<P>Inputxy x, y, {prompt, } variable</P></DIR>
+</DIR>
+
+<B><P>Description :</P><DIR>
+<DIR>
+
+</B><P>The Inputxy keyword positions the cursor on the screen at the X, Y coordinates, displays an optional prompt and waits for the user to input a value for the variable.  If the variable is a character array (string, dim a[32] as char, for example) the entire string of characters will be entered into the array.  Otherwise a scalar (non-array) variable must be entered.</P></DIR>
+</DIR>
+
+<B><P>Example</P>
+<P>&#9;</B>Dim age as int</P>
+<P>&#9;Dim name[32] as char</P>
+<P>&#9;Inputxy 10, 20, "age:", age</P>
+<P>&#9;Inputxy 10, 35, "name:", name</P>
+<P>&#9;Print "You are ", name, "and your age is", age</P>
+<B>

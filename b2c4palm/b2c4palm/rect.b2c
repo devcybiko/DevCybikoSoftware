@@ -1,0 +1,30 @@
+dim a as int
+dim x0 as int
+dim y0 as int
+dim x1 as int
+dim y1 as int
+dim bgnd as int
+bgnd = 0
+ink white
+paper black
+cls
+printxy 0,0,"Rect"
+
+while true
+  a = key
+  if a=-1 then exit while
+  x0=penx
+  y0=peny
+  if x0 <> -1 then bgnd = bgnd + 1
+  while x0<>-1
+    paper bgnd
+    cls
+    a = key
+    x1=penx
+    y1=peny
+    printxy 0,0,bgnd
+    if x1=-1 then exit while
+    rectfill x0,y0,x1-x0,y1-y0
+  wend
+  x0=-1
+wend

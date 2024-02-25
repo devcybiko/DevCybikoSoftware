@@ -1,0 +1,205 @@
+<HTML>
+<HEAD>
+<META HTTP-EQUIV="Content-Type" CONTENT="text/html; charset=windows-1252">
+<META NAME="Generator" CONTENT="Microsoft Word 97">
+<TITLE>Bitmapped Graphics</TITLE>
+</HEAD>
+<BODY>
+
+<B><FONT FACE="Arial" SIZE=5><P ALIGN="CENTER">3Dimensional Graphics</P>
+<P ALIGN="CENTER">With B2C</P>
+<a name=introduction>
+</FONT><FONT FACE="Arial" SIZE=4><P>Introduction</P>
+</a>
+</B></FONT><FONT SIZE=2><P>B2C Version 3d introduced 3Dimensional Graphics.  New commands (3dRoom, 3dWall, 3dSprite, 3dMove, 3dRMove, 3dCollision, 3dGet and 3dRedraw) make for a complete and simple interface to write 3Dimensional and animated applications.  </P>
+
+<P>The program "3d.app" in the <B><I>3d</B></I> directory demonstrates these capabilities.  It is a duplicate of Cybiko’s own 3d demo with a twirling Cybiko logo.  It allows you to maneuver within a 1000x1000 pixel square room.  If you bump into a wall you are stopped.  If you walk into the Cybiko logo the Cybiko will vibrate.</P>
+<a name="getting_started">
+</FONT><B><FONT FACE="Arial" SIZE=4><P>Getting Started</P>
+</a>
+</B></FONT><FONT SIZE=2><P>The basis for any 3d program is the 3dRoom.  By default there are 8 rooms (numbered 0-7).  You select the current room with the 3dRoom command:</P>
+
+<P ALIGN="CENTER">3dRoom n</P>
+<P ALIGN="CENTER"></P>
+<P>The default 3dRoom is room 0.  From here, you should define the walls within the room.  The command to define a wall is the 3dWall command:</P>
+
+<P ALIGN="CENTER">3dWall x0,y0,x1,y1,&quot;filename.tex&quot;</P>
+<P ALIGN="CENTER"></P>
+<P>The parameters x0, y0, x1, y1 define a line along which the wall will exist.  The &quot;filename.tex&quot; is a texture file which is either a 32x32 or 32x16 bitmap.  When the wall is rendered (drawn) the texture file will be drawn over and over again to fill in the blanks along the wall.  You may specify as many walls as you like.  </P>
+
+<P>The texture files can be created using the bmp2spr program (supplied with the Cybiko SDK).  The wall texture may be either 32x32 or 32x16 pixels.  The b2cbuild program will perform this translation automatically for you.  Add the following lines to your .bld file to convert wall.bmp into wall.tex:</P>
+
+<P>[3dtex]</P>
+<P>wall.bmp</P>
+<a name=camera>
+</FONT><B><FONT FACE="Arial" SIZE=4><P>Camera</P>
+</a>
+</B></FONT><FONT SIZE=2><P>The Camera is a figurative object which defines how the room will be rendered.  You can position the camera with the 3dMove command:</P>
+
+<P ALIGN="CENTER">3dMove Camera, x, y, dir</P>
+
+<P>Positioning the camera tells the Cybiko how to render the scene.  The walls are drawn in a perspective from the camera’s x,y position as though it were pointing in a direction dir degrees from the center.  The redrawing is accomplished with the 3dRedraw command:</P>
+
+<P ALIGN="CENTER">3dRedraw</P>
+<a name="sprite_command">
+</FONT><B><FONT FACE="Arial" SIZE=4><P>Sprite Command</P>
+</a>
+</B></FONT><FONT SIZE=2><P>The 3dSprite command in B2C allows you to load a sprite into the program from the .app file.  The format of the 3dSprite command is:</P>
+
+<P ALIGN="CENTER">3dSprite n, "filename.spr"</P>
+<P ALIGN="CENTER"></P>
+<P>The 'n' in this case is the sprite number.  There are 7 3dSprites per room in B2C.  The sprite number 0 is used for the Camera.  In our example you will need to load the sprite "column.spr" into sprite number 1…</P>
+
+<P ALIGN="CENTER">3dSprite 1,"column.spr"</P>
+<P ALIGN="CENTER"></P>
+<P>This merely loads the sprite into memory.  To position it on screen you need the 3dMove command and to display it you need the 3dRedraw command.</P>
+
+<P>The sprite files can be created using the bmp2spr program (supplied with the Cybiko SDK).  Sprites must be 32x32 pixels.  You may have multiple images in a single sprite (just as with 2d Sprites).  The b2cbuild program will perform this translation automatically for you.  Add the following lines to your .bld file to convert sprite_n.bmp into sprite.spr:</P>
+
+<P>[3dsprite=sprite.spr]</P>
+<P>sprite_0.bmp</P>
+<P>sprite_1.bmp</P>
+<P>sprite_2.bmp</P>
+<P>sprite_3.bmp</P>
+<P>sprite_4.bmp</P>
+<P>&nbsp;</P>
+<a name="move_command">
+</FONT><B><FONT FACE="Arial" SIZE=4><P>Move Command</P>
+</a>
+</B></FONT><FONT SIZE=2><P>The 3dMove command positions your sprite on the screen. </P>
+<P ALIGN="CENTER">3dMove n,x,y,z</P>
+<P>The 'n' is the sprite number to move and the x,y are coordinates in the typical CyBasic coordinate system (-80 to 79 in the x direction and -50 to 49 in the y direction).  Suppose we wanted to move the sprite to the middle of the screen, we would do this…</P>
+
+<P ALIGN="CENTER">3dMove 1,0,0,0</P>
+<P ALIGN="CENTER"></P>
+<P>The ‘z’ parameter picks a bitmapped image out of the images within the sprite.</P>
+<P>&nbsp;</P>
+<a name="rmove_command">
+</FONT><B><FONT FACE="Arial" SIZE=4><P>RMove command</P>
+</a>
+</B></FONT><FONT SIZE=2><P>The 3dRMove command positions your sprite (or camera) on the screen, but relative to the current position:</P>
+
+<P ALIGN="CENTER">3dRMove n,r,theta,z</P>
+<P ALIGN="CENTER"></P>
+<P>The variable ‘n’ is the sprite number (0 or &quot;Camera&quot; to specify the camera).  ‘r’ is the distance to travel.  ‘theta’ is the angle to move in (degrees) and z is the index of the bitmap to display.  (In the case of moving the Camera, z is ignored).</P>
+<a name="redraw">
+</FONT><B><FONT FACE="Arial" SIZE=4><P>Redraw</P>
+</a>
+</B></FONT><FONT SIZE=2><P>Nothing is shown on the screen until you execute the Redraw command.  This command clears the display and redraws each wall and sprite in its new position.</P>
+<P ALIGN="CENTER">3dRedraw</P>
+<a name="collision_detection">
+</FONT><B><FONT FACE="Arial" SIZE=4><P>Collision Detection</P>
+</a>
+</B></FONT><FONT SIZE=2><P>The distance between sprites determines collisions.  There is no command for detecting collisions between sprites and walls.  To determine if two sprites are close together, use the 3dCollision function:</P>
+
+<P ALIGN="CENTER">h=3dCollision(spr1, spr2, d)</P>
+<P>spr1 is the first sprite (or 0 or &quot;Camera&quot; for the camera) and spr2 is the second sprite.  ‘d’ is the distance between the sprites.  If spr1 is within d pixels of spr2 then 3dCollision returns TRUE, else it returns FALSE.</P>
+<P>&nbsp;</P>
+<a name="get_position">
+</FONT><B><FONT FACE="Arial" SIZE=4><P>Get Position</P>
+</a>
+</B></FONT><FONT SIZE=2><P>To retrieve the current position of a sprite (or the camera) use 3dGet</P>
+<P ALIGN="CENTER">3dGet sprite_no, x, y, z</P>
+<P>sprite_no is the number of the sprite to retrieve, x is the x coordinate, y is the y coordinate and z is the current bitmap displayed (or in the case of the Camera, z is the direction in degrees the camera is facing).</P>
+<a name="example_program">
+</FONT><B><FONT FACE="Arial" SIZE=4><P>Example Program: 3d.app</P>
+</a>
+</B></FONT><FONT SIZE=2><P>Here is a sample program which will create a room with a twirling Cybiko logo.  The arrow keys will allow you move around inside the room.  If you bump into the walls you will be stopped.  If you bump into the spinning logo the Cybiko will vibrate.</P>
+
+<P>This complete application can be found in the "3d" directory:</P><DIR>
+<PRE>
+OPTION C_COORDS
+OPTION SHOW OFF
+OPTION ESCAPE OFF
+
+paper black
+
+3droom 0;
+3dwall -500, -500, 500, -500, "wall.tex"
+3dwall  500, -500,  500,  500, "wall.tex"
+3dwall  500,  500, -500,  500, "wall.tex"
+3dwall -500,  500, -500, -500, "wall.tex"
+3dmove 0,0,0,0
+3dsprite 1,"column.spr"
+3dmove 1,200,200,0
+3dredraw
+redraw show
+dim x
+dim y
+dim speed
+dim dir
+dim hit
+dim bgd
+dim z
+
+z=0
+bgd=black
+x=0
+y=0
+dir=0
+speed=30
+
+sub repaint
+    z=(z+1) mod 19
+    3dmove 1,200,200,z
+    3dredraw
+    printxy 0,0,"Speed: ", speed
+    3dget camera,x,y,dir
+    printxy 0,12,"Pos'n:", x, ",", y, ",", dir
+    redraw show
+end sub
+
+while(true)
+    inline _escape(0);
+    if key(#KEY_RIGHT) then
+        dir = dir - 10
+        if dir < 0 then dir = 360+dir
+        3dmove camera,x,y,dir
+    endif
+    if key(#KEY_LEFT) then
+        dir = dir + 10
+        if dir > 360 then dir = dir-360
+        3dmove camera,x,y,dir
+    endif
+    if key(#KEY_UP) then
+        3drmove camera,speed,dir,0
+        3dget camera, x, y, dir
+        if x>420 or x<-420 or y>420 or y<-420 then
+                3drmove camera,-speed,dir,0
+                3dget camera, x, y, dir
+                beep 6
+                wait 5
+                beep -1
+        endif
+    endif
+    if key(#KEY_DOWN) then
+        3drmove camera,-speed,dir,0
+        3dget camera,x, y, dir
+        if x>420 or x<-420 or y>420 or y<-420 then
+                3drmove camera,speed,dir,0
+                3dget camera, x, y, dir
+                beep 6
+                wait 5
+                beep -1
+        endif
+    endif
+    if key(#KEY_DEL) then
+        speed = speed - 10
+    endif
+    if key(#KEY_SPACE) then
+        speed = speed + 10
+    endif
+    if key(#KEY_TAB) then
+        bgd = bgd + 1
+        if bgd = 4 then bgd = 0
+        paper bgd
+    end if
+    repaint
+    hit = 3dcollision(camera,1,10)
+    vibrate 0
+    if hit then vibrate 128
+wend
+</pre>
+</DIR>
+</FONT></BODY>
+</HTML>

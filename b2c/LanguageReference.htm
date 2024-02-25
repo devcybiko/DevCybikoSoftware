@@ -1,0 +1,4146 @@
+<HTML>
+<HEAD>
+<META HTTP-EQUIV="Content-Type" CONTENT="text/html; charset=windows-1252">
+<META NAME="Generator" CONTENT="Microsoft Word 97">
+<TITLE>B2C</TITLE>
+</HEAD>
+<BODY LINK="#0000ff">
+
+<B><FONT FACE="Arial" SIZE=5><P ALIGN="CENTER">B2C</P>
+<P ALIGN="CENTER">Language Reference Guide</B> </P>
+</FONT><B><FONT SIZE=2><P>Effectivity:</P>
+</B><P>&#9;B2Cv2 : 6/1/2001</P>
+<P>&#9;B2Cv2a : 6/24/2001</P>
+<P>&#9;B2Cv2b : 7/6/2001</P>
+<P>&#9;B2Cv2c : 7/13/2001</P>
+<P>&#9;B2Cv3 : 8/11/2001</P>
+<P>&#9;B2Cv3a : 8/26/2001</P>
+<P>&#9;B2Cv3d : 9/25/2001</P><DIR>
+<DIR>
+
+<P>B2Cv3e : 12/12/2001</P>
+<P>B2Cv4&#9;: 1/1/2002</P>
+<P>B2Cv5&#9;: 4/21/2002</P></DIR>
+</DIR>
+
+<B><P>Language Caveats:</P>
+<OL>
+
+</B><LI>Graphics commands and Print commands cannot be reliably intermixed.  Print commands cause a repaint of the display on each Print command.  This will erase any Line, Point, or Printxy results.</LI></OL>
+
+<B>
+<P>Topic :</B> Character-Constant</P>
+<B><P>Language Level</B> : B2C Extension</P>
+<B><P>Effectivity :</B> B2C v3a</P>
+<B><P>Syntax</B> : </P><DIR>
+<DIR>
+
+<P>\character constant\</P></DIR>
+</DIR>
+
+<B><P>Description :</P><DIR>
+<DIR>
+
+</B><P>\ begins a character constant.  A single character is placed between the backslash.  This is useful in place of using the ASCII character number as in CyBasic. </P></DIR>
+</DIR>
+
+<B><P>Example : </P><DIR>
+<DIR>
+
+</B><P>Dim a as char</P>
+<P>A=\x\ ‘ set a to the x character</P>
+<B></DIR>
+</DIR>
+
+<P>Topic :</B> C-Constant</P>
+<B><P>Language Level</B> : B2C Extension</P>
+<B><P>Effectivity :</B> B2C v3</P>
+<B><P>Syntax</B> : </P><DIR>
+<DIR>
+
+<P>#constant_name</P></DIR>
+</DIR>
+
+<B><P>Description :</P><DIR>
+<DIR>
+
+</B><P># identifies the name of a defined constant in the Cybiko.h file.  The name which follows (usually in all uppercase) usually represents a constant which is created with the #define C compiler directive.  The name is passed through to the C compiler without change. </P></DIR>
+</DIR>
+
+<B><P>Example : </P><DIR>
+<DIR>
+
+</B><P>If key(#KEY_UP) then y=y+1</P>
+<P>If key(#KEY_DOWN) then y=y-1</P></DIR>
+</DIR>
+
+<B><P>Selected Key Values:</P></B></FONT>
+<TABLE BORDER CELLSPACING=1 CELLPADDING=7 WIDTH=590>
+<TR><TD WIDTH="20%" VALIGN="TOP">
+<FONT SIZE=2><P>KEY_SECTION1</FONT></TD>
+<TD WIDTH="29%" VALIGN="TOP">
+<FONT SIZE=2><P>KEY_SECTION2</FONT></TD>
+<TD WIDTH="22%" VALIGN="TOP">
+<FONT SIZE=2><P>KEY_SECTION3</FONT></TD>
+<TD WIDTH="18%" VALIGN="TOP">&nbsp;</TD>
+<TD WIDTH="10%" VALIGN="TOP">&nbsp;</TD>
+</TR>
+<TR><TD WIDTH="20%" VALIGN="TOP">
+<FONT SIZE=2><P>KEY_SECTION4</FONT></TD>
+<TD WIDTH="29%" VALIGN="TOP">
+<FONT SIZE=2><P>KEY_SECTION5</FONT></TD>
+<TD WIDTH="22%" VALIGN="TOP">
+<FONT SIZE=2><P>KEY_SECTION6</FONT></TD>
+<TD WIDTH="18%" VALIGN="TOP">&nbsp;</TD>
+<TD WIDTH="10%" VALIGN="TOP">&nbsp;</TD>
+</TR>
+<TR><TD WIDTH="20%" VALIGN="TOP">
+<FONT SIZE=2><P>KEY_SECTION7</FONT></TD>
+<TD WIDTH="29%" VALIGN="TOP">&nbsp;</TD>
+<TD WIDTH="22%" VALIGN="TOP">&nbsp;</TD>
+<TD WIDTH="18%" VALIGN="TOP">&nbsp;</TD>
+<TD WIDTH="10%" VALIGN="TOP">&nbsp;</TD>
+</TR>
+<TR><TD WIDTH="20%" VALIGN="TOP">
+<FONT SIZE=2><P>KEY_DOWN</FONT></TD>
+<TD WIDTH="29%" VALIGN="TOP">
+<FONT SIZE=2><P>KEY_LEFT</FONT></TD>
+<TD WIDTH="22%" VALIGN="TOP">
+<FONT SIZE=2><P>KEY_UP</FONT></TD>
+<TD WIDTH="18%" VALIGN="TOP">
+<FONT SIZE=2><P>KEY_RIGHT</FONT></TD>
+<TD WIDTH="10%" VALIGN="TOP">&nbsp;</TD>
+</TR>
+<TR><TD WIDTH="20%" VALIGN="TOP">
+<FONT SIZE=2><P>KEY_INS</FONT></TD>
+<TD WIDTH="29%" VALIGN="TOP">
+<FONT SIZE=2><P>KEY_DEL</FONT></TD>
+<TD WIDTH="22%" VALIGN="TOP">
+<FONT SIZE=2><P>KEY_TAB</FONT></TD>
+<TD WIDTH="18%" VALIGN="TOP">
+<FONT SIZE=2><P>KEY_SELECT</FONT></TD>
+<TD WIDTH="10%" VALIGN="TOP">&nbsp;</TD>
+</TR>
+<TR><TD WIDTH="20%" VALIGN="TOP">
+<FONT SIZE=2><P>KEY_ENTER</FONT></TD>
+<TD WIDTH="29%" VALIGN="TOP">
+<FONT SIZE=2><P>KEY_BACKSPACE</FONT></TD>
+<TD WIDTH="22%" VALIGN="TOP">
+<FONT SIZE=2><P>KEY_HELP</FONT></TD>
+<TD WIDTH="18%" VALIGN="TOP">
+<FONT SIZE=2><P>KEY_SHIFT</FONT></TD>
+<TD WIDTH="10%" VALIGN="TOP">&nbsp;</TD>
+</TR>
+<TR><TD WIDTH="20%" VALIGN="TOP">
+<FONT SIZE=2><P>KEY_CONTROL</FONT></TD>
+<TD WIDTH="29%" VALIGN="TOP">
+<FONT SIZE=2><P>KEY_CY</FONT></TD>
+<TD WIDTH="22%" VALIGN="TOP">
+<FONT SIZE=2><P>KEY_SPACE</FONT></TD>
+<TD WIDTH="18%" VALIGN="TOP">
+<FONT SIZE=2><P>KEY_ESC</FONT></TD>
+<TD WIDTH="10%" VALIGN="TOP">&nbsp;</TD>
+</TR>
+<TR><TD WIDTH="20%" VALIGN="TOP">
+<FONT SIZE=2><P>KEY_0</FONT></TD>
+<TD WIDTH="29%" VALIGN="TOP">
+<FONT SIZE=2><P>KEY_1</FONT></TD>
+<TD WIDTH="22%" VALIGN="TOP">
+<FONT SIZE=2><P>KEY_2</FONT></TD>
+<TD WIDTH="18%" VALIGN="TOP">
+<FONT SIZE=2><P>KEY_3</FONT></TD>
+<TD WIDTH="10%" VALIGN="TOP">
+<FONT SIZE=2><P>KEY_4</FONT></TD>
+</TR>
+<TR><TD WIDTH="20%" VALIGN="TOP">
+<FONT SIZE=2><P>KEY_5</FONT></TD>
+<TD WIDTH="29%" VALIGN="TOP">
+<FONT SIZE=2><P>KEY_6</FONT></TD>
+<TD WIDTH="22%" VALIGN="TOP">
+<FONT SIZE=2><P>KEY_7</FONT></TD>
+<TD WIDTH="18%" VALIGN="TOP">
+<FONT SIZE=2><P>KEY_8</FONT></TD>
+<TD WIDTH="10%" VALIGN="TOP">
+<FONT SIZE=2><P>KEY_9</FONT></TD>
+</TR>
+<TR><TD WIDTH="20%" VALIGN="TOP">
+<FONT SIZE=2><P>KEY_QUOTE</FONT></TD>
+<TD WIDTH="29%" VALIGN="TOP">
+<FONT SIZE=2><P>KEY_COMMA</FONT></TD>
+<TD WIDTH="22%" VALIGN="TOP">
+<FONT SIZE=2><P>KEY_MINUS</FONT></TD>
+<TD WIDTH="18%" VALIGN="TOP">&nbsp;</TD>
+<TD WIDTH="10%" VALIGN="TOP">&nbsp;</TD>
+</TR>
+<TR><TD WIDTH="20%" VALIGN="TOP">
+<FONT SIZE=2><P>KEY_SLASH</FONT></TD>
+<TD WIDTH="29%" VALIGN="TOP">
+<FONT SIZE=2><P>KEY_SEMICOLON</FONT></TD>
+<TD WIDTH="22%" VALIGN="TOP">
+<FONT SIZE=2><P>KEY_BACKSLASH</FONT></TD>
+<TD WIDTH="18%" VALIGN="TOP">&nbsp;</TD>
+<TD WIDTH="10%" VALIGN="TOP">&nbsp;</TD>
+</TR>
+<TR><TD WIDTH="20%" VALIGN="TOP">
+<FONT SIZE=2><P>KEY_EQUAL</FONT></TD>
+<TD WIDTH="29%" VALIGN="TOP">
+<FONT SIZE=2><P>KEY_OPEN_SBRACKET</FONT></TD>
+<TD WIDTH="22%" VALIGN="TOP">
+<FONT SIZE=2><P>KEY_BACKQUOTE</FONT></TD>
+<TD WIDTH="18%" VALIGN="TOP">&nbsp;</TD>
+<TD WIDTH="10%" VALIGN="TOP">&nbsp;</TD>
+</TR>
+<TR><TD WIDTH="20%" VALIGN="TOP">
+<FONT SIZE=2><P>KEY_PERIOD</FONT></TD>
+<TD WIDTH="29%" VALIGN="TOP">
+<FONT SIZE=2><P>KEY_CLOSE_SBRACKET</FONT></TD>
+<TD WIDTH="22%" VALIGN="TOP">&nbsp;</TD>
+<TD WIDTH="18%" VALIGN="TOP">&nbsp;</TD>
+<TD WIDTH="10%" VALIGN="TOP">&nbsp;</TD>
+</TR>
+<TR><TD WIDTH="20%" VALIGN="TOP">
+<FONT SIZE=2><P>KEY_A</FONT></TD>
+<TD WIDTH="29%" VALIGN="TOP">
+<FONT SIZE=2><P>KEY_B</FONT></TD>
+<TD WIDTH="22%" VALIGN="TOP">
+<FONT SIZE=2><P>KEY_C</FONT></TD>
+<TD WIDTH="18%" VALIGN="TOP">
+<FONT SIZE=2><P>KEY_D</FONT></TD>
+<TD WIDTH="10%" VALIGN="TOP">
+<FONT SIZE=2><P>KEY_E</FONT></TD>
+</TR>
+<TR><TD WIDTH="20%" VALIGN="TOP">
+<FONT SIZE=2><P>KEY_F</FONT></TD>
+<TD WIDTH="29%" VALIGN="TOP">
+<FONT SIZE=2><P>KEY_G</FONT></TD>
+<TD WIDTH="22%" VALIGN="TOP">
+<FONT SIZE=2><P>KEY_H</FONT></TD>
+<TD WIDTH="18%" VALIGN="TOP">
+<FONT SIZE=2><P>KEY_I</FONT></TD>
+<TD WIDTH="10%" VALIGN="TOP">
+<FONT SIZE=2><P>KEY_J</FONT></TD>
+</TR>
+<TR><TD WIDTH="20%" VALIGN="TOP">
+<FONT SIZE=2><P>KEY_K</FONT></TD>
+<TD WIDTH="29%" VALIGN="TOP">
+<FONT SIZE=2><P>KEY_L</FONT></TD>
+<TD WIDTH="22%" VALIGN="TOP">
+<FONT SIZE=2><P>KEY_M</FONT></TD>
+<TD WIDTH="18%" VALIGN="TOP">
+<FONT SIZE=2><P>KEY_N</FONT></TD>
+<TD WIDTH="10%" VALIGN="TOP">
+<FONT SIZE=2><P>KEY_O</FONT></TD>
+</TR>
+<TR><TD WIDTH="20%" VALIGN="TOP">
+<FONT SIZE=2><P>KEY_P</FONT></TD>
+<TD WIDTH="29%" VALIGN="TOP">
+<FONT SIZE=2><P>KEY_Q</FONT></TD>
+<TD WIDTH="22%" VALIGN="TOP">
+<FONT SIZE=2><P>KEY_R</FONT></TD>
+<TD WIDTH="18%" VALIGN="TOP">
+<FONT SIZE=2><P>KEY_S</FONT></TD>
+<TD WIDTH="10%" VALIGN="TOP">
+<FONT SIZE=2><P>KEY_T</FONT></TD>
+</TR>
+<TR><TD WIDTH="20%" VALIGN="TOP">
+<FONT SIZE=2><P>KEY_U</FONT></TD>
+<TD WIDTH="29%" VALIGN="TOP">
+<FONT SIZE=2><P>KEY_V</FONT></TD>
+<TD WIDTH="22%" VALIGN="TOP">
+<FONT SIZE=2><P>KEY_W</FONT></TD>
+<TD WIDTH="18%" VALIGN="TOP">
+<FONT SIZE=2><P>KEY_X</FONT></TD>
+<TD WIDTH="10%" VALIGN="TOP">
+<FONT SIZE=2><P>KEY_Y</FONT></TD>
+</TR>
+<TR><TD WIDTH="20%" VALIGN="TOP">
+<FONT SIZE=2><P>KEY_Z</FONT></TD>
+<TD WIDTH="29%" VALIGN="TOP">&nbsp;</TD>
+<TD WIDTH="22%" VALIGN="TOP">&nbsp;</TD>
+<TD WIDTH="18%" VALIGN="TOP">&nbsp;</TD>
+<TD WIDTH="10%" VALIGN="TOP">&nbsp;</TD>
+</TR>
+</TABLE>
+
+<FONT SIZE=2>
+<B><P>&nbsp;</P>
+<P>Topic :</B> _ptr_main_module</P>
+<B><P>Language Level</B> : B2C Extension</P>
+<B><P>Effectivity :</B> B2C v3</P>
+<B><P>Syntax</B> : </P>
+<I><P>&#9;</I>_ptr_main_module</P>
+<B><P>Description :</P>
+<P>&#9;</B>_ptr_main_module is a constant for use in inline calls.  It is a pointer to the main_module structure used by B2C</P>
+<B><P>Example : </P><DIR>
+<DIR>
+
+</B><P>Inline DisplayGraphics_show(_ptr_main_module);</P>
+
+<B><P>&nbsp;</P></DIR>
+</DIR>
+
+<P>Topic :</B> 3dCollision</P>
+<B><P>Language Level</B> : B2C Extension</P>
+<B><P>Effectivity :</B> B2C v3d</P>
+<B><P>Syntax</B> : </P><DIR>
+<DIR>
+
+<P>result = 3dCollision(sprite1, sprite2, dist)</P></DIR>
+</DIR>
+
+<B><P>Description :</P><DIR>
+<DIR>
+
+</B><P>3dCollision is a function which will return TRUE if &quot;sprite1&quot; is within &quot;dist&quot; pixels of &quot;sprite2&quot;.  This can be used to determine if two 3d sprites have run into each other.  Note that sprite 0 is the camera and is a valid input to this function.</P></DIR>
+</DIR>
+
+<B><P>Example : </P><DIR>
+<DIR>
+
+</B><P>if (3dCollision(Camera, 1, 30)) then music foreground, play</P>
+<B></DIR>
+</DIR>
+
+<P>Topic :</B> 3dGet</P>
+<B><P>Language Level</B> : B2C Extension</P>
+<B><P>Effectivity :</B> B2C v3d</P>
+<B><P>Syntax</B> : </P><DIR>
+<DIR>
+
+<P>3dGet spriteno, x, y, z</P>
+<P>3dGet Camera, x, y, dir</P></DIR>
+</DIR>
+
+<B><P>Description :</P><DIR>
+<DIR>
+
+</B><P>3dGet will retrieve the current values of the x , y, and z variables from a sprite (and the x, y, and dir variables for a Camera).  This is especially useful after moving a sprite or camera with the 3dRMove command.</P></DIR>
+</DIR>
+
+<B><P>Example : </P><DIR>
+<DIR>
+
+</B><P>3dGet 1,x,y,z</P>
+<B></DIR>
+</DIR>
+
+<P>Topic :</B> 3dMove</P>
+<B><P>Language Level</B> : B2C Extension</P>
+<B><P>Effectivity :</B> B2C v3d</P>
+<B><P>Syntax</B> : </P><DIR>
+<DIR>
+
+<P>3dMove sprite_num, x,y,z</P>
+<P>3dMove Camera, x,y,dir</P></DIR>
+</DIR>
+
+<B><P>Description :</P><DIR>
+<DIR>
+
+</B><P>3dMove will move either a sprite or the camera position.  In the first form it moves a sprite number &quot;sprite_num&quot; to the coordinates x,y.   The ‘z’ variable is which bitmap in a multi-bitmap sprite to display.</P>
+
+<P>3dMove will position the Camera to the x,y position on the screen and set it pointing in the direction ‘dir’.  The ‘dir’ is an angle measured in degrees.</P></DIR>
+</DIR>
+
+<B><P>Example : </P><DIR>
+<DIR>
+
+</B><P>3dMove 3,0,0,1</P>
+<P>3dMove Camera, 0,0,45</P>
+<B></DIR>
+</DIR>
+
+<P>Topic :</B> 3dRedraw</P>
+<B><P>Language Level</B> : B2C Extension</P>
+<B><P>Effectivity :</B> B2C v3d</P>
+<B><P>Syntax</B> : </P><DIR>
+<DIR>
+
+<P>3dRedraw</P></DIR>
+</DIR>
+
+<B><P>Description :</P><DIR>
+<DIR>
+
+</B><P>3dRedraw will redraw the current 3dRoom.  First all walls are rendered followed by all sprites.</P></DIR>
+</DIR>
+
+<B><P>Example : </P><DIR>
+<DIR>
+
+</B><P>3dRedraw</P>
+<B></DIR>
+</DIR>
+
+<P>Topic :</B> 3dRMove</P>
+<B><P>Language Level</B> : B2C Extension</P>
+<B><P>Effectivity :</B> B2C v3d</P>
+<B><P>Syntax</B> : </P><DIR>
+<DIR>
+
+<P>3dRMove sprite_num, r,theta,z</P>
+<P>3dRMove Camera, r,theta,0</P></DIR>
+</DIR>
+
+<B><P>Description :</P><DIR>
+<DIR>
+
+</B><P>3dRMove will move either a sprite or the camera position relative to the current position.  In the first form it moves a sprite number &quot;sprite_num&quot; a distance ‘r’ in the direction ‘theta’   The ‘z’ variable is which bitmap in a multi-bitmap sprite to display.  The direction ‘theta’ is measured in degrees.</P>
+
+<P>3dRMove will position the Camera a distance ‘r’ relative to the current position in the direction ‘theta’.  The last parameter is ignored.  The direction ‘theta’ is measured in degrees.</P></DIR>
+</DIR>
+
+<B><P>Example : </P><DIR>
+<DIR>
+
+</B><P>3dRMove 3,10,45,1</P>
+<P>3dMove Camera, 10,45,0</P>
+<B></DIR>
+</DIR>
+
+<P>Topic :</B> 3dRoom</P>
+<B><P>Language Level</B> : B2C Extension</P>
+<B><P>Effectivity :</B> B2C v3d</P>
+<B><P>Syntax</B> : </P><DIR>
+<DIR>
+
+<P>3dRoom room_number</P></DIR>
+</DIR>
+
+<B><P>Description :</P><DIR>
+<DIR>
+
+</B><P>3dRoom defines the current room number for 3d graphics.  When the room_number is set all 3d commands will default to the room specified by room_number.</P></DIR>
+</DIR>
+
+<B><P>Example : </P><DIR>
+<DIR>
+
+</B><P>3dRoom 0</P>
+<B></DIR>
+</DIR>
+
+<P>Topic :</B> 3dSprite</P>
+<B><P>Language Level</B> : B2C Extension</P>
+<B><P>Effectivity :</B> B2C v3d</P>
+<B><P>Syntax</B> : </P><DIR>
+<DIR>
+
+<P>3dSprite sprite_num, &quot;filename.spr&quot;</P></DIR>
+</DIR>
+
+<B><P>Description :</P><DIR>
+<DIR>
+
+</B><P>3dSprite will load a 32x32 sprite into memory and assign it to the current room’s sprites.  The sprite_num is an index into the array of sprites and must not be zero (since sprite zero is the camera).  The sprite must be converted from a bitmap using bmp2spr and will have the extension &quot;.spr&quot;.  The sprite may have multiple bitmaps inside.  The &quot;dark grey&quot; color is used as the transparent color.</P></DIR>
+</DIR>
+
+<B><P>Example : </P><DIR>
+<DIR>
+
+</B><P>3dSprite 1, &quot;column.spr&quot;</P>
+<B></DIR>
+</DIR>
+
+<P>Topic :</B> 3dWall</P>
+<B><P>Language Level</B> : B2C Extension</P>
+<B><P>Effectivity :</B> B2C v3d</P>
+<B><P>Syntax</B> : </P><DIR>
+<DIR>
+
+<P>3dWall x0, y0, x1, y1, &quot;filename.tex&quot;</P></DIR>
+</DIR>
+
+<B><P>Description :</P><DIR>
+<DIR>
+
+</B><P>3dWall will create a wall-segment along the line specified by x0, y0, x1, y1 with a texture of &quot;filename.tex&quot;.  Only files with suffixes in &quot;.tex&quot; will do.  These are files created from bitmaps using bmp2spr.   They may have either 32x32 pixels or 32x16 pixels.</P></DIR>
+</DIR>
+
+<B><P>Example : </P><DIR>
+<DIR>
+
+</B><P>3dWall 0,0,100,100, &quot;wall.tex&quot;</P>
+<B></DIR>
+</DIR>
+
+<P>Topic :</B> Abs()</P>
+<B><P>Language Level</B> : B2C Extension</P>
+<B><P>Effectivity :</B> B2C v3a</P>
+<B><P>Syntax</B> : </P><DIR>
+<DIR>
+
+<P>Abs(n)</P></DIR>
+</DIR>
+
+<B><P>Description :</P><DIR>
+<DIR>
+
+</B><P>Abs() take the absolute value of ‘n’ where ‘n’ is an Integer.  If the value is less than zero, it returns the opposite of that value (making it positive).  If the value of ‘n’ is zero or positive it simply returns the value. </P></DIR>
+</DIR>
+
+<B><P>Example : </P><DIR>
+<DIR>
+
+</B><P>X = abs(n)</P>
+<B></DIR>
+</DIR>
+
+<P>Topic :</B> Beep</P>
+<B><P>Language Level</B> : CyBasic-1</P>
+<B><P>Effectivity :</B> B2C v2</P>
+<B><P>Syntax</B> : </P><DIR>
+<DIR>
+
+<P>Beep n</P></DIR>
+</DIR>
+
+<B><P>Description :</P><DIR>
+<DIR>
+
+</B><P>Beep causes the speaker to emit a single tone. The range of valid values is from 0 (85Hz) to 67 (about 4075Hz) inclusive. If the index is negative, the tone will stop.</P>
+
+<P>NOTE: This is a departure from CyBasic. </P></DIR>
+</DIR>
+
+<B><P>Example : </P><DIR>
+<DIR>
+
+</B><P>Beep 1</P>
+<B></DIR>
+</DIR>
+
+<P>Topic :</B> Char</P>
+<B><P>Language Level</B> : B2C Extension</P>
+<B><P>Effectivity :</B> B2C v3d</P>
+<B><P>Syntax</B> : </P><DIR>
+<DIR>
+
+<P>x=Char(key)</P></DIR>
+</DIR>
+
+<B><P>Description :</P><DIR>
+<DIR>
+
+</B><P>Function acts just as the key() function.  Returns 0 immediately if no key is pressed and returns the keycode if a key is pressed.  Does not return if the shift key is pressed but instead returns the next shifted key.</P></DIR>
+</DIR>
+
+<B><P>Example : </P><DIR>
+<DIR>
+
+</B><P>If getchar=#KEY_ENTER then exit sub</P>
+<B></DIR>
+</DIR>
+
+<P>Topic :</B> Circle</P>
+<B><P>Language Level</B> : B2C Extension</P>
+<B><P>Effectivity :</B> B2C v5</P>
+<B><P>Syntax</B> : </P><DIR>
+<DIR>
+
+<P>Circle X, Y, R</P></DIR>
+</DIR>
+
+<B><P>Description :</P><DIR>
+<DIR>
+
+</B><P>Circle will draw a circle at location X, Y with a radius of R.</P></DIR>
+</DIR>
+
+<B><P>Example : </P>
+</B></FONT><FONT FACE="Courier New" SIZE=2><P>OPTION SHOW OFF</P>
+<P>OPTION ESCAPE OFF</P>
+
+<P>dim r as int</P>
+
+<P>sub draw_circle(r as int)</P>
+<P>    cls</P>
+<P>    circle 0,0,r</P>
+<P>    redraw show</P>
+<P>end sub</P>
+
+<P>draw_circle(r)</P>
+
+<P>while true</P>
+<P>  if key(#KEY_LEFT) then</P>
+<P>    r=r+1</P>
+<P>    draw_circle(r)</P>
+<P>  endif</P>
+<P>  if key(#KEY_RIGHT) then</P>
+<P>    r=r-1</P>
+<P>    draw_circle(r)</P>
+<P>  endif</P>
+<P>  if key(#KEY_SPACE) then exit while</P>
+<P>wend</P>
+</FONT><B><FONT SIZE=2>
+<P>Topic :</B> Circfill</P>
+<B><P>Language Level</B> : B2C Extension</P>
+<B><P>Effectivity :</B> B2C v5</P>
+<B><P>Syntax</B> : </P><DIR>
+<DIR>
+
+<P>Circfill X,Y,R</P></DIR>
+</DIR>
+
+<B><P>Description :</P><DIR>
+<DIR>
+
+</B><P>Circfill will draw a filled circle at location X, Y with a radius of R.</P></DIR>
+</DIR>
+
+<B><P>Example : </P>
+</B></FONT><FONT FACE="Courier New" SIZE=2><P>OPTION SHOW OFF</P>
+<P>OPTION ESCAPE OFF</P>
+
+<P>dim r as int</P>
+
+<P>sub draw_circle(r as int)</P>
+<P>    cls</P>
+<P>    circfill 0,0,r</P>
+<P>    redraw show</P>
+<P>end sub</P>
+
+<P>draw_circle(r)</P>
+
+<P>while true</P>
+<P>  if key(#KEY_LEFT) then</P>
+<P>    r=r+1</P>
+<P>    draw_circle(r)</P>
+<P>  endif</P>
+<P>  if key(#KEY_RIGHT) then</P>
+<P>    r=r-1</P>
+<P>    draw_circle(r)</P>
+<P>  endif</P>
+<P>  if key(#KEY_SPACE) then exit while</P>
+<P>wend</P>
+</FONT><B><FONT SIZE=2>
+<P>Topic :</B> Close</P>
+<B><P>Language Level</B> : Cybasic-1</P>
+<B><P>Effectivity :</B> B2C V2</P>
+<B><P>Syntax</B> : </P><DIR>
+<DIR>
+
+<P>close n</P></DIR>
+</DIR>
+
+<B><P>Description :</P><DIR>
+<DIR>
+
+</B><P>Closes File number N</P></DIR>
+</DIR>
+
+<B><P>Errors:</P><DIR>
+<DIR>
+
+</B><P>#ERROR_FILE_NUMBER – the file number was out of the valid range</P>
+<P>#ERROR_FILE_ALREADY_CLOSED – the file was already closed</P></DIR>
+</DIR>
+
+<B><P>Example : </P><DIR>
+<DIR>
+
+</B><P>Close 1</P>
+<P>if error = #ERROR_FILE_ALREADY_CLOSED then print &quot;Ooops&quot;</P>
+<B></DIR>
+</DIR>
+
+<P>Topic :</B> Cls</P>
+<B><P>Language Level</B> : CyBasic-1</P>
+<B><P>Effectivity :</B> B2C v2</P>
+<B><P>Syntax</B> : </P><DIR>
+<DIR>
+
+<P>Cls</P></DIR>
+</DIR>
+
+<B><P>Description :</P><DIR>
+<DIR>
+
+</B><P>Cls will clear the screen and paint it with the background color (see Paper).</P></DIR>
+</DIR>
+
+<B><P>Example : </P><DIR>
+<DIR>
+
+</B><P>Cls</P>
+<P>Printf "Top of the screen"</P>
+<B></DIR>
+</DIR>
+
+<P>Topic :</B> Collision</P>
+<B><P>Language Level</B> : B2C Extension</P>
+<B><P>Effectivity :</B> B2C v2c</P>
+<B><P>Syntax</B> : </P><DIR>
+<DIR>
+
+<P>Collision(a,b)</P></DIR>
+</DIR>
+
+<B><P>Description :</P>
+<P>&#9;</B>Collision(a,b) returns TRUE (1) if two sprites overlap and FALSE (0) otherwise.  Collision detection is limited to the overlapping of the two sprite rectangles.  Even if the pixels are clear, any overlap of the bounding box of the two sprites returns true.</P>
+<B><P>Example</P>
+<P>&#9;</B>Dim x as int</P>
+<P>&#9;Dim y as int</P>
+<P>&#9;Dim z as int</P>
+<P>&#9;Dim a as int</P>
+<P>&#9;Dim b as int</P>
+<P>&#9;Sprite 1, "lemming.pic"</P>
+<P>&#9;Sprite 2, "other.pic</P>
+<P>&#9;X=0</P>
+<P>&#9;Y=0</P>
+<P>&#9;Z=0</P>
+<P>&#9;A=-80</P>
+<P>&#9;B=-50</P>
+<P>&#9;Move 2, a, b</P>
+<P>&#9;While 1</P>
+<P>&#9;&#9;If key(264) then x=x-1</P>
+<P>&#9;&#9;If key(266) then x=x+1</P>
+<P>&#9;&#9;Move x,y,z</P>
+<P>&#9;&#9;Beep 0</P>
+<P>&#9;&#9;Vibrate 0</P>
+<P>&#9;&#9;If Collision(1,2) then </P><DIR>
+<DIR>
+<DIR>
+<DIR>
+
+<P>beep 1</P>
+<P>vibrate 128</P></DIR>
+</DIR>
+</DIR>
+</DIR>
+
+<P>&#9;&#9;Redraw</P>
+<P>&#9;wend</P>
+<B>
+<P>Topic :</B> Cos()</P>
+<B><P>Language Level</B> : CyBasic-1</P>
+<B><P>Effectivity :</B> B2C v5</P>
+<B><P>Syntax</B> : </P><DIR>
+<DIR>
+
+<P>Cos(n)</P></DIR>
+</DIR>
+
+<B><P>Description :</P><DIR>
+<DIR>
+
+</B><P>Cos() returns the cosine of the Double value ‘n’ (in radians). </P></DIR>
+</DIR>
+
+<B><P>Example : </P><DIR>
+<DIR>
+
+</B><P>X = cos(n)</P>
+<B></DIR>
+</DIR>
+
+<P>Topic :</B> Dabs()</P>
+<B><P>Language Level</B> : B2C Extension</P>
+<B><P>Effectivity :</B> B2C v5</P>
+<B><P>Syntax</B> : </P><DIR>
+<DIR>
+
+<P>Dabs(n)</P></DIR>
+</DIR>
+
+<B><P>Description :</P><DIR>
+<DIR>
+
+</B><P>Dabs() take the absolute value of ‘n’ where ‘n’ is a Double variable.  If the value is less than zero, it returns the opposite of that value (making it positive).  If the value of ‘n’ is zero or positive it simply returns the value. </P></DIR>
+</DIR>
+
+<B><P>Example : </P><DIR>
+<DIR>
+
+</B><P>X = dabs(n)</P>
+<B></DIR>
+</DIR>
+
+<P>Topic :</B> Dialog</P>
+<B><P>Language Level</B> : B2C Extension</P>
+<B><P>Effectivity :</B> B2C v3d</P>
+<B><P>Syntax</B> : </P><DIR>
+<DIR>
+
+<P>Result = Dialog(box_hdr, prompt)</P>
+<P>Result = Dialog(box_hdr, prompt, str_var, len)</P></DIR>
+</DIR>
+
+<B><P>Description :</P><DIR>
+<DIR>
+
+</B><P>Dialog will display a dialog box with the OK and CANCEL buttons in it.  The &quot;box_hdr&quot; is the text to display in the dialog box’s header while the &quot;prompt&quot; is the text to display in the body of the dialog box.  If str_var is specified, then an Edit field appears in the dialog.  Whatever is in the str_var will be the initial value of the Edit field.  &quot;Len&quot; is the maximum number of characters to enter into str_var (usually the dimensioned length of the string).  When the user enters text into the Edit field and presses Enter, the str_var receives the input string.</P>
+
+<P>Result receives TRUE if the user hits the OK button and FALSE if the user hits the CANCEL button or the ESC key.</P></DIR>
+</DIR>
+
+<B><P>Example : </P><DIR>
+<DIR>
+
+</B><P>If Dialog(&quot;Exit?&quot;, &quot;Are you ready to exit now?&quot;) then exit program</P>
+<P>Proceed = Dialog(&quot;Input File&quot;, &quot;What input file will you use?&quot;, filename, 32) </P>
+<B></DIR>
+</DIR>
+
+<P>Topic :</B> Dim</P>
+<B><P>Language Level</B> : CyBasic-1</P>
+<B><P>Effectivity :</B> B2C v2</P>
+<B><P>Syntax</B> : </P><DIR>
+<DIR>
+
+<P>Dim varname{[arraysize] {As datatype}</P></DIR>
+</DIR>
+
+<B><P>Description :</P><DIR>
+<DIR>
+
+</B><P>The Dim keyword defines a variable in anticipation of its use.  With the exception of For loop variables, a variable must be defined before it can be used.  If the "As datatype" portion is specified, then the variable is created as the defined datatype:</P><DIR>
+<DIR>
+
+<P>Char : 1-byte signed integer or character</P>
+<P>Int : 2-byte signed integer</P>
+<P>Long : 4-byte signed integer</P>
+<P>Double : 8-byte floating point (not available)</P></DIR>
+</DIR>
+
+<P>If the [arraysize] portion is included, the variable is declared as an array.  B2C Supports 1 and 2 dimensions.  For 2-dimensions specify the dimensions with a comma separator:</P><DIR>
+<DIR>
+
+<P>Dim a[10] as int  ‘one-dimension</P>
+<P>Dim a[10,5] as int ‘ two dimensions</P></DIR>
+</DIR>
+
+<P>You can defereference the array the same way:</P><DIR>
+<DIR>
+
+<P>A[0] = 1 ‘one dimension</P>
+<P>A[1,2] = 1 ‘ two dimension</P>
+</DIR>
+</DIR>
+</DIR>
+</DIR>
+
+<B><P>Example</P>
+<P>&#9;</B>Dim age as int</P>
+<P>&#9;Dim name[32] as char</P>
+<P>&#9;Input "age:", age</P>
+<P>&#9;Input "name:", name</P>
+<P>&#9;Print "You are ", name, "and your age is", age</P>
+<B>
+<P>Topic :</B> eof</P>
+<B><P>Language Level</B> : Cybasic-2</P>
+<B><P>Effectivity :</B> B2C v2</P>
+<B><P>Syntax</B> : </P><DIR>
+<DIR>
+
+<P>eof(n)</P></DIR>
+</DIR>
+
+<B><P>Description :</P><DIR>
+<DIR>
+
+</B><P>Returns TRUE if the file number ‘n’ is at the end.</P></DIR>
+</DIR>
+
+<B><P>Errors:</P>
+<P>&#9;</B>#ERROR_FILE_NUMBER – the file number is outside the valid range</P><DIR>
+<DIR>
+
+<P>#ERROR_FILE_UNOPENED – the requested file has not been opened</P></DIR>
+</DIR>
+
+<B><P>Example : </P><DIR>
+<DIR>
+
+</B><P>If getchar=#KEY_ENTER then exit sub</P>
+<B></DIR>
+</DIR>
+
+<P>Topic :</B> Error</P>
+<B><P>Language Level</B> : CyBasic-3</P>
+<B><P>Effectivity :</B> B2C v3e</P>
+<B><P>Syntax</B> : </P><DIR>
+<DIR>
+
+<P>error (a variable)</P></DIR>
+</DIR>
+
+<B><P>Description :</P><DIR>
+<DIR>
+
+</B><P>The Error variable receives a value during certain operations (like File I/O).  It can be used to make a decision if a command fails.</P>
+
+<P>#ERROR_FILE_SEEK 52</P>
+<P>#ERROR_FILE_WRITE 53</P>
+<P>#ERROR_FILE_READ 54</P>
+<P>#ERROR_FILE_OPEN 56</P>
+<P>#ERROR_FILE_CREATE 57</P>
+<P>#ERROR_FILE_CLOSE 100</P>
+<P>#ERROR_FILE_NUMBER 101</P>
+<P>#ERROR_FILE_ALREADY_OPEN 102</P>
+<P>#ERROR_FILE_ALREADY_CLOSED 103</P>
+<P>#ERROR_FILE_UNOPENED 104</P></DIR>
+</DIR>
+
+<B><P>Example</P><DIR>
+<DIR>
+
+</B><P>open &quot;myfile.txt&quot; for READ as 0</P>
+<P>if error &lt;&gt; 0 then</P>
+<P>   print &quot;Error opening myfile.txt&quot;</P>
+<P>   exit program</P>
+<P>end if</P>
+<B></DIR>
+</DIR>
+
+<P>Topic :</B> Exists</P>
+<B><P>Language Level</B> : B2C Extension</P>
+<B><P>Effectivity :</B> B2C v5</P>
+<B><P>Syntax</B> : </P><DIR>
+<DIR>
+
+<P>n = exists(filename)</P></DIR>
+</DIR>
+
+<B><P>Description :</P><DIR>
+<DIR>
+
+</B><P>Exists will detect if the file is present on the flash memory of the Cybiko.  It returns TRUE (1) if the file is found and returns FALSE (0) otherwise.</P></DIR>
+</DIR>
+
+<B><P>Example :</P>
+</B><P>&#9;If exists(&quot;trash.tmp&quot;) then remove &quot;trash.tmp&quot;</P>
+<B>
+<P>Topic :</B> Exit-Program</P>
+<B><P>Language Level</B> : CyBasic-3</P>
+<B><P>Effectivity :</B> B2C v3</P>
+<B><P>Syntax</B> : </P><DIR>
+<DIR>
+
+<P>Exit Program</P></DIR>
+</DIR>
+
+<B><P>Description :</P>
+</B><P>&#9;Exit Program will terminate a B2C application immediately.</P>
+<B><P>Example : </P><DIR>
+<DIR>
+
+</B><P>If key=#KEY_ENTER then exit program </P>
+<B></DIR>
+</DIR>
+
+<P>Topic :</B> False</P>
+<B><P>Language Level</B> : B2C Extension</P>
+<B><P>Effectivity :</B> B2C v3d</P>
+<B><P>Syntax</B> : </P><DIR>
+<DIR>
+
+<P>false</P></DIR>
+</DIR>
+
+<B><P>Description :</P>
+</B><P>&#9;Constant value returns false – or zero.</P>
+<B><P>Example : </P><DIR>
+<DIR>
+
+</B><P>If key(#KEY_ENTER)=false then beep -1 </P>
+<B></DIR>
+</DIR>
+
+<P>Topic :</B> Filelist</P>
+<B><P>Language Level</B> : B2C Extension</P>
+<B><P>Effectivity :</B> B2C v3e</P>
+<B><P>Syntax</B> : </P><DIR>
+<DIR>
+
+<P>rc = Filelist <I>( title, pattern, return_string )</P></DIR>
+</DIR>
+
+</I><B><P>Description :</P><DIR>
+<DIR>
+
+</B><P>The Filelist function will display a file dialog with filenames matching pattern.  Pattern is a wildcarded string using ‘*’ as the wildcard character (for example &quot;*.app&quot; matches all app files).  When the user highlights one of the filenames and presses ENTER the <I>return_string</I> is filled with the selected filename and TRUE is returned.  If the user cancels the filelist dialog by pressing ESC then FALSE is returned.</P></DIR>
+</DIR>
+
+<B><P>Example :</P>
+</B><P>&#9;Dim s[32] as char</P><DIR>
+<DIR>
+
+<P>Dim rc as int</P>
+<P>Rc = filelist(&quot;Select App&quot;, &quot;*.app&quot;, s)</P>
+<P>If (rc) then print s, &quot; Selected&quot;</P>
+<P>Else print &quot;Cancelled&quot;</P></DIR>
+</DIR>
+
+<B><P>Note</B>  : Original Dialog code by Ernest Pazera</P>
+<B>
+<P>Topic :</B> Findfile</P>
+<B><P>Language Level</B> : B2C Extension</P>
+<B><P>Effectivity :</B> B2C v3e</P>
+<B><P>Syntax</B> : </P><DIR>
+<DIR>
+
+<P>Findfile <I>pattern</P></DIR>
+</DIR>
+
+</I><B><P>Description :</P><DIR>
+<DIR>
+
+</B><P>The Findfile command will search for files with a particular pattern.  The pattern will use the wildcard character &quot;*&quot;.</P></DIR>
+</DIR>
+
+<B><P>Example</P>
+</B><P>&#9;Dim s[32] as char</P><DIR>
+<DIR>
+
+<P>Findfile &quot;*.app&quot;</P>
+<P>While (nextfile(s))</P>
+<P>&#9;Print s</P>
+<P>wend</P>
+<B></DIR>
+</DIR>
+
+<P>Topic :</B> Font</P>
+<B><P>Language Level</B> : B2C Extension</P>
+<B><P>Effectivity :</B> B2C v2a</P>
+<B><P>Syntax</B> : </P><DIR>
+<DIR>
+
+<P>Font <I>fontname</P></DIR>
+</DIR>
+
+</I><B><P>Description :</P><DIR>
+<DIR>
+
+</B><P>Font will change the current font to the one specified by fontname (a character string or a variable containing the name of the font).  You may specify a user font (in the .app archive) or any of the 4 standard fonts:</P><DIR>
+<DIR>
+
+<P>cool_normal_font</P>
+<P>cool_bold_font (default)</P>
+<P>mini_normal_font</P>
+<P>mini_bold_font</P></DIR>
+</DIR>
+</DIR>
+</DIR>
+
+<B><P>Example : </P><DIR>
+<DIR>
+
+</B><P>Font &quot;mini_normal_font&quot;</P>
+<P>Print &quot;small text here&quot;</P>
+<P>Font &quot;font5x7.fnt&quot;</P>
+<P>Print &quot;larger text here&quot;</P>
+<B></DIR>
+</DIR>
+
+<P>Topic :</B> For / To / Step / Exit For / Next</P>
+<B><P>Language Level</B> : CyBasic-1</P>
+<B><P>Effectivity :</B> B2C v2</P>
+<B><P>Syntax</B> : </P><DIR>
+<DIR>
+
+<P>For varname = start-expression To end-expression {Step step-expression}</P>
+<P>&#9;Body</P>
+<P>Exit For</P>
+<P>Next</P></DIR>
+</DIR>
+
+<B><P>Description :</P><DIR>
+<DIR>
+
+</B><P>The For statement initiates a loop which counts from start-expression to end-expression.  The varname is automatically created (without a Dim).  The optional Step defines the increment to apply to the varname on each iteration.  "step-expression" may be negative.  </P>
+
+<P>You can exit a loop early by executing the Exit For command.</P></DIR>
+</DIR>
+
+<B><P>Example</P>
+</B><P>&#9;For I=1 To 100 Step 2</P>
+<P>&#9;&#9;Print I</P>
+<P>&#9;&#9;If I = 40 then Exit Program</P>
+<P>&#9;Next I</P>
+<B>
+<P>Topic :</B> Function</P>
+<B><P>Language Level</B> : CyBasic-1</P>
+<B><P>Effectivity :</B> B2C v2</P>
+<B><P>Syntax</B> : </P><DIR>
+<DIR>
+
+<P>Function funcname {(param1{[]} {As datatype1} {, param2 {As datatype2} …})} {As datatype}</P>
+<P>&#9;{Exit Function}</P>
+<P>&#9;Body</P>
+<P>End Function</P></DIR>
+</DIR>
+
+<B><P>Description :</P><DIR>
+<DIR>
+
+</B><P>Function initiates the definition of a new function .  funcname is the name of the function.  An optional parameter list may be specified.  Zero, one, or more parameters may be specified.  Each parameter may have a datatype as specified in Dim.  However, no array parameters may be passed.  If the datatype is not specified, the variable is defined as Double.  Likewise, the function itself may be declared as a particular datatype, and if this datatype is unspecified the function is defined as Double.</P>
+
+<P>To return a value from the function, assign a value to a variable with the same name as the function.</P>
+
+<P>If the Exit Function statement is encountered, the function will return immediately.</P>
+
+<P>With version 3a of B2C, single-dimensioned arrays may be passed into functions.  The format of the parameter is p[] – indicating an array of arbitrary length.  This now allows strings to be passed into functions and subroutines.</P></DIR>
+</DIR>
+
+<B><P>Example</P><DIR>
+<DIR>
+
+</B><P>Function foo as Int</P>
+<P>&#9;foo = random(100);</P>
+<P>End Function</P>
+
+<P>Funciton bar(div as Int) as Int</P>
+<P>&#9;Bar = foo /div;</P>
+<P>End Function</P>
+
+<P>Function len(s[] as char) as int</P>
+<P>&#9;Len=0</P>
+<P>&#9;For I=0 to 1000</P>
+<P>&#9;&#9;If s[I] = 0 then exit function</P>
+<P>&#9;&#9;Len = len + 1</P>
+<P>&#9;Next I</P>
+<P>End Function</P>
+
+<P>Print bar(2)</P>
+<B></DIR>
+</DIR>
+
+<P>Topic :</B> Get</P>
+<B><P>Language Level</B> : CyBasic-1</P>
+<B><P>Effectivity :</B> B2C v2</P>
+<B><P>Syntax</B> : </P><DIR>
+<DIR>
+
+<P>Get filenumber, {bytepos},{ variable}</P></DIR>
+</DIR>
+
+<B><P>Description :</P><DIR>
+<DIR>
+
+</B><P>Get reads a variable from a file at the current or specified byte position.  The filenumber must be the number of a file already opened for Read access.  If bytepos is specified, the variable will be read from that position in the file.  If bytepos is unspecified, then the current position is used.  If the variable is left unspecied, then the file pointer is changed to bytepos and no data is read.</P></DIR>
+</DIR>
+
+<B><P>Errors :</P><DIR>
+<DIR>
+
+</B><P>#ERROR_FILE_NUMBER – the file number is outside the valid range</P>
+<P>#ERROR_FILE_UNOPENED – the file is not open</P>
+<P>#ERROR_FILE_READ – the file is not readable</P>
+<P>#ERROR_FILE_SEEK – the file could not be positioned</P></DIR>
+</DIR>
+
+<B><P>Example : </P><DIR>
+<DIR>
+
+</B><P>Dim foo as int</P>
+<P>Open "a.dat" For Read as 1</P>
+<P>Get 1, 0, foo</P>
+<P>Print "Foo is: ", foo</P>
+<P>Close 1</P>
+<B></DIR>
+</DIR>
+
+<P>Topic :</B> Getchar</P>
+<B><P>Language Level</B> : B2C Extension</P>
+<B><P>Effectivity :</B> B2C v3d</P>
+<B><P>Syntax</B> : </P><DIR>
+<DIR>
+
+<P>x=getchar</P></DIR>
+</DIR>
+
+<B><P>Description :</P><DIR>
+<DIR>
+
+</B><P>Function waits for a single key to be pressed.  Does not return if the shift key is pressed but instead returns the next shifted key.  Note that unlike the key() function, this function will continue to wait until a key is pressed.</P></DIR>
+</DIR>
+
+<B><P>Example : </P><DIR>
+<DIR>
+
+</B><P>If getchar=#KEY_ENTER then exit sub</P>
+<B></DIR>
+</DIR>
+
+<P>Topic :</B> Getkey</P>
+<B><P>Language Level</B> : B2C Extension</P>
+<B><P>Effectivity :</B> B2C v3d</P>
+<B><P>Syntax</B> : </P><DIR>
+<DIR>
+
+<P>X=getkey</P></DIR>
+</DIR>
+
+<B><P>Description :</P><DIR>
+<DIR>
+
+</B><P>Function waits for a single key to be pressed.  Note that unlike the key() function, this function will continue to wait until a key is pressed.  (Note: unlike the getchar function this function will return only raw keys, not shifted ones.)</P></DIR>
+</DIR>
+
+<B><P>Example : </P><DIR>
+<DIR>
+
+</B><P>If getkey=#KEY_ENTER then exit sub</P>
+<B></DIR>
+</DIR>
+
+<P>Topic :</B> Goto</P>
+<B><P>Language Level</B> : B2C Extension</P>
+<B><P>Effectivity :</B> B2C v2b</P>
+<B><P>Syntax</B> : </P><DIR>
+<DIR>
+
+<P>label : </P>
+<P>Goto label</P></DIR>
+</DIR>
+
+<B><P>Description :</P><DIR>
+<DIR>
+
+</B><P>Transfers control from the current line to the line identified by label.  It is not possible to goto a label outside the current function.</P></DIR>
+</DIR>
+
+<B><P>Example : </P><DIR>
+<DIR>
+
+</B><P>Dim y</P>
+<P>Sub foo</P><DIR>
+<DIR>
+
+<P> Dim x</P>
+<P> x=1</P></DIR>
+</DIR>
+
+<P>loop :</P><DIR>
+<DIR>
+
+<P>print x,y</P>
+<P>x=x+1</P>
+<P>if x&lt;10 then goto loop</P></DIR>
+</DIR>
+
+<P>end Subject:</P>
+
+<P>y=1</P>
+<P>count_me :</P><DIR>
+<DIR>
+
+<P>call foo</P>
+<P>y=y+1</P>
+<P>if y&lt;10 then goto count_me</P>
+
+<P>&nbsp;</P></DIR>
+</DIR>
+</DIR>
+</DIR>
+
+<B><P>Topic :</B> If / Then / Else / Elseif / End If | Endif</P>
+<B><P>Language Level</B> : CyBasic-1</P>
+<B><P>Effectivity :</B> B2C v2</P>
+<B><P>Syntax</B> : </P><DIR>
+<DIR>
+
+<P>If conditional1 Then</P><DIR>
+<DIR>
+
+<P>Body1</P></DIR>
+</DIR>
+
+<P>{ElseIf conditional2 Then</P><DIR>
+<DIR>
+
+<P>Body2</P></DIR>
+</DIR>
+
+<P>}</P>
+<P>{Else</P><DIR>
+<DIR>
+
+<P>Body3</P></DIR>
+</DIR>
+
+<P>}</P>
+<P>End If | Endif</P></DIR>
+</DIR>
+
+<B><P>Description :</P><DIR>
+<DIR>
+
+</B><P>The If keyword will perform the Body1 section of code if conditional1 is true.  A conditional is any numeric expression.  If the conditional evaluates to zero (0) it is considered false - and the Body1 will not be executed.  All other values for conditional1 are considered true and result in the Body1 being executed.</P>
+
+<P>If conditional1 is false, then the optioanal ElseIf statements are evaluated (there may be zero, one, or more ElseIf statements).  If conditional1 is false and an ElseIf statement exists then conditional2 is evaluated.  If it is true (see previous paragraph) then Body2 is executed.  If it is false, then subsequent ElseIf statements are evaluated.</P>
+
+<P>If all previous If and ElseIf statements are false, the optional Else statements are executed (Body3).</P>
+
+<P>The If statement must be terminated with an End If or Endif statement.</P>
+</DIR>
+</DIR>
+
+<B><P>Example</P>
+<P>&#9;</B>Dim a as int</P>
+<P>&#9;Dim b as int</P>
+<P>&#9;Input "a:", a</P>
+<P>&#9;Input "b:", b</P>
+
+<P>&#9;If a=b Then</P>
+<P>&#9;&#9;Print "A is equal to B"</P>
+<P>&#9;ElseIf a &gt; b Then</P>
+<P>&#9;&#9;Print "A is Greater Than B"</P>
+<P>&#9;ElseIf a &lt; b Then</P>
+<P>&#9;&#9;Print "A is Less Than B"</P>
+<P>&#9;Else</P>
+<P>&#9;&#9;Print "ERROR - we should never get here"</P>
+<P>&#9;End If</P>
+
+<P>&nbsp;</P>
+<B><P>Topic :</B> If / Then</P>
+<B><P>Language Level</B> : B2C Extension</P>
+<B><P>Effectivity :</B> B2C v2c</P>
+<B><P>Syntax</B> : </P><DIR>
+<DIR>
+
+<P>If conditional1 Then statement</P>
+</DIR>
+</DIR>
+
+<B><P>Description :</P><DIR>
+<DIR>
+
+</B><P>The single-line if statement allows an abbreviated conditional check and statement execution.  No Else or Elseif is allowed and no End If is necessary.</P></DIR>
+</DIR>
+
+<B><P>Example</P>
+<P>&#9;</B>Dim a as int</P>
+<P>&#9;Dim b as int</P>
+<P>&#9;Input "a:", a</P>
+<P>&#9;Input "b:", b</P>
+
+<P>&#9;If a=b Then Print "A is equal to B"</P>
+<P>&#9;If a &gt; b Then Print "A is Greater Than B"</P>
+<P>&#9;If a &lt; b Then Print "A is Less Than B"</P>
+<B>
+<P>Topic :</B> Include</P>
+<B><P>Language Level</B> : CyBasic-3</P>
+<B><P>Effectivity :</B> B2C v2c</P>
+<B><P>Syntax</B> : </P><DIR>
+<DIR>
+
+<P>Include &quot;filename.b2c&quot; </P></DIR>
+</DIR>
+
+<B><P>Description :</P><DIR>
+<DIR>
+
+</B><P>Include will insert a file into the source module just as though it were typed in.</P></DIR>
+</DIR>
+
+<B><P>Example : </P><DIR>
+<DIR>
+
+</B><P>Include &quot;filename.b2c</P>
+<B></DIR>
+</DIR>
+
+<P>Topic :</B> Ink</P>
+<B><P>Language Level</B> : CyBasic-1</P>
+<B><P>Effectivity :</B> B2C v2</P>
+<B><P>Syntax</B> : </P><DIR>
+<DIR>
+
+<P>Ink color</P></DIR>
+</DIR>
+
+<B><P>Description :</P><DIR>
+<DIR>
+
+</B><P>Ink sets the foreground color of the display.  The color parameter can be any numeric expression which evaluates to the numbers 0, 1, 2,3.  The Ink will not take effect until either the next Print or Cls command.  Use these constants for setting the color</P><DIR>
+<DIR>
+
+<P>0: WHITE</P>
+<P>1: LTGREY</P>
+<P>2: DKGREY</P>
+<P>3: BLACK</P></DIR>
+</DIR>
+</DIR>
+</DIR>
+
+<B><P>Example : </P><DIR>
+<DIR>
+
+</B><P>Paper 3</P>
+<P>Ink 1</P>
+<P>Cls</P>
+<P>Print "Top of the screen"</P>
+<B></DIR>
+</DIR>
+
+<P>Topic</B> : Inline</P>
+<B><P>Language Level</B> : B2C Extension</P>
+<B><P>Effectivity :</B> B2C v2a</P>
+<B><P>Syntax</B> : </P><DIR>
+<DIR>
+
+<P>Inline <I>c-code</P></DIR>
+</DIR>
+
+</I><B><P>Description :</P><DIR>
+<DIR>
+
+</B><P>Inline will pass the associated C-code directly through to the output file.  This is useful for creating functions in B2C which do not already exist.</P></DIR>
+</DIR>
+
+<B><P>Example : </P><DIR>
+<DIR>
+
+</B><P>…</P>
+<B></DIR>
+</DIR>
+
+<P>Topic</B> : Input</P>
+<B><P>Language Level</B> : CyBasic-1</P>
+<B><P>Effectivity :</B> B2C v2</P>
+<B><P>Syntax</B> : </P><DIR>
+<DIR>
+
+<P>Input {prompt, } variable</P></DIR>
+</DIR>
+
+<B><P>Description :</P><DIR>
+<DIR>
+
+</B><P>The Input keyword displays an optional prompt and waits for the user to input a value for the variable.  If the variable is a character array (string, dim a[32] as char, for example) the entire string of characters will be entered into the array.  Otherwise a scalar (non-array) variable must be entered.</P></DIR>
+</DIR>
+
+<B><P>Example</P>
+<P>&#9;</B>Dim age as int</P>
+<P>&#9;Dim name[32] as char</P>
+<P>&#9;Input "age:", age</P>
+<P>&#9;Input "name:", name</P>
+<P>&#9;Print "You are ", name, "and your age is", age</P>
+<B>
+<P>&nbsp;</P>
+<P>Topic :</B> Inputxy</P>
+<B><P>Language Level</B> : B2C Extension</P>
+<B><P>Effectivity :</B> B2C v5</P>
+<B><P>Syntax</B> : </P><DIR>
+<DIR>
+
+<P>Inputxy x, y, {prompt, } variable</P></DIR>
+</DIR>
+
+<B><P>Description :</P><DIR>
+<DIR>
+
+</B><P>The Inputxy keyword positions the cursor on the screen at the X, Y coordinates, displays an optional prompt and waits for the user to input a value for the variable.  If the variable is a character array (string, dim a[32] as char, for example) the entire string of characters will be entered into the array.  Otherwise a scalar (non-array) variable must be entered.</P></DIR>
+</DIR>
+
+<B><P>Example</P>
+<P>&#9;</B>Dim age as int</P>
+<P>&#9;Dim name[32] as char</P>
+<P>&#9;Inputxy 10, 20 "age:", age</P>
+<P>&#9;Inputxy 10, 35 "name:", name</P>
+<P>&#9;Print "You are ", name, "and your age is", age</P>
+<B>
+<P>Topic :</B> Int</P>
+<B><P>Language Level</B> : B2C Extension</P>
+<B><P>Effectivity :</B> B2C V3a</P>
+<B><P>Syntax</B> : </P><DIR>
+<DIR>
+
+<P>Int(s)</P></DIR>
+</DIR>
+
+<B><P>Description :</P><DIR>
+<DIR>
+
+</B><P>Int converts a string into an integer. </P></DIR>
+</DIR>
+
+<B><P>Example : </P>
+<P>&#9;</B>Dim s[10] as char</P>
+<P>&#9;Dim age as int</P><DIR>
+<DIR>
+
+<P>Input &quot;enter age&quot;, s</P>
+<P>Age = int(s)</P>
+<B></DIR>
+</DIR>
+
+<P>Topic :</B> Inv()</P>
+<B><P>Language Level</B> : B2C Extension</P>
+<B><P>Effectivity :</B> B2C v5</P>
+<B><P>Syntax</B> : </P><DIR>
+<DIR>
+
+<P>Inv(n)</P></DIR>
+</DIR>
+
+<B><P>Description :</P><DIR>
+<DIR>
+
+</B><P>Inv() returns the inverse (reciprocal) of the Double value ‘n’ (in radians). </P></DIR>
+</DIR>
+
+<B><P>Example : </P><DIR>
+<DIR>
+
+</B><P>X = sin(n)</P>
+<B></DIR>
+</DIR>
+
+<P>Topic :</B> Key-function</P>
+<B><P>Language Level</B> : B2C Extension</P>
+<B><P>Effectivity :</B> B2C v2c</P>
+<B><P>Syntax</B> : </P><DIR>
+<DIR>
+
+<P>Key(keynumber)</P></DIR>
+</DIR>
+
+<B><P>Description :</P>
+</B><P>Key(keynumber) returns TRUE (nonzero) if keynumber is depressed and FALSE (0) otherwise.  See Key, below, for a chart of keynumbers.  This feature was added in Version 2c to facilitate faster keyboard checking.  "Key" is kept for backwards compatibility.</P>
+<B>
+<P>Example :</P>
+<P>&#9;</B>Dim x as int</P>
+<P>&#9;Dim y as int</P>
+<P>&#9;Dim z as int</P>
+<P>&#9;Sprite 1, "lemming.pic"</P>
+<P>&#9;X=0</P>
+<P>&#9;Y=0</P>
+<P>&#9;Z=0</P>
+<P>&#9;While 1</P>
+<P>&#9;&#9;If key(264) then x=x-1</P>
+<P>&#9;&#9;If key(266) then x=x+1</P>
+<P>&#9;&#9;Move x,y,z</P>
+<P>&#9;&#9;Redraw</P>
+<P>&#9;wend</P>
+<B>
+<P>Topic :</B> Key-variable</P>
+<B><P>Language Level</B> : CyBasic-1</P>
+<B><P>Effectivity :</B> B2C v2</P>
+<B><P>Syntax</B> : </P><DIR>
+<DIR>
+
+<P>Key</P></DIR>
+</DIR>
+
+<B><P>Description :</P><DIR>
+<DIR>
+
+</B><P>Key returns the value of the last depressed key.</P>
+
+<P>Use the #defined values or numbers from the table below</P>
+<P>#KEY_A - #KEY_Z</P>
+<P>#KEY_0 - #KEY_9</P>
+<P>#KEY_ENTER, #KEY_SELECT, #KEY_TAB, #KEY_INS, #KEY_DEL</P>
+<P>#KEY_UP, #KEY_DOWN, #KEY_LEFT, #KEY_RIGHT</P>
+</DIR>
+</DIR>
+</FONT>
+<P ALIGN="CENTER"><CENTER><TABLE BORDER CELLSPACING=1 BORDERCOLOR="#000000" CELLPADDING=7 WIDTH=590>
+<TR><TD WIDTH="10%" VALIGN="TOP" BGCOLOR="#000000">
+<B><FONT SIZE=2><P ALIGN="CENTER">Key Values</B></FONT></TD>
+<TD WIDTH="8%" VALIGN="TOP" COLSPAN=2 BGCOLOR="#000000">
+<B><FONT SIZE=2><P ALIGN="CENTER">0</B></FONT></TD>
+<TD WIDTH="9%" VALIGN="TOP" COLSPAN=2 BGCOLOR="#000000">
+<B><FONT SIZE=2><P ALIGN="CENTER">1</B></FONT></TD>
+<TD WIDTH="9%" VALIGN="TOP" COLSPAN=2 BGCOLOR="#000000">
+<B><FONT SIZE=2><P ALIGN="CENTER">2</B></FONT></TD>
+<TD WIDTH="9%" VALIGN="TOP" COLSPAN=2 BGCOLOR="#000000">
+<B><FONT SIZE=2><P ALIGN="CENTER">3</B></FONT></TD>
+<TD WIDTH="9%" VALIGN="TOP" COLSPAN=2 BGCOLOR="#000000">
+<B><FONT SIZE=2><P ALIGN="CENTER">4</B></FONT></TD>
+<TD WIDTH="9%" VALIGN="TOP" COLSPAN=2 BGCOLOR="#000000">
+<B><FONT SIZE=2><P ALIGN="CENTER">5</B></FONT></TD>
+<TD WIDTH="9%" VALIGN="TOP" COLSPAN=2 BGCOLOR="#000000">
+<B><FONT SIZE=2><P ALIGN="CENTER">6</B></FONT></TD>
+<TD WIDTH="9%" VALIGN="TOP" COLSPAN=2 BGCOLOR="#000000">
+<B><FONT SIZE=2><P ALIGN="CENTER">7</B></FONT></TD>
+<TD WIDTH="9%" VALIGN="TOP" COLSPAN=2 BGCOLOR="#000000">
+<B><FONT SIZE=2><P ALIGN="CENTER">8</B></FONT></TD>
+<TD WIDTH="9%" VALIGN="TOP" COLSPAN=2 BGCOLOR="#000000">
+<B><FONT SIZE=2><P ALIGN="CENTER">9</B></FONT></TD>
+</TR>
+<TR><TD WIDTH="10%" VALIGN="TOP" COLSPAN=2>
+<FONT SIZE=2><P ALIGN="CENTER">30</FONT></TD>
+<TD WIDTH="8%" VALIGN="TOP" COLSPAN=2>&nbsp;</TD>
+<TD WIDTH="9%" VALIGN="TOP" COLSPAN=2>&nbsp;</TD>
+<TD WIDTH="9%" VALIGN="TOP" COLSPAN=2>
+<FONT SIZE=2><P ALIGN="CENTER">space</FONT></TD>
+<TD WIDTH="9%" VALIGN="TOP" COLSPAN=2>&nbsp;</TD>
+<TD WIDTH="9%" VALIGN="TOP" COLSPAN=2>&nbsp;</TD>
+<TD WIDTH="9%" VALIGN="TOP" COLSPAN=2>&nbsp;</TD>
+<TD WIDTH="9%" VALIGN="TOP" COLSPAN=2>&nbsp;</TD>
+<TD WIDTH="9%" VALIGN="TOP" COLSPAN=2>&nbsp;</TD>
+<TD WIDTH="9%" VALIGN="TOP" COLSPAN=2>&nbsp;</TD>
+<TD WIDTH="9%" VALIGN="TOP">
+<FONT SIZE=2><P ALIGN="CENTER">quote</FONT></TD>
+</TR>
+<TR><TD WIDTH="10%" VALIGN="TOP" COLSPAN=2>
+<FONT SIZE=2><P ALIGN="CENTER">40</FONT></TD>
+<TD WIDTH="8%" VALIGN="TOP" COLSPAN=2>&nbsp;</TD>
+<TD WIDTH="9%" VALIGN="TOP" COLSPAN=2>&nbsp;</TD>
+<TD WIDTH="9%" VALIGN="TOP" COLSPAN=2>&nbsp;</TD>
+<TD WIDTH="9%" VALIGN="TOP" COLSPAN=2>&nbsp;</TD>
+<TD WIDTH="9%" VALIGN="TOP" COLSPAN=2>
+<FONT SIZE=2><P ALIGN="CENTER">comma</FONT></TD>
+<TD WIDTH="9%" VALIGN="TOP" COLSPAN=2>
+<FONT SIZE=2><P ALIGN="CENTER">dash</FONT></TD>
+<TD WIDTH="9%" VALIGN="TOP" COLSPAN=2>
+<FONT SIZE=2><P ALIGN="CENTER">period</FONT></TD>
+<TD WIDTH="9%" VALIGN="TOP" COLSPAN=2>
+<FONT SIZE=2><P ALIGN="CENTER">/</FONT></TD>
+<TD WIDTH="9%" VALIGN="TOP" COLSPAN=2>
+<FONT SIZE=2><P ALIGN="CENTER">0</FONT></TD>
+<TD WIDTH="9%" VALIGN="TOP">
+<FONT SIZE=2><P ALIGN="CENTER">1</FONT></TD>
+</TR>
+<TR><TD WIDTH="10%" VALIGN="TOP" COLSPAN=2>
+<FONT SIZE=2><P ALIGN="CENTER">50</FONT></TD>
+<TD WIDTH="8%" VALIGN="TOP" COLSPAN=2>
+<FONT SIZE=2><P ALIGN="CENTER">2</FONT></TD>
+<TD WIDTH="9%" VALIGN="TOP" COLSPAN=2>
+<FONT SIZE=2><P ALIGN="CENTER">3</FONT></TD>
+<TD WIDTH="9%" VALIGN="TOP" COLSPAN=2>
+<FONT SIZE=2><P ALIGN="CENTER">4</FONT></TD>
+<TD WIDTH="9%" VALIGN="TOP" COLSPAN=2>
+<FONT SIZE=2><P ALIGN="CENTER">5</FONT></TD>
+<TD WIDTH="9%" VALIGN="TOP" COLSPAN=2>
+<FONT SIZE=2><P ALIGN="CENTER">6</FONT></TD>
+<TD WIDTH="9%" VALIGN="TOP" COLSPAN=2>
+<FONT SIZE=2><P ALIGN="CENTER">7</FONT></TD>
+<TD WIDTH="9%" VALIGN="TOP" COLSPAN=2>
+<FONT SIZE=2><P ALIGN="CENTER">8</FONT></TD>
+<TD WIDTH="9%" VALIGN="TOP" COLSPAN=2>
+<FONT SIZE=2><P ALIGN="CENTER">9</FONT></TD>
+<TD WIDTH="9%" VALIGN="TOP" COLSPAN=2>&nbsp;</TD>
+<TD WIDTH="9%" VALIGN="TOP">
+<FONT SIZE=2><P ALIGN="CENTER">semi-colon</FONT></TD>
+</TR>
+<TR><TD WIDTH="10%" VALIGN="TOP" COLSPAN=2>
+<FONT SIZE=2><P ALIGN="CENTER">60</FONT></TD>
+<TD WIDTH="8%" VALIGN="TOP" COLSPAN=2>&nbsp;</TD>
+<TD WIDTH="9%" VALIGN="TOP" COLSPAN=2>
+<FONT SIZE=2><P ALIGN="CENTER">=</FONT></TD>
+<TD WIDTH="9%" VALIGN="TOP" COLSPAN=2>&nbsp;</TD>
+<TD WIDTH="9%" VALIGN="TOP" COLSPAN=2>&nbsp;</TD>
+<TD WIDTH="9%" VALIGN="TOP" COLSPAN=2>&nbsp;</TD>
+<TD WIDTH="9%" VALIGN="TOP" COLSPAN=2>&nbsp;</TD>
+<TD WIDTH="9%" VALIGN="TOP" COLSPAN=2>&nbsp;</TD>
+<TD WIDTH="9%" VALIGN="TOP" COLSPAN=2>&nbsp;</TD>
+<TD WIDTH="9%" VALIGN="TOP" COLSPAN=2>&nbsp;</TD>
+<TD WIDTH="9%" VALIGN="TOP">&nbsp;</TD>
+</TR>
+<TR><TD WIDTH="10%" VALIGN="TOP" COLSPAN=2>
+<FONT SIZE=2><P ALIGN="CENTER">90</FONT></TD>
+<TD WIDTH="8%" VALIGN="TOP" COLSPAN=2>&nbsp;</TD>
+<TD WIDTH="9%" VALIGN="TOP" COLSPAN=2>
+<FONT SIZE=2><P ALIGN="CENTER">(</FONT></TD>
+<TD WIDTH="9%" VALIGN="TOP" COLSPAN=2>
+<FONT SIZE=2><P ALIGN="CENTER">\</FONT></TD>
+<TD WIDTH="9%" VALIGN="TOP" COLSPAN=2>
+<FONT SIZE=2><P ALIGN="CENTER">)</FONT></TD>
+<TD WIDTH="9%" VALIGN="TOP" COLSPAN=2>&nbsp;</TD>
+<TD WIDTH="9%" VALIGN="TOP" COLSPAN=2>&nbsp;</TD>
+<TD WIDTH="9%" VALIGN="TOP" COLSPAN=2>
+<FONT SIZE=2><P ALIGN="CENTER">back- quote</FONT></TD>
+<TD WIDTH="9%" VALIGN="TOP" COLSPAN=2>
+<FONT SIZE=2><P ALIGN="CENTER">a</FONT></TD>
+<TD WIDTH="9%" VALIGN="TOP" COLSPAN=2>
+<FONT SIZE=2><P ALIGN="CENTER">b</FONT></TD>
+<TD WIDTH="9%" VALIGN="TOP">
+<FONT SIZE=2><P ALIGN="CENTER">c</FONT></TD>
+</TR>
+<TR><TD WIDTH="10%" VALIGN="TOP" COLSPAN=2>
+<FONT SIZE=2><P ALIGN="CENTER">100</FONT></TD>
+<TD WIDTH="8%" VALIGN="TOP" COLSPAN=2>
+<FONT SIZE=2><P ALIGN="CENTER">d</FONT></TD>
+<TD WIDTH="9%" VALIGN="TOP" COLSPAN=2>
+<FONT SIZE=2><P ALIGN="CENTER">e</FONT></TD>
+<TD WIDTH="9%" VALIGN="TOP" COLSPAN=2>
+<FONT SIZE=2><P ALIGN="CENTER">f</FONT></TD>
+<TD WIDTH="9%" VALIGN="TOP" COLSPAN=2>
+<FONT SIZE=2><P ALIGN="CENTER">g</FONT></TD>
+<TD WIDTH="9%" VALIGN="TOP" COLSPAN=2>
+<FONT SIZE=2><P ALIGN="CENTER">h</FONT></TD>
+<TD WIDTH="9%" VALIGN="TOP" COLSPAN=2>
+<FONT SIZE=2><P ALIGN="CENTER">i</FONT></TD>
+<TD WIDTH="9%" VALIGN="TOP" COLSPAN=2>
+<FONT SIZE=2><P ALIGN="CENTER">j</FONT></TD>
+<TD WIDTH="9%" VALIGN="TOP" COLSPAN=2>
+<FONT SIZE=2><P ALIGN="CENTER">k</FONT></TD>
+<TD WIDTH="9%" VALIGN="TOP" COLSPAN=2>
+<FONT SIZE=2><P ALIGN="CENTER">l</FONT></TD>
+<TD WIDTH="9%" VALIGN="TOP">
+<FONT SIZE=2><P ALIGN="CENTER">m</FONT></TD>
+</TR>
+<TR><TD WIDTH="10%" VALIGN="TOP" COLSPAN=2>
+<FONT SIZE=2><P ALIGN="CENTER">110</FONT></TD>
+<TD WIDTH="8%" VALIGN="TOP" COLSPAN=2>
+<FONT SIZE=2><P ALIGN="CENTER">n</FONT></TD>
+<TD WIDTH="9%" VALIGN="TOP" COLSPAN=2>
+<FONT SIZE=2><P ALIGN="CENTER">o</FONT></TD>
+<TD WIDTH="9%" VALIGN="TOP" COLSPAN=2>
+<FONT SIZE=2><P ALIGN="CENTER">p</FONT></TD>
+<TD WIDTH="9%" VALIGN="TOP" COLSPAN=2>
+<FONT SIZE=2><P ALIGN="CENTER">q</FONT></TD>
+<TD WIDTH="9%" VALIGN="TOP" COLSPAN=2>
+<FONT SIZE=2><P ALIGN="CENTER">r</FONT></TD>
+<TD WIDTH="9%" VALIGN="TOP" COLSPAN=2>
+<FONT SIZE=2><P ALIGN="CENTER">s</FONT></TD>
+<TD WIDTH="9%" VALIGN="TOP" COLSPAN=2>
+<FONT SIZE=2><P ALIGN="CENTER">t</FONT></TD>
+<TD WIDTH="9%" VALIGN="TOP" COLSPAN=2>
+<FONT SIZE=2><P ALIGN="CENTER">u</FONT></TD>
+<TD WIDTH="9%" VALIGN="TOP" COLSPAN=2>
+<FONT SIZE=2><P ALIGN="CENTER">v</FONT></TD>
+<TD WIDTH="9%" VALIGN="TOP">
+<FONT SIZE=2><P ALIGN="CENTER">w</FONT></TD>
+</TR>
+<TR><TD WIDTH="10%" VALIGN="TOP" COLSPAN=2>
+<FONT SIZE=2><P ALIGN="CENTER">120</FONT></TD>
+<TD WIDTH="8%" VALIGN="TOP" COLSPAN=2>
+<FONT SIZE=2><P ALIGN="CENTER">x</FONT></TD>
+<TD WIDTH="9%" VALIGN="TOP" COLSPAN=2>
+<FONT SIZE=2><P ALIGN="CENTER">y</FONT></TD>
+<TD WIDTH="9%" VALIGN="TOP" COLSPAN=2>
+<FONT SIZE=2><P ALIGN="CENTER">z</FONT></TD>
+<TD WIDTH="9%" VALIGN="TOP" COLSPAN=2>&nbsp;</TD>
+<TD WIDTH="9%" VALIGN="TOP" COLSPAN=2>&nbsp;</TD>
+<TD WIDTH="9%" VALIGN="TOP" COLSPAN=2>&nbsp;</TD>
+<TD WIDTH="9%" VALIGN="TOP" COLSPAN=2>&nbsp;</TD>
+<TD WIDTH="9%" VALIGN="TOP" COLSPAN=2>&nbsp;</TD>
+<TD WIDTH="9%" VALIGN="TOP" COLSPAN=2>&nbsp;</TD>
+<TD WIDTH="9%" VALIGN="TOP">&nbsp;</TD>
+</TR>
+<TR><TD WIDTH="10%" VALIGN="TOP" COLSPAN=2>
+<FONT SIZE=2><P ALIGN="CENTER">260</FONT></TD>
+<TD WIDTH="8%" VALIGN="TOP" COLSPAN=2>&nbsp;</TD>
+<TD WIDTH="9%" VALIGN="TOP" COLSPAN=2>&nbsp;</TD>
+<TD WIDTH="9%" VALIGN="TOP" COLSPAN=2>&nbsp;</TD>
+<TD WIDTH="9%" VALIGN="TOP" COLSPAN=2>&nbsp;</TD>
+<TD WIDTH="9%" VALIGN="TOP" COLSPAN=2>
+<FONT SIZE=2><P ALIGN="CENTER">left-arrow</FONT></TD>
+<TD WIDTH="9%" VALIGN="TOP" COLSPAN=2>
+<FONT SIZE=2><P ALIGN="CENTER">up-arrow</FONT></TD>
+<TD WIDTH="9%" VALIGN="TOP" COLSPAN=2>
+<FONT SIZE=2><P ALIGN="CENTER">right-arrow</FONT></TD>
+<TD WIDTH="9%" VALIGN="TOP" COLSPAN=2>
+<FONT SIZE=2><P ALIGN="CENTER">down-arrow</FONT></TD>
+<TD WIDTH="9%" VALIGN="TOP" COLSPAN=2>
+<FONT SIZE=2><P ALIGN="CENTER">ins</FONT></TD>
+<TD WIDTH="9%" VALIGN="TOP">
+<FONT SIZE=2><P ALIGN="CENTER">del</FONT></TD>
+</TR>
+<TR><TD WIDTH="10%" VALIGN="TOP" COLSPAN=2>
+<FONT SIZE=2><P ALIGN="CENTER">270</FONT></TD>
+<TD WIDTH="8%" VALIGN="TOP" COLSPAN=2>
+<FONT SIZE=2><P ALIGN="CENTER">tab</FONT></TD>
+<TD WIDTH="9%" VALIGN="TOP" COLSPAN=2>
+<FONT SIZE=2><P ALIGN="CENTER">select</FONT></TD>
+<TD WIDTH="9%" VALIGN="TOP" COLSPAN=2>
+<FONT SIZE=2><P ALIGN="CENTER">enter</FONT></TD>
+<TD WIDTH="9%" VALIGN="TOP" COLSPAN=2>
+<FONT SIZE=2><P ALIGN="CENTER">bspc</FONT></TD>
+<TD WIDTH="9%" VALIGN="TOP" COLSPAN=2>&nbsp;</TD>
+<TD WIDTH="9%" VALIGN="TOP" COLSPAN=2>
+<FONT SIZE=2><P ALIGN="CENTER">shift</FONT></TD>
+<TD WIDTH="9%" VALIGN="TOP" COLSPAN=2>
+<FONT SIZE=2><P ALIGN="CENTER">fn</FONT></TD>
+<TD WIDTH="9%" VALIGN="TOP" COLSPAN=2>&nbsp;</TD>
+<TD WIDTH="9%" VALIGN="TOP" COLSPAN=2>&nbsp;</TD>
+<TD WIDTH="9%" VALIGN="TOP">&nbsp;</TD>
+</TR>
+</TABLE>
+</CENTER></P>
+
+<FONT SIZE=2>
+<B><P>Example : </P><DIR>
+<DIR>
+
+</B><P>Print "Press any key to continue"</P>
+<P>While(key=0)</P>
+<P>wend</P>
+<B></DIR>
+</DIR>
+
+<P>Topic :</B> Keyclick</P>
+<B><P>Language Level</B> : B2C Extension</P>
+<B><P>Effectivity :</B> B2C v3</P>
+<B><P>Syntax</B> : </P><DIR>
+<DIR>
+
+<P>Keyclick ON</P>
+<P>Keyclick OFF</P></DIR>
+</DIR>
+
+<B><P>Description :</P>
+<P>&#9;</B>Keyclick turns keyclicks on or off</P>
+<B><P>Example : </P><DIR>
+<DIR>
+
+</B><P>Keyclick Off</P>
+
+<B><P>&nbsp;</P></DIR>
+</DIR>
+
+<P>Topic :</B> Len</P>
+<B><P>Language Level</B> : B2C Extension</P>
+<B><P>Effectivity :</B> B2C v5</P>
+<B><P>Syntax</B> : </P><DIR>
+<DIR>
+
+<P>n = len(string)</P></DIR>
+</DIR>
+
+<B><P>Description :</P><DIR>
+<DIR>
+
+</B><P>Len accepts a string as a parameter and returns the number of characters in the string.</P></DIR>
+</DIR>
+
+<B><P>Example : </P><DIR>
+<DIR>
+
+</B><P>Dim name[32] as char</P>
+<P>Input &quot;Enter your name&quot;, name</P>
+<P>Print &quot;Your name has &quot;, len(name), &quot; characters in it&quot;</P>
+<B></DIR>
+</DIR>
+
+<P>Topic :</B> Line</P>
+<B><P>Language Level</B> : CyBasic-1</P>
+<B><P>Effectivity :</B> B2C v2</P>
+<B><P>Syntax</B> : </P><DIR>
+<DIR>
+
+<P>Line x0, y0, x1, y1</P></DIR>
+</DIR>
+
+<B><P>Description :</P><DIR>
+<DIR>
+
+</B><P>Line draws a line on the display in the current color (see Ink).  The parameters x0 and x1 should be between -80 and 79.  The parameters y0 and y1 should be between -50 and 49.  Values outside this range will be ineffective.</P></DIR>
+</DIR>
+
+<B><P>Example : </P><DIR>
+<DIR>
+
+</B><P>Paper 3</P>
+<P>Ink 1</P>
+<P>Cls</P>
+<P>'Draw an X</P>
+<P>Line -80, -40, 79, 39</P>
+<P>Line -80, 39, 79, -40</P>
+<B></DIR>
+</DIR>
+
+<P>Topic :</B> Load</P>
+<B><P>Language Level</B> : CyBasic-3</P>
+<B><P>Effectivity :</B> B2C v5</P>
+<B><P>Syntax</B> : </P><DIR>
+<DIR>
+
+<P>Load(filename)</P></DIR>
+</DIR>
+
+<B><P>Description :</P><DIR>
+<DIR>
+
+</B><P>Load will transfer a file from the .app archive to the Cybiko’s flash memory.  This is very useful for ensuring that the file is already on the Cybiko (.dl files in particular).  Load will not overwrite a file that already exists in the flash.</P></DIR>
+</DIR>
+
+<B><P>Example : </P><DIR>
+<DIR>
+
+</B><P>Load(&quot;serial.dl&quot;)</P>
+<B></DIR>
+</DIR>
+
+<P>Topic :</B> Menu</P>
+<B><P>Language Level</B> : B2C Extension</P>
+<B><P>Effectivity :</B> B2C v3</P>
+<B><P>Syntax</B> : </P><DIR>
+<DIR>
+
+<P>Menu var,str1,str2…</P></DIR>
+</DIR>
+
+<B><P>Description :</P><DIR>
+<DIR>
+
+</B><P>Menu will display a text menu of strings supplied on the command line.  The user can select one of the strings from the list using the up and down arrow keys.  Pressing the Enter key exits the Menu command.  The variable ‘var’ is set to the number (1,2…) of the menu item selected.  ‘var’ must be of type int. </P>
+
+<P>The menu uses the currently selected font and the currently selected ink and paper colors to display the menu.  The screen is <B>not</B> cleared before displaying the menu, so any graphics displayed is used as a background.  The menu does, however, draw a blank background just large enough to display the menu, centered in the screen. </P></DIR>
+</DIR>
+
+<B><P>Example : </P><DIR>
+<DIR>
+
+</B><P>Dim selection as int</P>
+<P>Top:</P>
+<P>Menu selection, &quot;Start&quot;, &quot;Scores&quot;, &quot;Quit&quot;</P>
+<P>On selection goto begin, high_score, get_out</P>
+<P>Begin: </P>
+<P>    Cls</P>
+<P>    Print &quot;Starting…&quot;</P>
+<P>    …</P>
+<P>    goto top</P>
+<P>High_score:</P>
+<P>    Score</P>
+<P>    Goto top</P></DIR>
+</DIR>
+
+<P>&#9;Get_out:</P>
+<P>&#9;    Exit program</P>
+<B>
+<P>Topic :</B> Menuxy</P>
+<B><P>Language Level</B> : B2C Extension</P>
+<B><P>Effectivity :</B> B2C v5</P>
+<B><P>Syntax</B> : </P><DIR>
+<DIR>
+
+<P>Menuxy x, y, var, str1, str2…</P></DIR>
+</DIR>
+
+<B><P>Description :</P><DIR>
+<DIR>
+
+</B><P>Menuxy will position (at X, Y) and display a text menu of strings supplied on the command line.  The user can select one of the strings from the list using the up and down arrow keys.  Pressing the Enter key exits the Menuxy command.  The variable ‘var’ is set to the number (1,2…) of the menu item selected.  ‘var’ must be of type int.</P>
+
+<P>The menuxy command uses the currently selected font and the currently selected ink and paper colors to display the menu.  The screen is <B>not</B> cleared before displaying the menu, so any graphics displayed is used as a background.  The menu does, however, draw a blank background just large enough to display the menu.</P></DIR>
+</DIR>
+
+<B><P>Example : </P><DIR>
+<DIR>
+
+</B><P>Dim selection as int</P>
+<P>Top:</P>
+<P>Menuxy 10, 20, selection, &quot;Start&quot;, &quot;Scores&quot;, &quot;Quit&quot;</P>
+<P>On selection goto begin, high_score, get_out</P>
+<P>Begin: </P>
+<P>    Cls</P>
+<P>    Print &quot;Starting…&quot;</P>
+<P>    …</P>
+<P>    goto top</P>
+<P>High_score:</P>
+<P>    Score</P>
+<P>    Goto top</P></DIR>
+</DIR>
+
+<P>&#9;Get_out:</P>
+<P>&#9;    Exit program</P>
+<B>
+<P>Topic :</B> Mid</P>
+<B><P>Language Level</B> : CyBasic-2</P>
+<B><P>Effectivity :</B> B2C v2</P>
+<B><P>Syntax</B> : </P><DIR>
+<DIR>
+
+<P>Mid destination, source, start {, length}</P></DIR>
+</DIR>
+
+<B><P>Description :</P><DIR>
+<DIR>
+
+</B><P>Mid will copy into the destination string from the source string starting at the start position.  If the length parameter is not specified then the entire length of the source string is copied.  If length is specified then only length characters are copied.</P></DIR>
+</DIR>
+
+<B><P>Example : </P><DIR>
+<DIR>
+
+</B><P>Dim name[32] as char</P>
+<P>Dim first5[10] as char</P>
+<P>Input "Name", name</P>
+<P>Mid first5, name, 0, 5</P>
+<P>Print "First part=", first5</P>
+<B></DIR>
+</DIR>
+
+<P>Topic :</B> Move</P>
+<B><P>Language Level</B> : B2C Extension</P>
+<B><P>Effectivity :</B> B2C v2c</P>
+<B><P>Syntax</B> : </P><DIR>
+<DIR>
+
+<P>Move n, x, y [, z [,mode]]</P></DIR>
+</DIR>
+
+<B><P>Description :</P>
+</B><P>&#9;Move moves a sprite on the screen.  'n' is the sprite number (0-32), 'x' is the horizontal coordinate, 'y' is the vertical coordinate, 'z' is optional and is the bitmap within the sprite to display (this is usually used for animation), finally the optional 'mode' is the direction to 'flip' the bitmap before displaying (FLIP_X for horizontal flip, FLIP_Y for vertical, and FLIP_X+FLIP_Y for both).  This feature allows you to reuse the bitmap.  For example, when walking to the left, a character should be flipped horizontally while not flipped at all while walking right.</P>
+<P>&#9;You must do a redraw to see the results of the move command.  Because of the cost of doing a redraw, it is advisable to do all the moves for a 'turn' and then a single redraw.</P>
+<B><P>Example</P>
+<P>&#9;</B>Dim x as int</P>
+<P>&#9;Dim y as int</P>
+<P>&#9;Dim z as int</P>
+<P>&#9;Dim mode as int</P>
+<P>&#9;Sprite 1, "lemming.pic"</P>
+<P>&#9;X=0</P>
+<P>&#9;Y=0</P>
+<P>&#9;Z=0</P>
+<P>&#9;Mode=0</P>
+<P>&#9;While 1</P>
+<P>&#9;&#9;If key(#KEY_LEFT) then </P><DIR>
+<DIR>
+<DIR>
+<DIR>
+
+<P>x=x-1</P>
+<P>mode = FLIP_X</P></DIR>
+</DIR>
+</DIR>
+</DIR>
+
+<P>&#9;&#9;endif</P>
+<P>&#9;&#9;If key(#KEY_RIGHT) then </P><DIR>
+<DIR>
+<DIR>
+<DIR>
+
+<P>x=x+1</P>
+<P>mode=FLIP_Y</P></DIR>
+</DIR>
+</DIR>
+</DIR>
+
+<P>&#9;&#9;Endif</P>
+<P>&#9;&#9;Move 1,x,y,z,mode</P>
+<P>&#9;&#9;Redraw</P>
+<P>&#9;wend</P>
+
+<B><P>&nbsp;</P>
+<P>Topic :</B> Music</P>
+<B><P>Language Level</B> : B2C Extension</P>
+<B><P>Effectivity :</B> B2C v2c</P>
+<B><P>Syntax</B> : </P><DIR>
+<DIR>
+
+<P>Music [Background | Foreground], "filename.mus"</P>
+<P>Music [Background | Foreground], [STOP | PLAY]</P></DIR>
+</DIR>
+
+<B><P>Description :</P>
+<P>&#9;</B>The Music command loads, plays, and stops music playing on the Cybiko.  There are 2 "channels" of sound play on the Cybiko - the Background and the Foreground.  The first form of the command loads a file which was bound into the app using the filer.exe command.  The second form of the command starts or stops music playing.</P>
+<B><P>Example</P>
+<P>&#9;</B>Dim x as int</P>
+<P>&#9;Dim y as int</P>
+<P>&#9;Dim z as int</P>
+<P>&#9;Dim a as int</P>
+<P>&#9;Dim b as int</P>
+<P>&#9;Music Background, "lemmings.mus"</P>
+<P>&#9;Music Background, Play</P>
+<P>&#9;Sprite 1, "lemming.pic"</P>
+<P>&#9;Sprite 2, "other.pic</P>
+<P>&#9;X=0</P>
+<P>&#9;Y=0</P>
+<P>&#9;Z=0</P>
+<P>&#9;A=-80</P>
+<P>&#9;B=-50</P>
+<P>&#9;Move 2, a, b</P>
+<P>&#9;While 1</P>
+<P>&#9;&#9;If key(264) then x=x-1</P>
+<P>&#9;&#9;If key(266) then x=x+1</P>
+<P>&#9;&#9;Move x,y,z</P>
+<P>&#9;&#9;Beep 0</P>
+<P>&#9;&#9;Vibrate 0</P>
+<P>&#9;&#9;If Collision(1,2) then </P><DIR>
+<DIR>
+<DIR>
+<DIR>
+
+<P>beep 1</P>
+<P>vibrate 128</P></DIR>
+</DIR>
+</DIR>
+</DIR>
+
+<P>&#9;&#9;Redraw</P>
+<P>&#9;wend<B> </P>
+<P>Topic :</B> Nextfile</P>
+<B><P>Language Level</B> : B2C Extension</P>
+<B><P>Effectivity :</B> B2C v3e</P>
+<B><P>Syntax</B> : </P><DIR>
+<DIR>
+
+<P>rc = Nextfile <I>( filename )</P></DIR>
+</DIR>
+
+</I><B><P>Description :</P><DIR>
+<DIR>
+
+</B><P>The Nextfile function will retrieve the next file established by the Findfile command.  It returns FALSE when there are no more files to find and TRUE otherwise.</P></DIR>
+</DIR>
+
+<B><P>Example :</P>
+</B><P>&#9;Dim s[32] as char</P><DIR>
+<DIR>
+
+<P>Findfile &quot;*.app&quot;</P>
+<P>While (nextfile(s))</P>
+<P>&#9;Print s</P>
+<P>wend</P>
+<B></DIR>
+</DIR>
+
+<P>Topic :</B> On-Gosub</P>
+<B><P>Language Level</B> : B2C Extension</P>
+<B><P>Effectivity :</B> B2C v3</P>
+<B><P>Syntax</B> : </P><DIR>
+<DIR>
+
+<P>On n Gosub sub1, sub2…</P></DIR>
+</DIR>
+
+<B><P>Description :</P><DIR>
+<DIR>
+
+</B><P>On Gosub will call a subroutine based on the value of ‘n’.  If n=1 then sub1 is called, if n=2 then sub2 is called, etc…  If n=0 or greater than the number of supplied subs, processing continues at the next command. </P></DIR>
+</DIR>
+
+<B><P>Example : </P>
+<P>&#9;</B>Sub start_sub</P>
+<P>&#9;&#9;Print &quot;started&quot;</P>
+<P>&#9;End sub</P>
+<P>&#9;Sub scores_sub</P>
+<P>&#9;&#9;Score</P>
+<P>&#9;End sub</P>
+<P>&#9;Sub quit_sub</P>
+<P>&#9;&#9;Exit Program</P>
+<P>&#9;End Sub</P>
+<B><P>&#9;</B>Dim n as int</P><DIR>
+<DIR>
+
+<P>Menu n, &quot;Start&quot;, &quot;Scores&quot;, &quot;Quit&quot;</P>
+<P>On n Gosub start_sub, scores_sub, quit_sub</P>
+<B></DIR>
+</DIR>
+
+<P>Topic :</B> On-Goto</P>
+<B><P>Language Level</B> : B2C Extension</P>
+<B><P>Effectivity :</B> B2C v3</P>
+<B><P>Syntax</B> : </P><DIR>
+<DIR>
+
+<P>On n Goto label1, label2, …</P></DIR>
+</DIR>
+
+<B><P>Description :</P><DIR>
+<DIR>
+
+</B><P>On Goto will branch to a label based on the value of ‘n’.  If n=1, control will be passed to label1, if n=2 control will be passed to label2, etc… </P></DIR>
+</DIR>
+
+<B><P>Example : </P><DIR>
+<DIR>
+
+</B><P>Dim selection as int</P>
+<P>Top:</P>
+<P>Menu selection, &quot;Start&quot;, &quot;Scores&quot;, &quot;Quit&quot;</P>
+<P>On selection goto begin, high_score, get_out</P>
+<P>Begin: </P>
+<P>    Cls</P>
+<P>    Print &quot;Starting…&quot;</P>
+<P>    …</P>
+<P>    goto top</P>
+<P>High_score:</P>
+<P>    Score</P>
+<P>    Goto top</P></DIR>
+</DIR>
+
+<P>&#9;Get_out:</P>
+<P>&#9;    Exit program</P>
+
+<B><P>&nbsp;</P>
+<P>Topic :</B> OnMessage</P>
+<B><P>Language Level</B> : B2C Extension</P>
+<B><P>Effectivity :</B> B2C v3d</P>
+<B><P>Syntax</B> : </P><DIR>
+<DIR>
+
+<P>sub onMessage(cyid as long, msgno as int, buf[] as char)</P></DIR>
+</DIR>
+
+<B><P>Description :</P><DIR>
+<DIR>
+
+</B><P>OnMessage is a user-supplied function.  It is called &quot;spontaneously&quot; (like an interrupt) whenever a message enters the message queue for the currently running app.  (In fact the message queue is checked during calls to keyboard input routines).  Do not call keyboard functions (key, getchar, input, etc... during onmessage() calls)</P></DIR>
+</DIR>
+
+<B><P>Example : </P><DIR>
+<DIR>
+
+</B><P>sub onMessage(cyid as long, msgno as int, buf[] as char)</P>
+<P>&#9;if buf[0] = ‘1’ then beep 10</P>
+<P>&#9;else beep -1</P>
+<P>end sub</P>
+</DIR>
+</DIR>
+
+<B><P>See Also:</P><DIR>
+<DIR>
+
+</B><P>SendMessage, UserMenu, toCyid, toUser, Tokenize</P>
+<B></DIR>
+</DIR>
+
+<P>Topic :</B> Open</P>
+<B><P>Language Level</B> : CyBasic-1</P>
+<B><P>Effectivity :</B> B2C v2</P>
+<B><P>Syntax</B> : </P><DIR>
+<DIR>
+
+<P>Open pathname {For mode} As filenumber</P></DIR>
+</DIR>
+
+<B><P>Description :</P><DIR>
+<DIR>
+
+</B><P>Open opens a file for reading, writing or append access.  Pathname is a string expression (constant quoted string or character array variable) which points to the pathname of a file.  Optional mode is one of READ, ARCHIVE, WRITE, or APPEND.  Filename is an integer expression which indicates the handle for the file.  Use filenumber in future calls to get, put, and close.</P>
+
+<P>READ=open a file for read access only</P>
+<P>ARCHIVE=open a file from the archive for read access only</P>
+<P>WRITE=open a file for write access only</P>
+<P>APPEND=open a file for writing to the end of the file</P>
+</DIR>
+</DIR>
+
+<B><P>Errors:</P><DIR>
+<DIR>
+
+</B><P>#ERROR_FILE_NUMBER – the file number is outside the valid range</P>
+<P>#ERROR_FILE_ALREADY_OPEN – the file is already open and should first be closed</P>
+<P>#ERROR_FILE_OPEN – there was a problem opening the file for READ or APPEND access</P>
+<P>#ERROR_FILE_CREATE – there was a problem opening the file for WRITE access</P></DIR>
+</DIR>
+
+<B><P>Example : </P><DIR>
+<DIR>
+
+</B><P>Dim foo as int</P>
+<P>Foo = 1</P>
+<P>Open "a.dat" For Write as 1</P>
+<P>if error then exit program</P>
+<P>Put 1, 0, foo</P>
+<P>Close 1</P>
+<B></DIR>
+</DIR>
+
+<P>Topic :</B> OPTION-3DROOMS</P>
+<B><P>Language Level</B> : B2C Extension</P>
+<B><P>Effectivity :</B> B2C v5</P>
+<B><P>Syntax</B> : </P><DIR>
+<DIR>
+
+<P>OPTION 3DROOMS n</P></DIR>
+</DIR>
+
+<B><P>Description :</P><DIR>
+<DIR>
+
+</B><P>OPTION 3DROOMS will set the maximum number of rooms available for the 3D software.  The default is 8 rooms. </P></DIR>
+</DIR>
+
+<B><P>Example :</P>
+<P>&#9;</B>OPTION 3DROOMS 16</P>
+<B>
+<P>&nbsp;</P>
+<P>Topic :</B> OPTION-3DSPRITES</P>
+<B><P>Language Level</B> : B2C Extension</P>
+<B><P>Effectivity :</B> B2C v5</P>
+<B><P>Syntax</B> : </P><DIR>
+<DIR>
+
+<P>OPTION 3DSPRITES n</P></DIR>
+</DIR>
+
+<B><P>Description :</P><DIR>
+<DIR>
+
+</B><P>OPTION 3DSPRITES sets the maximum number of sprites available for the 3D software.  The default is 8 sprites. </P></DIR>
+</DIR>
+
+<B><P>Example :</P>
+<P>&#9;</B>OPTION 3DSPRITES 16</P>
+<B>
+<P>Topic :</B> OPTION-C_STRINGS</P>
+<P>&#9;OPTION CYBASIC_STRINGS (default)</P>
+<B><P>Language Level</B> : B2C Extension</P>
+<B><P>Effectivity :</B> B2C v2c</P>
+<B><P>Syntax</B> : </P><DIR>
+<DIR>
+
+<P>OPTION C_STRINGS</P>
+<P>OPTION CYBASIC_STRINGS</P></DIR>
+</DIR>
+
+<B><P>Description :</P>
+<P>&#9;</B>The C compiler offers a powerful string formatting capability.  Characters placed in a literal string can be preceded by the backslash character (\) also known as the escape character.  Using this escape character special characters (like \n for newline and \003 for ^C) could be inserted into the middle of a string.  </P>
+<P>However Cybasic does not offer this capability.  To solve this delemma, the OPTION C_STRINGS command was introduced.  If OPTION C_STRINGS appears at the top of a program, the escape character is interpretted as a C string.  However if OPTION CYBASIC_STRINGS appears at the top of a program, the escape character has no special meaning.  The default is OPTION CYBASIC_STRINGS.</P>
+<B><P>Example :</P>
+<P>&#9;</B>OPTION C_STRINGS</P>
+<P>&#9;Print "\"Hello World\""</P>
+<B><P>Results:</P>
+<P>&#9;"Hello World"</P>
+
+<P>&nbsp;</P>
+<P>Topic :</B> OPTION-C_COORDS</P>
+<P>&#9;OPTION CYBASIC_COORDS (default)</P>
+<B><P>Language Level</B> : B2C Extension</P>
+<B><P>Effectivity :</B> B2C v3</P>
+<B><P>Syntax</B> : </P><DIR>
+<DIR>
+
+<P>OPTION C_COORDS</P>
+<P>OPTION CYBASIC_COORDS</P></DIR>
+</DIR>
+
+<B><P>Description :</P>
+<P>&#9;</B>Normally, the B2C screen coordinates emulate the Cybasic default – (-80,-50) (lower left) to (79,49) (upper right).  This can be selected with the compiler option OPTION CYBASIC_COORDS (default).  The C coordinate system is (0,0) (upper left) to (159,99) (lower right).  This mode can be selected with the compiler option OPTION C_COORDS. </P>
+<B><P>Example :</P>
+<P>&#9;</B>OPTION C_COORDS</P>
+<P>&#9;Line 0,0,199,99  ‘draw an x</P>
+<P>&#9;Line 199,0,0,99</P>
+<B>
+<P>&nbsp;</P>
+<P>Topic :</B> OPTION-ESCAPE</P>
+<B><P>Language Level</B> : B2C Extension</P>
+<B><P>Effectivity :</B> B2C v3a</P>
+<B><P>Syntax</B> : </P><DIR>
+<DIR>
+
+<P>OPTION ESCAPE ON (default)</P>
+<P>OPTION ESCAPE OFF</P></DIR>
+</DIR>
+
+<B><P>Description :</P><DIR>
+<DIR>
+
+</B><P>The OPTION ESCAPE function enables and disables the escape key checking that occurs inside a for or while loop. Escape key checking can interfere with normal key() function calls by swalling key events.  For interactive games OPTION ESCAPE OFF is recommended.</P></DIR>
+</DIR>
+
+<B><P>Example : </P><DIR>
+<DIR>
+
+</B><P>OPTION ESCAPE OFF</P>
+<B></DIR>
+</DIR>
+
+<P>Topic :</B> OPTION-HELP</P>
+<B><P>Language Level</B> : B2C Extension</P>
+<B><P>Effectivity :</B> B2C v5</P>
+<B><P>Syntax</B> : </P><DIR>
+<DIR>
+
+<P>OPTION HELP ON (default)</P>
+<P>OPTION HELP OFF</P></DIR>
+</DIR>
+
+<B><P>Description :</P><DIR>
+<DIR>
+
+</B><P>OPTION HELP controls the action of the HELP key.  With OPTION HELP ON, when the user presses the HELP (?) key the help file is displayed.  With OPTION HELP OFF the HELP key is ignored.</P></DIR>
+</DIR>
+
+<B><P>Example : </P><DIR>
+<DIR>
+
+</B><P>OPTION HELP OFF</P>
+<B></DIR>
+</DIR>
+
+<P>Topic :</B> OPTION-MAIN</P>
+<B><P>Language Level</B> : B2C Extension</P>
+<B><P>Effectivity :</B> B2C v4</P>
+<B><P>Syntax</B> : </P><DIR>
+<DIR>
+
+<P>OPTION MAIN ON (default)</P>
+<P>OPTION MAIN OFF</P></DIR>
+</DIR>
+
+<B><P>Description :</P><DIR>
+<DIR>
+
+</B><P>The OPTION MAIN function enables and disables main function processing.  Normally a B2C file uses all commands not in functions as the main program.  Turning OPTION MAIN OFF will ignore all such commands.  This is used to create modular B2C files with just functions in them.   Heretofore B2C recognized only 1 source module.  Now it is possible to have a library of functions that are reusable.</P>
+
+<P>Modules with OPTION MAIN OFF inherits the other options from the MAIN module.</P>
+
+<P>NOTE: No provision for the prototyping of functions has been made.  This will come in a later release.  The Cybiko compiler will generate a abnormal app without proper prototypes.  Until a provision is made for them, use the C prototypes and &quot;outline&quot; them.</P>
+</DIR>
+</DIR>
+
+<B><P>Example : </P><DIR>
+<DIR>
+
+</B><P>OPTION MAIN OFF</P>
+<B></DIR>
+</DIR>
+
+<P>Topic :</B> OPTION-MULTITASK</P>
+<B><P>Language Level</B> : B2C Extension</P>
+<B><P>Effectivity :</B> B2C v5</P>
+<B><P>Syntax</B> : </P><DIR>
+<DIR>
+
+<P>OPTION MULTITASK ON (default)</P>
+<P>OPTION MULTITASK OFF</P></DIR>
+</DIR>
+
+<B><P>Description :</P><DIR>
+<DIR>
+
+</B><P>OPTION MULTITASK OFF is mainly for the HELP key. When the HELP key is pressed it spawns a new thread which displays the help info.  Normally the video game or app continues to run in MULTITASKING MODE.  This is bad because it can erase the help screen and / or cause the player to lose "lives" or "health points" etc... because the game is continuing on and the player cannot see it.</P>
+
+<P>Specifying OPTION MULTITASK OFF means that when the HELP screen is displayed, the game pauses.  Now this may not be desired.  For example a CHAT application could drop messages.  So, MULTITASKING is a compile-time option.</P></DIR>
+</DIR>
+
+<B><P>Example : </P><DIR>
+<DIR>
+
+</B><P>OPTION MULTITASK OFF</P>
+<B></DIR>
+</DIR>
+
+<P>Topic :</B> OPTION-SHOW</P>
+<B><P>Language Level</B> : B2C Extension</P>
+<B><P>Effectivity :</B> B2C v3</P>
+<B><P>Syntax</B> : </P><DIR>
+<DIR>
+
+<P>OPTION SHOW OFF</P>
+<P>OPTION SHOW ON (default)</P></DIR>
+</DIR>
+
+<B><P>Description :</P>
+<P>&#9;</B>Normally the B2C graphics commands (line, point, printxy) immediately display their results on the Cybiko screen. This mode is OPTION SHOW ON and is the default.  However, if OPTION SHOW OFF is selected then the graphics commands are buffered until a Redraw Show command is executed.  This is a significant performance enhancement.</P>
+<B><P>Example :</P>
+<P>&#9;</B>OPTION SHOW OFF</P>
+<P>&#9;For I=0 to 99</P>
+<P>&#9;Line 0,0,79,i  ‘draw a fan</P>
+<P>&#9;Next</P>
+<P>&#9;Redraw Show<B> </P>
+<P>Topic :</B> OPTION-SPRITES</P>
+<B><P>Language Level</B> : B2C Extension</P>
+<B><P>Effectivity :</B> B2C v3</P>
+<B><P>Syntax</B> : </P><DIR>
+<DIR>
+
+<P>OPTION SPRITES n</P></DIR>
+</DIR>
+
+<B><P>Description :</P>
+<P>&#9;</B>The OPTION SPRITES command determines the maximum number of sprites that can be processed by B2C.  The default is 32.</P>
+<B><P>Example :</P>
+<P>&#9;</B>OPTION SPRITES 16</P>
+<P>&#9;For I=0 to 15</P>
+<P>&#9;Sprite I, &quot;sprite.pic&quot;</P>
+<P>&#9;Next</P>
+<B>
+<P>Topic :</B> Outline</P>
+<B><P>Language Level</B> : B2C Extension</P>
+<B><P>Effectivity :</B> B2C v3a</P>
+<B><P>Syntax</B> : </P><DIR>
+<DIR>
+
+<P>Outline <I>c-code</P></DIR>
+</DIR>
+
+</I><B><P>Description :</P><DIR>
+<DIR>
+
+</B><P>Outline will pass the associated C-code directly through to the output file.  This is useful for creating functions in B2C which do not already exist.  Outline code is placed in the .c file <I>outside</I> the main function.</P></DIR>
+</DIR>
+
+<B><P>Example : </P><DIR>
+<DIR>
+
+</B><P>…</P>
+<B></DIR>
+</DIR>
+
+<P>Topic :</B> Page</P>
+<B><P>Language Level</B> : B2C Extension</P>
+<B><P>Effectivity :</B> B2C v5</P>
+<B><P>Syntax</B> : </P><DIR>
+<DIR>
+
+<P>Page 0/1</P></DIR>
+</DIR>
+
+<B><P>Description :</P><DIR>
+<DIR>
+
+</B><P>Page will set the current graphics page.  The Cybiko has 2 graphics pages (page 0 and page 1).  The default is Page 0.  All graphics commands will be displayed on the currently selected page.  Changing the graphics page starts rendering on that page.  You can render graphics on one page while displaying the other one (this requires OPTION SHOW OFF and REDRAW SHOW).  This is called &quot;double-buffering&quot;.  </P></DIR>
+</DIR>
+
+<B><P>Example : </P>
+</B></FONT><FONT FACE="Courier New" SIZE=1><P>&#9;OPTION SHOW OFF</P><DIR>
+<DIR>
+
+<P>page 0   ‘display page 0</P>
+<P>cls ‘ clear page 0</P>
+<P>rect 0,0,40,40 ‘draw a rectangle on page 0</P>
+<P>redraw show ‘ show page 0</P>
+
+<P>page 1 ‘select page 1</P>
+<P>cls ‘ clearing page 1 does not affect page 0</P>
+<P>rectfill -40,40,40,40 ‘ draw a filled rect on page 1</P>
+
+<P>‘now alternate between the two pages</P>
+<P>while (key(#KEY_ENTER)=0)</P><DIR>
+<DIR>
+
+<P>page 0 ‘ select page 0</P>
+<P>redraw show ‘ show page 0</P>
+<P>wait 10</P>
+<P>page 1 ‘select page 1</P>
+<P>redraw show ‘show page 1</P>
+<P>wait 10 </P></DIR>
+</DIR>
+
+<P>wend</P>
+</FONT><B><FONT SIZE=2></DIR>
+</DIR>
+
+<P>Topic :</B> Pagecopy</P>
+<B><P>Language Level</B> : B2C Extension</P>
+<B><P>Effectivity :</B> B2C v5</P>
+<B><P>Syntax</B> : </P><DIR>
+<DIR>
+
+<P>Pagecopy from, to, x, y, w, h</P></DIR>
+</DIR>
+
+<B><P>Description :</P><DIR>
+<DIR>
+
+</B><P>The Cybiko has 2 graphics pages (see the Page command, above).  Pagecopy will transfer a rectangle from one page to another.  The graphics &quot;patch&quot; will be transferred from the FROM page to the TO page and to the same X, Y coordinates.  This is useful for quickly rendering a piece of a background page to the currently displayed page, especially video games.  One can erase a sprite from page 0 by copying a rectangle from the background screen in page 1.  This is faster than repainting the entire background sprite and repainting all the character sprites.</P></DIR>
+</DIR>
+
+<B><P>Example : </P><DIR>
+<DIR>
+
+</B></FONT><FONT FACE="Courier New" SIZE=1><P>OPTION SHOW OFF</P>
+<P>OPTION ESCAPE OFF</P>
+<P>OPTION C_COORDS</P>
+
+<P>dim x as int</P>
+<P>dim x1 as int</P>
+<P>dim y as int</P>
+
+<P>Sub redraw_mario</P>
+<P>    pagecopy 1, 0, x1, y, 20, 20 'erase mario from old x,y with the background</P>
+<P>    move 1,x,y 'paint mario</P>
+<P>&#9;redraw 1</P>
+<P>    x1 = x 'set the old x to the current x</P>
+<P>    redraw show ' show page 0</P>
+<P>end sub</P>
+
+<P>Sprite 0, "background.pic"</P>
+<P>Sprite 1, "mario.pic"</P>
+
+<P>page 1 'switch to page1</P>
+<P>move 0, 0, 0 ' paint the background to page 1</P>
+<P>redraw 0</P>
+
+<P>page 0 ' back to page 0</P>
+<P>move 0, 0, 0</P>
+<P>redraw 0 ' paint the background to page 0</P>
+
+<P>' initialize mario’s position</P>
+<P>x=0</P>
+<P>x1=x</P>
+<P>y=50</P>
+
+<P>move 1, x, y  'paint mario</P>
+<P>redraw 1</P>
+<P>redraw show    'show page 0 to the user</P>
+
+<P>while true</P>
+<P>&#9;if key(#KEY_LEFT) then </P>
+<P>&#9;&#9;x=x-1</P>
+<P>&#9;&#9;redraw_mario</P>
+<P>&#9;endif</P>
+<P>&#9;if key(#KEY_RIGHT) then </P>
+<P>&#9;&#9;x=x+1</P>
+<P>&#9;&#9;redraw_mario</P>
+<P>&#9;endif</P>
+<P>    if key(#KEY_SPACE) then exit program</P>
+<P>wend</P>
+</FONT><B><FONT SIZE=2></DIR>
+</DIR>
+
+<P>Topic :</B> Paper</P>
+<B><P>Language Level</B> : CyBasic-1</P>
+<B><P>Effectivity :</B> B2C v2</P>
+<B><P>Syntax</B> : </P><DIR>
+<DIR>
+
+<P>Paper color</P></DIR>
+</DIR>
+
+<B><P>Description :</P><DIR>
+<DIR>
+
+</B><P>Paper sets the background color of the display.  The color parameter can be any numeric expression which evaluates to the numbers 0, 1, 2,3.  The Paper will not take effect until either the next Print or Cls command.</P><DIR>
+<DIR>
+
+<P>0: WHITE</P>
+<P>1: LTGREY</P>
+<P>2: DKGREY</P>
+<P>3: BLACK<B> </P></DIR>
+</DIR>
+</DIR>
+</DIR>
+
+<P>Example : </P><DIR>
+<DIR>
+
+</B><P>Paper 3</P>
+<P>Ink 1</P>
+<P>Cls</P>
+<P>Print "Top of the screen"</P>
+<B></DIR>
+</DIR>
+
+<P>Topic :</B> Point</P>
+<B><P>Language Level</B> : CyBasic-1</P>
+<B><P>Effectivity :</B> B2C v2</P>
+<B><P>Syntax</B> : </P><DIR>
+<DIR>
+
+<P>Point x, y</P></DIR>
+</DIR>
+
+<B><P>Description :</P><DIR>
+<DIR>
+
+</B><P>Point sets a single pixel on the display in the current color (see Ink).  The parameter x should be between -80 and 79.  The parameter y should be between -50 and 49.  Values outside this range will be ineffective.</P></DIR>
+</DIR>
+
+<B><P>Example : </P><DIR>
+<DIR>
+
+</B><P>Paper 3</P>
+<P>Ink 1</P>
+<P>Cls</P>
+<P>Point 0, 0 ' set a dot in the center of the display</P>
+<B></DIR>
+</DIR>
+
+<P>Topic :</B> Print</P>
+<B><P>Language Level</B> : CyBasic-1</P>
+<B><P>Effectivity :</B> B2C v2</P>
+<B><P>Syntax</B> : </P><DIR>
+<DIR>
+
+<P>Print {expr {,expr…}}</P></DIR>
+</DIR>
+
+<B><P>Description :</P><DIR>
+<DIR>
+
+</B><P>The Print keyword displays a line of output on the Cybiko display.  Print will display any expression.  If the text of the display is greater than the number of lines in the Display, then the display will scroll up to reveal more text.  The number of lines in the display is dependent on the Font used (see Font command).  The number of characters per line is also dependent on the Font used.  If the number of characters printed is greater than the width of the display, the output will be truncated.  Print automatically adds a newline to the end of the line.</P></DIR>
+</DIR>
+
+<B><P>Example</P>
+<P>&#9;</B>Dim age as int</P>
+<P>&#9;Dim name[32] as char</P>
+<P>&#9;Input "age:", age</P>
+<P>&#9;Input "name:", name</P>
+<P>&#9;Print "You are ", name, "and your age is", age</P>
+<B>
+<P>Topic :</B> Printno</P>
+<B><P>Language Level</B> : CyBasic-1</P>
+<B><P>Effectivity :</B> B2C v2</P>
+<B><P>Syntax</B> : </P><DIR>
+<DIR>
+
+<P>Print# n {expr {,expr…}}</P></DIR>
+</DIR>
+
+<B><P>Description :</P><DIR>
+<DIR>
+
+</B><P>The Print# keyword writes a line of output on file number ‘n’.  Print# will write any expression.  Print# automatically adds a newline to the end of the line.  This is similar to the Print command for the display but for files.</P></DIR>
+</DIR>
+
+<B><P>Error :</P><DIR>
+<DIR>
+
+</B><P>#ERROR_FILE_NUMBER – the file number specified is out of the valid range</P>
+<P>#ERROR_FILE_UNOPENED – the file has not been opened</P>
+<P>#ERROR_FILE_WRITE – there was an error while attempting to write the file</P></DIR>
+</DIR>
+
+<B><P>Example :</P>
+<P>&#9;</B>Dim age as int</P>
+<P>&#9;Dim name[32] as char</P>
+<P>&#9;Input "age:", age</P>
+<P>&#9;Input "name:", name</P>
+<P>&#9;Print# 1, "You are ", name, "and your age is", age</P>
+<P>&#9;if error then exit program</P>
+<B>
+<P>Topic :</B> Printxy</P>
+<B><P>Language Level</B> : CyBasic-1</P>
+<B><P>Effectivity :</B> B2C v2</P>
+<B><P>Syntax</B> : </P><DIR>
+<DIR>
+
+<P>Printxy x, y {, expr …}</P></DIR>
+</DIR>
+
+<B><P>Description :</P><DIR>
+<DIR>
+
+</B><P>Printxy will print the expressions (see Print) at the x and y coordinates specified.</P></DIR>
+</DIR>
+
+<B><P>Example : </P><DIR>
+<DIR>
+
+</B><P>Printxy 0, 0, "Center"</P>
+<B></DIR>
+</DIR>
+
+<P>Topic :</B> Put</P>
+<B><P>Language Level</B> : CyBasic-1</P>
+<B><P>Effectivity :</B> B2C v2</P>
+<B><P>Syntax</B> : </P><DIR>
+<DIR>
+
+<P>Put filenumber, {bytepos},{ variable}</P></DIR>
+</DIR>
+
+<B><P>Description :</P><DIR>
+<DIR>
+
+</B><P>Put writes a variable to a file at the current or specified byte position.  The filenumber must be the number of a file already openned for Write or Append access.  If bytepos is specified, the variable will be written at that position in the file.  If bytepos is unspecified, then the current position is used.  If the variable is left unspecied, then the file pointer is changed to bytepos and no data is written.</P></DIR>
+</DIR>
+
+<B><P>Error : </P><DIR>
+<DIR>
+
+</B><P>#ERROR_FILE_NUMBER – the file number is outside the valid range</P>
+<P>#ERROR_FILE_UNOPENED – the file has not been opened</P>
+<P>#ERROR_FILE_WRITE – the file could not be written</P>
+<P>#ERROR_FILE_SEEK – the file could not be positioned</P></DIR>
+</DIR>
+
+<B><P>Example : </P><DIR>
+<DIR>
+
+</B><P>Dim foo as int</P>
+<P>Foo = 1</P>
+<P>Open "a.dat" For Write as 1</P>
+<P>Put 1, 0, foo</P>
+<P>if error then exit program</P>
+<P>Close 1</P>
+<B></DIR>
+</DIR>
+
+<P>Topic :</B> Redraw</P>
+<B><P>Language Level</B> : B2C Extension</P>
+<B><P>Effectivity :</B> B2C v2c</P>
+<B><P>Syntax</B> : </P><DIR>
+<DIR>
+
+<P>Redraw All</P>
+<P>Redraw n</P>
+<P>Redraw Show</P></DIR>
+</DIR>
+
+<B><P>Description :</P>
+</B><P>&#9;The Redraw command has 3 modes of operations</P>
+<P>&#9;Redraw All :</P><DIR>
+<DIR>
+<DIR>
+<DIR>
+
+<P>Redraw All will redraw all sprites from Sprite 0 through Sprite n (which is defined by the Option Sprites command).  Sprite 0 is drawn first.  If it is not defined then the entire screen is erased with the currently defined paper color.  If Sprite 0 is defined then it is tiled against the background.  Setting the X,Y coordinates of Sprite 0 (with the Move Command) can create a scrolling effect.  The result of the Redraw command is immediately visible on the display.</P></DIR>
+</DIR>
+
+<P>Redraw n:</P><DIR>
+<DIR>
+
+<P>Redraw n will draw only the sprite ‘n’ onto the display.  However it will not immediately show the result of the redrawing.  A call to Redraw Show is needed to make the result visible.  This is a performance enhancement.  You should redraw all the sprites in the current frame using Redraw n and call Redraw Show only after all sprites have been Redrawn.</P></DIR>
+</DIR>
+</DIR>
+</DIR>
+
+<P>&#9;Redraw Show:</P><DIR>
+<DIR>
+<DIR>
+<DIR>
+
+<P>For all graphics commands (line, point, printxy), the user will see the result of the command only if OPTION SHOW ON is set.  If OPTION SHOW OFF is set then Redraw Show will update the display with the results of the graphics command.  This is also true of sprites drawn with the Redraw n command.</P></DIR>
+</DIR>
+</DIR>
+</DIR>
+
+<B><P>Example</P>
+<P>&#9;</B>Dim x as int</P>
+<P>&#9;Dim y as int</P>
+<P>&#9;Dim z as int</P>
+<P>&#9;Sprite 1, "lemming.pic"</P>
+<P>&#9;X=0</P>
+<P>&#9;Y=0</P>
+<P>&#9;Z=0</P>
+<P>&#9;While 1</P>
+<P>&#9;&#9;If key(264) then x=x-1</P>
+<P>&#9;&#9;If key(266) then x=x+1</P>
+<P>&#9;&#9;Move 1,x,y,z</P>
+<P>&#9;&#9;Redraw</P>
+<P>&#9;Wend</P>
+<B>
+<P>Topic :</B> Remove</P>
+<B><P>Language Level</B> : Cybasic3</P>
+<B><P>Effectivity :</B> B2C v5</P>
+<B><P>Syntax</B> : </P><DIR>
+<DIR>
+
+<P>Remove filename</P></DIR>
+</DIR>
+
+<B><P>Description :</P>
+</B><P>&#9;Remove will delete the named file from the Cybiko’s flash memory.</P>
+<B><P>Example :</P>
+</B><P>&#9;Remove &quot;foo.dat&quot;</P>
+<B>
+<P>Topic :</B> Rename</P>
+<B><P>Language Level</B> : B2C Extension</P>
+<B><P>Effectivity :</B> B2C v5</P>
+<B><P>Syntax</B> : </P><DIR>
+<DIR>
+
+<P>Rename old-filename, new-filename</P></DIR>
+</DIR>
+
+<B><P>Description :</P>
+</B><P>&#9;Rename will rename the old filename to the new filename.</P>
+<B><P>Example :</P>
+</B><P>&#9;Rename &quot;old.dat&quot;, &quot;new.dat&quot;</P>
+<B>
+<P>Topic :</B> Score</P>
+<B><P>Language Level</B> : B2C Extension</P>
+<B><P>Effectivity :</B> B2C v3</P>
+<B><P>Syntax</B> : </P>
+<P>&#9;Score</P><DIR>
+<DIR>
+
+<P>Score high_score</P></DIR>
+</DIR>
+
+<B><P>Description :</P><DIR>
+<DIR>
+
+</B><P>The Score command has two modes.  If no parameter is supplied, it will show the top 5 scores for the game in the current font and the current ink and paper colors.  If a high_score is supplied, then the high_score is compared to existing high scores in the score.inf file and will replace one of them with the new high_score (if the high_score is higher). </P>
+
+<P>Note: You must include a score.inf file (supplied) in your .list file.</P></DIR>
+</DIR>
+
+<B><P>Example :</P>
+<P>&#9;</B>Dim high_score as long</P>
+<P>&#9;…</P>
+<P>&#9;High_score = High_score + 100</P>
+<P>&#9;…</P>
+<P>&#9;Score high_score ‘set the high score</P>
+<P>&#9;cls</P>
+<P>&#9;Score ‘show the high scores</P>
+<P>&#9;While key(#KEY_ENTER) = 0</P>
+<P>&#9;wend</P>
+<B>
+<P>Topic :</B> Rect</P>
+<B><P>Language Level</B> : B2C Extension</P>
+<B><P>Effectivity :</B> B2C v5</P>
+<B><P>Syntax</B> : </P><DIR>
+<DIR>
+
+<P>Rect X, Y, W, H</P></DIR>
+</DIR>
+
+<B><P>Description :</P><DIR>
+<DIR>
+
+</B><P>Rect will draw a rectangle at location X, Y with a width of W and a height of H.</P></DIR>
+</DIR>
+
+<B><P>Example : </P><DIR>
+<DIR>
+
+</B><P>Rect 0,0,40,40</P>
+<B></DIR>
+</DIR>
+
+<P>Topic :</B> Rectfill</P>
+<B><P>Language Level</B> : B2C Extension</P>
+<B><P>Effectivity :</B> B2C v5</P>
+<B><P>Syntax</B> : </P><DIR>
+<DIR>
+
+<P>Rectfill X, Y, W, H</P></DIR>
+</DIR>
+
+<B><P>Description :</P><DIR>
+<DIR>
+
+</B><P>Rect will draw a filled rectangle at location X, Y with a width of W and a height of H.</P></DIR>
+</DIR>
+
+<B><P>Example : </P><DIR>
+<DIR>
+
+</B><P>Rectfill 0,0,40,40</P>
+<B></DIR>
+</DIR>
+
+<P>Topic :</B> Right</P>
+<B><P>Language Level</B> : CyBasic-2</P>
+<B><P>Effectivity :</B> B2C v2</P>
+<B><P>Syntax</B> : </P><DIR>
+<DIR>
+
+<P>Right destination, source, length</P></DIR>
+</DIR>
+
+<B><P>Description :</P><DIR>
+<DIR>
+
+</B><P>Right will copy into the destination string from the source string for length characters.</P></DIR>
+</DIR>
+
+<B><P>Example : </P><DIR>
+<DIR>
+
+</B><P>Dim name[32] as char</P>
+<P>Dim last5[10] as char</P>
+<P>Input "Name", name</P>
+<P>Right last5, name, 5</P>
+<P>Print "Last part=", last5</P>
+<B></DIR>
+</DIR>
+
+<P>Topic :</B> Rnd</P>
+<B><P>Language Level</B> : CyBasic-2</P>
+<B><P>Effectivity :</B> B2C v2</P>
+<B><P>Syntax</B> : </P><DIR>
+<DIR>
+
+<P>Rnd(x)</P></DIR>
+</DIR>
+
+<B><P>Description :</P><DIR>
+<DIR>
+
+</B><P>Rnd() returns a random number from 0 to x.</P></DIR>
+</DIR>
+
+<B><P>Example : </P><DIR>
+<DIR>
+
+</B><P>Print rnd(100) 'print a random number from 0-100</P>
+<B></DIR>
+</DIR>
+
+<P>Topic :</B> Sendmessage</P>
+<B><P>Language Level</B> : B2C Extension</P>
+<B><P>Effectivity :</B> B2C v3d</P>
+<B><P>Syntax</B> : </P><DIR>
+<DIR>
+
+<P>Sendmessage cyid, message_number, appname, text_string</P></DIR>
+</DIR>
+
+<B><P>Description :</P><DIR>
+<DIR>
+
+</B><P>Sendmessage sends an RF messages as a &quot;text_string&quot; to the Cybiko with associated &quot;cyid&quot;.  The awaiting Cybiko must be running the app called &quot;appname&quot;.  The message will appear in the receiving Cybiko’s OnMessage function.  CyIDs can be selected using the UserMenu function.  CyIDs must be a Long integer.  Message numbers are in the range 0-1023.  </P>
+<P><BR>
+THE RECEIVING CYBIKO MUST BE RUNNING APPNAME OR THE MESSAGE WILL NOT GET THROUGH.</P></DIR>
+</DIR>
+
+<B><P>Example : </P><DIR>
+<DIR>
+
+</B><P>Sendmessage cyid, 0, &quot;chat&quot;, &quot;hello world&quot;</P></DIR>
+</DIR>
+
+<P>See Also:</P><DIR>
+<DIR>
+
+<P>OnMessage, UserMenu, toCyid, toUser, Tokenize</P>
+<B></DIR>
+</DIR>
+
+<P>Topic :</B> Sin()</P>
+<B><P>Language Level</B> : CyBasic-1</P>
+<B><P>Effectivity :</B> B2C v5</P>
+<B><P>Syntax</B> : </P><DIR>
+<DIR>
+
+<P>Sin(n)</P></DIR>
+</DIR>
+
+<B><P>Description :</P><DIR>
+<DIR>
+
+</B><P>Sin() returns the sine of the Double value ‘n’ (in radians). </P></DIR>
+</DIR>
+
+<B><P>Example : </P><DIR>
+<DIR>
+
+</B><P>X = sin(n)</P>
+<B></DIR>
+</DIR>
+
+<P>Topic :</B> Sprint</P>
+<B><P>Language Level</B> : CyBasic-1</P>
+<B><P>Effectivity :</B> B2C v3d</P>
+<B><P>Syntax</B> : </P><DIR>
+<DIR>
+
+<P>Sprint varname{expr {,expr…}}</P></DIR>
+</DIR>
+
+<B><P>Description :</P><DIR>
+<DIR>
+
+</B><P>Sprint does the same operations as Print but the result goes into the Variable &quot;varname&quot;</P></DIR>
+</DIR>
+
+<B><P>Example</P>
+<P>&#9;</B>Dim age as int</P>
+<P>&#9;Dim name[32] as char</P>
+<P>&#9;Dim result[64] as char</P>
+<P>&#9;Input "age:", age</P>
+<P>&#9;Input "name:", name</P>
+<P>&#9;Sprint result, "You are ", name, "and your age is", age</P>
+<B>
+<P>Topic :</B> Sprite</P>
+<B><P>Language Level</B> : B2C Extension</P>
+<B><P>Effectivity :</B> B2C v2c</P>
+<B><P>Syntax</B> : </P><DIR>
+<DIR>
+
+<P>Sprite n, "filename"</P>
+<P>Sprite n</P></DIR>
+</DIR>
+
+<B><P>Description :</P>
+<P>&#9;</B>A Sprite is an animated object on the Cybiko screen.  The first form of the Sprite command loads a ".pic" file into memory.  The value 'n' indicates which sprite (0-32) is being loaded.  This file should have been created using the SDK program "2pic".  Once in memory, the Move command can be used to move and animate the Sprite.</P>
+<P>&#9;The second form deletes the sprite from memory.</P>
+
+<B><P>Example</P>
+<P>&#9;</B>Dim x as int</P>
+<P>&#9;Dim y as int</P>
+<P>&#9;Dim z as int</P>
+<P>&#9;Sprite 1, "lemming.pic"</P>
+<P>&#9;X=0</P>
+<P>&#9;Y=0</P>
+<P>&#9;Z=0</P>
+<P>&#9;While 1</P>
+<P>&#9;&#9;If key(264) then x=x-1</P>
+<P>&#9;&#9;If key(266) then x=x+1</P>
+<P>&#9;&#9;Move x,y,z</P>
+<P>&#9;&#9;Redraw</P>
+<P>&#9;wend</P>
+
+<B><P>&nbsp;</P>
+<P>Topic :</B> Sqrt()</P>
+<B><P>Language Level</B> : CyBasic-1</P>
+<B><P>Effectivity :</B> B2C v5</P>
+<B><P>Syntax</B> : </P><DIR>
+<DIR>
+
+<P>Sqrt(n)</P></DIR>
+</DIR>
+
+<B><P>Description :</P><DIR>
+<DIR>
+
+</B><P>Sqrt() returns the square root of the Double value ‘n’. </P></DIR>
+</DIR>
+
+<B><P>Example : </P><DIR>
+<DIR>
+
+</B><P>X = sqrt(n)</P>
+<B></DIR>
+</DIR>
+
+<P>Topic :</B> Stringheight()</P>
+<B><P>Language Level</B> : B2C Extension</P>
+<B><P>Effectivity :</B> B2C v5</P>
+<B><P>Syntax</B> : </P><DIR>
+<DIR>
+
+<P>n = stringheight(string)</P></DIR>
+</DIR>
+
+<B><P>Description :</P><DIR>
+<DIR>
+
+</B><P>Stringheight returns the number of y-pixels the ‘string’ will take if displayed in the current font.</P></DIR>
+</DIR>
+
+<B><P>Example : </P>
+</B><P>&#9;OPTION C_COORDS</P><DIR>
+<DIR>
+
+<P>Dim x as int</P>
+<P>Dim y as int</P>
+<P>Dim s[32] as char</P>
+<P>Input &quot;enter your name&quot;, s</P>
+<P>x = stringwidth(s)</P>
+<P>y = stringheight(s)</P>
+<P>‘ center text on the screen</P>
+<P>cls</P>
+<P>printxy (160-x)/2, (100-y), s</P>
+<B></DIR>
+</DIR>
+
+<P>Topic :</B> Stringwidth()</P>
+<B><P>Language Level</B> : B2C Extension</P>
+<B><P>Effectivity :</B> B2C v5</P>
+<B><P>Syntax</B> : </P><DIR>
+<DIR>
+
+<P>n = stringwidth(string)</P></DIR>
+</DIR>
+
+<B><P>Description :</P><DIR>
+<DIR>
+
+</B><P>Stringwidth returns the number of x-pixels the ‘string’ will take if displayed in the current font.</P></DIR>
+</DIR>
+
+<B><P>Example : </P>
+</B><P>&#9;OPTION C_COORDS</P><DIR>
+<DIR>
+
+<P>Dim x as int</P>
+<P>Dim y as int</P>
+<P>Dim s[32] as char</P>
+<P>Input &quot;enter your name&quot;, s</P>
+<P>x = stringwidth(s)</P>
+<P>y = stringheight(s)</P>
+<P>‘ center text on the screen</P>
+<P>cls</P>
+<P>printxy (160-x)/2, (100-y), s</P>
+<B></DIR>
+</DIR>
+
+<P>Topic :</B> Sub</P>
+<B><P>Language Level</B> : CyBasic-1</P>
+<B><P>Effectivity :</B> B2C v2</P>
+<B><P>Syntax</B> : </P><DIR>
+<DIR>
+
+<P>Sub subname {(param1{[]} {As datatype1} {, param2 {As datatype2} …})}</P>
+<P>&#9;{Exit Sub}</P>
+<P>&#9;Body</P>
+<P>End Sub</P></DIR>
+</DIR>
+
+<B><P>Description :</P><DIR>
+<DIR>
+
+</B><P>A Sub is very much like a Function, but it returns no value and therefore has no associated datatype</P>
+
+<P>Sub initiates the definition of a new subroutine .  subname is the name of the subroutine.  An optional parameter list may be specified.  Zero, one, or more parameters may be specified.  Each parameter may have a datatype as specified in Dim.  However, no array parameters may be passed.  If the datatype is not specified, the variable is defined as Double</P>
+
+<P>If the Exit Sub statement is encountered, the function will return immediately.</P>
+
+<P>With version 3a of B2C, single-dimensioned arrays may be passed into subs.  The format of the parameter is p[] – indicating an array of arbitrary length.  This now allows strings to be passed into functions and subroutines.  See the example under ‘Function’</P></DIR>
+</DIR>
+
+<B><P>Example</P><DIR>
+<DIR>
+
+</B><P>Sub menu</P>
+<P>&#9;Print "1) Attach"</P>
+<P>&#9;Print "2) Retreat"</P>
+<P>&#9;Print "3) Plead for Life"</P>
+<P>&#9;Print "0) Quit"</P>
+<P>End Sub</P>
+</DIR>
+</DIR>
+
+<P>&#9;Dim x</P>
+<P>&#9;Call Menu</P>
+<P>&#9;Input x</P>
+<B>
+<P>Topic :</B> Tan()</P>
+<B><P>Language Level</B> : CyBasic-1</P>
+<B><P>Effectivity :</B> B2C v5</P>
+<B><P>Syntax</B> : </P><DIR>
+<DIR>
+
+<P>Tan(n)</P></DIR>
+</DIR>
+
+<B><P>Description :</P><DIR>
+<DIR>
+
+</B><P>Tan() returns the tangent of the Double value ‘n’ (in radians). </P></DIR>
+</DIR>
+
+<B><P>Example : </P><DIR>
+<DIR>
+
+</B><P>X = tan(n)</P>
+<B></DIR>
+</DIR>
+
+<P>Topic :</B> ToCyid</P>
+<B><P>Language Level</B> : B2C Extension</P>
+<B><P>Effectivity :</B> B2C v3d</P>
+<B><P>Syntax</B> : </P><DIR>
+<DIR>
+
+<P>Cyid = ToCyid(username)</P></DIR>
+</DIR>
+
+<B><P>Description :</P><DIR>
+<DIR>
+
+</B><P>ToCyid will convert a username (nickname) into a numeric CyID.  CyId must be a long integer</P></DIR>
+</DIR>
+
+<B><P>Example : </P><DIR>
+<DIR>
+
+</B><P>cyid = ToCyid(username)</P></DIR>
+</DIR>
+
+<B><P>See Also:</P><DIR>
+<DIR>
+
+</B><P>SendMessage, OnMessage, UserMenu, toUser, Tokenize</P>
+<B></DIR>
+</DIR>
+
+<P>Topic :</B> Tokenize</P>
+<B><P>Language Level</B> : B2C Extension</P>
+<B><P>Effectivity :</B> B2C v3d</P>
+<B><P>Syntax</B> : </P><DIR>
+<DIR>
+
+<P>Tokenize string, separators, var1, var2, var3...</P></DIR>
+</DIR>
+
+<B><P>Description :</P><DIR>
+<DIR>
+
+</B><P>Tokenize will split a &quot;string&quot; into smaller strings based on the &quot;separators&quot;.  This is useful for breaking up comma-separated (or other) strings into individual variables.</P></DIR>
+</DIR>
+
+<B><P>Example : </P><DIR>
+<DIR>
+
+</B><P>Tokenize &quot;1|2|3|4&quot;, &quot;|&quot;, var1, var2, var3, var4</P></DIR>
+</DIR>
+
+<B><P>See Also:</P><DIR>
+<DIR>
+
+</B><P>SendMessage, OnMessage, UserMenu, toUser, toCyid</P>
+<B></DIR>
+</DIR>
+
+<P>Topic :</B> ToUser</P>
+<B><P>Language Level</B> : B2C Extension</P>
+<B><P>Effectivity :</B> B2C v3d</P>
+<B><P>Syntax</B> : </P><DIR>
+<DIR>
+
+<P>name = ToUser(cyid)</P></DIR>
+</DIR>
+
+<B><P>Description :</P><DIR>
+<DIR>
+
+</B><P>ToUser will convert a numeric CyID into a username (nickname).  CyID must be a Long Integer.</P></DIR>
+</DIR>
+
+<B><P>Example : </P><DIR>
+<DIR>
+
+</B><P>cyid = ToCyid(username)</P></DIR>
+</DIR>
+
+<B><P>See Also:</P><DIR>
+<DIR>
+
+</B><P>SendMessage, OnMessage, UserMenu, toCyid, Tokenize</P>
+<B></DIR>
+</DIR>
+
+<P>Topic :</B> True</P>
+<B><P>Language Level</B> : B2C Extension</P>
+<B><P>Effectivity :</B> B2C v3d</P>
+<B><P>Syntax</B> : </P><DIR>
+<DIR>
+
+<P>true</P></DIR>
+</DIR>
+
+<B><P>Description :</P>
+</B><P>&#9;Constant value returns true – or 1.</P>
+<B><P>Example : </P><DIR>
+<DIR>
+
+</B><P>While(true)</P>
+<P>&#9;‘ something cool</P>
+<P>wend </P></DIR>
+</DIR>
+
+<B><P>NOTE: This is recommended over while(1)</P>
+
+<P>Topic :</B> Type</P>
+<B><P>Language Level</B> : Cybasic-2</P>
+<B><P>Effectivity :</B> B2C v3a</P>
+<B><P>Syntax</B> : </P><DIR>
+<DIR>
+
+<P>Type name</P>
+<P>    Member{[a{,b}]} as type</P>
+<P>    …</P>
+<P>End Type</P></DIR>
+</DIR>
+
+<B><P>Description :</P><DIR>
+<DIR>
+
+</B><P>Type allows the creation of user-defined data types.  Each line after the Type command is a member definition, much like a Dim command.  Once a Type is defined variables can be defined as that type.  Members are dereferenced with dot specifiers.</P></DIR>
+</DIR>
+
+<B><P>Example :</P><DIR>
+<DIR>
+
+</B><P>Type coord</P>
+<P>    X as int</P>
+<P>    Y as int</P>
+<P>End type</P>
+
+<P>Type line</P>
+<P>    P0 as coord</P>
+<P>    P1 as coord</P>
+<P>End Type</P>
+
+<P>Dim line0 as line</P>
+
+<P>Line0.p0.x=0</P>
+<P>Line0.p0.y=0</P>
+<P>Line0.p1.x=50</P>
+<P>Line0.p1.y=50</P>
+
+<B><P>&nbsp;</P></DIR>
+</DIR>
+
+<P>Topic :</B> UserMenu</P>
+<B><P>Language Level</B> : B2C Extension</P>
+<B><P>Effectivity :</B> B2C v3d</P>
+<B><P>Syntax</B> : </P><DIR>
+<DIR>
+
+<P>Cyid=UserMenu(prompt, exception_list)</P></DIR>
+</DIR>
+
+<B><P>Description :</P><DIR>
+<DIR>
+
+</B><P>UserMenu will display a list of nearby Cybiko units for the user to select.  The &quot;prompt&quot; string is displayed in the user menu and all nearby Cybiko’s – except the Cybiko’s in the &quot;exception_list&quot; – will be displayed for selection.  The exception list is an array of Long integers.  All CyIDs in the array will be excluded from the menu.  The last CyID in the list must be zero (a Null Terminator).  Placing a Zero in place of the exception list will display all Cybiko’s nearby.  If the user exits the menu by pressing ESC, then a Zero is returned.</P></DIR>
+</DIR>
+
+<B><P>Example : </P><DIR>
+<DIR>
+
+</B><P>cyid = usermenu("Select Chat Client", 0)</P></DIR>
+</DIR>
+
+<B><P>See Also:</P><DIR>
+<DIR>
+
+</B><P>SendMessage, OnMessage, toCyid, toUser, Tokenize</P>
+<B></DIR>
+</DIR>
+
+<P>Topic :</B> Vibrate</P>
+<B><P>Language Level</B> : B2C Extension</P>
+<B><P>Effectivity :</B> B2C v2c</P>
+<B><P>Syntax</B> : </P><DIR>
+<DIR>
+
+<P>Vibrate n</P></DIR>
+</DIR>
+
+<B><P>Description :</P>
+<P>&#9;</B>Vibrate causes the Cybiko to vibrate.  'n' is the strength of the vibration and is from 0 to 255.  A vibrate of 0 will cause the vibrations to stop.  A vibrate of 128 is medium and a vibrate of 255 is maximum.</P>
+<B><P>Example :</P>
+<P>&#9;</B>Dim x as int</P>
+<P>&#9;Dim y as int</P>
+<P>&#9;Dim z as int</P>
+<P>&#9;Dim a as int</P>
+<P>&#9;Dim b as int</P>
+<P>&#9;Sprite 1, "lemming.pic"</P>
+<P>&#9;Sprite 2, "other.pic</P>
+<P>&#9;X=0</P>
+<P>&#9;Y=0</P>
+<P>&#9;Z=0</P>
+<P>&#9;A=-80</P>
+<P>&#9;B=-50</P>
+<P>&#9;Move 2, a, b</P>
+<P>&#9;While 1</P>
+<P>&#9;&#9;If key(264) then x=x-1</P>
+<P>&#9;&#9;If key(266) then x=x+1</P>
+<P>&#9;&#9;Move x,y,z</P>
+<P>&#9;&#9;Beep 0</P>
+<P>&#9;&#9;Vibrate 0</P>
+<P>&#9;&#9;If Collision(1,2) then </P><DIR>
+<DIR>
+<DIR>
+<DIR>
+
+<P>beep 1</P>
+<P>vibrate 128</P></DIR>
+</DIR>
+</DIR>
+</DIR>
+
+<P>&#9;&#9;Redraw</P>
+<P>&#9;wend<B> </P>
+<P>Topic :</B> Wait</P>
+<B><P>Language Level</B> : CyBasic-1</P>
+<B><P>Effectivity :</B> B2C v2</P>
+<B><P>Syntax</B> : </P><DIR>
+<DIR>
+
+<P>Wait n</P></DIR>
+</DIR>
+
+<B><P>Description :</P><DIR>
+<DIR>
+
+</B><P>Wait causes a delay in a B2C program for n/10 seconds. </P>
+</DIR>
+</DIR>
+
+<B><P>Example : </P><DIR>
+<DIR>
+
+</B><P>Print "Hello"</P>
+<P>Wait 10 ' one second delay</P>
+<P>Print "World"</P>
+<B></DIR>
+</DIR>
+
+<P>Topic :</B> While</P>
+<B><P>Language Level</B> : CyBasic-2</P>
+<B><P>Effectivity :</B> B2C v2</P>
+<B><P>Syntax</B> : </P><DIR>
+<DIR>
+
+<P>While(conditional)</P>
+<P>&#9;Body</P>
+<P>&#9;Exit While</P>
+<P>&#9;Body</P>
+<P>Wend</P></DIR>
+</DIR>
+
+<B><P>Description :</P><DIR>
+<DIR>
+
+</B><P>While initiates a loop which continues while the conditional (see IF) is true. Once the conditional is false, the loop terminates.</P>
+
+<P>You may terminate the loop early by executing an Exit While command.</P></DIR>
+</DIR>
+
+<B><P>Example : </P><DIR>
+<DIR>
+
+</B><P>While(key = 0)</P>
+<P>&#9;Print "… Waiting!"</P>
+<P>&#9;Wait 3</P>
+<P>&#9;If (Key(#KEY_ENTER)) Then Exit While</P>
+<P>Wend</P>
+<B></DIR>
+</DIR>
+
+<P>Topic :</B> Wrap</P>
+<B><P>Language Level</B> : B2C Extension</P>
+<B><P>Effectivity :</B> B2C v5</P>
+<B><P>Syntax</B> : </P><DIR>
+<DIR>
+
+<P>n = wrap(x,y,w,h,align,wrap,string)</P>
+</DIR>
+</DIR>
+
+<B><P>Description :</P><DIR>
+<DIR>
+
+</B><P>Wrap will display the ‘string’ at the x/y coordinates inside a rectangle with width ‘w’ and height ‘h’.  The text will fill the rectangle with the text and will perform either character wrapping or word wrapping.  Also, each line of the text will be aligned either on the left, centered, or on the right.</P>
+
+<P>‘align’ can be one of LEFT, CENTER, or RIGHT</P>
+<P>‘wrap’ can be one of CHAR or WORD</P>
+
+<P>Wrap returns the number of characters actually printed in the rectangular region.</P>
+</DIR>
+</DIR>
+
+<B><P>Example : </P>
+</B><P>&#9;OPTION C_COORDS</P><DIR>
+<DIR>
+
+<P>‘ display a centered title</P>
+<P>dim n as int</P>
+<P>n = wrap(0,0,160,15,CENTER,CHAR,&quot;Title Text&quot;)</P>
+
+<P>‘display a block of text left justified and word-wrapped</P>
+<P>rect(0,15,80,30)</P>
+<P>n = wrap(0,15,80,30,LEFT, WORD, &quot;This is a test of the emergency broadcast system.&quot;)</P>
+
+<P ALIGN="CENTER">&nbsp;</P></DIR>
+</DIR>
+
+</FONT><B><FONT FACE="Arial" SIZE=2><P ALIGN="CENTER">RESERVED WORDS</P>
+<P ALIGN="CENTER">A list of words used by the</P>
+<P ALIGN="CENTER">B2C Language</P>
+<P ALIGN="CENTER">Which cannot be used by applications</P></B></FONT>
+<TABLE BORDER CELLSPACING=1 CELLPADDING=7 WIDTH=590>
+<TR><TD WIDTH="14%" VALIGN="TOP">
+<FONT FACE="Courier New" SIZE=1><P>3dcollision</FONT></TD>
+<TD WIDTH="15%" VALIGN="TOP">
+<FONT FACE="Courier New" SIZE=1><P>3dget</FONT></TD>
+<TD WIDTH="12%" VALIGN="TOP">
+<FONT FACE="Courier New" SIZE=1><P>3dmove</FONT></TD>
+<TD WIDTH="12%" VALIGN="TOP">
+<FONT FACE="Courier New" SIZE=1><P>3dredraw</FONT></TD>
+<TD WIDTH="10%" VALIGN="TOP">
+<FONT FACE="Courier New" SIZE=1><P>3drmove</FONT></TD>
+<TD WIDTH="11%" VALIGN="TOP">
+<FONT FACE="Courier New" SIZE=1><P>3droom</FONT></TD>
+<TD WIDTH="13%" VALIGN="TOP">
+<FONT FACE="Courier New" SIZE=1><P>3dsprite</FONT></TD>
+<TD WIDTH="13%" VALIGN="TOP">
+<FONT FACE="Courier New" SIZE=1><P>3dwall</FONT></TD>
+</TR>
+<TR><TD WIDTH="14%" VALIGN="TOP">
+<FONT FACE="Courier New" SIZE=1><P>abs</FONT></TD>
+<TD WIDTH="15%" VALIGN="TOP">
+<FONT FACE="Courier New" SIZE=1><P>acos</FONT></TD>
+<TD WIDTH="12%" VALIGN="TOP">
+<FONT FACE="Courier New" SIZE=1><P>acosh</FONT></TD>
+<TD WIDTH="12%" VALIGN="TOP">
+<FONT FACE="Courier New" SIZE=1><P>actan</FONT></TD>
+<TD WIDTH="10%" VALIGN="TOP">
+<FONT FACE="Courier New" SIZE=1><P>actanh</FONT></TD>
+<TD WIDTH="11%" VALIGN="TOP">
+<FONT FACE="Courier New" SIZE=1><P>all</FONT></TD>
+<TD WIDTH="13%" VALIGN="TOP">
+<FONT FACE="Courier New" SIZE=1><P>and</FONT></TD>
+<TD WIDTH="13%" VALIGN="TOP">
+<FONT FACE="Courier New" SIZE=1><P>append</FONT></TD>
+</TR>
+<TR><TD WIDTH="14%" VALIGN="TOP">
+<FONT FACE="Courier New" SIZE=1><P>as</FONT></TD>
+<TD WIDTH="15%" VALIGN="TOP">
+<FONT FACE="Courier New" SIZE=1><P>asin</FONT></TD>
+<TD WIDTH="12%" VALIGN="TOP">
+<FONT FACE="Courier New" SIZE=1><P>asinh</FONT></TD>
+<TD WIDTH="12%" VALIGN="TOP">
+<FONT FACE="Courier New" SIZE=1><P>atan</FONT></TD>
+<TD WIDTH="10%" VALIGN="TOP">
+<FONT FACE="Courier New" SIZE=1><P>atanh</FONT></TD>
+<TD WIDTH="11%" VALIGN="TOP">&nbsp;</TD>
+<TD WIDTH="13%" VALIGN="TOP">&nbsp;</TD>
+<TD WIDTH="13%" VALIGN="TOP">&nbsp;</TD>
+</TR>
+<TR><TD WIDTH="14%" VALIGN="TOP">
+<FONT FACE="Courier New" SIZE=1><P>background</FONT></TD>
+<TD WIDTH="15%" VALIGN="TOP">
+<FONT FACE="Courier New" SIZE=1><P>beep</FONT></TD>
+<TD WIDTH="12%" VALIGN="TOP">
+<FONT FACE="Courier New" SIZE=1><P>black</FONT></TD>
+<TD WIDTH="12%" VALIGN="TOP">
+<FONT FACE="Courier New" SIZE=1><P>by_ref</FONT></TD>
+<TD WIDTH="10%" VALIGN="TOP">
+<FONT FACE="Courier New" SIZE=1><P>by_val</FONT></TD>
+<TD WIDTH="11%" VALIGN="TOP">&nbsp;</TD>
+<TD WIDTH="13%" VALIGN="TOP">&nbsp;</TD>
+<TD WIDTH="13%" VALIGN="TOP">&nbsp;</TD>
+</TR>
+<TR><TD WIDTH="14%" VALIGN="TOP">
+<FONT FACE="Courier New" SIZE=1><P>c_coords</FONT></TD>
+<TD WIDTH="15%" VALIGN="TOP">
+<FONT FACE="Courier New" SIZE=1><P>c_strings</FONT></TD>
+<TD WIDTH="12%" VALIGN="TOP">
+<FONT FACE="Courier New" SIZE=1><P>call</FONT></TD>
+<TD WIDTH="12%" VALIGN="TOP">
+<FONT FACE="Courier New" SIZE=1><P>camera</FONT></TD>
+<TD WIDTH="10%" VALIGN="TOP">
+<FONT FACE="Courier New" SIZE=1><P>char</FONT></TD>
+<TD WIDTH="11%" VALIGN="TOP">
+<FONT FACE="Courier New" SIZE=1><P>close</FONT></TD>
+<TD WIDTH="13%" VALIGN="TOP">
+<FONT FACE="Courier New" SIZE=1><P>cls</FONT></TD>
+<TD WIDTH="13%" VALIGN="TOP">&nbsp;</TD>
+</TR>
+<TR><TD WIDTH="14%" VALIGN="TOP">
+<FONT FACE="Courier New" SIZE=1><P>collision</FONT></TD>
+<TD WIDTH="15%" VALIGN="TOP">
+<FONT FACE="Courier New" SIZE=1><P>cos</FONT></TD>
+<TD WIDTH="12%" VALIGN="TOP">
+<FONT FACE="Courier New" SIZE=1><P>cosh</FONT></TD>
+<TD WIDTH="22%" VALIGN="TOP" COLSPAN=2>
+<FONT FACE="Courier New" SIZE=1><P>cybasic_coords</FONT></TD>
+<TD WIDTH="36%" VALIGN="TOP" COLSPAN=3>
+<FONT FACE="Courier New" SIZE=1><P>cybasic_strings</FONT></TD>
+</TR>
+<TR><TD WIDTH="14%" VALIGN="TOP">
+<FONT FACE="Courier New" SIZE=1><P>dialog</FONT></TD>
+<TD WIDTH="15%" VALIGN="TOP">
+<FONT FACE="Courier New" SIZE=1><P>dim</FONT></TD>
+<TD WIDTH="12%" VALIGN="TOP">
+<FONT FACE="Courier New" SIZE=1><P>dkgrey</FONT></TD>
+<TD WIDTH="12%" VALIGN="TOP">
+<FONT FACE="Courier New" SIZE=1><P>double</FONT></TD>
+<TD WIDTH="10%" VALIGN="TOP">&nbsp;</TD>
+<TD WIDTH="11%" VALIGN="TOP">&nbsp;</TD>
+<TD WIDTH="13%" VALIGN="TOP">&nbsp;</TD>
+<TD WIDTH="13%" VALIGN="TOP">&nbsp;</TD>
+</TR>
+<TR><TD WIDTH="14%" VALIGN="TOP">
+<FONT FACE="Courier New" SIZE=1><P>else</FONT></TD>
+<TD WIDTH="15%" VALIGN="TOP">
+<FONT FACE="Courier New" SIZE=1><P>elseif</FONT></TD>
+<TD WIDTH="12%" VALIGN="TOP">
+<FONT FACE="Courier New" SIZE=1><P>end</FONT></TD>
+<TD WIDTH="12%" VALIGN="TOP">
+<FONT FACE="Courier New" SIZE=1><P>endif</FONT></TD>
+<TD WIDTH="10%" VALIGN="TOP">
+<FONT FACE="Courier New" SIZE=1><P>error</FONT></TD>
+<TD WIDTH="11%" VALIGN="TOP">
+<FONT FACE="Courier New" SIZE=1><P>escape</FONT></TD>
+<TD WIDTH="13%" VALIGN="TOP">
+<FONT FACE="Courier New" SIZE=1><P>exit</FONT></TD>
+<TD WIDTH="13%" VALIGN="TOP">
+<FONT FACE="Courier New" SIZE=1><P>exp</FONT></TD>
+</TR>
+<TR><TD WIDTH="14%" VALIGN="TOP">
+<FONT FACE="Courier New" SIZE=1><P>false</FONT></TD>
+<TD WIDTH="15%" VALIGN="TOP">
+<FONT FACE="Courier New" SIZE=1><P>filelist</FONT></TD>
+<TD WIDTH="12%" VALIGN="TOP">
+<FONT FACE="Courier New" SIZE=1><P>filename</FONT></TD>
+<TD WIDTH="12%" VALIGN="TOP">
+<FONT FACE="Courier New" SIZE=1><P>findfile</FONT></TD>
+<TD WIDTH="10%" VALIGN="TOP">
+<FONT FACE="Courier New" SIZE=1><P>flip_x</FONT></TD>
+<TD WIDTH="11%" VALIGN="TOP">
+<FONT FACE="Courier New" SIZE=1><P>flip_y</FONT></TD>
+<TD WIDTH="13%" VALIGN="TOP">&nbsp;</TD>
+<TD WIDTH="13%" VALIGN="TOP">&nbsp;</TD>
+</TR>
+<TR><TD WIDTH="14%" VALIGN="TOP">
+<FONT FACE="Courier New" SIZE=1><P>font</FONT></TD>
+<TD WIDTH="15%" VALIGN="TOP">
+<FONT FACE="Courier New" SIZE=1><P>for</FONT></TD>
+<TD WIDTH="12%" VALIGN="TOP">
+<FONT FACE="Courier New" SIZE=1><P>foreground</FONT></TD>
+<TD WIDTH="12%" VALIGN="TOP">
+<FONT FACE="Courier New" SIZE=1><P>function</FONT></TD>
+<TD WIDTH="10%" VALIGN="TOP">&nbsp;</TD>
+<TD WIDTH="11%" VALIGN="TOP">&nbsp;</TD>
+<TD WIDTH="13%" VALIGN="TOP">&nbsp;</TD>
+<TD WIDTH="13%" VALIGN="TOP">&nbsp;</TD>
+</TR>
+<TR><TD WIDTH="14%" VALIGN="TOP">
+<FONT FACE="Courier New" SIZE=1><P>get</FONT></TD>
+<TD WIDTH="15%" VALIGN="TOP">
+<FONT FACE="Courier New" SIZE=1><P>getchar</FONT></TD>
+<TD WIDTH="12%" VALIGN="TOP">
+<FONT FACE="Courier New" SIZE=1><P>getkey</FONT></TD>
+<TD WIDTH="12%" VALIGN="TOP">
+<FONT FACE="Courier New" SIZE=1><P>gosub</FONT></TD>
+<TD WIDTH="10%" VALIGN="TOP">
+<FONT FACE="Courier New" SIZE=1><P>goto</FONT></TD>
+<TD WIDTH="11%" VALIGN="TOP">&nbsp;</TD>
+<TD WIDTH="13%" VALIGN="TOP">&nbsp;</TD>
+<TD WIDTH="13%" VALIGN="TOP">&nbsp;</TD>
+</TR>
+<TR><TD WIDTH="14%" VALIGN="TOP">
+<FONT FACE="Courier New" SIZE=1><P>if</FONT></TD>
+<TD WIDTH="15%" VALIGN="TOP">
+<FONT FACE="Courier New" SIZE=1><P>ink</FONT></TD>
+<TD WIDTH="12%" VALIGN="TOP">
+<FONT FACE="Courier New" SIZE=1><P>inline</FONT></TD>
+<TD WIDTH="12%" VALIGN="TOP">
+<FONT FACE="Courier New" SIZE=1><P>input</FONT></TD>
+<TD WIDTH="10%" VALIGN="TOP">
+<FONT FACE="Courier New" SIZE=1><P>int</FONT></TD>
+<TD WIDTH="11%" VALIGN="TOP">
+<FONT FACE="Courier New" SIZE=1><P>int</FONT></TD>
+<TD WIDTH="13%" VALIGN="TOP">&nbsp;</TD>
+<TD WIDTH="13%" VALIGN="TOP">&nbsp;</TD>
+</TR>
+<TR><TD WIDTH="14%" VALIGN="TOP">
+<FONT FACE="Courier New" SIZE=1><P>key</FONT></TD>
+<TD WIDTH="15%" VALIGN="TOP">
+<FONT FACE="Courier New" SIZE=1><P>keyclick</FONT></TD>
+<TD WIDTH="12%" VALIGN="TOP">&nbsp;</TD>
+<TD WIDTH="12%" VALIGN="TOP">&nbsp;</TD>
+<TD WIDTH="10%" VALIGN="TOP">&nbsp;</TD>
+<TD WIDTH="11%" VALIGN="TOP">&nbsp;</TD>
+<TD WIDTH="13%" VALIGN="TOP">&nbsp;</TD>
+<TD WIDTH="13%" VALIGN="TOP">&nbsp;</TD>
+</TR>
+<TR><TD WIDTH="14%" VALIGN="TOP">
+<FONT FACE="Courier New" SIZE=1><P>line</FONT></TD>
+<TD WIDTH="15%" VALIGN="TOP">
+<FONT FACE="Courier New" SIZE=1><P>log</FONT></TD>
+<TD WIDTH="12%" VALIGN="TOP">
+<FONT FACE="Courier New" SIZE=1><P>log10</FONT></TD>
+<TD WIDTH="12%" VALIGN="TOP">
+<FONT FACE="Courier New" SIZE=1><P>log2</FONT></TD>
+<TD WIDTH="10%" VALIGN="TOP">
+<FONT FACE="Courier New" SIZE=1><P>long</FONT></TD>
+<TD WIDTH="11%" VALIGN="TOP">
+<FONT FACE="Courier New" SIZE=1><P>ltgrey</FONT></TD>
+<TD WIDTH="13%" VALIGN="TOP">&nbsp;</TD>
+<TD WIDTH="13%" VALIGN="TOP">&nbsp;</TD>
+</TR>
+<TR><TD WIDTH="14%" VALIGN="TOP">
+<FONT FACE="Courier New" SIZE=1><P>main</FONT></TD>
+<TD WIDTH="15%" VALIGN="TOP">
+<FONT FACE="Courier New" SIZE=1><P>menu</FONT></TD>
+<TD WIDTH="12%" VALIGN="TOP">
+<FONT FACE="Courier New" SIZE=1><P>mid</FONT></TD>
+<TD WIDTH="12%" VALIGN="TOP">
+<FONT FACE="Courier New" SIZE=1><P>mod</FONT></TD>
+<TD WIDTH="10%" VALIGN="TOP">
+<FONT FACE="Courier New" SIZE=1><P>move</FONT></TD>
+<TD WIDTH="11%" VALIGN="TOP">
+<FONT FACE="Courier New" SIZE=1><P>music</FONT></TD>
+<TD WIDTH="13%" VALIGN="TOP">&nbsp;</TD>
+<TD WIDTH="13%" VALIGN="TOP">&nbsp;</TD>
+</TR>
+<TR><TD WIDTH="14%" VALIGN="TOP">
+<FONT FACE="Courier New" SIZE=1><P>neq</FONT></TD>
+<TD WIDTH="15%" VALIGN="TOP">
+<FONT FACE="Courier New" SIZE=1><P>next</FONT></TD>
+<TD WIDTH="12%" VALIGN="TOP">
+<FONT FACE="Courier New" SIZE=1><P>nextfile</FONT></TD>
+<TD WIDTH="12%" VALIGN="TOP">
+<FONT FACE="Courier New" SIZE=1><P>not</FONT></TD>
+<TD WIDTH="10%" VALIGN="TOP">&nbsp;</TD>
+<TD WIDTH="11%" VALIGN="TOP">&nbsp;</TD>
+<TD WIDTH="13%" VALIGN="TOP">&nbsp;</TD>
+<TD WIDTH="13%" VALIGN="TOP">&nbsp;</TD>
+</TR>
+<TR><TD WIDTH="14%" VALIGN="TOP">
+<FONT FACE="Courier New" SIZE=1><P>off</FONT></TD>
+<TD WIDTH="15%" VALIGN="TOP">
+<FONT FACE="Courier New" SIZE=1><P>on</FONT></TD>
+<TD WIDTH="12%" VALIGN="TOP">
+<FONT FACE="Courier New" SIZE=1><P>open</FONT></TD>
+<TD WIDTH="12%" VALIGN="TOP">
+<FONT FACE="Courier New" SIZE=1><P>option</FONT></TD>
+<TD WIDTH="10%" VALIGN="TOP">
+<FONT FACE="Courier New" SIZE=1><P>or</FONT></TD>
+<TD WIDTH="11%" VALIGN="TOP">
+<FONT FACE="Courier New" SIZE=1><P>outline</FONT></TD>
+<TD WIDTH="13%" VALIGN="TOP">&nbsp;</TD>
+<TD WIDTH="13%" VALIGN="TOP">&nbsp;</TD>
+</TR>
+<TR><TD WIDTH="14%" VALIGN="TOP">
+<FONT FACE="Courier New" SIZE=1><P>paper</FONT></TD>
+<TD WIDTH="15%" VALIGN="TOP">
+<FONT FACE="Courier New" SIZE=1><P>play</FONT></TD>
+<TD WIDTH="12%" VALIGN="TOP">
+<FONT FACE="Courier New" SIZE=1><P>point</FONT></TD>
+<TD WIDTH="12%" VALIGN="TOP">&nbsp;</TD>
+<TD WIDTH="10%" VALIGN="TOP">&nbsp;</TD>
+<TD WIDTH="11%" VALIGN="TOP">&nbsp;</TD>
+<TD WIDTH="13%" VALIGN="TOP">&nbsp;</TD>
+<TD WIDTH="13%" VALIGN="TOP">&nbsp;</TD>
+</TR>
+<TR><TD WIDTH="14%" VALIGN="TOP">
+<FONT FACE="Courier New" SIZE=1><P>pow</FONT></TD>
+<TD WIDTH="15%" VALIGN="TOP">
+<FONT FACE="Courier New" SIZE=1><P>pow2</FONT></TD>
+<TD WIDTH="12%" VALIGN="TOP">
+<FONT FACE="Courier New" SIZE=1><P>print</FONT></TD>
+<TD WIDTH="12%" VALIGN="TOP">
+<FONT FACE="Courier New" SIZE=1><P>printxy</FONT></TD>
+<TD WIDTH="10%" VALIGN="TOP">
+<FONT FACE="Courier New" SIZE=1><P>program</FONT></TD>
+<TD WIDTH="11%" VALIGN="TOP">
+<FONT FACE="Courier New" SIZE=1><P>put</FONT></TD>
+<TD WIDTH="13%" VALIGN="TOP">&nbsp;</TD>
+<TD WIDTH="13%" VALIGN="TOP">&nbsp;</TD>
+</TR>
+<TR><TD WIDTH="14%" VALIGN="TOP">
+<FONT FACE="Courier New" SIZE=1><P>read</FONT></TD>
+<TD WIDTH="15%" VALIGN="TOP">
+<FONT FACE="Courier New" SIZE=1><P>redraw</FONT></TD>
+<TD WIDTH="12%" VALIGN="TOP">
+<FONT FACE="Courier New" SIZE=1><P>right</FONT></TD>
+<TD WIDTH="12%" VALIGN="TOP">
+<FONT FACE="Courier New" SIZE=1><P>rnd</FONT></TD>
+<TD WIDTH="10%" VALIGN="TOP">&nbsp;</TD>
+<TD WIDTH="11%" VALIGN="TOP">&nbsp;</TD>
+<TD WIDTH="13%" VALIGN="TOP">&nbsp;</TD>
+<TD WIDTH="13%" VALIGN="TOP">&nbsp;</TD>
+</TR>
+<TR><TD WIDTH="14%" VALIGN="TOP">
+<FONT FACE="Courier New" SIZE=1><P>score</FONT></TD>
+<TD WIDTH="15%" VALIGN="TOP">
+<FONT FACE="Courier New" SIZE=1><P>sendmessage</FONT></TD>
+<TD WIDTH="12%" VALIGN="TOP">
+<FONT FACE="Courier New" SIZE=1><P>show</FONT></TD>
+<TD WIDTH="12%" VALIGN="TOP">
+<FONT FACE="Courier New" SIZE=1><P>sin</FONT></TD>
+<TD WIDTH="10%" VALIGN="TOP">
+<FONT FACE="Courier New" SIZE=1><P>sinh</FONT></TD>
+<TD WIDTH="11%" VALIGN="TOP">
+<FONT FACE="Courier New" SIZE=1><P>sprint</FONT></TD>
+<TD WIDTH="13%" VALIGN="TOP">&nbsp;</TD>
+<TD WIDTH="13%" VALIGN="TOP">&nbsp;</TD>
+</TR>
+<TR><TD WIDTH="14%" VALIGN="TOP">
+<FONT FACE="Courier New" SIZE=1><P>sprite</FONT></TD>
+<TD WIDTH="15%" VALIGN="TOP">
+<FONT FACE="Courier New" SIZE=1><P>sprite_get</FONT></TD>
+<TD WIDTH="12%" VALIGN="TOP">
+<FONT FACE="Courier New" SIZE=1><P>sprites</FONT></TD>
+<TD WIDTH="12%" VALIGN="TOP">
+<FONT FACE="Courier New" SIZE=1><P>sqr</FONT></TD>
+<TD WIDTH="10%" VALIGN="TOP">
+<FONT FACE="Courier New" SIZE=1><P>sqrt</FONT></TD>
+<TD WIDTH="11%" VALIGN="TOP">
+<FONT FACE="Courier New" SIZE=1><P>step</FONT></TD>
+<TD WIDTH="13%" VALIGN="TOP">
+<FONT FACE="Courier New" SIZE=1><P>stop</FONT></TD>
+<TD WIDTH="13%" VALIGN="TOP">
+<FONT FACE="Courier New" SIZE=1><P>sub</FONT></TD>
+</TR>
+<TR><TD WIDTH="14%" VALIGN="TOP">
+<FONT FACE="Courier New" SIZE=1><P>tan</FONT></TD>
+<TD WIDTH="15%" VALIGN="TOP">
+<FONT FACE="Courier New" SIZE=1><P>then</FONT></TD>
+<TD WIDTH="12%" VALIGN="TOP">
+<FONT FACE="Courier New" SIZE=1><P>to</FONT></TD>
+<TD WIDTH="12%" VALIGN="TOP">
+<FONT FACE="Courier New" SIZE=1><P>tocyid</FONT></TD>
+<TD WIDTH="10%" VALIGN="TOP">
+<FONT FACE="Courier New" SIZE=1><P>tokenize</FONT></TD>
+<TD WIDTH="11%" VALIGN="TOP">
+<FONT FACE="Courier New" SIZE=1><P>touser</FONT></TD>
+<TD WIDTH="13%" VALIGN="TOP">
+<FONT FACE="Courier New" SIZE=1><P>true</FONT></TD>
+<TD WIDTH="13%" VALIGN="TOP">
+<FONT FACE="Courier New" SIZE=1><P>type</FONT></TD>
+</TR>
+<TR><TD WIDTH="14%" VALIGN="TOP">
+<FONT FACE="Courier New" SIZE=1><P>usermenu</FONT></TD>
+<TD WIDTH="15%" VALIGN="TOP">&nbsp;</TD>
+<TD WIDTH="12%" VALIGN="TOP">&nbsp;</TD>
+<TD WIDTH="12%" VALIGN="TOP">&nbsp;</TD>
+<TD WIDTH="10%" VALIGN="TOP">&nbsp;</TD>
+<TD WIDTH="11%" VALIGN="TOP">&nbsp;</TD>
+<TD WIDTH="13%" VALIGN="TOP">&nbsp;</TD>
+<TD WIDTH="13%" VALIGN="TOP">&nbsp;</TD>
+</TR>
+<TR><TD WIDTH="14%" VALIGN="TOP">
+<FONT FACE="Courier New" SIZE=1><P>vibrate</FONT></TD>
+<TD WIDTH="15%" VALIGN="TOP">&nbsp;</TD>
+<TD WIDTH="12%" VALIGN="TOP">&nbsp;</TD>
+<TD WIDTH="12%" VALIGN="TOP">&nbsp;</TD>
+<TD WIDTH="10%" VALIGN="TOP">&nbsp;</TD>
+<TD WIDTH="11%" VALIGN="TOP">&nbsp;</TD>
+<TD WIDTH="13%" VALIGN="TOP">&nbsp;</TD>
+<TD WIDTH="13%" VALIGN="TOP">&nbsp;</TD>
+</TR>
+<TR><TD WIDTH="14%" VALIGN="TOP">
+<FONT FACE="Courier New" SIZE=1><P>wait</FONT></TD>
+<TD WIDTH="15%" VALIGN="TOP">
+<FONT FACE="Courier New" SIZE=1><P>wend</FONT></TD>
+<TD WIDTH="12%" VALIGN="TOP">
+<FONT FACE="Courier New" SIZE=1><P>while</FONT></TD>
+<TD WIDTH="12%" VALIGN="TOP">
+<FONT FACE="Courier New" SIZE=1><P>white</FONT></TD>
+<TD WIDTH="10%" VALIGN="TOP">
+<FONT FACE="Courier New" SIZE=1><P>write</FONT></TD>
+<TD WIDTH="11%" VALIGN="TOP">&nbsp;</TD>
+<TD WIDTH="13%" VALIGN="TOP">&nbsp;</TD>
+<TD WIDTH="13%" VALIGN="TOP">&nbsp;</TD>
+</TR>
+</TABLE>
+
+<FONT SIZE=2><P ALIGN="CENTER"></P>
+</FONT><B><FONT FACE="Arial" SIZE=2><P ALIGN="CENTER">RESERVED WORDS</P>
+<P ALIGN="CENTER">A list of words used by the</P>
+<P ALIGN="CENTER">C Programming Language</P>
+<P ALIGN="CENTER">Which cannot be used by applications</P></B></FONT>
+<TABLE BORDER CELLSPACING=1 CELLPADDING=7 WIDTH=590>
+<TR><TD WIDTH="13%" VALIGN="TOP">
+<FONT FACE="Courier New" SIZE=1><P>and</FONT></TD>
+<TD WIDTH="13%" VALIGN="TOP">
+<FONT FACE="Courier New" SIZE=1><P>and_eq</FONT></TD>
+<TD WIDTH="13%" VALIGN="TOP">
+<FONT FACE="Courier New" SIZE=1><P>asm</FONT></TD>
+<TD WIDTH="13%" VALIGN="TOP">
+<FONT FACE="Courier New" SIZE=1><P>auto</FONT></TD>
+<TD WIDTH="13%" VALIGN="TOP">&nbsp;</TD>
+<TD WIDTH="13%" VALIGN="TOP">&nbsp;</TD>
+<TD WIDTH="13%" VALIGN="TOP">&nbsp;</TD>
+<TD WIDTH="13%" VALIGN="TOP">&nbsp;</TD>
+</TR>
+<TR><TD WIDTH="13%" VALIGN="TOP">
+<FONT FACE="Courier New" SIZE=1><P>bitand</FONT></TD>
+<TD WIDTH="13%" VALIGN="TOP">
+<FONT FACE="Courier New" SIZE=1><P>bitor</FONT></TD>
+<TD WIDTH="13%" VALIGN="TOP">
+<FONT FACE="Courier New" SIZE=1><P>bool</FONT></TD>
+<TD WIDTH="13%" VALIGN="TOP">
+<FONT FACE="Courier New" SIZE=1><P>break</FONT></TD>
+<TD WIDTH="13%" VALIGN="TOP">&nbsp;</TD>
+<TD WIDTH="13%" VALIGN="TOP">&nbsp;</TD>
+<TD WIDTH="13%" VALIGN="TOP">&nbsp;</TD>
+<TD WIDTH="13%" VALIGN="TOP">&nbsp;</TD>
+</TR>
+<TR><TD WIDTH="13%" VALIGN="TOP">
+<FONT FACE="Courier New" SIZE=1><P>case</FONT></TD>
+<TD WIDTH="13%" VALIGN="TOP">
+<FONT FACE="Courier New" SIZE=1><P>catch</FONT></TD>
+<TD WIDTH="13%" VALIGN="TOP">
+<FONT FACE="Courier New" SIZE=1><P>char</FONT></TD>
+<TD WIDTH="13%" VALIGN="TOP">
+<FONT FACE="Courier New" SIZE=1><P>class</FONT></TD>
+<TD WIDTH="13%" VALIGN="TOP">
+<FONT FACE="Courier New" SIZE=1><P>compl</FONT></TD>
+<TD WIDTH="13%" VALIGN="TOP">
+<FONT FACE="Courier New" SIZE=1><P>const</FONT></TD>
+<TD WIDTH="13%" VALIGN="TOP">
+<FONT FACE="Courier New" SIZE=1><P>const_cast</FONT></TD>
+<TD WIDTH="13%" VALIGN="TOP">
+<FONT FACE="Courier New" SIZE=1><P>continue</FONT></TD>
+</TR>
+<TR><TD WIDTH="13%" VALIGN="TOP">
+<FONT FACE="Courier New" SIZE=1><P>default</FONT></TD>
+<TD WIDTH="13%" VALIGN="TOP">
+<FONT FACE="Courier New" SIZE=1><P>delete</FONT></TD>
+<TD WIDTH="13%" VALIGN="TOP">
+<FONT FACE="Courier New" SIZE=1><P>do</FONT></TD>
+<TD WIDTH="13%" VALIGN="TOP">
+<FONT FACE="Courier New" SIZE=1><P>double</FONT></TD>
+<TD WIDTH="25%" VALIGN="TOP" COLSPAN=2>
+<FONT FACE="Courier New" SIZE=1><P>dynamic_cast</FONT></TD>
+<TD WIDTH="13%" VALIGN="TOP">&nbsp;</TD>
+<TD WIDTH="13%" VALIGN="TOP">&nbsp;</TD>
+</TR>
+<TR><TD WIDTH="13%" VALIGN="TOP">
+<FONT FACE="Courier New" SIZE=1><P>else</FONT></TD>
+<TD WIDTH="13%" VALIGN="TOP">
+<FONT FACE="Courier New" SIZE=1><P>enum</FONT></TD>
+<TD WIDTH="13%" VALIGN="TOP">
+<FONT FACE="Courier New" SIZE=1><P>explicit</FONT></TD>
+<TD WIDTH="13%" VALIGN="TOP">
+<FONT FACE="Courier New" SIZE=1><P>export</FONT></TD>
+<TD WIDTH="13%" VALIGN="TOP">
+<FONT FACE="Courier New" SIZE=1><P>extern</FONT></TD>
+<TD WIDTH="13%" VALIGN="TOP">&nbsp;</TD>
+<TD WIDTH="13%" VALIGN="TOP">&nbsp;</TD>
+<TD WIDTH="13%" VALIGN="TOP">&nbsp;</TD>
+</TR>
+<TR><TD WIDTH="13%" VALIGN="TOP">
+<FONT FACE="Courier New" SIZE=1><P>false</FONT></TD>
+<TD WIDTH="13%" VALIGN="TOP">
+<FONT FACE="Courier New" SIZE=1><P>float</FONT></TD>
+<TD WIDTH="13%" VALIGN="TOP">
+<FONT FACE="Courier New" SIZE=1><P>for</FONT></TD>
+<TD WIDTH="13%" VALIGN="TOP">
+<FONT FACE="Courier New" SIZE=1><P>friend</FONT></TD>
+<TD WIDTH="13%" VALIGN="TOP">&nbsp;</TD>
+<TD WIDTH="13%" VALIGN="TOP">&nbsp;</TD>
+<TD WIDTH="13%" VALIGN="TOP">&nbsp;</TD>
+<TD WIDTH="13%" VALIGN="TOP">&nbsp;</TD>
+</TR>
+<TR><TD WIDTH="13%" VALIGN="TOP">
+<FONT FACE="Courier New" SIZE=1><P>goto</FONT></TD>
+<TD WIDTH="13%" VALIGN="TOP">&nbsp;</TD>
+<TD WIDTH="13%" VALIGN="TOP">&nbsp;</TD>
+<TD WIDTH="13%" VALIGN="TOP">&nbsp;</TD>
+<TD WIDTH="13%" VALIGN="TOP">&nbsp;</TD>
+<TD WIDTH="13%" VALIGN="TOP">&nbsp;</TD>
+<TD WIDTH="13%" VALIGN="TOP">&nbsp;</TD>
+<TD WIDTH="13%" VALIGN="TOP">&nbsp;</TD>
+</TR>
+<TR><TD WIDTH="13%" VALIGN="TOP">
+<FONT FACE="Courier New" SIZE=1><P>if</FONT></TD>
+<TD WIDTH="13%" VALIGN="TOP">
+<FONT FACE="Courier New" SIZE=1><P>inline</FONT></TD>
+<TD WIDTH="13%" VALIGN="TOP">
+<FONT FACE="Courier New" SIZE=1><P>int</FONT></TD>
+<TD WIDTH="13%" VALIGN="TOP">&nbsp;</TD>
+<TD WIDTH="13%" VALIGN="TOP">&nbsp;</TD>
+<TD WIDTH="13%" VALIGN="TOP">&nbsp;</TD>
+<TD WIDTH="13%" VALIGN="TOP">&nbsp;</TD>
+<TD WIDTH="13%" VALIGN="TOP">&nbsp;</TD>
+</TR>
+<TR><TD WIDTH="13%" VALIGN="TOP">
+<FONT FACE="Courier New" SIZE=1><P>long</FONT></TD>
+<TD WIDTH="13%" VALIGN="TOP">&nbsp;</TD>
+<TD WIDTH="13%" VALIGN="TOP">&nbsp;</TD>
+<TD WIDTH="13%" VALIGN="TOP">&nbsp;</TD>
+<TD WIDTH="13%" VALIGN="TOP">&nbsp;</TD>
+<TD WIDTH="13%" VALIGN="TOP">&nbsp;</TD>
+<TD WIDTH="13%" VALIGN="TOP">&nbsp;</TD>
+<TD WIDTH="13%" VALIGN="TOP">&nbsp;</TD>
+</TR>
+<TR><TD WIDTH="13%" VALIGN="TOP">
+<FONT FACE="Courier New" SIZE=1><P>main</FONT></TD>
+<TD WIDTH="13%" VALIGN="TOP">
+<FONT FACE="Courier New" SIZE=1><P>mutable</FONT></TD>
+<TD WIDTH="13%" VALIGN="TOP">&nbsp;</TD>
+<TD WIDTH="13%" VALIGN="TOP">&nbsp;</TD>
+<TD WIDTH="13%" VALIGN="TOP">&nbsp;</TD>
+<TD WIDTH="13%" VALIGN="TOP">&nbsp;</TD>
+<TD WIDTH="13%" VALIGN="TOP">&nbsp;</TD>
+<TD WIDTH="13%" VALIGN="TOP">&nbsp;</TD>
+</TR>
+<TR><TD WIDTH="13%" VALIGN="TOP">
+<FONT FACE="Courier New" SIZE=1><P>namespace</FONT></TD>
+<TD WIDTH="13%" VALIGN="TOP">
+<FONT FACE="Courier New" SIZE=1><P>new</FONT></TD>
+<TD WIDTH="13%" VALIGN="TOP">
+<FONT FACE="Courier New" SIZE=1><P>not</FONT></TD>
+<TD WIDTH="13%" VALIGN="TOP">
+<FONT FACE="Courier New" SIZE=1><P>not_eq</FONT></TD>
+<TD WIDTH="13%" VALIGN="TOP">&nbsp;</TD>
+<TD WIDTH="13%" VALIGN="TOP">&nbsp;</TD>
+<TD WIDTH="13%" VALIGN="TOP">&nbsp;</TD>
+<TD WIDTH="13%" VALIGN="TOP">&nbsp;</TD>
+</TR>
+<TR><TD WIDTH="13%" VALIGN="TOP">
+<FONT FACE="Courier New" SIZE=1><P>operator</FONT></TD>
+<TD WIDTH="13%" VALIGN="TOP">
+<FONT FACE="Courier New" SIZE=1><P>or</FONT></TD>
+<TD WIDTH="13%" VALIGN="TOP">
+<FONT FACE="Courier New" SIZE=1><P>or_eq</FONT></TD>
+<TD WIDTH="13%" VALIGN="TOP">&nbsp;</TD>
+<TD WIDTH="13%" VALIGN="TOP">&nbsp;</TD>
+<TD WIDTH="13%" VALIGN="TOP">&nbsp;</TD>
+<TD WIDTH="13%" VALIGN="TOP">&nbsp;</TD>
+<TD WIDTH="13%" VALIGN="TOP">&nbsp;</TD>
+</TR>
+<TR><TD WIDTH="13%" VALIGN="TOP">
+<FONT FACE="Courier New" SIZE=1><P>private</FONT></TD>
+<TD WIDTH="13%" VALIGN="TOP">
+<FONT FACE="Courier New" SIZE=1><P>protected</FONT></TD>
+<TD WIDTH="13%" VALIGN="TOP">
+<FONT FACE="Courier New" SIZE=1><P>public</FONT></TD>
+<TD WIDTH="13%" VALIGN="TOP">&nbsp;</TD>
+<TD WIDTH="13%" VALIGN="TOP">&nbsp;</TD>
+<TD WIDTH="13%" VALIGN="TOP">&nbsp;</TD>
+<TD WIDTH="13%" VALIGN="TOP">&nbsp;</TD>
+<TD WIDTH="13%" VALIGN="TOP">&nbsp;</TD>
+</TR>
+<TR><TD WIDTH="13%" VALIGN="TOP">
+<FONT FACE="Courier New" SIZE=1><P>register</FONT></TD>
+<TD WIDTH="25%" VALIGN="TOP" COLSPAN=2>
+<FONT FACE="Courier New" SIZE=1><P>reinterpret_cast</FONT></TD>
+<TD WIDTH="13%" VALIGN="TOP">
+<FONT FACE="Courier New" SIZE=1><P>return</FONT></TD>
+<TD WIDTH="13%" VALIGN="TOP">&nbsp;</TD>
+<TD WIDTH="13%" VALIGN="TOP">&nbsp;</TD>
+<TD WIDTH="13%" VALIGN="TOP">&nbsp;</TD>
+<TD WIDTH="13%" VALIGN="TOP">&nbsp;</TD>
+</TR>
+<TR><TD WIDTH="13%" VALIGN="TOP">
+<FONT FACE="Courier New" SIZE=1><P>short</FONT></TD>
+<TD WIDTH="13%" VALIGN="TOP">
+<FONT FACE="Courier New" SIZE=1><P>signed</FONT></TD>
+<TD WIDTH="13%" VALIGN="TOP">
+<FONT FACE="Courier New" SIZE=1><P>sizeof</FONT></TD>
+<TD WIDTH="13%" VALIGN="TOP">
+<FONT FACE="Courier New" SIZE=1><P>static</FONT></TD>
+<TD WIDTH="13%" VALIGN="TOP">
+<FONT FACE="Courier New" SIZE=1><P>static_cast</FONT></TD>
+<TD WIDTH="13%" VALIGN="TOP">
+<FONT FACE="Courier New" SIZE=1><P>struct</FONT></TD>
+<TD WIDTH="13%" VALIGN="TOP">
+<FONT FACE="Courier New" SIZE=1><P>switch</FONT></TD>
+<TD WIDTH="13%" VALIGN="TOP">&nbsp;</TD>
+</TR>
+<TR><TD WIDTH="13%" VALIGN="TOP">
+<FONT FACE="Courier New" SIZE=1><P>template</FONT></TD>
+<TD WIDTH="13%" VALIGN="TOP">
+<FONT FACE="Courier New" SIZE=1><P>this</FONT></TD>
+<TD WIDTH="13%" VALIGN="TOP">
+<FONT FACE="Courier New" SIZE=1><P>throw</FONT></TD>
+<TD WIDTH="13%" VALIGN="TOP">
+<FONT FACE="Courier New" SIZE=1><P>true</FONT></TD>
+<TD WIDTH="13%" VALIGN="TOP">
+<FONT FACE="Courier New" SIZE=1><P>try</FONT></TD>
+<TD WIDTH="13%" VALIGN="TOP">
+<FONT FACE="Courier New" SIZE=1><P>typedef</FONT></TD>
+<TD WIDTH="13%" VALIGN="TOP">
+<FONT FACE="Courier New" SIZE=1><P>typeid</FONT></TD>
+<TD WIDTH="13%" VALIGN="TOP">
+<FONT FACE="Courier New" SIZE=1><P>typename</FONT></TD>
+</TR>
+<TR><TD WIDTH="13%" VALIGN="TOP">
+<FONT FACE="Courier New" SIZE=1><P>union</FONT></TD>
+<TD WIDTH="13%" VALIGN="TOP">
+<FONT FACE="Courier New" SIZE=1><P>unsigned</FONT></TD>
+<TD WIDTH="13%" VALIGN="TOP">
+<FONT FACE="Courier New" SIZE=1><P>using</FONT></TD>
+<TD WIDTH="13%" VALIGN="TOP">&nbsp;</TD>
+<TD WIDTH="13%" VALIGN="TOP">&nbsp;</TD>
+<TD WIDTH="13%" VALIGN="TOP">&nbsp;</TD>
+<TD WIDTH="13%" VALIGN="TOP">&nbsp;</TD>
+<TD WIDTH="13%" VALIGN="TOP">&nbsp;</TD>
+</TR>
+<TR><TD WIDTH="13%" VALIGN="TOP">
+<FONT FACE="Courier New" SIZE=1><P>virtual</FONT></TD>
+<TD WIDTH="13%" VALIGN="TOP">
+<FONT FACE="Courier New" SIZE=1><P>void</FONT></TD>
+<TD WIDTH="13%" VALIGN="TOP">
+<FONT FACE="Courier New" SIZE=1><P>volatile</FONT></TD>
+<TD WIDTH="13%" VALIGN="TOP">&nbsp;</TD>
+<TD WIDTH="13%" VALIGN="TOP">&nbsp;</TD>
+<TD WIDTH="13%" VALIGN="TOP">&nbsp;</TD>
+<TD WIDTH="13%" VALIGN="TOP">&nbsp;</TD>
+<TD WIDTH="13%" VALIGN="TOP">&nbsp;</TD>
+</TR>
+<TR><TD WIDTH="13%" VALIGN="TOP">
+<FONT FACE="Courier New" SIZE=1><P>wchar_t</FONT></TD>
+<TD WIDTH="13%" VALIGN="TOP">
+<FONT FACE="Courier New" SIZE=1><P>while</FONT></TD>
+<TD WIDTH="13%" VALIGN="TOP">&nbsp;</TD>
+<TD WIDTH="13%" VALIGN="TOP">&nbsp;</TD>
+<TD WIDTH="13%" VALIGN="TOP">&nbsp;</TD>
+<TD WIDTH="13%" VALIGN="TOP">&nbsp;</TD>
+<TD WIDTH="13%" VALIGN="TOP">&nbsp;</TD>
+<TD WIDTH="13%" VALIGN="TOP">&nbsp;</TD>
+</TR>
+<TR><TD WIDTH="13%" VALIGN="TOP">
+<FONT FACE="Courier New" SIZE=1><P>xor</FONT></TD>
+<TD WIDTH="13%" VALIGN="TOP">
+<FONT FACE="Courier New" SIZE=1><P>xor_eq</FONT></TD>
+<TD WIDTH="13%" VALIGN="TOP">&nbsp;</TD>
+<TD WIDTH="13%" VALIGN="TOP">&nbsp;</TD>
+<TD WIDTH="13%" VALIGN="TOP">&nbsp;</TD>
+<TD WIDTH="13%" VALIGN="TOP">&nbsp;</TD>
+<TD WIDTH="13%" VALIGN="TOP">&nbsp;</TD>
+<TD WIDTH="13%" VALIGN="TOP">&nbsp;</TD>
+</TR>
+</TABLE>
+
+<FONT FACE="Courier New" SIZE=2></FONT></BODY>
+</HTML>

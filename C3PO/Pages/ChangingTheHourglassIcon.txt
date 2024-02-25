@@ -1,0 +1,25 @@
+Old News to some, new to others 
+Hey everyone. I was looking through my email in the "keep" folder and I stumbled upon how to change the hourglass in the cybiko classic (and probably the same for the xtreme). They speak of a few things that are out of date, i.e. cyberload, but can easily be modified. Here's the email for anyone who wants to know: 
+
+Software needed:SDK http://www.cybiko.com/devsarea/download.asp
+If you come up with a good one send it to me.
+Due to the need, i tell how to change the hourglass.
+
+# using SDK typer: cp system.a sys.app
+# useing Cybrload, copy that file to the hard drive.
+# copy sys.app to a folder on the desktop (i.e.- temp as in C:\windows\desktop\temp)
+# open a dos-prompt, go to c:\windows\desktop\temp, type: filer e sys.app
+# open the "temp" folder on the desktop. 
+# the file called hourglass.pic is the one you wanna change, change any thing else and you cybiko's screwed. 
+# useing a bmp editor, make a picture(or multiple pics that can run together like slide show.) open Picviewer from SDK add thoses bmps you made. 
+# save the new pic file over the old hourglass.pic 
+# delete the original .app 
+# back to the dos-prompt! go to the the temp folder. Type: filer a system.a *.* 
+# open sdk send system.a to the cybiko. Congrats you've just changed to hourglass picture. 
+
+spread the word and someone put this up on there siite but make sure my name stays with it. 
+
+Blaa269 (c)2001
+
+P.S- if you do the same with desktop.app you can change the Application icon its under app.ico or change the games icon which is games.ico
+

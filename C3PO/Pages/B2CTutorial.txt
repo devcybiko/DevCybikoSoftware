@@ -1,0 +1,363 @@
+From [http://cydevr.net]
+
+  							<p align="center"><strong><em>Cybiko Programming Tutorial<br>
+                            for Beginners</em></strong></p>
+                            <p><strong> How to get started programming for Cybiko!<br>
+                              </strong>Have you dreamed of programming for Cybiko? 
+                              Making your game ideas become reality? Don't have 
+                              any programming experience? Well you've come to 
+                              the right site! If you follow the following steps, 
+                              you'll be creating real Cybiko apps in less than 
+                              5 hours (and that's if you have a slow modem)! By 
+                              the time you're done reading this page, you'll know 
+                              the basics that will allow you to create programs 
+                              as good as any of 4Cybiko's creations - and better! 
+                              All downloads are in <a href="http://www.winzip.com">zip 
+                              format</a>.<br>
+                              <br>
+                              <strong>Step 1: Emulation - NOT REQUIRED</strong><br>
+                              An emulator is simply a program that emulates a 
+                              Cybiko's hardware right on your Windows computer. 
+                              When programming, you'll probably want to test things 
+                              often. You'll make mistakes and run into problems. 
+                              Thus using an emulator saves time over sending the 
+                              app to your real Cybiko every time. The only Cybiko 
+                              emulator that I know of is C4PC, which works pretty 
+                              well. <a href="files/c4pc.zip">Click on this link</a> 
+                              (973 KB) to download v0.28, the latest at the time 
+                              of this writing. Also check out the site: <a
+  href="http://users.skynet.be/firefly/cybiko/" target="_blank">FireFly's Homepage 
+                              - Cybiko</a>. I have one quick tip for you - if 
+                              performance seems sluggish, go to the menu option 
+                              <strong>Settings</strong> and then click <strong>Speed</strong>. 
+                              Under <strong>Timer 0/1</strong>, try playing around 
+                              with that number. In my experience, a higher number 
+                              is faster, but YMMV because I've heard differing 
+                              reports. 1300 seems to be a good number for most.</p>
+                          </div>
+                          <p align="left"><a
+  href="http://users.skynet.be/firefly/cybiko/c4pc_readme.htm" target="_blank">Instructions 
+                            for using C4PC</a> (online help at FireFly's Homepage 
+                            - Cybiko)</p>
+                          <p align="left">Step Summary</p>
+                          <ul>
+                            <li> 
+                              <p align="left"><a href="files/c4pc.zip">Download 
+                                emulator</a> - this step is not required</li></ul>
+                                
+                          <strong>Step 2: Learn to Program</strong><br>
+                                The programming language of choice for most beginning 
+                                and some advanced Cybiko programmers is BASIC, 
+                                which is supported via B2C which we'll discuss 
+                                later. Although BASIC is one of the older programming 
+                                languages, it's by far the simplest and also very 
+                                powerful.</p>
+                          <p align="left">I'll write a little introduction to 
+                            programming here. Programming is basically creating 
+                            programs. So you want to make a program.. let's begin 
+                            with some examples. Here is some <em>code</em>, instructions 
+                            that tells the Cybiko what to do in your program:</p>
+                          <pre><font size="2">dim name[[32] as char
+print &quot;What is your name?&quot;
+input name
+print &quot;Your name is &quot;, name</font></pre>
+                          <p align="left">The above code will show the words &quot;What 
+                            is your name?&quot; and wait for you to enter some 
+                            words and then press enter. Then it will say &quot;Your 
+                            name is &quot; and the name you entered. Here's a 
+                            short explanation: <strong>dim name[[32] as char</strong> 
+                            creates a <strong>variable</strong>, a space to hold 
+                            information in. It's like an empty cup. It's just 
+                            some space reserved. <strong>input name</strong> has 
+                            the player enter some info and puts that info into 
+                            the variable <strong>name</strong>. It puts the stuff 
+                            the user told us into the cup we set aside earlier. 
+                            Then we print the name back out.</p>
+                          <p align="left">Here is an example working with variables. 
+                            Variables are really useful because you can change 
+                            what's inside it. You can have the user put stuff 
+                            in it or get the info out:</p>
+                          <pre><font size="2">dim number as int
+print &quot;Enter a number&quot;
+input number
+number=number+5
+print &quot;Your number +5 is&quot;, number</font></pre>
+                          <p align="left">I should go over the different kinds 
+                            of variables. A <strong>string</strong> is a word, 
+                            like a name or a sentence. To create a string, you 
+                            use an <strong>array</strong> of <strong>chars</strong>. 
+                            A char holds a letter. Say you want a string that 
+                            is able to hold up to a 31 letter word - you would 
+                            type <strong>dim string[[32] as char</strong>. string 
+                            can be whatever you want it to be - it doesn't matter. 
+                            It's a name that we use when we want to refer to that 
+                            variable. [[32] is the array size. It's like the same 
+                            thing as putting <strong>dim letter1 as char</strong>, 
+                            <strong>dim letter2 as char</strong>, <strong>dim 
+                            letter3 as char</strong>.. but combined into <strong>dim 
+                            letters[[32] as char</strong>. Then you can work with 
+                            it using B2C's print and input commands.</p>
+                          <p align="left">Next is <strong>int</strong>, another 
+                            one you'll be using a lot. int is short for integer, 
+                            which is any <strong>whole</strong> number. There's 
+                            a limit to how big it can be, but you don't need that 
+                            right now. So you want to store a <strong>number</strong>? 
+                            Create an <strong>int</strong>. With ints, you can 
+                            add, subtract, multiply, or divide them just like 
+                            they were numbers. You can add to a number that the 
+                            user tells you - that's what the above code does. 
+                            And now I recommend that you check out some other 
+                            tutorials to learn more..</p>
+                          <p align="left">Here are some good sites to learn BASIC 
+                            programming: <a
+  href="http://www.qbasic.com/newbies.shtml" target="_blank">QBasic.com Newbies</a> and <a
+  href="http://www.geocities.com/SiliconValley/Bay/5707/qbasic.html" target="_blank">QP7 QBasic 
+                            Tutorial</a>. The concepts that you should know well 
+                            before continuing are:</p>
+                          <ul>
+                            <li> 
+                              <p align="left">PRINT</p>
+                            </li>
+                            <li> 
+                              <p align="left">INPUT</p>
+                            </li>
+                            <li> 
+                              <p align="left">Loops (FOR, WHILE)</p>
+                            </li>
+                          </ul>
+                          <p align="left"><strong>You don't need to completely 
+                            master programming yet</strong>, but you should get 
+                            a good feel of it so you don't get confused later. 
+                            You should learn QBasic programming first because 
+                            Cybiko is slower and can be slightly more difficult. 
+                            I recommend that you write a couple of simple PC programs 
+                            before continuing to Cybiko. QBasic and Cybiko B2C 
+                            BASIC are very similar. The Cybiko really is a handheld 
+                            computer.</p>
+                          <p align="left">Step Summary</p>
+                          <ul>
+                            <li> 
+                              <p align="left"><a href="http://www.geocities.com/SiliconValley/Bay/5707/qbasic.html" target="_blank">Learn 
+                                BASIC</a></p>
+                            </li>
+                          </ul>
+                          <p align="left"><strong>Step 3: Downloading, Installing, 
+                            and Setting Up the Compilers</strong><br>
+                          The only four tools that you need for Cybiko programming 
+                          are all free: <a
+  href="files/SDK_2010.exe">the Cybiko SDK (software development kit)</a> (3.5 
+                          MB), <a
+  href="files/b2cv5b.zip">B2C (BASIC-to-C) compiler</a> (768 KB), Microsoft Paint 
+                          (or any other graphics editor), and Microsoft Edit (or 
+                          other text editor). The first item is the official Cybiko 
+                          SDK. You can get this from the Cybiko site, but I recommend 
+                          an older version that works better - v2.0.10 which you 
+                          can <a
+  href="files/SDK_2010.exe">get right here</a> (same as link above). Next you 
+                          need B2C. The latest version is v5b, <a href="files/b2cv5b.zip">get 
+                          it here</a> (same as link above). Microsoft Paint and 
+                          Edit are included with most versions of Windows - if 
+                          you don't know how to use Edit (which is preferred over 
+                          Notepad because it supports line numbers) <a href="http://members.aol.com/johnsha/dos.htm#Edit" target="_blank">click 
+                          right here</a> to learn how to use Edit.</p>
+                          <p align="left">Step Summary</p>
+                          <ul>
+                            <li> 
+                              <p align="left"><a href="SDK_2010.exe">Download</a> 
+                                and install Cybiko SDK</p>
+                            </li>
+                            <li> 
+                              <p align="left"><a href="files/b2cv5b.zip">Download</a> 
+                                and install B2C</p>
+                            </li>
+                            <li> 
+                              <p align="left"><a href="http://members.aol.com/johnsha/dos.htm#Edit" target="_blank">Learn 
+                                to use Edit</a></p>
+                            </li>
+                          </ul>
+                          <p align="left">Step 4: Your First Cybiko Program!</p>
+                          <div align="center"> 
+                            <center>
+                              <table width="90%" border="1" cellpadding="3" cellspacing="0" bordercolor="#000000">
+                                <tr> 
+                                  <td width="100%" bordercolor="#E1E1E1"><strong>If you are using the 
+                                    B2C tutorial in the B2C documentation/Windows 
+                                    help file</strong>:<br>
+                                    You WILL get an error on line 3, expecting 
+                                    &quot;AS&quot; or &quot;[[&quot;. The documentation 
+                                    is outdated. <em>There is nothing wrong with 
+                                    your setup</em>. On all lines that begin with 
+                                    <em>dim</em> but have no <em>as</em>, add 
+                                    <em>as int</em> to the end. 
+                                    <p>For example, in the sample hello app, change<br>
+                                      <font face="Courier">dim b</font><br>
+                                      to<br>
+                                      <font face="Courier">dim b as int</font><font size="1"> 
+                                    <p>&nbsp;</font></td>
+                                </tr>
+                              </table>
+                            </center>
+                          </div>
+                          <p align="left">You've come far! Now we're getting into 
+                            the exciting stuff. Type this <strong>programming 
+                            code</strong> into Microsoft Edit (or your text editor)..</p>
+                          <pre><font size="2">print &quot;Hello world!&quot;
+wait 10
+while key=0
+wend</font></pre>
+                          <p align="left">..and save it into the same directory 
+                            that B2C is in as <strong>helloworld.b2c</strong> 
+                            (if using Notepad, the option &quot;Save as type&quot; 
+                            does not matter). Now open up a command prompt (MS-DOS 
+                            Prompt) and cd into the directory that you installed 
+                            B2C into. For example..</p>
+                          <pre><font size="2">C:\<font color="#FF0000">cd b2cv4</font>
+C:\B2Cv4\</font></pre>
+                          <p>..and then type..</p>
+                          <pre><font size="2">C:\B2Cv4\<font color="#FF0000">build helloworld.b2c</font></font></pre>
+                          ...you should get the following...
+                          <pre><font size="2">B2C - BASIC to C Compiler Version 4
+..
+Done: 7 files.</font></pre>
+                          <p><font color="#000000">..if you ran into any problems, 
+                            either the Cybiko SDK or B2C compiler wasn't installed 
+                            correctly or you didn't save the helloworld.b2c correctly. 
+                            Try to figure it out yourself, or IM (on AIM) <strong>devcybiko</strong> 
+                            or <strong>gengar56</strong> for&nbsp;help. (Common 
+                            problems: make sure the file is named <strong>helloworld.b2c</strong>, 
+                            <em>not</em> helloworld.b2c.<em>txt</em>. Make sure 
+                            you CD (change directory) into the folder that B2C 
+                            is installed and make sure that the helloworld.b2c 
+                            file is in the same folder.) If it worked, congrats! 
+                            Go into the B2Cv4 directory and download helloworld.b2c 
+                            to your Cybiko or emulator. If everything goes as 
+                            planned, you'll see the text &quot;Hello world!&quot; 
+                            on your screen and the program will exit when you 
+                            press any key. You've just made your first Cybiko 
+                            program!<br>
+                            <br>
+                            </font><font color="#000000">Step Summary</font></p>
+                          <ul>
+                            <li><font color="#000000">Program and compile a &quot;Hello 
+                              world!&quot; application.</font></li>
+                          </ul>
+                          <p><font color="#000000"><strong><br>
+                            Step 5: Develop Your Skills</strong><br>
+                            Now write some cool programs! Especially get to know 
+                            variables and loops really well. You'll use them a 
+                            lot in the next step - graphics! But don't jump into 
+                            graphics right away. You need a good grasp of the 
+                            text stuff first. Spend some time programming! Learn 
+                            from others. And keep me updated! If you want to show 
+                            off your work, <a href="mailto:webmaster@4cybiko.com">email 
+                            me</a> and I might put some of your programs on 4Cybiko. 
+                            Be sure to read the B2C documentation under /docs, 
+                            especially B2Cbuild - learn to use build files. You'll 
+                            need them for graphics, but you can give your programs 
+                            a much more professional look with your own program 
+                            name, copyright info, help file, and even your own 
+                            icon! I highly recommend <a href="http://www.devcybiko.com" target="_blank">DevCybiko</a> 
+                            for tutorials and examples. A few programming ideas:</font> 
+                          <ul>
+                            <li><font color="#000000">Quiz program - expand with 
+                              random questions and save the user's high scores 
+                              with file I/O!</font></li>
+                            <li><font color="#000000">Text adventure - these are 
+                              rather popular</font></li>
+                            <li><font color="#000000">Timer - use wait and give 
+                              the user a visual countdown!</font></li>
+                          </ul>
+                          <p><font color="#000000">Step Summary</font> 
+                          <ul>
+                            <li><font color="#000000">Get used to programming 
+                              for Cybiko</font></li>
+                            <li><font color="#000000">Improve your programming 
+                              skills</font></li>
+                            <li><font color="#000000">Learn to use B2C build files</font></li>
+                            <li><font color="#000000">Build some cool programs</font></li>
+                          </ul>
+                          <p><font color="#000000"><strong><br>
+                            Step 6: Graphics</strong><br>
+                            So you've mastered text-based programs and the dull 
+                            look is getting boring. Graphics! They'll make your 
+                            program shine and the possibilities are literally 
+                            <em>endless</em>. The first concept that you need 
+                            to understand is the <strong>sprite</strong>. Sprites 
+                            are pictures that you load into your program. You 
+                            can move them around the screen and, with a bunch 
+                            of them and transparency, create some cool animated 
+                            effects. In B2C, you create a sprite with the <strong>sprite</strong> 
+                            command.</font></p>
+                          <p>First, learn to use buildfiles. Open b2c.chm (the 
+                            B2C help file with documentation) and read the build 
+                            information.</p>
+                          <div align="center"> 
+                            <center>
+                              <table width="90%" border="1" cellpadding="3" cellspacing="0" bordercolor="#000000">
+                                <tr> 
+                                  <td width="100%" bordercolor="#E1E1E1"><strong>When using a build 
+                                    file, you type:<br>
+                                    </strong><font face="Courier" color="#FF0000">build 
+                                    your_build_file.bld</font><br>
+                                    to compile. YOU DO NOT &quot;BUILD&quot; YOUR 
+                                    .B2C SOURCE CODE. It is referenced under [[source] 
+                                    and automatically used and compiled.</td>
+                                </tr>
+                              </table>
+                            </center>
+                          </div>
+                          <p>Then, add sprites to your app archive with:<br>
+                            <br>
+                            <font face="Courier">[[pic=spritename.pic]<br>
+                            spritename.bmp</font></p>
+                          <p>Sprite making: you can use Microsoft Paint. Cybiko 
+                            supports four colors only (if you use more than 4 
+                            colors, you'll get a compiling error): white, light 
+                            gray, dark gray, and black. <strong>Use only these 
+                            colors when drawing your sprite</strong>.</p>
+                          <p>In your B2C program, the syntax for sprite is:<br>
+                            <br>
+                            <font face="Courier">sprite n, &quot;sprite.pic&quot;</font><br>
+                            <br>
+                            where n is the sprite number and sprite.pic is the 
+                            spritename.pic you put in your build file. For example, 
+                            you could put<br>
+                            <br>
+                            <font face="Courier">sprite 1, &quot;sprite.pic&quot;</font><br>
+                            <br>
+                            to load the sprite. Use the redraw command to draw 
+                            the sprite on the screen:<br>
+                            <br>
+                            <font face="Courier">redraw</font></p>
+                          <p><font color="#000000">..more coming soon..</font></p>
+                          <p><font color="#000000"><strong>Step 7: Keeping Up 
+                            with Cybiko Programming</strong><br>
+                            Now that you're a seasoned programming genius, join 
+                            the Cybiko programming community. The main community 
+                            home is currently the <a
+  href="http://www.cybla.com/yabbse/" target="_blank">Cybiko Forums</a> (7/27/02). Sign up and 
+                            post in the DevGeneral and DevHelp boards.</font></p>
+                          <p><font color="#000000">Start your own site. Chat with 
+                            other programmers. Join the <a href="http://groups.yahoo.com/group/CybikoB2C" target="_blank">Cybiko 
+                            B2C</a> and <a
+  href="http://groups.yahoo.com/group/CybikoDev" target="_blank">CybikoDev</a> Yahoo! groups. 
+                            Some sites worth mentioning:</font> 
+                          <ul>
+                            <li><a href="http://www.devcybiko.com" target="_blank">DevCybiko</a> 
+                              - probably the best developer site out there. After 
+                              all, they made B2C which greatly simplified Cybiko 
+                              programming</li>
+                            <li><a href="http://www.devrs.com/cybiko/" target="_blank">Cybiko 
+                              Dev'rs</a> - used to be an excellent resource, but 
+                              hasn't been updated recently</li>
+                            <li><a href="http://www.4cybiko.com" target="_blank">4Cybiko</a> 
+                              - of course!</li>
+                          </ul>
+                          <p><font color="#000000"><strong><br>
+                            Comments or Questions</strong><br>
+                            Email <a href="mailto:webmaster@4cybiko.com">webmaster@4cybiko.com</a> 
+                            or <a
+  href="mailto:gengar56@hotmail.com">gengar56@hotmail.com</a> (same person). Also, 
+                            for a faster response, AIM <strong>gengar56</strong> 
+                            if I'm online.</font></p>
+                          <p><em>Last Updated 07.27.02</em></p>

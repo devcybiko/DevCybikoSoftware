@@ -1,0 +1,21 @@
+<B><P>Topic :</B> OPTION-C_STRINGS</P>
+<P>&#9;OPTION CYBASIC_STRINGS (default)</P>
+<B><P>Language Level</B> : B2C Extension</P>
+<B><P>Effectivity :</B> B2C v2c</P>
+<B><P>Syntax</B> : </P><DIR>
+<DIR>
+
+<P>OPTION C_STRINGS</P>
+<P>OPTION CYBASIC_STRINGS</P></DIR>
+</DIR>
+
+<B><P>Description :</P>
+<P>&#9;</B>The C compiler offers a powerful string formatting capability.  Characters placed in a literal string can be preceded by the backslash character (\) also known as the escape character.  Using this escape character special characters (like \n for newline and \003 for ^C) could be inserted into the middle of a string.  </P>
+<P>However Cybasic does not offer this capability.  To solve this delemma, the OPTION C_STRINGS command was introduced.  If OPTION C_STRINGS appears at the top of a program, the escape character is interpretted as a C string.  However if OPTION CYBASIC_STRINGS appears at the top of a program, the escape character has no special meaning.  The default is OPTION CYBASIC_STRINGS.</P>
+<B><P>Example :</P>
+<P>&#9;</B>OPTION C_STRINGS</P>
+<P>&#9;Print "\"Hello World\""</P>
+<B><P>Results:</P>
+<P>&#9;"Hello World"</P>
+
+<P>&nbsp;</P>

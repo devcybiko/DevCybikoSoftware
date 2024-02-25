@@ -1,0 +1,8 @@
+set CCFLAGS=-O2 -palmos5 -Iinc
+m68k-palmos-cpp %CCFLAGS% %1.b2c > %1.tmp
+bin\b2c %1%.tmp
+m68k-palmos-gcc %CCFLAGS% -c %1.cpp -o %1.o
+pilrc -q %1%.rcp
+m68k-palmos-gcc %1.o bin\b2cuser.o -o %1.xxx
+build-prc %1.def %1.xxx *.bin
+rm -f *.[oa] *.bin *~ %1.xxx %1.tmp %1.cpp

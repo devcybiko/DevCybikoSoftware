@@ -1,0 +1,44 @@
+<B><P>Topic :</B> Page</P>
+<B><P>Language Level</B> : B2C Extension</P>
+<B><P>Effectivity :</B> B2C v5</P>
+<B><P>Syntax</B> : </P><DIR>
+<DIR>
+
+<P>Page 0/1</P></DIR>
+</DIR>
+
+<B><P>Description :</P><DIR>
+<DIR>
+
+</B><P>Page will set the current graphics page.  The Cybiko has 2 graphics pages (page 0 and page 1).  The default is Page 0.  All graphics commands will be displayed on the currently selected page.  Changing the graphics page starts rendering on that page.  You can render graphics on one page while displaying the other one (this requires OPTION SHOW OFF and REDRAW SHOW).  This is called &quot;double-buffering&quot;.  </P></DIR>
+</DIR>
+
+<B><P>Example : </P>
+</B></FONT><FONT FACE="Courier New" SIZE=1><P>&#9;OPTION SHOW OFF</P><DIR>
+<DIR>
+
+<P>page 0   ‘display page 0</P>
+<P>cls ‘ clear page 0</P>
+<P>rect 0,0,40,40 ‘draw a rectangle on page 0</P>
+<P>redraw show ‘ show page 0</P>
+
+<P>page 1 ‘select page 1</P>
+<P>cls ‘ clearing page 1 does not affect page 0</P>
+<P>rectfill -40,40,40,40 ‘ draw a filled rect on page 1</P>
+
+<P>‘now alternate between the two pages</P>
+<P>while (key(#KEY_ENTER)=0)</P><DIR>
+<DIR>
+
+<P>page 0 ‘ select page 0</P>
+<P>redraw show ‘ show page 0</P>
+<P>wait 10</P>
+<P>page 1 ‘select page 1</P>
+<P>redraw show ‘show page 1</P>
+<P>wait 10 </P></DIR>
+</DIR>
+
+<P>wend</P>
+</FONT><B><FONT SIZE=2></DIR>
+</DIR>
+

@@ -1,0 +1,3 @@
+Since I had not seen this before this was tough. I had some help from an article at [GameDev.net|http://www.gamedev.net] called [Advanced Image Panning|http://www.gamedev.net/reference/articles/article1311.asp ]
+Basically, you take parts of up to four adjacent screens and copy them on to a destination screen.\\
+[SamNEggs] 27-Jul-2003

@@ -1,0 +1,18 @@
+From [http://devrs.com/cybiko]
+
+The Linux Command-Line Cybiko Interface
+ 
+Cyucon Two
+This is the home page for Cyucon.0.2.0, a command-line interface manager for Linux and the Cybiko classic radio PDA game machine. This tool allows Linux users to run commands on the Cybiko command interpreter, see the bootup sequence on the Cybiko, and move files between Linux and the Cybiko. It works only with the Cybiko Classic, because the Cybiko Extreme uses a USB interface which I haven't reverse engineered yet. 
+
+The program was developed on a Linux 2.2 kernel, with gcc 2.96. It should run on any Linux box which has serial cable support. 
+
+Cyucon was originally written by Jeff Frohwein, then reworked by Charles Shapiro. It is released under the Gnu Public License. 
+
+You can download it [here|CyUcon/cyucon.0.2.0.tgz] (use the "save url as file" option on your browser) . 
+
+View the readme file [here|CyUcon.Readme] 
+
+Contact me at [mailto:radiolinuxdood@mad.scientist.com]
+
+

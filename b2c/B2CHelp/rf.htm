@@ -1,0 +1,138 @@
+<HTML>
+<HEAD>
+<META HTTP-EQUIV="Content-Type" CONTENT="text/html; charset=windows-1252">
+<META NAME="Generator" CONTENT="Microsoft Word 97">
+<TITLE>Bitmapped Graphics</TITLE>
+</HEAD>
+<BODY LINK="#0000ff" VLINK="#800080">
+
+<B><FONT FACE="Arial" SIZE=5><P ALIGN="CENTER">RF Messaging and</P>
+<P ALIGN="CENTER">Multiplayer</P>
+<P ALIGN="CENTER">With B2C</P>
+</FONT><FONT FACE="Arial" SIZE=4><P><A NAME="introduction"></P>
+<P>Introduction</P>
+</B></FONT><FONT SIZE=2><P></A></P>
+<P>B2C Version 3d introduced Radio Frequency (RF) Messaging. New commands (OnMessage, SendMessage, UserMenu, toCyID, toUser) make for a complete and simple interface to write RF Messaging and Multiplayer applications. </P>
+<P>The program "chat.app" in the chat directory demonstrates these capabilities. It is a duplicate of Cybiko’s own Chat demo. With it you can send and receive messages to another Cybiko.</P>
+<P>&nbsp;</P>
+</FONT><B><FONT FACE="Arial" SIZE=4><P><A NAME="getting_started"></P>
+<P>Getting Started</P>
+</B></FONT><FONT SIZE=2><P></A></P>
+<P>To send a message you need the SendMessage command:</P>
+<P ALIGN="CENTER">SendMessage cyid, msgno, appname, string</P>
+<P ALIGN="CENTER">The parameter ‘cyid’ is the numeric CyID of the Cybiko the message is going to. Msgno is a number from 0 to 1023. This number will be sent to the receiving Cybiko so you know which message is being sent. Msgno is really an identifier (like 0 for InitMessage and 1 for DataMessage). ‘appname’ is the name of the application to receive the message. ‘string’ is the data to send to the receiving Cybiko. It can be any textual data you would like to send.</P>
+<P>&nbsp;</P>
+</FONT><B><FONT FACE="Arial" SIZE=4><P><A NAME="receiving_messages"></P>
+<P>Receiving Messages</P>
+</B></FONT><FONT SIZE=2><P></A></P>
+<P>To receive a message you must define a well-known function called OnMessage:</P>
+<P ALIGN="CENTER">sub onMessage(cyid as long, msgno as int, buf[] as char)</P>
+<P ALIGN="CENTER">This function will be called whenever a message appears on the message queue. ‘cyid’ is the numeric CyID of the Cybiko who sent the message. ‘msgno’ is the message number. ‘buf’ is the message which was sent by the sending Cybiko.</P>
+<P>&nbsp;</P>
+</FONT><B><FONT FACE="Arial" SIZE=4><P><A NAME="picking_a_cybiko"></P>
+<P>Picking a Cybiko</P>
+</B></FONT><FONT SIZE=2><P></A></P>
+<P>To find a nearby Cybiko use the function:</P>
+<P ALIGN="CENTER">cyid = UserMenu(prompt, exception_list)</P>
+<P ALIGN="CENTER">‘cyid’ is the numeric CyID of the Cybiko the user selects. The ‘prompt’ parameter is a string to display to the user when they select a user. The exception list is an array of Long integers. The array identifies CyIDs to exclude from the list the user can choose from. The list should be terminated with a zero CyID. This is useful for excluding users who have already been added to the game which is being played.</P>
+<P>&nbsp;</P>
+</FONT><B><FONT FACE="Arial" SIZE=4><P><A NAME="converting"></P>
+<P>Converting CyID to User (nickname)</P>
+</B></FONT><FONT SIZE=2><P></A></P>
+<P>To convert a CyID to a printable user name (or nickname) use the function:</P>
+<P ALIGN="CENTER">username = toUser(cyid)</P>
+<P ALIGN="CENTER">‘cyid’ is a Long integer which is the nearby Cybiko with the ‘username’.</P>
+<P>To convert a ‘username’ to a numeric CyID use:</P>
+<P ALIGN="CENTER">cyid = toCyID(username)</P>
+<P ALIGN="CENTER">‘username’ is a character array and ‘cyid’ is a Long integer.</P>
+<P>&nbsp;</P>
+</FONT><B><FONT FACE="Arial" SIZE=4><P><A NAME="cavaets"></P>
+<P>Caveats</P>
+</B></FONT><FONT SIZE=2><P></A></P>
+<P>The OnMessage function is called when a message-queue reading function is called. This would be a function like Input or key. However not when key(n) is called (where n is some key number). The good news is that normally the function _escape(0) is called at the top of each loop – which reads the message queue for the ESC key. However if you specify OPTION ESCAPE OFF this function is not called. Basically if you call the function ‘key’ once in a while you can be sure that your OnMessage function will operate.</P>
+<P>A second concern is that the buffers used in the Input function are also used in the Print function. So it is not advisable to call the Print command from inside the OnMessage function.</P>
+</FONT><B><FONT FACE="Arial" SIZE=4><P><A NAME="chat"></P>
+<P>Chat.app</P>
+</B></FONT><FONT SIZE=2><P></A></P>
+<P>The program chat.b2c is in the directory chat. It allows you to send chat messages from one Cybiko to another.</P><DIR>
+<DIR>
+
+</FONT><FONT FACE="Courier" SIZE=1><P>dim cyid as long</P>
+<P>dim mycyid as long</P>
+<P>dim msg[64] as char</P>
+<P>dim name[32] as char</P>
+<P>dim x as int</P>
+<P>dim y as int</P>
+<P>dim z as int</P>
+<P>dim xx as int</P>
+<P>dim yy[32] as char</P>
+<P>dim window[9,40] as char</P>
+<P>dim indow[40] as char</P>
+<P>option c_coords</P>
+<P>option escape off</P>
+<P>x=0</P>
+<P>y=0</P>
+<P>sub box(x0,y0,x1,y1)</P>
+<P>line x0,y0,x1,y0</P>
+<P>line x1,y0,x1,y1</P>
+<P>line x1,y1,x0,y1</P>
+<P>line x0,y1,x0,y0</P>
+<P>end sub</P>
+<P>sub reprint</P>
+<P>cls</P>
+<P>for i=0 to 8</P>
+<P>printxy 2,i*10-2, window[i]</P>
+<P>next</P>
+<P>printxy 2,89,indow</P>
+<P>box(0,0,159,89)</P>
+<P>box(0,89,159,99)</P>
+<P>end sub</P>
+<P>sub getInput</P>
+<P>dim k</P>
+<P>z=0</P>
+<P>indow[0] = 0</P>
+<P>reprint</P>
+<P>k=key</P>
+<P>while k&lt;&gt;#KEY_ENTER</P>
+<P>if k&lt;&gt;0 then</P>
+<P>indow[z]=k</P>
+<P>indow[z+1]=0</P>
+<P>printxy 2,89,indow</P>
+<P>z=z+1</P>
+<P>if z=39 then exit while</P>
+<P>end if</P>
+<P>k = key</P>
+<P>if k=#KEY_ENTER AND indow[0]=0 then k=0</P>
+<P>wend</P>
+<P>scroll</P>
+<P>window[8]=indow</P>
+<P>end sub</P>
+<P>sub scroll</P>
+<P>for i = 0 to 8</P>
+<P>window[i] = window[i+1]</P>
+<P>next</P>
+<P>end sub</P>
+<P>sub onMessage(cyid as long, msgno as int, buf[] as char)</P>
+<P>dim tmp[40] as char</P>
+<P>scroll</P>
+<P>sprint tmp, "&gt;", buf</P>
+<P>window[8] = tmp</P>
+<P>reprint</P>
+<P>beep 10</P>
+<P>vibrate 128</P>
+<P>wait 5</P>
+<P>beep -1</P>
+<P>vibrate 0</P>
+<P>end sub</P>
+<P>cyid = usermenu("Select Chat Client", 0)</P>
+<P>name = touser(cyid)</P>
+<P>print cyid, "=", name</P>
+<P>while 1</P>
+<P>getInput</P>
+<P>sendMessage cyid, 0, "chat", indow</P>
+<P>wend</P>
+<P>&nbsp;</P>
+<P>&nbsp;</P></DIR>
+</DIR>
+</FONT></BODY>
+</HTML>

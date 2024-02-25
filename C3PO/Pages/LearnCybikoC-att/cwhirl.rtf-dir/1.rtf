@@ -1,0 +1,301 @@
+{\rtf1\ansi\ansicpg1252\uc1 \deff0\deflang1033\deflangfe1033{\fonttbl{\f0\froman\fcharset0\fprq2{\*\panose 02020603050405020304}Times New Roman;}{\f1\fswiss\fcharset0\fprq2{\*\panose 020b0604020202020204}Arial;}
+{\f6\fmodern\fcharset0\fprq1{\*\panose 00000000000000000000}Courier{\*\falt Courier New};}{\f101\froman\fcharset238\fprq2 Times New Roman CE;}{\f102\froman\fcharset204\fprq2 Times New Roman Cyr;}{\f104\froman\fcharset161\fprq2 Times New Roman Greek;}
+{\f105\froman\fcharset162\fprq2 Times New Roman Tur;}{\f106\froman\fcharset186\fprq2 Times New Roman Baltic;}{\f107\fswiss\fcharset238\fprq2 Arial CE;}{\f108\fswiss\fcharset204\fprq2 Arial Cyr;}{\f110\fswiss\fcharset161\fprq2 Arial Greek;}
+{\f111\fswiss\fcharset162\fprq2 Arial Tur;}{\f112\fswiss\fcharset186\fprq2 Arial Baltic;}}{\colortbl;\red0\green0\blue0;\red0\green0\blue255;\red0\green255\blue255;\red0\green255\blue0;\red255\green0\blue255;\red255\green0\blue0;\red255\green255\blue0;
+\red255\green255\blue255;\red0\green0\blue128;\red0\green128\blue128;\red0\green128\blue0;\red128\green0\blue128;\red128\green0\blue0;\red128\green128\blue0;\red128\green128\blue128;\red192\green192\blue192;}{\stylesheet{
+\nowidctlpar\widctlpar\adjustright \fs20\cgrid \snext0 Normal;}{\s1\sb240\sa60\keepn\nowidctlpar\widctlpar\adjustright \b\f1\fs28\kerning28\cgrid \sbasedon0 \snext0 heading 1;}{\*\cs10 \additive Default Paragraph Font;}{\*\cs15 \additive \ul\cf2 
+\sbasedon10 Hyperlink;}{\s16\nowidctlpar\widctlpar\adjustright \f6\fs16\cgrid \sbasedon0 \snext16 Code;}}{\info{\title Whirlwind Tour}{\author Gregory Smith}{\operator Greg Smith}{\creatim\yr2003\mo7\dy15\hr19\min48}{\revtim\yr2003\mo7\dy15\hr19\min48}
+{\version2}{\edmins0}{\nofpages6}{\nofwords1622}{\nofchars9250}{\*\company The Alcor Group}{\nofcharsws11359}{\vern71}}\widowctrl\ftnbj\aenddoc\hyphcaps0\formshade\viewkind1\viewscale113\viewzk2\pgbrdrhead\pgbrdrfoot \fet0\sectd 
+\linex0\endnhere\sectdefaultcl {\*\pnseclvl1\pnucrm\pnstart1\pnindent720\pnhang{\pntxta .}}{\*\pnseclvl2\pnucltr\pnstart1\pnindent720\pnhang{\pntxta .}}{\*\pnseclvl3\pndec\pnstart1\pnindent720\pnhang{\pntxta .}}{\*\pnseclvl4
+\pnlcltr\pnstart1\pnindent720\pnhang{\pntxta )}}{\*\pnseclvl5\pndec\pnstart1\pnindent720\pnhang{\pntxtb (}{\pntxta )}}{\*\pnseclvl6\pnlcltr\pnstart1\pnindent720\pnhang{\pntxtb (}{\pntxta )}}{\*\pnseclvl7\pnlcrm\pnstart1\pnindent720\pnhang{\pntxtb (}
+{\pntxta )}}{\*\pnseclvl8\pnlcltr\pnstart1\pnindent720\pnhang{\pntxtb (}{\pntxta )}}{\*\pnseclvl9\pnlcrm\pnstart1\pnindent720\pnhang{\pntxtb (}{\pntxta )}}\pard\plain \s1\qc\sa60\keepn\nowidctlpar\widctlpar\outlinelevel0\adjustright 
+\b\f1\fs28\kerning28\cgrid {Whirlwind Tour
+\par Of Cybiko C
+\par }\pard\plain \nowidctlpar\widctlpar\adjustright \fs20\cgrid {What follows is a Whirlwind Tour of Cybiko C.  It is in no way a complete tutorial on the C language or the Cybiko.  It is designed to get you up and running in C on the Cybiko as quickly as p
+ossible.  You are expected to know how to compile and run a program using the Cybiko SDK.  If you do not know how to do  this, please see the SDK/C Tutorial which will present the details of editing, compiling, and downloading an application to the Cybiko
+.
+\par }\pard\plain \s1\sb240\sa60\keepn\nowidctlpar\widctlpar\outlinelevel0\adjustright \b\f1\fs28\kerning28\cgrid {main & TRACE
+\par }\pard\plain \nowidctlpar\widctlpar\adjustright \fs20\cgrid {
+All programs begin with the "main" function.  On the Cybiko you must #include "CyWin.h"  The number of arguments to the program is the variable "argc" and the array of arguments is in "argv".  The variable "start" indicates whether the p
+rogram was started by the user or by a message.  You may never use these.  TRACE() is a function which sends text down the serial port to be viewed on the CyConsole. All statements end with a semi-colon.  The main function MUST return zero.
+\par Text strings  are placed between double-quotes.
+\par 
+\par }\pard\plain \s16\nowidctlpar\widctlpar\adjustright \f6\fs16\cgrid {#include "CyWin.h"
+\par long main(int argc, char* argv[], bool start)
+\par \{
+\par \tab TRACE("Hello World");
+\par \tab return 0;
+\par \}
+\par }\pard\plain \nowidctlpar\widctlpar\adjustright \fs20\cgrid {
+\par }\pard\plain \s1\sb240\sa60\keepn\nowidctlpar\widctlpar\outlinelevel0\adjustright \b\f1\fs28\kerning28\cgrid {main_module
+\par }\pard\plain \nowidctlpar\widctlpar\adjustright \fs20\cgrid {Before you can do anything you must initialize the main_module.  It is a global variable (can be used by a
+ll functions) which is passed to all the other Cybiko functions.  You must always call "init_module" at the start of the main.
+\par 
+\par 
+\par }\pard\plain \s16\nowidctlpar\widctlpar\adjustright \f6\fs16\cgrid {#include "CyWin.h"
+\par struct module_t main_module;
+\par 
+\par long main(int argc, char* argv[], bool start)
+\par \{
+\par \tab init_module(&main_module);
+\par }\pard \s16\fi720\nowidctlpar\widctlpar\adjustright {return 0;
+\par }\pard \s16\nowidctlpar\widctlpar\adjustright {\}
+\par }\pard\plain \nowidctlpar\widctlpar\adjustright \fs20\cgrid {
+\par }\pard\plain \s1\sb240\sa60\keepn\nowidctlpar\widctlpar\outlinelevel0\adjustright \b\f1\fs28\kerning28\cgrid {Comments & Spaces
+\par }\pard\plain \nowidctlpar\widctlpar\adjustright \fs20\cgrid {
+There are 2 types of comments - line comments and block comments.  Line comments begin with two slashes // and block comments start with a slash-star and end with a star-slash.  C doesn't care about spaces and newlines.  That i
+s to say, you can place as many or as few spaces and newlines between language operators as you like.  An entire program can be placed on one line.
+\par 
+\par }\pard\plain \s16\nowidctlpar\widctlpar\adjustright \f6\fs16\cgrid {#include "CyWin.h"
+\par // a line comment
+\par struct module_t main_module;  // global variable
+\par 
+\par /*
+\par  ** the main function
+\par  ** the first function in any C program
+\par  ** must be the main function
+\par */
+\par long main(int argc, char* argv[], bool start) \{ return 0; \} // whole program on one line
+\par }\pard\plain \nowidctlpar\widctlpar\adjustright \fs20\cgrid {
+\par }\pard\plain \s1\sb240\sa60\keepn\nowidctlpar\widctlpar\outlinelevel0\adjustright \b\f1\fs28\kerning28\cgrid {\page Display some text
+\par }\pard\plain \nowidctlpar\widctlpar\adjustright \fs20\cgrid {To display text on the screen you need to define the color and font.  There are 4 colors:
+\par CLR_WHITE, CLR_BLACK, CLR_DKGRAY, CLR_LTGRAY.  There are 4 fonts: cool_normal_font, cool_bold_font, mini_normal_font, mini_bold_font.  Then you need to call the DisplayGraphics_show_text() function with the text to dis
+play and the x & y coordinates to show the text.  Finally call the DisplayGraphics_show() function
+\par 
+\par }\pard\plain \s16\nowidctlpar\widctlpar\adjustright \f6\fs16\cgrid {#include "CyWin.h"
+\par struct module_t main_module;  // global variable
+\par long main(int argc, char* argv[], bool start) \{
+\par \tab init_module(&main_module);
+\par         DisplayGraphics_fill_screen(main_module.m_gfx, CLR_WHITE);  // clear screen
+\par         DisplayGraphics_set_color(main_module.m_gfx, CLR_BLACK); // set color
+\par         DisplayGraphics_set_font(main_module.m_gfx, cool_normal_font); // set font
+\par         DisplayGraphics_draw_text(  // remember newlines can come anywhere
+\par }\pard \s16\fi720\li720\nowidctlpar\widctlpar\adjustright {main_module.m_gfx, "Hello World !", 50, 35);  // display the text
+\par }\pard \s16\nowidctlpar\widctlpar\adjustright {        DisplayGraphics_show(main_module.m_gfx);  // show latest change on the display
+\par \tab return 0;
+\par \}
+\par }\pard\plain \nowidctlpar\widctlpar\adjustright \fs20\cgrid {
+\par }\pard\plain \s1\sb240\sa60\keepn\nowidctlpar\widctlpar\outlinelevel0\adjustright \b\f1\fs28\kerning28\cgrid {Pause
+\par }\pard\plain \nowidctlpar\widctlpar\adjustright \fs20\cgrid {The last example showed text and then immediately exited.  If you want to pause use AppGeneric_pause() and pass it the number of milliseconds (thousands of seconds) to wait.
+\par 
+\par }\pard\plain \s16\nowidctlpar\widctlpar\adjustright \f6\fs16\cgrid {#include "CyWin.h"
+\par struct module_t main_module;  // global variable
+\par long main(int argc, char* argv[], bool start) \{
+\par \tab init_module(&main_module);
+\par         DisplayGraphics_fill_screen(main_module.m_gfx, CLR_WHITE);  // clear screen
+\par         DisplayGraphics_set_color(main_module.m_gfx, CLR_BLACK); // set color
+\par         DisplayGraphics_set_font(main_module.m_gfx, cool_normal_font); // set font
+\par         DisplayGraphics_draw_text(  // remember newlines can come anywhere
+\par }\pard \s16\fi720\li720\nowidctlpar\widctlpar\adjustright {main_module.m_gfx, "Hello World !", 50, 35);  // display the text
+\par }\pard \s16\nowidctlpar\widctlpar\adjustright {        DisplayGraphics_show(main_module.m_gfx);  // show latest change on the display
+\par }\pard \s16\fi720\nowidctlpar\widctlpar\adjustright {AppGeneric_pause(main_module.m_process, 5 * 1000); // wait 5 seconds
+\par }\pard \s16\nowidctlpar\widctlpar\adjustright {\tab return 0;
+\par \}
+\par }\pard\plain \nowidctlpar\widctlpar\adjustright \fs20\cgrid {
+\par }\pard\plain \s1\sb240\sa60\keepn\nowidctlpar\widctlpar\outlinelevel0\adjustright \b\f1\fs28\kerning28\cgrid {Variables
+\par }\pard\plain \nowidctlpar\widctlpar\adjustright \fs20\cgrid {You declare variables either inside or outside a function.  If it is inside, that variable may only be used within that functi
+on (local variable).  But if it is outside, any function can use it (global variable).  There are 3 types of variable: Char, Int, and Long.  You can do math on variables with the +, -, *, / operators.  You assign values to variables with the = operator.
+
+\par 
+\par }\pard\plain \s16\nowidctlpar\widctlpar\adjustright \f6\fs16\cgrid {#include "CyWin.h"
+\par struct module_t main_module;  // global variable
+\par long main(int argc, char* argv[], bool start) \{
+\par \tab int i=0; // an integer has range -32768 - 32767, you can initialize variables
+\par \tab long l; // a long has range -2billion +2billion
+\par \tab char c; // a char is really an in from -128 - +127
+\par \tab char c2; // but chars are usually used to hold alphabetical characters
+\par \tab i = i + 5; //remember your semicolons
+\par \tab return 0;
+\par \}
+\par }\pard\plain \nowidctlpar\widctlpar\adjustright \fs20\cgrid {
+\par }\pard\plain \s1\sb240\sa60\keepn\nowidctlpar\widctlpar\outlinelevel0\adjustright \b\f1\fs28\kerning28\cgrid {\page Arrays
+\par }\pard\plain \nowidctlpar\widctlpar\adjustright \fs20\cgrid {
+Arrays are lists of variables. In C arrays are indexed starting at zero.  You can have multiple dimensions.  C is case-sensitive so you must use the same upper-and lower-case to declare and use the variable.  Usually you just use lower-case.
+\par 
+\par }\pard\plain \s16\nowidctlpar\widctlpar\adjustright \f6\fs16\cgrid {#include "CyWin.h"
+\par struct module_t main_module;  // global variable
+\par long main(int argc, char* argv[], bool start) \{
+\par \tab int i[5]; // i[0], i[1], i[2], i[3], i[4]
+\par \tab long x[2][3]; // x[0][0] x[0][1] x[0][2], x[1][0] x[1][1] x[1][2]
+\par \tab char c[20]; // an array of characters - a string
+\par \tab strcpy(c, "Hello World"); // copy a string into the array
+\par \tab return 0;
+\par \}
+\par }\pard\plain \nowidctlpar\widctlpar\adjustright \fs20\cgrid {
+\par }\pard\plain \s1\sb240\sa60\keepn\nowidctlpar\widctlpar\outlinelevel0\adjustright \b\f1\fs28\kerning28\cgrid {Functions
+\par }\pard\plain \nowidctlpar\widctlpar\adjustright \fs20\cgrid {Functions are like miniature programs.  You must declare a function before you can use it.  Functions have parameters which are placeholders for values you want to pa
+ss into the function.  The parameters are a lot like variable declarations.
+\par 
+\par }\pard\plain \s16\nowidctlpar\widctlpar\adjustright \f6\fs16\cgrid {#include "CyWin.h"
+\par struct module_t main_module;  // global variable
+\par 
+\par show_text(char *s, int x, int y) // declare the parameters and their types 
+\par \{  // a curly brace begins a function body
+\par }\pard \s16\fi720\nowidctlpar\widctlpar\adjustright {DisplayGraphics_fill_screen(main_module.m_gfx, CLR_WHITE);  // clear screen
+\par }\pard \s16\nowidctlpar\widctlpar\adjustright {        DisplayGraphics_set_color(main_module.m_gfx, CLR_BLACK); // set color
+\par         DisplayGraphics_set_font(main_module.m_gfx, cool_normal_font); // set font
+\par         DisplayGraphics_draw_text(  // remember newlines can come anywhere
+\par }\pard \s16\fi720\li720\nowidctlpar\widctlpar\adjustright {main_module.m_gfx, s, x, y);  // passing those input parameters on
+\par }\pard \s16\nowidctlpar\widctlpar\adjustright {        DisplayGraphics_show(main_module.m_gfx);  // show latest change on the display
+\par \} // an ending curly brace ends a function body
+\par }\pard\plain \s1\sb240\sa60\keepn\nowidctlpar\widctlpar\outlinelevel0\adjustright \b\f1\fs28\kerning28\cgrid {Formatting Text
+\par }\pard\plain \nowidctlpar\widctlpar\adjustright \fs20\cgrid {The sprintf() function formats text.  It takes a format string which is just text with special formatting characters which are identified by the % sign.  %d means "print a decimal number" and %
+s means "print a string".
+\par }\pard\plain \s16\nowidctlpar\widctlpar\adjustright \f6\fs16\cgrid {
+\par long main(int argc, char* argv[], bool start) \{
+\par \tab int x=5;
+\par \tab char s[20]; // an array of characters - string
+\par 
+\par \tab init_module(&main_module);
+\par \tab sprintf(s, "x=%d", x); // the %d matches with the parameter x
+\par 
+\par \tab /* 
+\par  \tab  * display the value of x
+\par \tab  */
+\par \tab show_text(s, 10, 10); // calling our function to display a value
+\par }\pard \s16\fi720\nowidctlpar\widctlpar\adjustright {AppGeneric_pause(main_module.m_process, 5 * 1000); // wait 5 seconds
+\par }\pard \s16\nowidctlpar\widctlpar\adjustright {\tab return 0;
+\par \}
+\par }\pard\plain \nowidctlpar\widctlpar\adjustright \fs20\cgrid {
+\par }\pard\plain \s1\sb240\sa60\keepn\nowidctlpar\widctlpar\outlinelevel0\adjustright \b\f1\fs28\kerning28\cgrid {\page If Conditionals
+\par }\pard\plain \nowidctlpar\widctlpar\adjustright \fs20\cgrid {If statements are designed to take some action if the conditional is true.  The co
+nditional must appear between parenthesis.  If the value between the parenthesis is zero, then the IF part is not taken and the optional ELSE part is.  If any other value is between the parenthesis then the IF part is taken.  Use the "==" (double equals) 
+s
+ign to compare two numbers.  Use "!=" for not-equal-to.  Use ">" for greater than and "<" for lesser.  ">=" is greater than or equal to and "<=" is less-than or equal to.  You cannot compare strings in C.  To compare strings you must use the "strcmp()" fu
+nction.  If strcmp() returns 0 then the 2 strings are equal, otherwise not.  DO NOT USE THE "=" Equal OPERATOR FOR COMPARISON.  IT WILL MERELY ASSIGN A VALUE TO THE VARIABLE ON THE LEFT.  You have been warned.
+\par 
+\par }\pard\plain \s16\nowidctlpar\widctlpar\adjustright \f6\fs16\cgrid {int x = 1;
+\par int y=2;
+\par char s[20];
+\par if (x == 1) // notice, no then keyword
+\par \{ // opening brace for things to do if true
+\par \} // closing brace to show end of if
+\par else
+\par \{ // opening brace for things to do if false
+\par \} // closing brace for end of else
+\par 
+\par if (y==3) // this time there is no else
+\par \{
+\par // do something
+\par \}
+\par 
+\par if (strcmp(s, "greg")==0)
+\par \{
+\par \tab show_text("Greg was here", 40, 40);  // our function from earlier
+\par \}
+\par // no else statement
+\par 
+\par }\pard\plain \s1\sb240\sa60\keepn\nowidctlpar\widctlpar\outlinelevel0\adjustright \b\f1\fs28\kerning28\cgrid {While Loops
+\par }\pard\plain \nowidctlpar\widctlpar\adjustright \fs20\cgrid {While loops execute the same bit of code over and over again as long as the conditional is true (not zero).  To get out of a while loop early use the break statement;
+\par }\pard\plain \s16\nowidctlpar\widctlpar\adjustright \f6\fs16\cgrid {
+\par int x=0; // our counter
+\par char s[20];
+\par 
+\par while(x < 10)
+\par \{ // beginning of while loop body
+\par \tab sprintf(s, "x=%d", x);
+\par \tab show_text(x, x*16, 0); // display the numbers 0-9 on top line
+\par \tab if (x==5)
+\par \tab \{
+\par \tab \tab break;
+\par \tab \}
+\par \} // end of while loop body
+\par \tab 
+\par }\pard\plain \s1\sb240\sa60\keepn\nowidctlpar\widctlpar\outlinelevel0\adjustright \b\f1\fs28\kerning28\cgrid {\page For Loops
+\par }\pard\plain \nowidctlpar\widctlpar\adjustright \fs20\cgrid {
+For loops are complicated while loops.  They have 3 parts: the initialization part, the while part, and the increment part.  For loops are mainly used for counting.  To get out of a for loop early, use the break statement.
+\par }\pard\plain \s16\nowidctlpar\widctlpar\adjustright \f6\fs16\cgrid {
+\par int x;
+\par char s[20];
+\par 
+\par for\tab (x = 0; // initialization part  (notice semicolon)
+\par \tab  x < 10; // while part, keep going until this is false (notice semicolon)
+\par \tab  x=x+1) // increment part, executed at the end of each iteration (no semicolon)
+\par \{ // beginning of for body
+\par \tab sprintf(s, "x=%d", x);
+\par \tab show_text(x, x*16, 0); // display the numbers 0-9 on top line
+\par \tab if (x==5) 
+\par \tab \{
+\par \tab \tab break;
+\par \tab \}
+\par \} // end of for body
+\par 
+\par }\pard\plain \s1\sb240\sa60\keepn\nowidctlpar\widctlpar\outlinelevel0\adjustright \b\f1\fs28\kerning28\cgrid {Getting Input
+\par }\pard\plain \nowidctlpar\widctlpar\adjustright \fs20\cgrid {Getting input from the Cybiko is hard.  I'm going to give you a function which waits forever unt
+il a single character is typed.  This character may be a letter or number.  It is returned as an int and you can compare it to "KEY_A" through "KEY_Z" and "KEY_0" through "KEY_9" also "KEY_UP", "KEY_DOWN", "KEY_LEFT", "KEY_RIGHT" and "KEY_ESC".  I'll demo
+nstrate this in the next section.
+\par 
+\par }\pard\plain \s16\nowidctlpar\widctlpar\adjustright \f6\fs16\cgrid {get_key()
+\par \{
+\par \tab struct Message *ptr_message;
+\par \tab int exit_application = 0;
+\par \tab int key = KEY_ESC;
+\par }\pard \s16\fi720\nowidctlpar\widctlpar\adjustright {while(exit_application == 0)
+\par \{
+\par }\pard \s16\fi720\li720\nowidctlpar\widctlpar\adjustright {ptr_message = cWinApp_get_message(main_module.m_process, 0, 1, MSG_USER);
+\par }\pard \s16\nowidctlpar\widctlpar\adjustright {
+\par }\pard \s16\li1440\nowidctlpar\widctlpar\adjustright {switch (ptr_message->msgid)
+\par \{
+\par }\pard \s16\fi720\li1440\nowidctlpar\widctlpar\adjustright {case MSG_SHUTUP:     //  Processes system exit signal.
+\par case MSG_QUIT:
+\par }\pard \s16\fi720\li2160\nowidctlpar\widctlpar\adjustright {exit_application = TRUE;
+\par }\pard \s16\fi720\li1440\nowidctlpar\widctlpar\adjustright {        break;
+\par case MSG_KEYDOWN:    //  Processes keyboard messages.
+\par }\pard \s16\nowidctlpar\widctlpar\adjustright {        \tab \tab \tab key = Message_get_key_param(ptr_message)->scancode;
+\par \tab \tab \tab \tab exit_application = TRUE;
+\par \tab \tab \tab \tab break;
+\par }\pard \s16\fi720\li1440\nowidctlpar\widctlpar\adjustright {default:             //  Processes all unprocessed messages.
+\par }\pard \s16\nowidctlpar\widctlpar\adjustright {        \tab \tab \tab cWinApp_defproc(main_module.m_process, ptr_message);
+\par \tab \tab \tab \tab break;
+\par     \tab \tab \}
+\par \tab \tab Message_delete(ptr_message);
+\par }\pard \s16\fi720\nowidctlpar\widctlpar\adjustright {\}  //  while(exit_application == 0)
+\par return key;
+\par }\pard \s16\nowidctlpar\widctlpar\adjustright {\}
+\par 
+\par }\pard\plain \s1\sb240\sa60\keepn\nowidctlpar\widctlpar\outlinelevel0\adjustright \b\f1\fs28\kerning28\cgrid {\page Using get_key()
+\par }\pard\plain \nowidctlpar\widctlpar\adjustright \fs20\cgrid {This program moves around the screen using the arrow keys.
+\par 
+\par }\pard\plain \s16\nowidctlpar\widctlpar\adjustright \f6\fs16\cgrid {#include "CyWin.h"
+\par struct module_t main_module;  // global variable
+\par get_key() 
+\par \{
+\par // as defined above
+\par \}
+\par show_text(char *s, int x, int y)
+\par \{
+\par // as defined above
+\par \}
+\par long main(int argc, char* argv[], bool start) \{
+\par \tab int x=0;
+\par \tab int y=0;
+\par \tab char s[20];
+\par \tab int key=0;
+\par 
+\par \tab init_module(&main_module);
+\par \tab while(key != KEY_ESC)
+\par \tab \{
+\par \tab \tab sprintf(s, "%d,%d", x, y); // notice that there are 2 %d's
+\par \tab \tab show_text(s, x, y);
+\par \tab \tab key = get_key();
+\par \tab \tab if (key == KEY_UP)
+\par \tab \tab \{
+\par \tab \tab \tab y=y-1;
+\par \tab \tab \}
+\par \tab \tab else if (key == KEY_DOWN)  // hey! Check out the else-if command!
+\par \tab \tab \{
+\par \tab \tab \tab y=y+1;
+\par \tab \tab \}
+\par \tab \tab else if (key == KEY_LEFT)
+\par \tab \tab \{
+\par \tab \tab \tab x=x-1;
+\par \tab \tab \}
+\par \tab \tab else if (key == KEY_RIGHT)
+\par \tab \tab \{
+\par \tab \tab \tab x=x+1;
+\par \tab \tab \}
+\par \tab \}
+\par \tab return 0;
+\par \}
+\par 
+\par }}

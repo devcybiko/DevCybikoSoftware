@@ -1,0 +1,350 @@
+From [http://devrs.com/cybiko]
+{{{
+              The attached document is a better, formalized, description of the
+              font file format. let me know if its clear enough or too wordy
+              or whatever.Cybiko Font File Format 
+              Ernest S. Pazera tanstaafl@g...
+
+              VERSION 1.0:05JAN2001 
+
+                    INITIAL RELEASE 
+
+              ###########################
+              #Overview                 #
+              ###########################
+
+              Typically, fonts are saved with ".fnt" as the file extension.
+              AFAIK, there are no actual rules as to what you save a font
+              file as. The font file format is not limited to fonts. It is
+              for any monochrome bitmap sequence.   Since it is unlikely
+              that you would want a monochrome bitmap for anything other
+              than a font (although bitmasking is a possibility), i'll
+              differentiate them from the 2 bit bitmap sequence files by
+              just calling them font files.
+
+              ########################### 
+              #Structure of the file      # ###########################
+
+              A font file is divided into two parts, the font header
+              and the character records. 
+
+              [FONTHDR]   4 BYTES //font header 
+              [CHRRECS]   ? BYTES //character records
+
+              i'm going to give a section to each part of the file format 
+
+              ########################### 
+              #The font header(FNTHDR)   # ###########################
+
+              The font header contains information about the font, including
+              how many characters are in the font as well as how wide the
+              font is. 
+
+              [FONTHDR]
+              BEGIN
+                  [FILEID] 1 BYTE VALUE=0x01 //0x01 as the first byte of the header indicates a monochrome bmp seq
+                  [CHRCNT] 1 BYTE VALUE=?    //number of character records that can be found in the bmp seq
+                  [MAXWID] 1 BYTE VALUE=?    //largest width found in the bmp seq
+                  [MAXHGT] 1 BYTE VALUE=?    //largest height found in the bmp seq
+              END
+
+              MAXWID and MAXHGT are measured in pixels. 
+
+              ############################ 
+              #Character records(CHRRECS)# ############################
+
+              Within the character records portion of the file, a number
+              (corresponding to CHRCNT from FONTHDR) of variably sized character
+              records are stored. 
+
+              [CHRRECS]
+              BEGIN
+                  [CHRREC0] ? BYTES //first character record
+                  [CHRREC1] ? BYTES //second character record
+                  [CHRREC2] ? BYTES //third character record
+                  .
+                  .
+                  .
+                  [CHRRECn] ? BYTES //last character record (n=CHRCNT-1)
+              END
+
+              ################################ 
+              #Individual Characters(CHRRECx)# ################################
+
+              A single character record contains binary data about the character,
+              as well as a header containing the extent of that binary data. 
+
+              [CHRRECx]  //x is any record number
+              BEGIN
+                  [CHRHDR] 4 BYTES //character record header
+                  [CHRDAT] ? BYTES //binary data for bitmap
+              END
+
+              ########################### 
+              #Character Header(CHRHDR) # ###########################
+
+              The character header contains information about an individual
+              character's extent. 
+
+              [CHRHDR]
+              BEGIN
+                  [CHRX] 1 BYTE //x offset(in pixels)
+                  [CHRY] 1 BYTE //y offset(in pixels)
+                  [CHRW] 1 BYTE //width of bitmap data(in pixels)
+                  [CHRH] 1 BYTE //height of bitmap data(in pixels)
+              END
+
+              This describes a rectangle that must lie within the rectangle
+              specified by the font header. 
+
+              CHRX must be in the range [0,MAXWID)* 
+              CHRY must be in the range [0,MAXHGT)*
+
+              CHRX+CHRW must not exceed MAXWID and must be at least 1*
+              CHRY+CHRH must not exceed MAXHGT and must be at least 1*
+
+              *NOTE: these are not hard and fast rules, but not following
+                them could lead to unexpected results. 
+
+              The size of CHRDAT can be determined based on CHRW and CHRH 
+
+              (size of CHRDAT)=(CHRH)*(((CHRW)+7)/8) 
+
+              ########################### 
+              #Character Data(CHRDAT)   # ###########################
+
+              The character data contains a number of variably sized
+              scan lines corresponding to CHRH. 
+
+              [CHRDAT]
+              BEGIN
+                  [SCANLINE0] ? BYTES //first scan line
+                  [SCANLINE1] ? BYTES //second scan line
+                  [SCANLINE2] ? BYTES //third scan line
+                  .
+                  .
+                  .
+                  [SCANLINEn] ? BYTES //last scan line(n=CHRH-1)
+              END
+
+              ########################### 
+              #Scan lines(SCANLINEx)      # ###########################
+
+              Individual scan lines contain bit values for each horizontal
+              row in the bmp.   It contains one byte for every eight pixels
+              in the bmp, or any fraction thereof. 
+
+              If CHRW is [1,8], there will be 1 BYTE in the scan line if
+              CHRW is [9,16], there will be 2 BYTES in the scan line If
+              CHRW is [17,24] there will be 3 BYTES in the scan line (etc)
+
+              Each byte contains information for up to eight pixels.
+              The first pixel is represented by bit7, then bit6, and so on. 
+
+              For example, the following line of pixels (1=black, 0=white): 
+
+              010110 
+
+              would have the following bit values and would fit into a single byte: 
+
+              b7: 0 
+              b6: 1 b5: 0 b4: 1 b3: 1 b2: 0 (b1 and b0 will have a value of 0,
+                  although they will be ignored)
+
+              for a byte value of 0x58 
+
+              For another example, the following line of pixels: 
+
+              01011000101 
+
+              would require 2 bytes, since there are 11 pixels, and the bit
+              values would look like: 
+
+              BYTE0: 
+              b7: 0 b6: 1 b5: 0 b4: 1 b3: 1 b2: 0 b1: 0 b0: 0
+
+              BYTE1: 
+              b7: 1 b6: 0 b5: 1 (b4 through b0 are ignored and have a value of 0)
+
+              and so, the bytes would be 0x58 and 0xA0 
+
+              ###########################
+              #Encoding Letters         #
+              ###########################
+
+              Here are two examples of encoding a monochrome bitmap into a
+              character record. 
+
+              The letter A 
+
+              Bit pattern: 
+
+
+                 01234567 
+              0 00110000 
+              1 01111000 
+              2 11001100 
+              3 11001100 
+              4 11111100 
+              5 11001100 
+              6 11001100 
+              7 00000000 
+
+              (indices for x and y position are above and to left of bit pattern) 
+
+              Determine CHRX and CHRY 
+
+              The first column with a 1 in it is the first column(index 0),
+              so CHRX will be 0 The first row with a 1 in it is the first
+              row(index 0), so CHRY will be 0
+
+              Determine CHRW and CHRH 
+
+              The two rightmost columns are not used, the first unused column
+              having an index of 6, so CHRW=6-CHRX=6-0=6. The bottom most row
+              is not used, the first unused row has an index of 7, so CHRH=7-CHRY=7-0=7
+
+              so, the CHRHDR will look like: 
+
+              00 00 06 07 
+
+              We strip away the excess columns and rows from the bit pattern: 
+
+
+                 012345 
+              0 001100 
+              1 011110 
+              2 110011 
+              3 110011 
+              4 111111 
+              5 110011 
+              6 110011 
+
+              And we encode each scan line, winding up with CHRDAT looking like: 
+
+              30 78 CC CC FC CC CC 
+
+              The entire character record looks like: 
+
+              00 00 06 07 30 78 CC CC FC CC CC 
+
+              The Comma (,) 
+
+              The bit pattern: 
+
+
+                 01234567 
+              0 00000000 
+              1 00000000 
+              2 00000000 
+              3 00000000 
+              4 00000000 
+              5 00011000 
+              6 00011000 
+              7 00110000 
+
+              Determine CHRX and CHRY 
+
+              the first column with a 1 in it has an index of 2, so CHRX=2
+              the first row with a 1 in it has an index of 5, so CHRY=5
+
+              Determine CHRW and CHRH 
+
+              the rightmost three columns are unused. the first of these
+              has and index of 5, so CHRW=5-CHRX=5-2=3 the bottommost row is
+              used, so the first unused row would have an index of 8,
+              so CHRH=8-CHRY=8-5=3
+
+              The CHRHDR for this character would look like: 
+
+              02 05 03 03 
+
+              Remove rows and columns from the bit pattern 
+
+
+                 012 
+              0 011 
+              1 011 
+              2 110 
+
+              (note: i renumbered the indices) 
+
+              now, encode each of the scan lines into a single byte
+              (since there are only 3 bits each) 
+
+              60 60 C0 
+
+              and the entire character record would look like: 
+
+              02 05 03 03 60 60 C0 
+
+              ###########################
+              #Final Words              #
+              ###########################
+
+              One thing remains to say.   The first bitmap in the font file
+              [CHRREC0] corresponds to character 0x20, which is more commonly
+              known as just "the space".   
+
+              i've had difficulty using 2pic.exe to make font files.   i guess
+              the command line for it is just too long. Ernest S. Pazera
+
+              aka TANSTAAFL
+              CFO, GameDev.net, LLC
+              President, DTM Software
+              President, C&M Tax
+              Author of "Isometric Game Programming With DirectX" ISBN: 0761530894
+              tanstaafl@g...
+              dtmsoftware@a...
+              http://www.gamedev.net/gamedev.asp
+              ICQ: 10832658 
+
+====================================================================
+
+Cybiko Fonts File Format v1.0 by Jeff F.
+---------------------------------------
+ All info from Ernest S. Pazera.
+
+Offset 0x00:  0x01 //indicates this is a font file
+Offset 0x01:  charcount //number of characters in the file
+Offset 0x02:  maxwidth //maximum width of the characters
+Offset 0x03:  maxheight //maximum height of the characters
+
+starting with offset 0x04, and continuing to the end of file are each of
+the characters.  each of the character records look like this:
+
+(offsets based on the beginning of the character record)
+Offset 0x00: left //left coordinate of the image
+Offset 0x01: top //top coordinae of the image
+Offset 0x02: width //width of the image
+Offset 0x03: height //height of the image
+
+offsets 4 and above are the character bitmap information. a font is
+monochrome, and the bits read from msb to lsb, so a typical letter A in 8x8
+would look like:
+
+00110000=0x30
+01111000=0x78
+11001100=0xCC
+11001100=0xCC
+11111100=0xFC
+11001100=0xCC
+00000000=0x00
+
+so, the character record for this letter would look like:
+
+... 00 00 08 08 30 78 CC CC FC CC 00 ...
+
+from experiments, i've determined that the first character record
+corresponds to character 0x20 (the space character).
+
+i have found that 2pic.exe doesnt like too many input files, so using it to
+make fonts probably won't work.  
+
+i figure 60 character records should be about the minimum for a font (to
+encompass the characters 0x20 through 0x7F and thus getting all of the
+ASCII characters). i imagine that cybiko's built in fonts probably go
+higher, since they have the (c) character.  i'll have to play around some
+more...
+
+}}}

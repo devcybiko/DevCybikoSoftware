@@ -1,0 +1,19 @@
+!!!Cybiko Third Party Organization Projects
+
+The table below lists projects currently in progress and the lead programmer.  __Collaborators__ are people who are either directly or indirectly contributing to or otherwise using the technology.
+
+||Project       ||Version     ||Lead Programmer || Collaborators
+|[Cybiko Development Studio]|1.2a|[MadPrgmr]|none
+|[CySH]          |0.0          | [greg]      | none
+|[H8 Disassembler]|1.0         | [greg] | none
+|[MP3 API]       |0.0          | [josh]      | [Professr]
+|[Storm CVC]     | 0.8         | [ssjx]      | [greg] [gengar56]
+|[Tanx]          |0.8          | [Professr]  | none
+|[TCPKit]        |1.2          | [greg] | [professr]
+|[The Desktop]   |0.8          | [Professr]  | none
+|[Wav API]       |0.0          | [greg]      | [josh]
+|[Wireless FTP]  |0.0          | [Professr]  | [greg]
+|[Wireless HTML] |0.9          | [Professr]  | [greg]
+|[Wireless POP3] |0.1          | [greg]      | none
+|[Wireless Tibia]|0.0          | [greg]      | [Professr] [TimParkin]
+|[Zor II]          |N/A          | [Eddie Allanwood]      | none

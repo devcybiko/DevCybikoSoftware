@@ -1,0 +1,129 @@
+'/**
+'  * The B2C project is a set of programs and libraries
+'  * that comprise a languate translator.  B2C compiles
+'  * a BASIC program into C which is compiled by the Cybiko
+'  * SDK 2.10 into an application.
+'  *
+'  *  Copyright 2004 by Gregory Smith
+'  *  (greg@alcorgrp.com)
+'  *
+'  *  This program is free software; you can redistribute it and/or
+'  *  modify it under the terms of the GNU General Public License
+'  *  as published by the Free Software Foundation; either version 2
+'  *  of the License, or (at your option) any later version.
+'  *
+'  *  This program is distributed in the hope that it will be useful,
+'  *  but WITHOUT ANY WARRANTY; without even the implied warranty of
+'  *  MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
+'  *  GNU General Public License for more details.
+'  *
+'  *  You should have received a copy of the GNU General Public License
+'  *  along with this program; if not, write to the Free Software
+'  *  Foundation, Inc., 59 Temple Place - Suite 330, Boston, MA  02111-1307, USA.
+'  *
+'  * @author Gregory Smith (http://www.greg-smith.com, Greg@AlcorGrp.com)
+'  * @version 1.0
+'  */
+outline com_t serial;
+
+sub serial_open
+	inline serial = com_open(COMM_DEV_DEFAULT, 1);
+end sub
+
+sub serial_close
+	inline com_close(serial);
+end sub
+
+function serial_read () as int
+	inline _serial_read = com_read(serial, 1);
+end function
+
+function serial_write(value as int) as int
+	inline _serial_write = com_write(serial, value, 1);
+end function
+
+'Valid values for serial_baud()
+'#COMM_BAUD_110, 
+'#COMM_BAUD_300, 
+'#COMM_BAUD_600, 
+'#COMM_BAUD_1200, 
+'#COMM_BAUD_2400, 
+'#COMM_BAUD_4800, 
+'#COMM_BAUD_7200, 
+'#COMM_BAUD_9600, 
+'#COMM_BAUD_14400, 
+'#COMM_BAUD_19200, 
+'#COMM_BAUD_38400, 
+'#COMM_BAUD_57600, 
+'#COMM_BAUD_115200 
+sub serial_baud(baud as int)
+	inline struct COMMConfig config;
+	inline com_get_config(serial, &config);
+	inline config.baud_rate = (char) baud;
+	inline com_set_config(serial, &config);
+end sub
+
+'Valid values for serial_databaits
+'#COMM_DATABITS_5, 
+'#COMM_DATABITS_6, 
+'#COMM_DATABITS_7, 
+'#COMM_DATABITS_8 
+sub serial_databits(bits as int)
+	inline struct COMMConfig config;
+	inline com_get_config(serial, &config);
+	inline config.data_bits = (char) bits;
+	inline com_set_config(serial, &config);
+end sub
+
+'Valid values for serial_stopbits
+'#COMM_STOPBITS_10, 
+'#COMM_STOPBITS_15, 
+'#COMM_STOPBITS_20 
+sub serial_stopbits(bits as int)
+	inline struct COMMConfig config;
+	inline com_get_config(serial, &config);
+	inline config.stop_bits = (char) bits;
+	inline com_set_config(serial, &config);
+end sub
+
+'Values for serial_parity
+'#COMM_PARITY_NONE, 
+'#COMM_PARITY_ODD, 
+'#COMM_PARITY_EVEN, 
+'#COMM_PARITY_MARK, 
+'#COMM_PARITY_SPACE 
+sub serial_parity(bits as int)
+	inline struct COMMConfig config;
+	inline com_get_config(serial, &config);
+	inline config.parity_type = (char) bits;
+	inline com_set_config(serial, &config);
+end sub
+
+'Valid values for flow-control (add them together)
+'#COMM_FC_NONE = 0x00, 
+'#COMM_FC_XONXOFF_INPUT = 0x01, 
+'#COMM_FC_XONXOFF_OUTPUT = 0x02, 
+'#COMM_FC_RTSCTS_INPUT = 0x04, 
+'#COMM_FC_RTSCTS_OUTPUT = 0x08, 
+'#COMM_FC_DSRDTR_INPUT = 0x10, 
+'#COMM_FC_DSRDTR_OUTPUT = 0x20 
+sub serial_flow_control(fc as int)
+	inline struct COMMConfig config;
+	inline com_get_config(serial, &config);
+	inline config.flow_control = (char) fc;
+	inline com_set_config(serial, &config);
+end sub
+
+sub serial_xon(c as int)
+	inline struct COMMConfig config;
+	inline com_get_config(serial, &config);
+	inline config.XON_char = (char) c;
+	inline com_set_config(serial, &config);
+end sub
+
+sub serial_xoff(c as int)
+	inline struct COMMConfig config;
+	inline com_get_config(serial, &config);
+	inline config.XOFF_char = (char) c;
+	inline com_set_config(serial, &config);
+end sub

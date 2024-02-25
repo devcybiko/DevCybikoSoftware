@@ -1,0 +1,28 @@
+<B><P>Topic :</B> UserMenu</P>
+<B><P>Language Level</B> : B2C Extension</P>
+<B><P>Effectivity :</B> B2C v3d</P>
+<B><P>Syntax</B> : </P><DIR>
+<DIR>
+
+<P>Cyid=UserMenu(prompt, exception_list)</P></DIR>
+</DIR>
+
+<B><P>Description :</P><DIR>
+<DIR>
+
+</B><P>UserMenu will display a list of nearby Cybiko units for the user to select.  The &quot;prompt&quot; string is displayed in the user menu and all nearby Cybiko’s – except the Cybiko’s in the &quot;exception_list&quot; – will be displayed for selection.  The exception list is an array of Long integers.  All CyIDs in the array will be excluded from the menu.  The last CyID in the list must be zero (a Null Terminator).  Placing a Zero in place of the exception list will display all Cybiko’s nearby.  If the user exits the menu by pressing ESC, then a Zero is returned.</P></DIR>
+</DIR>
+
+<B><P>Example : </P><DIR>
+<DIR>
+
+</B><P>cyid = usermenu("Select Chat Client", 0)</P></DIR>
+</DIR>
+
+<B><P>See Also:</P><DIR>
+<DIR>
+
+</B><P>SendMessage, OnMessage, toCyid, toUser, Tokenize</P>
+<B></DIR>
+</DIR>
+

@@ -1,0 +1,38 @@
+''As described in Ernest Pazera's __Game Developer's Guide to Cybiko__, Appendix B - abridged''
+
+A pic file is any file that contains a 4-color bitmap or series of bitmaps for use on the Cybiko.  It does not have to have the .pic extension.
+
+A pic file consists of two parts. First is the file header, which gives us valuable informatin about the bitmap sequence stored in this file. After the file header, there is a bitmap record for each bitmap in the sequence.
+
+!!!File Header
+||Offset||Name||Values||Meaning
+|0|FILEID|1-2|FileID[1] (2=pic)
+|1|BMPCNT|1-255|Number of bitmaps in the file
+|2|MAXWID|1-255|Maximum width found in the bitmap sequence
+|3|MAXHGT|1-255|Maximum height found in the bitmap sequence
+
+!!!Bitmap Record
+!!Bitmap Record Header
+''(BMPCNT iterations of this)''
+||Offset||Name||Values||Meaning
+|0|BMPXOF|0-255|Horizontal offset for bitmap
+|1|BMPYOF|0-255|Vertical offset for bitmap
+|2|BMPWID|1-255|Width for bitmap
+|3|BMPHGT|1-255|Height for bitmap
+
+!!Bitmap Data
+Finally, we get to the bitmap data itself.  The bitmap data is divided into horizontal rows (scan lines). There are BMPHGT scan lines.  Each scan line is the same size, and depends on BMPWID.
+
+Since we are dealing with 4-color images, it takes two bits to store a pixel color. There are eight bits in a byte, so a byte can contain data for up to four pixels at a time. So, for every four pixels in BMPWID, we need 1 byte in the scan line. If we have any extra bits at the end, we need another extra byte for the scanline. There is a formula yo ucan use to determine how many bytes you will need per scan line. It is (BMPWID+3)/4.
+
+Within each scan line, you move from the first byte toward the last byte and from left to right (four pixels at a time).  The byte itself, however is slightly backward.
+
+In an individual byte, the first pixel is stored in bits 6 & 7. the second in bits 4 & 5, the third in bits 2 & 3 and the fourth in bits 0 & 1.
+
+Within these pairs of bits, 00 means white, 01 means light gray, 10 means dark gray, and 11 means black.
+
+----
+[#1]\\
+FileID=0; Music sequence\\
+FileID=1; Monochrome bitmap sequence (ie: Font)\\
+FileID=2; 2-bit bitmap sequence (ie: pic)\\

@@ -1,0 +1,36 @@
+speed=3;
+pen=1;
+while key<>32 {
+;The turtle turns to the left
+;if you press <Left arrow>
+  if key=264 left 15;
+;The turtle accelerates
+;if you press <Up arrow>
+  if key=265 speed=speed+1;
+;The turtle slows down
+;if you press <Down arrow>
+  if key=267 speed=speed-1;
+;The turtle turns to the right
+;if you press <Right arrow>
+  if key=266 right 15;
+;The turtle raises/lowers
+;its tail
+;if you press <Select>
+  if key=271 pen=1-pen;
+;The turtle will make a sound
+;if you press <Ins>
+  if key=268 beep;
+;You can place the turtle at
+;the starting position
+;if you press <Enter>
+  if key=272 {
+    x=0;
+    y=0;
+    angle=0;
+  }
+  penup;
+  if pen pendown;
+;This is the way that
+;you move a turtle
+  forward speed;
+}

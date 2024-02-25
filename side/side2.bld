@@ -1,0 +1,31 @@
+[path]
+..
+
+[source]
+side2.b2c
+
+[author]
+Greg Smith
+
+[help]
+Side 2
+Use the arrow keys to move left and right
+
+[splash.text]
+Introduction to side scrolling
+LEFT/RIGHT to move
+INS to go faster
+DEL to go slower
+
+[pic=lemming.pic]
+lemming0.bmp
+lemming1.bmp
+lemming2.bmp
+lemming3.bmp
+lemming4.bmp
+
+[pic=land.pic]
+land0.bmp
+land1.bmp
+land2.bmp
+land3.bmp

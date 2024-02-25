@@ -1,0 +1,49 @@
+                <TABLE BORDER=0 CELLSPACING=0 CELLPADDING=0 WIDTH=656 NOF=LY>
+                    <TR VALIGN=TOP ALIGN=LEFT>
+                        <TD WIDTH=656>
+                            <P ALIGN=CENTER><B><FONT COLOR="#0000FF" SIZE="+2">Downloading <BR>Games and Apps to the<BR>Cybiko Handheld Computer<BR></FONT></B>By Greg Smith</P>
+                            <P><B><FONT COLOR="#FF0000" SIZE="+1">The EZLoader Method (recommended for Classic and Xtreme Cybikos):</FONT></B></P>
+                            <OL>
+                                <LI>Download and Install EZLoader from Cybiko, Inc. at <A HREF="http://www.cybiko.com/download/software_updates.asp">http://www.cybiko.com/download/software_updates.asp</A></LI>
+                                <LI>Run EZLoader (Start->Programs->Cybiko->EZLoader) and connect your Cybiko to your computer (for Classic Cybiko use the serial port.  For Xtreme Cybiko use your USB port).</LI>
+                                <LI>For Cybiko, Inc. games, goto <A HREF="http://www.cybiko.com/download">http://www.cybiko.com/download</A> and find the game of your choice.  Click on the "EZLoader Users - Download Now" link at the bottom of the game description.  The game will automatically start downloading to your Cybiko.
+                                </LI>
+                                <LI>For Third Party games, use Internet Explorer to goto a website for third-party games (for example, <A HREF="http://www.DevCybiko.com/b2c_games.html">http://www.DevCybiko.com/b2c_games.html</A>) and click on the 
+                                    game. 
+                                     A dialog box will be displayed indicating "Open" or "Save to file".  If you select Open, the game will automatically start downloading to your Cybiko.  If you select Save, the game will be stored to a directory of your choice. (Some third party games are shipped as .zip files.  Save the file to a directory, unzip the file)  If you Save the file, use the Windows Explorer (file manager) to navigate to the .app file and double-click on it.  The game will automatically start downloading to your Cybiko.
+                                </LI>
+                                <LI>If your Cybiko is full (has too many games on it) you may delete some games using the Windows Explorer (file manager). 
+                                     Open the Windows Explorer and scroll down to "My Cybiko".  Double-click on it and find the Cybiko you are working with.   Double-click on that.  You will see a listing of games you can delete.
+                                </LI>
+                            </OL>
+                            <P><B><FONT COLOR="#FF0000" SIZE="+1">The CyberLoad Method (for Cybiko Classic only):</FONT></B></P>
+                            <OL>
+                                <LI>Download and Install CyberLoad from Cybiko, Inc at <A HREF="http://www.cybiko.com/download/software_updates.asp">http://www.cybiko.com/download/software_updates.asp</A></LI>
+                                <LI>Connect your Cybiko Classic to the serial port with the supplied cable and turn it on.</LI>
+                                <LI>Run Cyberload (Start->Programs->Cybiko->Cyberload).</LI>
+                                <LI>You should see a listing of Cybiko, Inc. games on the left side and  games currently loaded on your Cybiko on the right side.</LI>
+                                <LI>To download Cybiko, Inc. games, checkmark the game on the left and click "Download=>".  The game will automatically be downloaded to your Cybiko.</LI>
+                                <LI>For Third Party games, it is not necessary to run CyberLoad (exit CyberLoad now if necessary).  Using Internet Explorer, goto a website for third-party games (for example, <A
+                                     HREF="http://www.DevCybiko.com/b2c_games.html">http://www.DevCybiko.com/b2c_games.html</A>) and click on the game. 
+                                     A dialog box will be displayed indicating "Open" or "Save to file".  If you select Open, the game will automatically start downloading to your Cybiko.  If you select Save, the game will be stored to a directory of your choice. (Some third party games are shipped as .zip files.  Save the file to a directory, unzip the file)  If you Save the file, use the Windows Explorer (file manager) to navigate to the .app file and double-click on it.  The game will automatically start downloading to your Cybiko.
+                                </LI>
+                                <LI>If your Cybiko is full (has too many games on it) run CyberLoad as directed above. 
+                                     On the right hand side of the window is a listing of all files on your Cybiko.  Checkmark the files to delete and click the "Delete" button.</LI>
+                            </OL>
+                            <P ALIGN=LEFT><B><FONT COLOR="#FF0000" SIZE="+1">The Console Method (for developers only):</FONT></B></P>
+                            <OL>
+                                <LI>Download  and Install the Cybiko SDK at <A HREF="http://www.cybiko.com/devsarea">http://www.cybiko.com/devsarea</A> - select SDK Standard Edition.</LI>
+                                <LI>Run Console.exe (Start->Programs->Cybiko->SDK->CyConsole) - select the Port menu option and select the Com port for your Cybiko (Com1, Com2 etc)</LI>
+                                <LI>Using Internet Explorer, goto a website for third-party games (for example, <A HREF="http://www.DevCybiko.com/b2c_games.html">http://www.DevCybiko.com/b2c_games.html</A>) and click on the game. 
+                                     A dialog box will be displayed indicating "Open" or "Save to file".  Select "Save",  the game will be stored to a directory of your choice. (Some third party games are shipped as .zip files.  Save the file to a directory, unzip the file)  After you Save the file, use the Windows Explorer (file manager) to navigate to the .app file and drag the file into the main window of the Console.exe program.  The file will be downloaded to your Cybiko.
+                                </LI>
+                                <LI>Alternatively, you can click on the SEND button on the Console.exe program.  A dialog box will be displayed. 
+                                     Navigate to the .app file and double-click on it.  The file will be downloaded to your Cybiko.</LI>
+                                <LI>You will need to reboot (power off/power on) your Cybiko before the game will appear in the Desktop.</LI>
+''You can still run the app from the console by typing the name of the app e.g. myapp.app'' [ssjx] 11-Aug-2003
+                                <LI>If you are out of file space on your Cybiko, the Console.exe will display an error ("could not execute command') in the main window.  Either use CyberLoad or EZLoader to delete files or use the RM command 
+                                    in Console.exe to remove files.  See the <A HREF="./c.html">SDK/C tutorial</A> for more information on how to use Console.exe<FONT COLOR="#FFFFFF">.</FONT>
+                            </OL>
+                        </TD>
+                    </TR>
+                </TABLE>

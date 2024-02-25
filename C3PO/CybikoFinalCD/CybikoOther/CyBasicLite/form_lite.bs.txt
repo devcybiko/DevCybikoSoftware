@@ -1,0 +1,241 @@
+'This program arranges
+'the text of program,
+'written on CyBasic,
+'according the following rule:
+'text of nested logic block
+'(cycle, subprogram etc.)
+'is printed with
+'an indent in one blank
+'concerning
+'the external block.
+'Initial text is read out
+'from the in.bs.txt file.
+'Finished text is printed
+'in out.bs.txt file.
+dim inttmp as int
+dim nl as char
+dim cur
+dim tmp
+dim pch as char
+dim flen as long
+dim ch as char
+dim buf[100] as char
+dim i
+dim spaceind
+
+'This function compares
+'the line from buf
+'with the operational words.
+'If an operational word
+'opens the logic block,
+'the function returns 1.
+'If an operational word
+'closes the logic block,
+'the function returns –1.
+'If an operational word
+'both opens and closes
+'the logic block,
+'the function returns 2.
+'If there are
+'no operational words
+'in logic block,
+'the function returns 0.
+
+function switchstr as int
+ if compare(buf,"while")=0 then
+  switchstr=1
+  exit function
+ end if
+ if compare(buf,"for")=0 then
+  switchstr=1
+  exit function
+ end if
+ if compare(buf,"sub")=0 then
+  switchstr=1
+  exit function
+ end if
+ if compare(buf,"function")=0 then
+  switchstr=1
+  exit function
+ end if
+ if compare(buf,"type")=0 then
+  switchstr=1
+  exit function
+ end if
+ if compare(buf,"if")=0 then
+  switchstr=1
+  exit function 
+ end if
+ if compare(buf,"end")=0 then
+  switchstr=-1
+  exit function
+ end if
+ if compare(buf,"wend")=0 then
+  switchstr=-1
+  exit function
+ end if
+ if compare(buf,"next")=0 then
+  switchstr=-1
+  exit function
+ end if
+ if compare(buf,"else")=0 then
+  switchstr=2
+  exit function
+ end if
+ if compare(buf,"elseif")=0 then
+  switchstr=2
+  exit function 
+ end if
+ switchstr=0
+end function  
+
+'This procedure prints
+'the statistics
+'of program execution.
+
+sub prstat
+ ink 0 
+ inttmp=(cur-1)/flen*100
+
+ 'Here, the old value
+ 'is canceled.
+ printxy -10,13,inttmp,"%"
+ inttmp=cur/flen*100
+ ink 3
+
+ 'Then, the new value
+ 'is printed.
+ printxy -10,13,inttmp,"%"
+ ink 2
+
+ 'This cycle draws
+ 'the line.
+ for i=0 to inttmp
+  printxy -47+i,-3,"l"
+ next  
+end sub
+
+'Here, we draw the frame.
+line -47,-3,53,-3
+line -50,-1,56,-1
+line -47,-13,53,-13
+line -50,-15,56,-15
+line -48,-3,-48,-13
+line -50,-1,-50,-15
+line 54,-3,54,-13
+line 56,-1,56,-15
+printxy -25,30,"COMPLETE"
+
+'If you get an error
+'check the availability
+'of a file in the open
+'statement.
+open "in.bs.txt" for read as 0
+
+nl=10
+flen=0
+spaceind=0
+
+'Using this cycle,
+'we compute the amount
+'of lines in a file.
+
+while eof(0)=0
+ get 0,,ch
+ if ch=nl then
+   flen=flen+1
+ end if
+wend
+
+close 0
+open "in.bs.txt" for read as 0
+open "out.bs.txt" for write as 1
+
+'This is the main cycle.
+
+while eof(0)=0
+  get 0,,ch
+
+  'This cycle read
+  'all blanks before a word.
+  while (ch=32)and(eof(0)=0)
+   get 0,,ch
+  wend
+  i=0
+
+  'Here, the first word
+  'from line is read.
+  while (ch<>32)and(ch<>nl)and(eof(0)=0)and(ch<>40)and(ch<>13)
+    buf[i]=ch
+    get 0,,ch
+    i=i+1
+  wend 
+  'If a file ends right
+  'after the word,
+  'it’s necessary to write
+  'the last character in buf.
+  if eof(0) then
+   buf[i]=ch
+   buf[i+1]=0
+  else
+   buf[i]=0
+  end if
+
+  'Here, we determine
+  'the type of a line.
+  tmp=switchstr()
+
+  'Here, we change
+  'the indent depending
+  'on line type.
+  if (tmp=-1)or(tmp=2) then
+   spaceind=spaceind-1
+  end if
+  pch=32
+
+  'The indent is printed.
+  for j=1 to spaceind
+    put 1,,pch
+  next
+
+  'Here, we change
+  'the indent depending
+  'on line type.
+  if (tmp=1)or(tmp=0) then
+   spaceind=spaceind+tmp
+  else 
+   if tmp=2 then
+    spaceind=spaceind+1
+   end if
+  end if
+  i=0
+
+  'The word is printed.
+  while buf[i]<>0
+    put 1,,buf[i]
+    i=i+1
+  wend
+
+  'If it's not the end
+  'of a file, the character
+  'that followed the word
+  'will be printed.
+  if eof(0)=0 then
+   put 1,,ch
+  end if
+
+  'Here, the rest of line
+  'is printed.
+  while (ch<>nl)and(eof(0)=0)
+    get 0,,ch
+    put 1,,ch
+  wend
+
+  'Here, the statistics
+  'are printed.
+  prstat
+
+  'Here, the line counter
+  'is increased.
+  cur=cur+1
+wend

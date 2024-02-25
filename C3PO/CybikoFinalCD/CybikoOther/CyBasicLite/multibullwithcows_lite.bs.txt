@@ -1,0 +1,395 @@
+printxy -35,10,"Wait please..."
+'type string
+'  stri[4] as char
+'end type
+'type str
+'  str[2] as char
+'end type
+dim col as int
+'auxiliary vars
+dim str0 as char
+dim str1 as char
+dim str2 as char
+dim str3 as char
+'the var storing the number of
+'attempts that were made
+dim try as int
+'the array storing the results
+'of attempts
+dim bc[15] as int
+'the array storing the next
+'analyzable number in the
+'character expression
+dim tn[4] as char
+'the number of bulls
+dim b as int
+'the number of cows
+dim c as int
+dim vs as int
+dim res as int
+'The name of the opponent
+dim name[20] as char
+
+'the arrays storing the data
+'about previous attempts
+dim inp1[15] as char
+dim inp2[15] as char
+dim inp3[15] as char
+dim inp4[15] as char
+dim ubc1[15] as char
+dim ubc2[15] as char
+dim string [4] as char
+dim x
+dim y
+dim z
+
+
+dim buf[4] as char
+dim buf1[4] as char
+'the partner’s device number
+dim id as long
+dim readk as int
+dim com as int
+
+dim id1 as long
+dim p1 as long
+dim p2 as long
+
+'waiting for opponent’s move
+'and input the results of 
+'his/her attempt
+function wt as int
+ dim id1 as long
+ dim bl as int
+ dim p1 as long
+ dim p2 as long
+ dim cc as int
+
+ id1=0
+ bl=1
+ while bl
+  receive id1,com,p1,p2,buf1
+'check the received information
+  cc=compare(buf1,buf)
+  if (id1=id) and (cc<>0) and (com=2) then
+   bl=0
+   buf=buf1
+  end if
+ wend
+
+ cls 
+ tn=buf
+ prinp
+ p1=c
+ p2=b   
+ for i=1 to 5
+  post id,3,p1,p2,"1111" 
+ next
+ wt=p2      
+end function
+
+
+'choose the opponent
+sub select
+ dim y as int
+ dim id1 as long
+ dim p1 as long
+ dim p2 as long
+ dim par1 as long
+ buf1="9999"
+ y=7
+ ink 3
+ printxy -36,20,"I want to"
+ printxy -24,7,"invite"
+ printxy -19,-6,"wait"
+ printxy -38,y,">        <"
+ while readk<>272
+  if (readk=265)or(readk=267) then
+   ink 0
+   printxy -38,y,">        <"
+   ink 3
+   if y=7 then 
+    y=-6
+   else
+    y=7
+   end if
+   printxy -38,y,">        <"
+  end if
+  wait 5
+  readk=key              
+ wend
+ cls
+ ink 3
+ printxy -35,10,"Wait please..."
+ par1=0
+ if y=7 then
+  cls 
+  input "Enter name:", name
+  id=get_id_user(name)
+  par1=rnd(1)
+  id1=0
+  while (compare(buf,buf1)<>0)
+   post id,1,par1,0,buf1
+   receive id1,com,p1,p2,buf
+  wend 
+ else
+  com=0
+  while compare(buf,buf1)<>0
+   receive id,com,p1,p2,buf        
+  wend
+  if p1=0 then
+   par1=1
+  end if
+  ink 3
+  com=2
+  for i=1 to 5 
+   post id,2,10,10,"9999" 
+  next     
+ end if                     
+ cls
+ if par1 then
+  ink 3
+  printxy -35,10,"Wait please..."
+  res=wt()
+ end if   
+end sub
+
+'reaction to winning
+sub win
+ dim bool as int
+ cls
+ print "         You win"   
+ print "    from the ",try," attempts."
+ print
+ print"      Press any key"
+ print"       to continue."
+ z=3
+ beep 7
+ wait(10) 
+ for i=0 to 18
+  x=10*sin(i)
+  y=10*cos(i)
+  ink 1
+  line 0,0,x,y
+  ink 2
+  line 60,23,x+60,y+23
+  if z=1 then
+   z=3
+  else
+   z=1
+  end if
+  beep z
+  ink 3
+  line 60,-23,x+60,y-23
+  ink 1
+  line -60,23,x-60,y+23
+  ink 2
+  line -60,-23,x-60,y-23
+  if key<>0 then
+   bool=1
+   exit for
+  end if
+ next
+ ink 3
+end sub
+
+
+'reaction to a loss
+sub lose  
+ dim bool as int 
+ cls
+ print
+ print "        You lose."
+ print "     Press any key"
+ print "      to continue."
+ beep 4
+ for i=1 to 400 step 2
+  line -80,45,-75,45-i*2
+  line 30,45,27,45-i
+  line -35,45,-40,45-i
+  line 15,45,10,45-i*2.5
+  line 0,45,5,45-i
+  if i>9 then
+   line -63,45,-70,55-i
+   line -5,45,-10,55-i/1.5
+   if key<>0 then
+    bool=1
+    exit for
+   end if
+   line 65,45,70,55-i
+   line -50,45,-45,55-i/1.2
+  end if
+  if i>19 then
+   line -55,45,-60,65-i/2
+   line -25,45,-20,65-i
+   line 80,45,75,65-i/1.5
+   line 50,45,45,65-i
+  end if
+  if key<>0 then
+   bool=1
+   exit for
+  end if
+ next
+end sub
+
+'input by the user of the next
+'order of figures procedure
+sub user_move
+ dim bool as int
+ cls
+ if try>1 then
+  print "     try number B:C"
+  for i=1 to try-1
+   print "      ",i,"   ",inp1[i],inp2[i],inp3[i],inp4[i],"   ",ubc1[i]," ",ubc2[i]
+  next
+  print
+ else
+  printxy -40,10,"Try number 1"
+ end if
+ for p=1 to 1 step 0   
+  input "  Enter your sequence: ",string
+  bool=0
+  for k=0 to 2
+   for l=k+1 to 3
+    if string[k]=string[l] then
+     bool=1
+    end if
+   next
+  next
+
+'for a check for accuracy
+'of the entered symbols
+'of numbers
+  for l=0 to 3 
+   if (string[l]<48) or (string[l]>57) then
+    bool=1
+   end if
+  next
+  if bool or (string[0]=48) then
+'for a reaction for entering
+'the wrong sequence
+   cls
+   print
+   print
+   print " You entered the wrong"
+   print "  sequence. Try again."
+   wait 15
+  else
+   inp1[try]=string[0]
+   inp2[try]=string[1]
+   inp3[try]=string[2]
+   inp4[try]=string[3]
+   exit for
+  end if
+ next
+end sub
+
+
+'the procedure of a reaction
+'to the incorrect inputted
+'number of cows and number of
+'bulls 
+sub bad_inp
+ printxy -50,-5,"Bad input value."
+ printxy -40,-15,"  Try again."
+ wait 20
+ ink 0
+ printxy -50,-5,"Bad input value."
+ printxy -40,-15,"  Try again."
+ ink 3
+end sub
+
+'the procedure of the outputting
+'of the next attempt on the
+'screen  and saving its results
+sub prinp
+ dim bool as int
+ cls
+ bool=1
+ c=0
+ printxy -40,35,"My number is"
+ printxy -15,15,tn
+ while bool
+  input "How many bulls?",b
+'check that the number of bulls
+'inputted is correct 
+  if (b>4) or (b<0) then
+   bad_inp
+  else
+   bool=0
+  end if
+ wend
+ bool=1
+ if b<>4 then
+  while bool
+   input "How many cows?",c
+'check that the number of cows
+'inputted is correct
+   if (c>(4-b)) or (c<0) then            
+    bad_inp
+   else
+    bool=0
+   end if
+  wend
+ else
+  c=0
+ end if
+
+'enter in bc the attempt
+'result           
+ bc[try]=b*10+c                        
+ cls
+end sub
+
+
+sub main
+ dim bl as int
+ dim c as int
+ res=0
+ select
+ try=1
+ c=1
+ while c
+  if res=4 then
+   ink 3
+   lose
+   exit sub
+  end if
+  user_move
+  cls
+  printxy -35,10,"Wait please..."
+  for i=1 to 5
+   post id,2,0,0,string 
+  next      
+  id1=0
+  bl=1
+  while bl
+   receive id1,com,p1,p2,buf1
+    if (id1=id) and (compare(buf1,"1111")=0) then
+     bl=0
+    end if
+  wend
+  cls
+  ink 3
+  ubc1[try]=p2+48
+  ubc2[try]=p1+48
+  cls
+  print "     try number B:C"
+  for i=1 to try
+   print "      ",i,"   ",inp1[i],inp2[i],inp3[i],inp4[i],"   ",ubc1[i]," ",ubc2[i]
+  next
+  print"        Wait please..."           
+  if p2=4 then
+   c=0
+   ink 3
+   win
+   exit sub
+  end if
+  res=wt()
+  try=try+1
+ wend
+end sub  
+   
+load "radio.bs.dl"
+cls
+main

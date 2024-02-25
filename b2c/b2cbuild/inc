@@ -1,0 +1,22 @@
+#ifndef _FIXED_H_
+#define _FIXED_H_
+
+typedef long fixed;
+fixed fixed_from_int(int i);
+fixed fixed_from_char(char c);
+fixed fixed_from_long(long l);
+fixed fixed_from_string(char *s);
+fixed fixed_neg(fixed a);
+fixed fixed_add(fixed a, fixed b);
+fixed fixed_subtract(fixed a, fixed b);
+char *fixed_print(fixed a, int digits);
+fixed fixed_multiply(fixed a, fixed b);
+fixed fixed_reciprocal(fixed a);
+fixed fixed_sqrt(fixed a);
+fixed fixed_divide(fixed a, fixed b);
+fixed fixed_sin(fixed a);
+fixed fixed_cos(fixed a);
+fixed fixed_tan(fixed a);
+int fixed_to_int(fixed f);
+
+#endif /* _FIXED_H_ */
