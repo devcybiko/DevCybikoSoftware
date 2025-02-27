@@ -1,0 +1,3692 @@
+>main
+END
+END
+Buf Received: (12)
+ >0
+TCPMSG_CLOSE_REQUEST
+tcpmsg_close_request
+>  hdr.msgid=4
+>  hdr.serialno=8
+>  hdr.sockid=1
+  sockid=1 socket=0
+tcpmsg_close_response(sockid=1, status=0, serialno=8)
+  sockid=1 socket=0
+tcpmsg_send_data(sockid=1, tcpqueue=0 data= len=16)
+  sockid=1 socket=0
+  Sockid=1
+  Sending to queue 0
+ <0
+sending entry=0 len=40 
+xxxx done
+END
+END
+Buf Received: (58)
+ >1
+TCPMSG_CONNECT_REQUEST
+tcpmsg_connect_request
+>  hdr.msgid=0
+>  hdr.serialno=9
+>  hdr.sockid=0
+>  cr->addr=devcybiko.com
+>  cr->appname=telnet
+>  cr->cyid=1306530403
+>  cr->port=23
+>  cr->tcpqueue=8449
+>  cr->size=512
+>alloc_sockid()=1
+Sockid allocated=1
+msg_queue=8449
+cr->port=23
+sockids[sockid].port=23
+h_length=4
+ADDR=devcybiko.com
+ADDR=9541f5cf
+PORT=5888
+connect: sockid=1 socket=1940 msgid=0 cyid=1306530403 msg_queue=8449 addr=devcybiko.com port=23
+  sockid=1 socket=1940
+tcpmsg_connect_response(sockid=1, status=0 serialno=9)
+  sockid=1 socket=1940
+tcpmsg_send_data(sockid=1, tcpqueue=0 data= len=20)
+  sockid=1 socket=1940
+  Sockid=1
+  Sending to queue 8449
+ <1
+sending entry=0 len=44 
+xxxx done
+END
+END
+Buf Received: (12)
+ >2
+TCPMSG_ACKNOWLEDGE
+tcpmsg_acknowledge
+>  hdr.msgid=7
+>  hdr.serialno=10
+>  hdr.sockid=0
+  sockid=0 socket=0
+  read enabled = 0
+END
+END
+Buf Received: (13)
+ >3
+TCPMSG_WRITE_REQUEST
+tcpmsg_write_request
+>  hdr.msgid=2
+>  hdr.serialno=11
+>  hdr.sockid=1
+>  msg->data=เM
+  sockid=1 socket=1940
+  sockid=1 filter=00401019
+ {0
+filter_send_raw(sockid=1, msgbuf=เM, len=1
+Wrote เM
+tcpmsg_write_response(sockid=1 status=0 serialno=11)
+  sockid=1 socket=1940
+tcpmsg_send_data(sockid=1, tcpqueue=0 data= len=16)
+  sockid=1 socket=1940
+  Sockid=1
+  Sending to queue 8449
+ <2
+sending entry=0 len=40 
+xxxx done
+END
+END
+Buf Received: (12)
+ >4
+TCPMSG_ACKNOWLEDGE
+tcpmsg_acknowledge
+>  hdr.msgid=7
+>  hdr.serialno=12
+>  hdr.sockid=1
+  sockid=1 socket=1940
+  read enabled = 1
+END
+END
+Buf Received: (13)
+ >5
+TCPMSG_WRITE_REQUEST
+tcpmsg_write_request
+>  hdr.msgid=2
+>  hdr.serialno=13
+>  hdr.sockid=1
+>  msg->data=เM
+  sockid=1 socket=1940
+  sockid=1 filter=00401019
+ {1
+filter_send_raw(sockid=1, msgbuf=เM, len=1
+Wrote เM
+tcpmsg_write_response(sockid=1 status=0 serialno=13)
+  sockid=1 socket=1940
+tcpmsg_send_data(sockid=1, tcpqueue=0 data= len=16)
+  sockid=1 socket=1940
+  Sockid=1
+  Sending to queue 8449
+ <3
+sending entry=0 len=40 
+xxxx done
+END
+END
+Buf Received: (12)
+ >6
+TCPMSG_ACKNOWLEDGE
+tcpmsg_acknowledge
+>  hdr.msgid=7
+>  hdr.serialno=14
+>  hdr.sockid=1
+  sockid=1 socket=1940
+  read enabled = 1
+END
+END
+Buf Received: (13)
+ >7
+TCPMSG_WRITE_REQUEST
+tcpmsg_write_request
+>  hdr.msgid=2
+>  hdr.serialno=15
+>  hdr.sockid=1
+>  msg->data=aเM
+  sockid=1 socket=1940
+  sockid=1 filter=00401019
+ {2
+filter_send_raw(sockid=1, msgbuf=aเM, len=1
+Wrote aเM
+tcpmsg_write_response(sockid=1 status=0 serialno=15)
+  sockid=1 socket=1940
+tcpmsg_send_data(sockid=1, tcpqueue=0 data= len=16)
+  sockid=1 socket=1940
+  Sockid=1
+  Sending to queue 8449
+ <4
+sending entry=0 len=40 
+xxxx done
+END
+END
+Buf Received: (12)
+ >8
+TCPMSG_ACKNOWLEDGE
+tcpmsg_acknowledge
+>  hdr.msgid=7
+>  hdr.serialno=16
+>  hdr.sockid=1
+  sockid=1 socket=1940
+  read enabled = 1
+END
+END
+Buf Received: (13)
+ >9
+TCPMSG_WRITE_REQUEST
+tcpmsg_write_request
+>  hdr.msgid=2
+>  hdr.serialno=17
+>  hdr.sockid=1
+>  msg->data=aเM
+  sockid=1 socket=1940
+  sockid=1 filter=00401019
+ {3
+filter_send_raw(sockid=1, msgbuf=aเM, len=1
+Wrote aเM
+tcpmsg_write_response(sockid=1 status=0 serialno=17)
+  sockid=1 socket=1940
+tcpmsg_send_data(sockid=1, tcpqueue=0 data= len=16)
+  sockid=1 socket=1940
+  Sockid=1
+  Sending to queue 8449
+ <5
+sending entry=0 len=40 
+xxxx done
+END
+END
+Buf Received: (12)
+ >10
+TCPMSG_ACKNOWLEDGE
+tcpmsg_acknowledge
+>  hdr.msgid=7
+>  hdr.serialno=18
+>  hdr.sockid=1
+  sockid=1 socket=1940
+  read enabled = 1
+END
+END
+Buf Received: (13)
+ >11
+TCPMSG_WRITE_REQUEST
+tcpmsg_write_request
+>  hdr.msgid=2
+>  hdr.serialno=19
+>  hdr.sockid=1
+>  msg->data=aเM
+  sockid=1 socket=1940
+  sockid=1 filter=00401019
+ {4
+filter_send_raw(sockid=1, msgbuf=aเM, len=1
+Wrote aเM
+tcpmsg_write_response(sockid=1 status=0 serialno=19)
+  sockid=1 socket=1940
+tcpmsg_send_data(sockid=1, tcpqueue=0 data= len=16)
+  sockid=1 socket=1940
+  Sockid=1
+  Sending to queue 8449
+ <6
+sending entry=0 len=40 
+xxxx done
+END
+END
+Buf Received: (12)
+ >12
+TCPMSG_ACKNOWLEDGE
+tcpmsg_acknowledge
+>  hdr.msgid=7
+>  hdr.serialno=20
+>  hdr.sockid=1
+  sockid=1 socket=1940
+  read enabled = 1
+END
+END
+Buf Received: (13)
+ >13
+TCPMSG_WRITE_REQUEST
+tcpmsg_write_request
+>  hdr.msgid=2
+>  hdr.serialno=21
+>  hdr.sockid=1
+>  msg->data=เM
+  sockid=1 socket=1940
+  sockid=1 filter=00401019
+ {5
+filter_send_raw(sockid=1, msgbuf=เM, len=1
+Wrote เM
+tcpmsg_write_response(sockid=1 status=0 serialno=21)
+  sockid=1 socket=1940
+tcpmsg_send_data(sockid=1, tcpqueue=0 data= len=16)
+  sockid=1 socket=1940
+  Sockid=1
+  Sending to queue 8449
+ <7
+sending entry=0 len=40 
+xxxx done
+END
+END
+Buf Received: (12)
+ >14
+TCPMSG_ACKNOWLEDGE
+tcpmsg_acknowledge
+>  hdr.msgid=7
+>  hdr.serialno=22
+>  hdr.sockid=1
+  sockid=1 socket=1940
+  read enabled = 1
+END
+END
+Buf Received: (12)
+ >15
+TCPMSG_CLOSE_REQUEST
+tcpmsg_close_request
+>  hdr.msgid=4
+>  hdr.serialno=23
+>  hdr.sockid=1
+  sockid=1 socket=1940
+Closing Socket 1
+tcpmsg_close_response(sockid=1, status=0, serialno=23)
+  sockid=1 socket=0
+tcpmsg_send_data(sockid=1, tcpqueue=0 data= len=16)
+  sockid=1 socket=0
+  Sockid=1
+  Sending to queue 8449
+ <8
+sending entry=0 len=40 
+xxxx done
+END
+END
+Buf Received: (58)
+ >16
+TCPMSG_CONNECT_REQUEST
+tcpmsg_connect_request
+>  hdr.msgid=0
+>  hdr.serialno=24
+>  hdr.sockid=0
+>  cr->addr=devcybiko.com
+>  cr->appname=telnet
+>  cr->cyid=1306530403
+>  cr->port=23
+>  cr->tcpqueue=8451
+>  cr->size=512
+>alloc_sockid()=1
+Sockid allocated=1
+msg_queue=8451
+cr->port=23
+sockids[sockid].port=23
+h_length=4
+ADDR=devcybiko.com
+ADDR=9541f5cf
+PORT=5888
+connect: sockid=1 socket=1932 msgid=0 cyid=1306530403 msg_queue=8451 addr=devcybiko.com port=23
+  sockid=1 socket=1932
+tcpmsg_connect_response(sockid=1, status=0 serialno=24)
+  sockid=1 socket=1932
+tcpmsg_send_data(sockid=1, tcpqueue=0 data= len=20)
+  sockid=1 socket=1932
+  Sockid=1
+  Sending to queue 8451
+ <9
+sending entry=0 len=44 
+xxxx done
+END
+END
+Buf Received: (12)
+ >17
+TCPMSG_ACKNOWLEDGE
+tcpmsg_acknowledge
+>  hdr.msgid=7
+>  hdr.serialno=25
+>  hdr.sockid=1
+  sockid=1 socket=1932
+  read enabled = 0
+len=12
+ }0
+filter_recv_raw(sockid=1, msgbuf=ÿýÿý ÿý#ÿý'ออออออออออออออออออออออออออออออออออออออออออออออออออออออออออออออออออออออออออออออออออออออออออออออออออออออออออออออออออออออออออออออออออออออออออออออออออออออออออออออออออออออออออออออออออออออออออออออออออออออออออออออออออออออออออออออออออออออออออออออออออออออออออออออออออออออออออออออออออออออออออออออออออออออออออออออออออออออออออออออออออออออออออออออออออออออออออออออออออออออออออออออออออออออออออออออออออออออออออออออออออออออออออออออออออออออออออออออออออออออออออออออออออออออออออออออออออออออออออออออออออออออออออออออออออออ, len=12
+tcpmsg_read_response(sockid=1 status=0 serialno=0 data=ÿýÿý ÿý#ÿý'ออออออออออออออออออออออออออออออออออออออออออออออออออออออออออออออออออออออออออออออออออออออออออออออออออออออออออออออออออออออออออออออออออออออออออออออออออออออออออออออออออออออออออออออออออออออออออออออออออออออออออออออออออออออออออออออออออออออออออออออออออออออออออออออออออออออออออออออออออออออออออออออออออออออออออออออออออออออออออออออออออออออออออออออออออออออออออออออออออออออออออออออออออออออออออออออออออออออออออออออออออออออออออออออออออออออออออออออออออออออออออออออออออออออออออออออออออออออออออออออออออออออออออออออออออออ len=12)
+  sockid=1 socket=1932
+tcpmsg_send_data(sockid=1, tcpqueue=0 data= len=32)
+  sockid=1 socket=1932
+  Sockid=1
+  Sending to queue 8451
+ <10
+sending entry=0 len=56 
+xxxx done
+Read 12 bytes=ÿýÿý ÿý#ÿý'ออออออออออออออออออออออออออออออออออออออออออออออออออออออออออออออออออออออออออออออออออออออออออออออออออออออออออออออออออออออออออออออออออออออออออออออออออออออออออออออออออออออออออออออออออออออออออออออออออออออออออออออออออออออออออออออออออออออออออออออออออออออออออออออออออออออออออออออออออออออออออออออออออออออออออออออออออออออออออออออออออออออออออออออออออออออออออออออออออออออออออออออออออออออออออออออออออออออออออออออออออออออออออออออออออออออออออออออออออออออออออออออออออออออออออออออออออออออออออออออออออออออออออออออออออออ
+
+awaiting ack...
+END
+END
+Buf Received: (12)
+ >18
+TCPMSG_ACKNOWLEDGE
+tcpmsg_acknowledge
+>  hdr.msgid=7
+>  hdr.serialno=26
+>  hdr.sockid=0
+  sockid=0 socket=0
+  read enabled = 0
+END
+END
+Buf Received: (12)
+ >19
+TCPMSG_ACKNOWLEDGE
+tcpmsg_acknowledge
+>  hdr.msgid=7
+>  hdr.serialno=27
+>  hdr.sockid=1
+  sockid=1 socket=1932
+  read enabled = 0
+len=-1
+len=-1
+len=-1
+len=-1
+len=-1
+len=-1
+len=-1
+len=-1
+len=-1
+len=-1
+len=-1
+len=-1
+len=-1
+len=-1
+len=-1
+len=-1
+len=-1
+len=-1
+len=-1
+len=-1
+len=-1
+len=-1
+len=-1
+len=-1
+len=-1
+len=-1
+len=-1
+len=-1
+len=-1
+len=-1
+len=-1
+len=-1
+len=-1
+len=-1
+len=-1
+len=-1
+len=-1
+len=-1
+len=-1
+len=-1
+len=-1
+len=-1
+len=-1
+len=-1
+len=-1
+len=-1
+len=-1
+len=-1
+len=-1
+len=-1
+len=-1
+len=-1
+len=-1
+len=-1
+len=-1
+len=-1
+len=-1
+len=-1
+len=-1
+len=-1
+len=-1
+len=-1
+len=-1
+len=-1
+len=-1
+len=-1
+len=-1
+len=-1
+len=-1
+len=-1
+len=-1
+len=-1
+len=-1
+len=-1
+len=-1
+len=-1
+len=-1
+len=-1
+len=-1
+len=-1
+len=-1
+len=-1
+len=-1
+len=-1
+len=-1
+len=-1
+len=-1
+len=-1
+len=-1
+len=-1
+len=-1
+len=-1
+len=-1
+len=-1
+len=-1
+len=-1
+len=-1
+len=-1
+len=-1
+len=-1
+len=-1
+len=-1
+len=-1
+len=-1
+len=-1
+len=-1
+len=-1
+len=-1
+len=-1
+len=-1
+len=-1
+len=-1
+len=-1
+len=-1
+len=-1
+len=-1
+len=-1
+len=-1
+len=-1
+len=-1
+len=-1
+len=-1
+len=-1
+len=-1
+len=-1
+len=-1
+len=-1
+len=-1
+len=-1
+len=-1
+len=-1
+len=-1
+len=-1
+len=-1
+len=-1
+len=-1
+len=-1
+len=-1
+len=-1
+len=-1
+len=-1
+len=-1
+len=-1
+len=-1
+len=-1
+len=-1
+len=-1
+len=-1
+len=-1
+len=-1
+len=-1
+len=-1
+len=-1
+len=-1
+len=-1
+len=-1
+len=-1
+len=-1
+len=-1
+len=-1
+len=-1
+len=-1
+len=-1
+len=-1
+len=-1
+len=-1
+len=-1
+len=-1
+len=-1
+len=-1
+len=-1
+len=-1
+len=-1
+len=-1
+len=-1
+len=-1
+len=-1
+len=-1
+len=-1
+len=-1
+len=-1
+len=-1
+len=-1
+len=-1
+len=-1
+len=-1
+len=-1
+len=-1
+len=-1
+len=-1
+len=-1
+len=-1
+len=-1
+len=-1
+len=-1
+len=-1
+len=-1
+len=-1
+len=-1
+len=-1
+len=-1
+len=-1
+len=-1
+len=-1
+len=-1
+len=-1
+len=-1
+len=-1
+len=-1
+len=-1
+len=-1
+len=-1
+len=-1
+len=-1
+len=-1
+len=-1
+len=-1
+len=-1
+len=-1
+len=-1
+len=-1
+len=-1
+len=-1
+len=-1
+len=-1
+len=-1
+len=-1
+len=-1
+len=-1
+len=-1
+len=-1
+len=-1
+len=-1
+len=-1
+len=-1
+len=-1
+len=-1
+len=-1
+len=-1
+len=-1
+len=-1
+len=-1
+len=-1
+len=-1
+len=-1
+len=-1
+len=-1
+len=-1
+len=-1
+len=-1
+len=-1
+len=-1
+len=-1
+len=-1
+len=-1
+len=-1
+len=-1
+len=-1
+len=-1
+len=-1
+len=-1
+len=-1
+len=-1
+len=-1
+len=-1
+len=-1
+len=-1
+len=-1
+len=-1
+len=-1
+len=-1
+len=-1
+len=-1
+len=-1
+len=-1
+len=-1
+len=-1
+len=-1
+len=-1
+len=-1
+len=-1
+len=-1
+len=-1
+len=-1
+len=-1
+len=-1
+len=-1
+len=-1
+len=-1
+len=-1
+len=-1
+len=-1
+len=-1
+len=-1
+len=-1
+len=-1
+len=-1
+len=-1
+len=-1
+len=-1
+len=-1
+len=-1
+len=-1
+len=-1
+len=-1
+len=-1
+len=-1
+len=-1
+len=-1
+len=-1
+len=-1
+len=-1
+len=-1
+len=-1
+len=-1
+len=-1
+len=-1
+len=-1
+len=-1
+len=-1
+len=-1
+len=-1
+len=-1
+len=-1
+len=-1
+len=-1
+len=-1
+len=-1
+len=-1
+len=-1
+len=-1
+len=-1
+len=-1
+len=-1
+len=-1
+len=-1
+len=-1
+len=-1
+len=-1
+len=-1
+len=-1
+len=-1
+len=-1
+len=-1
+len=-1
+len=-1
+len=-1
+len=-1
+len=-1
+len=-1
+len=-1
+len=-1
+len=-1
+len=-1
+len=-1
+len=-1
+len=-1
+len=-1
+len=-1
+len=-1
+len=-1
+len=-1
+len=-1
+len=-1
+len=-1
+len=-1
+len=-1
+len=-1
+len=-1
+len=-1
+len=-1
+len=-1
+len=-1
+len=-1
+len=-1
+len=-1
+len=-1
+len=-1
+len=-1
+len=-1
+len=-1
+len=-1
+len=-1
+len=-1
+len=-1
+len=-1
+len=-1
+len=-1
+len=-1
+len=-1
+len=-1
+len=-1
+len=-1
+len=-1
+len=-1
+len=-1
+len=-1
+len=-1
+len=-1
+len=-1
+len=-1
+len=-1
+len=-1
+len=-1
+len=-1
+len=-1
+len=-1
+len=-1
+len=-1
+len=-1
+len=-1
+len=-1
+len=-1
+len=-1
+len=-1
+len=-1
+len=-1
+len=-1
+len=-1
+len=-1
+len=-1
+len=-1
+len=-1
+len=-1
+len=-1
+len=-1
+len=-1
+len=-1
+len=-1
+len=-1
+len=-1
+len=-1
+len=-1
+len=-1
+len=-1
+len=-1
+len=-1
+len=-1
+len=-1
+len=-1
+len=-1
+len=-1
+len=-1
+len=-1
+len=-1
+len=-1
+len=-1
+len=-1
+len=-1
+len=-1
+len=-1
+len=-1
+len=-1
+len=-1
+len=-1
+len=-1
+len=-1
+len=-1
+len=-1
+len=-1
+len=-1
+len=-1
+len=-1
+len=-1
+len=-1
+len=-1
+len=-1
+len=-1
+len=-1
+len=-1
+len=-1
+len=-1
+len=-1
+len=-1
+len=-1
+len=-1
+len=-1
+len=-1
+len=-1
+len=-1
+len=-1
+len=-1
+len=-1
+len=-1
+len=-1
+len=-1
+len=-1
+len=-1
+len=-1
+len=-1
+len=-1
+len=-1
+len=-1
+len=-1
+len=-1
+len=-1
+len=-1
+len=-1
+len=-1
+len=-1
+len=-1
+len=-1
+len=-1
+len=-1
+len=-1
+len=-1
+len=-1
+len=-1
+len=-1
+len=-1
+len=-1
+len=-1
+len=-1
+len=-1
+len=-1
+len=-1
+len=-1
+len=-1
+len=-1
+len=-1
+len=-1
+len=-1
+len=-1
+len=-1
+len=-1
+len=-1
+len=-1
+len=-1
+len=-1
+len=-1
+len=-1
+len=-1
+len=-1
+len=-1
+len=-1
+len=-1
+len=-1
+len=-1
+len=-1
+len=-1
+len=-1
+len=-1
+len=-1
+len=-1
+len=-1
+len=-1
+len=-1
+len=-1
+len=-1
+len=-1
+len=-1
+len=-1
+len=-1
+len=-1
+len=-1
+len=-1
+len=-1
+len=-1
+len=-1
+len=-1
+len=-1
+len=-1
+len=-1
+len=-1
+len=-1
+len=-1
+len=-1
+len=-1
+len=-1
+len=-1
+len=-1
+len=-1
+len=-1
+len=-1
+len=-1
+len=-1
+len=-1
+len=-1
+len=-1
+len=-1
+len=-1
+len=-1
+len=-1
+len=-1
+len=-1
+len=-1
+len=-1
+len=-1
+len=-1
+len=-1
+len=-1
+len=-1
+len=-1
+len=-1
+len=-1
+len=-1
+len=-1
+len=-1
+len=-1
+len=-1
+len=-1
+len=-1
+len=-1
+len=-1
+len=-1
+len=-1
+len=-1
+len=-1
+len=-1
+len=-1
+len=-1
+len=-1
+len=-1
+len=-1
+len=-1
+len=-1
+len=-1
+len=-1
+len=-1
+len=-1
+len=-1
+len=-1
+len=-1
+len=-1
+len=-1
+len=-1
+len=-1
+len=-1
+len=-1
+len=-1
+len=-1
+len=-1
+len=-1
+len=-1
+len=-1
+len=-1
+len=-1
+len=-1
+len=-1
+len=-1
+len=-1
+len=-1
+len=-1
+len=-1
+len=-1
+len=-1
+len=-1
+len=-1
+len=-1
+len=-1
+len=-1
+len=-1
+len=-1
+len=-1
+len=-1
+len=-1
+len=-1
+len=-1
+len=-1
+len=-1
+len=-1
+len=-1
+len=-1
+len=-1
+len=-1
+len=-1
+len=-1
+len=-1
+len=-1
+len=-1
+len=-1
+len=-1
+len=-1
+len=-1
+len=-1
+len=-1
+len=-1
+len=-1
+len=-1
+len=-1
+len=-1
+len=-1
+len=-1
+len=-1
+len=-1
+len=-1
+len=-1
+len=-1
+len=-1
+len=-1
+len=-1
+len=-1
+len=-1
+len=-1
+len=-1
+len=-1
+len=-1
+len=-1
+len=-1
+len=-1
+len=-1
+len=-1
+len=-1
+len=-1
+len=-1
+len=-1
+len=-1
+len=-1
+len=-1
+len=-1
+len=-1
+len=-1
+len=-1
+len=-1
+len=-1
+len=-1
+len=-1
+len=-1
+len=-1
+len=-1
+len=-1
+len=-1
+len=-1
+len=-1
+len=-1
+len=-1
+len=-1
+len=-1
+len=-1
+len=-1
+len=-1
+len=-1
+len=-1
+len=-1
+len=-1
+len=-1
+len=-1
+len=-1
+len=-1
+len=-1
+len=-1
+len=-1
+len=-1
+len=-1
+len=-1
+len=-1
+len=-1
+len=-1
+len=-1
+len=-1
+len=-1
+len=-1
+len=-1
+len=-1
+len=-1
+len=-1
+len=-1
+len=-1
+len=-1
+len=-1
+len=-1
+len=-1
+len=-1
+len=-1
+len=-1
+len=-1
+len=-1
+len=-1
+len=-1
+len=-1
+len=-1
+len=-1
+len=-1
+len=-1
+len=-1
+len=-1
+len=-1
+len=-1
+len=-1
+len=-1
+len=-1
+len=-1
+len=-1
+len=-1
+len=-1
+len=-1
+len=-1
+len=-1
+len=-1
+len=-1
+len=-1
+len=-1
+len=-1
+len=-1
+len=-1
+len=-1
+len=-1
+len=-1
+len=-1
+len=-1
+len=-1
+len=-1
+len=-1
+len=-1
+len=-1
+len=-1
+len=-1
+len=-1
+len=-1
+len=-1
+len=-1
+len=-1
+len=-1
+len=-1
+len=-1
+len=-1
+len=-1
+len=-1
+len=-1
+len=-1
+len=-1
+len=-1
+len=-1
+len=-1
+len=-1
+len=-1
+len=-1
+len=-1
+len=-1
+len=-1
+len=-1
+len=-1
+len=-1
+len=-1
+len=-1
+len=-1
+len=-1
+len=-1
+len=-1
+len=-1
+len=-1
+len=-1
+len=-1
+len=-1
+len=-1
+len=-1
+len=-1
+len=-1
+len=-1
+len=-1
+len=-1
+len=-1
+len=-1
+len=-1
+len=-1
+len=-1
+len=-1
+len=-1
+len=-1
+len=-1
+len=-1
+len=-1
+len=-1
+len=-1
+len=-1
+len=-1
+len=-1
+len=-1
+len=-1
+len=-1
+len=-1
+len=-1
+len=-1
+len=-1
+len=-1
+len=-1
+len=-1
+len=-1
+len=-1
+len=-1
+len=-1
+len=-1
+len=-1
+len=-1
+len=-1
+len=-1
+len=-1
+len=-1
+len=-1
+len=-1
+len=-1
+len=-1
+len=-1
+len=-1
+len=-1
+len=-1
+len=-1
+len=-1
+len=-1
+len=-1
+len=-1
+len=-1
+len=-1
+len=-1
+len=-1
+len=-1
+len=-1
+len=-1
+len=-1
+len=-1
+len=-1
+len=-1
+len=-1
+len=-1
+len=-1
+len=-1
+len=-1
+len=-1
+len=-1
+len=-1
+len=-1
+len=-1
+len=-1
+len=-1
+len=-1
+len=-1
+len=-1
+len=-1
+len=-1
+len=-1
+len=-1
+len=-1
+len=-1
+len=-1
+len=-1
+len=-1
+len=-1
+len=-1
+len=-1
+len=-1
+len=-1
+len=-1
+len=-1
+len=-1
+len=-1
+len=-1
+len=-1
+len=-1
+len=-1
+len=-1
+len=-1
+len=-1
+len=-1
+len=-1
+len=-1
+len=-1
+len=-1
+len=-1
+len=-1
+len=-1
+len=-1
+len=-1
+len=-1
+len=-1
+len=-1
+len=-1
+len=-1
+len=-1
+len=-1
+len=-1
+len=-1
+len=-1
+len=-1
+len=-1
+len=-1
+len=-1
+len=-1
+len=-1
+len=-1
+len=-1
+len=-1
+len=-1
+len=-1
+len=-1
+len=-1
+len=-1
+len=-1
+len=-1
+len=-1
+len=-1
+len=-1
+len=-1
+len=-1
+len=-1
+len=-1
+len=-1
+len=-1
+len=-1
+len=-1
+len=-1
+len=-1
+len=-1
+len=-1
+len=-1
+len=-1
+len=-1
+len=-1
+len=-1
+len=-1
+len=-1
+len=-1
+len=-1
+len=-1
+len=-1
+len=-1
+len=-1
+len=-1
+len=-1
+len=-1
+len=-1
+len=-1
+len=-1
+len=-1
+len=-1
+len=-1
+len=-1
+len=-1
+len=-1
+len=-1
+len=-1
+len=-1
+len=-1
+len=-1
+len=-1
+len=-1
+len=-1
+len=-1
+len=-1
+len=-1
+len=-1
+len=-1
+len=-1
+len=-1
+len=-1
+len=-1
+len=-1
+len=-1
+len=-1
+len=-1
+len=-1
+len=-1
+len=-1
+len=-1
+len=-1
+len=-1
+len=-1
+len=-1
+len=-1
+len=-1
+len=-1
+len=-1
+len=-1
+len=-1
+len=-1
+len=-1
+len=-1
+len=-1
+len=-1
+len=-1
+len=-1
+len=-1
+len=-1
+len=-1
+len=-1
+len=-1
+len=-1
+len=-1
+len=-1
+len=-1
+len=-1
+len=-1
+len=-1
+len=-1
+len=-1
+len=-1
+len=-1
+len=-1
+len=-1
+len=-1
+len=-1
+len=-1
+len=-1
+len=-1
+len=-1
+len=-1
+len=-1
+len=-1
+len=-1
+len=-1
+len=-1
+len=-1
+len=-1
+len=-1
+len=-1
+len=-1
+len=-1
+len=-1
+len=-1
+len=-1
+len=-1
+len=-1
+len=-1
+len=-1
+len=-1
+len=-1
+len=-1
+len=-1
+len=-1
+len=-1
+len=-1
+len=-1
+len=-1
+len=-1
+len=-1
+len=-1
+len=-1
+len=-1
+len=-1
+len=-1
+len=-1
+len=-1
+len=-1
+len=-1
+len=-1
+len=-1
+len=-1
+len=-1
+len=-1
+len=-1
+len=-1
+len=-1
+len=-1
+len=-1
+len=-1
+len=-1
+len=-1
+len=-1
+len=-1
+len=-1
+len=-1
+len=-1
+len=-1
+len=-1
+len=-1
+len=-1
+len=-1
+len=-1
+len=-1
+len=-1
+len=-1
+len=-1
+len=-1
+len=-1
+len=-1
+len=-1
+len=-1
+len=-1
+len=-1
+len=-1
+len=-1
+len=-1
+len=-1
+len=-1
+len=-1
+len=-1
+len=-1
+len=-1
+len=-1
+len=-1
+len=-1
+len=-1
+len=-1
+len=-1
+len=-1
+len=-1
+len=-1
+len=-1
+len=-1
+len=-1
+len=-1
+len=-1
+len=-1
+len=-1
+len=-1
+len=-1
+len=-1
+len=-1
+len=-1
+len=-1
+len=-1
+len=-1
+len=-1
+len=-1
+len=-1
+len=-1
+len=-1
+len=-1
+len=-1
+len=-1
+len=-1
+len=-1
+len=-1
+len=-1
+len=-1
+len=-1
+len=-1
+len=-1
+len=-1
+len=-1
+len=-1
+len=-1
+len=-1
+len=-1
+len=-1
+len=-1
+len=-1
+len=-1
+len=-1
+len=-1
+len=-1
+len=-1
+len=-1
+len=-1
+len=-1
+len=-1
+len=-1
+len=-1
+len=-1
+len=-1
+len=-1
+len=-1
+len=-1
+len=-1
+len=-1
+len=-1
+len=-1
+len=-1
+len=-1
+len=-1
+len=-1
+len=-1
+len=-1
+len=-1
+len=-1
+len=-1
+len=-1
+len=-1
+len=-1
+len=-1
+len=-1
+len=-1
+len=-1
+len=-1
+len=-1
+len=-1
+len=-1
+len=-1
+len=-1
+len=-1
+len=-1
+len=-1
+len=-1
+len=-1
+len=-1
+len=-1
+len=-1
+len=-1
+len=-1
+len=-1
+len=-1
+len=-1
+len=-1
+len=-1
+len=-1
+len=-1
+len=-1
+len=-1
+len=-1
+len=-1
+len=-1
+len=-1
+len=-1
+len=-1
+len=-1
+len=-1
+len=-1
+len=-1
+len=-1
+len=-1
+len=-1
+len=-1
+len=-1
+len=-1
+len=-1
+len=-1
+len=-1
+len=-1
+len=-1
+len=-1
+len=-1
+len=-1
+len=-1
+len=-1
+len=-1
+len=-1
+len=-1
+len=-1
+len=-1
+len=-1
+len=-1
+len=-1
+len=-1
+len=-1
+len=-1
+len=-1
+len=-1
+len=-1
+len=-1
+len=-1
+len=-1
+len=-1
+len=-1
+len=-1
+len=-1
+len=-1
+len=-1
+len=-1
+len=-1
+len=-1
+len=-1
+len=-1
+len=-1
+len=-1
+len=-1
+len=-1
+len=-1
+len=-1
+len=-1
+len=-1
+len=-1
+len=-1
+len=-1
+len=-1
+len=-1
+len=-1
+len=-1
+len=-1
+len=-1
+len=-1
+len=-1
+len=-1
+len=-1
+len=-1
+len=-1
+len=-1
+len=-1
+len=-1
+len=-1
+len=-1
+len=-1
+len=-1
+len=-1
+len=-1
+len=-1
+len=-1
+len=-1
+len=-1
+len=-1
+len=-1
+len=-1
+len=-1
+len=-1
+len=-1
+len=-1
+len=-1
+len=-1
+len=-1
+len=-1
+len=-1
+len=-1
+len=-1
+len=-1
+len=-1
+len=-1
+len=-1
+len=-1
+len=-1
+len=-1
+len=-1
+len=-1
+len=-1
+len=-1
+len=-1
+len=-1
+len=-1
+len=-1
+len=-1
+len=-1
+len=-1
+len=-1
+len=-1
+len=-1
+len=-1
+len=-1
+len=-1
+len=-1
+len=-1
+len=-1
+len=-1
+len=-1
+len=-1
+len=-1
+len=-1
+len=-1
+len=-1
+len=-1
+len=-1
+len=-1
+len=-1
+len=-1
+len=-1
+len=-1
+len=-1
+len=-1
+len=-1
+len=-1
+len=-1
+len=-1
+len=-1
+len=-1
+len=-1
+len=-1
+len=-1
+len=-1
+len=-1
+len=-1
+len=-1
+len=-1
+len=-1
+len=-1
+len=-1
+len=-1
+len=-1
+len=-1
+len=-1
+len=-1
+len=-1
+len=-1
+len=-1
+len=-1
+len=-1
+len=-1
+len=-1
+len=-1
+len=-1
+len=-1
+len=-1
+len=-1
+len=-1
+len=-1
+len=-1
+len=-1
+len=-1
+len=-1
+len=-1
+len=-1
+len=-1
+len=-1
+len=-1
+len=-1
+len=-1
+len=-1
+len=-1
+len=-1
+len=-1
+len=-1
+len=-1
+len=-1
+len=-1
+len=-1
+len=-1
+len=-1
+len=-1
+len=-1
+len=-1
+len=-1
+len=-1
+len=-1
+len=-1
+len=-1
+len=-1
+len=-1
+len=-1
+len=-1
+len=-1
+len=-1
+len=-1
+len=-1
+len=-1
+len=-1
+len=-1
+len=-1
+len=-1
+len=-1
+len=-1
+len=-1
+len=-1
+len=-1
+len=-1
+len=-1
+len=-1
+len=-1
+len=-1
+len=-1
+len=-1
+len=-1
+len=-1
+len=-1
+len=-1
+len=-1
+len=-1
+len=-1
+len=-1
+len=-1
+len=-1
+len=-1
+len=-1
+len=-1
+len=-1
+len=-1
+len=-1
+len=-1
+len=-1
+len=-1
+len=-1
+len=-1
+len=-1
+len=-1
+len=-1
+len=-1
+len=-1
+len=-1
+len=-1
+len=-1
+len=-1
+len=-1
+len=-1
+len=-1
+len=-1
+len=-1
+len=-1
+len=-1
+len=-1
+len=-1
+len=-1
+len=-1
+len=-1
+len=-1
+len=-1
+len=-1
+len=-1
+len=-1
+len=-1
+len=-1
+len=-1
+len=-1
+len=-1
+len=-1
+len=-1
+len=-1
+len=-1
+len=-1
+len=-1
+len=-1
+len=-1
+len=-1
+len=-1
+len=-1
+len=-1
+len=-1
+len=-1
+len=-1
+len=-1
+len=-1
+len=-1
+len=-1
+len=-1
+len=-1
+len=-1
+len=-1
+len=-1
+len=-1
+len=-1
+len=-1
+len=-1
+len=-1
+len=-1
+len=-1
+len=-1
+len=-1
+len=-1
+len=-1
+len=-1
+len=-1
+len=-1
+len=-1
+len=-1
+len=-1
+len=-1
+len=-1
+len=-1
+len=-1
+len=-1
+len=-1
+len=-1
+len=-1
+len=-1
+len=-1
+len=-1
+len=-1
+len=-1
+len=-1
+len=-1
+len=-1
+len=-1
+len=-1
+len=-1
+len=-1
+len=-1
+len=-1
+len=-1
+len=-1
+len=-1
+len=-1
+len=-1
+len=-1
+len=-1
+len=-1
+len=-1
+len=-1
+len=-1
+len=-1
+len=-1
+len=-1
+len=-1
+len=-1
+len=-1
+len=-1
+len=-1
+len=-1
+len=-1
+len=-1
+len=-1
+len=-1
+len=-1
+len=-1
+len=-1
+len=-1
+len=-1
+len=-1
+len=-1
+len=-1
+len=-1
+len=-1
+len=-1
+len=-1
+len=-1
+len=-1
+len=-1
+len=-1
+len=-1
+len=-1
+len=-1
+len=-1
+len=-1
+len=-1
+len=-1
+len=-1
+len=-1
+len=-1
+len=-1
+len=-1
+len=-1
+len=-1
+len=-1
+len=-1
+len=-1
+len=-1
+len=-1
+len=-1
+len=-1
+len=-1
+len=-1
+len=-1
+len=-1
+len=-1
+len=-1
+len=-1
+len=-1
+len=-1
+len=-1
+len=-1
+len=-1
+len=-1
+len=-1
+len=-1
+len=-1
+len=-1
+len=-1
+len=-1
+len=-1
+len=-1
+len=-1
+len=-1
+len=-1
+len=-1
+len=-1
+len=-1
+len=-1
+len=-1
+len=-1
+len=-1
+len=-1
+len=-1
+len=-1
+len=-1
+len=-1
+len=-1
+len=-1
+len=-1
+len=-1
+len=-1
+len=-1
+len=-1
+len=-1
+len=-1
+len=-1
+len=-1
+len=-1
+len=-1
+len=-1
+len=-1
+len=-1
+len=-1
+len=-1
+len=-1
+len=-1
+len=-1
+len=-1
+len=-1
+len=-1
+len=-1
+len=-1
+len=-1
+len=-1
+len=-1
+len=-1
+len=-1
+len=-1
+len=-1
+len=-1
+len=-1
+len=-1
+len=-1
+len=-1
+len=-1
+len=-1
+len=-1
+len=-1
+len=-1
+len=-1
+len=-1
+len=-1
+len=-1
+len=-1
+len=-1
+len=-1
+len=-1
+len=-1
+len=-1
+len=-1
+len=-1
+len=-1
+len=-1
+len=-1
+len=-1
+len=-1
+len=-1
+len=-1
+len=-1
+len=-1
+len=-1
+len=-1
+len=-1
+len=-1
+len=-1
+len=-1
+len=-1
+len=-1
+len=-1
+len=-1
+len=-1
+len=-1
+len=-1
+len=-1
+len=-1
+len=-1
+len=-1
+len=-1
+len=-1
+len=-1
+len=-1
+len=-1
+len=-1
+len=-1
+len=-1
+len=-1
+len=-1
+len=-1
+len=-1
+len=-1
+len=-1
+len=-1
+len=-1
+len=-1
+len=-1
+len=-1
+len=-1
+len=-1
+len=-1
+len=-1
+len=-1
+len=-1
+len=-1
+len=-1
+len=-1
+len=-1
+len=-1
+len=-1
+len=-1
+len=-1
+len=-1
+len=-1
+len=-1
+len=-1
+len=-1
+len=-1
+len=-1
+len=-1
+len=-1
+len=-1
+len=-1
+len=-1
+len=-1
+len=-1
+len=-1
+len=-1
+len=-1
+len=-1
+len=-1
+len=-1
+len=-1
+len=-1
+len=-1
+len=-1
+len=-1
+len=-1
+len=-1
+len=-1
+len=-1
+len=-1
+len=-1
+len=-1
+len=-1
+len=-1
+len=-1
+len=-1
+len=-1
+len=-1
+len=-1
+len=-1
+len=-1
+len=-1
+len=-1
+len=-1
+len=-1
+len=-1
+len=-1
+len=-1
+len=-1
+len=-1
+len=-1
+len=-1
+len=-1
+len=-1
+len=-1
+len=-1
+len=-1
+len=-1
+len=-1
+len=-1
+len=-1
+len=-1
+len=-1
+len=-1
+len=-1
+len=-1
+len=-1
+len=-1
+len=-1
+len=-1
+len=-1
+len=-1
+len=-1
+len=-1
+len=-1
+len=-1
+len=-1
+len=-1
+len=-1
+len=-1
+len=-1
+len=-1
+len=-1
+len=-1
+len=-1
+len=-1
+len=-1
+len=-1
+len=-1
+len=-1
+len=-1
+len=-1
+len=-1
+len=-1
+len=-1
+len=-1
+len=-1
+len=-1
+len=-1
+len=-1
+len=-1
+len=-1
+len=-1
+len=-1
+len=-1
+len=-1
+len=-1
+len=-1
+len=-1
+len=-1
+len=-1
+len=-1
+len=-1
+len=-1
+len=-1
+len=-1
+len=-1
+len=-1
+len=-1
+len=-1
+len=-1
+len=-1
+len=-1
+len=-1
+len=-1
+len=-1
+len=-1
+len=-1
+len=-1
+len=-1
+len=-1
+len=-1
+len=-1
+len=-1
+len=-1
+len=-1
+len=-1
+len=-1
+len=-1
+len=-1
+len=-1
+len=-1
+len=-1
+len=-1
+len=-1
+len=-1
+len=-1
+len=-1
+len=-1
+len=-1
+len=-1
+len=-1
+len=-1
+len=-1
+len=-1
+len=-1
+len=-1
+len=-1
+len=-1
+len=-1
+len=-1
+len=-1
+len=-1
+len=-1
+len=-1
+len=-1
+len=-1
+len=-1
+len=-1
+len=-1
+len=-1
+len=-1
+len=-1
+len=-1
+len=-1
+len=-1
+len=-1
+len=-1
+len=-1
+len=-1
+len=-1
+len=-1
+len=-1
+len=-1
+len=-1
+len=-1
+len=-1
+len=-1
+len=-1
+len=-1
+len=-1
+len=-1
+len=-1
+len=-1
+len=-1
+len=-1
+len=-1
+len=-1
+len=-1
+len=-1
+len=-1
+len=-1
+len=-1
+len=-1
+len=-1
+len=-1
+len=-1
+len=-1
+len=-1
+len=-1
+len=-1
+len=-1
+len=-1
+len=-1
+len=-1
+len=-1
+len=-1
+len=-1
+len=-1
+len=-1
+len=-1
+len=-1
+len=-1
+len=-1
+len=-1
+len=-1
+len=-1
+END
+len=-1
+END
+Buf Received: (12)
+ >20
+TCPMSG_CLOSE_REQUEST
+tcpmsg_close_request
+>  hdr.msgid=4
+>  hdr.serialno=28
+>  hdr.sockid=1
+  sockid=1 socket=1932
+Closing Socket 1
+tcpmsg_close_response(sockid=1, status=0, serialno=28)
+  sockid=1 socket=0
+tcpmsg_send_data(sockid=1, tcpqueue=0 data= len=16)
+  sockid=1 socket=0
+  Sockid=1
+  Sending to queue 8451
+ <11
+sending entry=0 len=40 
+xxxx done
+END
+END
+Buf Received: (58)
+ >21
+TCPMSG_CONNECT_REQUEST
+tcpmsg_connect_request
+>  hdr.msgid=0
+>  hdr.serialno=29
+>  hdr.sockid=0
+>  cr->addr=devcybiko.com
+>  cr->appname=telnet
+>  cr->cyid=1306530403
+>  cr->port=23
+>  cr->tcpqueue=8449
+>  cr->size=512
+>alloc_sockid()=1
+Sockid allocated=1
+msg_queue=8449
+cr->port=23
+sockids[sockid].port=23
+h_length=4
+ADDR=devcybiko.com
+ADDR=9541f5cf
+PORT=5888
+connect: sockid=1 socket=1936 msgid=0 cyid=1306530403 msg_queue=8449 addr=devcybiko.com port=23
+  sockid=1 socket=1936
+tcpmsg_connect_response(sockid=1, status=0 serialno=29)
+  sockid=1 socket=1936
+tcpmsg_send_data(sockid=1, tcpqueue=0 data= len=20)
+  sockid=1 socket=1936
+  Sockid=1
+  Sending to queue 8449
+ <12
+sending entry=0 len=44 
+xxxx done
+END
+END
+Buf Received: (12)
+ >22
+TCPMSG_ACKNOWLEDGE
+tcpmsg_acknowledge
+>  hdr.msgid=7
+>  hdr.serialno=30
+>  hdr.sockid=1
+  sockid=1 socket=1936
+  read enabled = 0
+len=12
+ }1
+filter_recv_raw(sockid=1, msgbuf=ÿýÿý ÿý#ÿý'ออออออออออออออออออออออออออออออออออออออออออออออออออออออออออออออออออออออออออออออออออออออออออออออออออออออออออออออออออออออออออออออออออออออออออออออออออออออออออออออออออออออออออออออออออออออออออออออออออออออออออออออออออออออออออออออออออออออออออออออออออออออออออออออออออออออออออออออออออออออออออออออออออออออออออออออออออออออออออออออออออออออออออออออออออออออออออออออออออออออออออออออออออออออออออออออออออออออออออออออออออออออออออออออออออออออออออออออออออออออออออออออออออออออออออออออออออออออออออออออออออออออออออออออออออออ, len=12
+tcpmsg_read_response(sockid=1 status=0 serialno=0 data=ÿýÿý ÿý#ÿý'ออออออออออออออออออออออออออออออออออออออออออออออออออออออออออออออออออออออออออออออออออออออออออออออออออออออออออออออออออออออออออออออออออออออออออออออออออออออออออออออออออออออออออออออออออออออออออออออออออออออออออออออออออออออออออออออออออออออออออออออออออออออออออออออออออออออออออออออออออออออออออออออออออออออออออออออออออออออออออออออออออออออออออออออออออออออออออออออออออออออออออออออออออออออออออออออออออออออออออออออออออออออออออออออออออออออออออออออออออออออออออออออออออออออออออออออออออออออออออออออออออออออออออออออออออออ len=12)
+  sockid=1 socket=1936
+tcpmsg_send_data(sockid=1, tcpqueue=0 data= len=32)
+  sockid=1 socket=1936
+  Sockid=1
+  Sending to queue 8449
+ <13
+sending entry=0 len=56 
+xxxx done
+Read 12 bytes=ÿýÿý ÿý#ÿý'ออออออออออออออออออออออออออออออออออออออออออออออออออออออออออออออออออออออออออออออออออออออออออออออออออออออออออออออออออออออออออออออออออออออออออออออออออออออออออออออออออออออออออออออออออออออออออออออออออออออออออออออออออออออออออออออออออออออออออออออออออออออออออออออออออออออออออออออออออออออออออออออออออออออออออออออออออออออออออออออออออออออออออออออออออออออออออออออออออออออออออออออออออออออออออออออออออออออออออออออออออออออออออออออออออออออออออออออออออออออออออออออออออออออออออออออออออออออออออออออออออออออออออออออออออออ
+
+awaiting ack...
+END
+END
+Buf Received: (12)
+ >23
+TCPMSG_ACKNOWLEDGE
+tcpmsg_acknowledge
+>  hdr.msgid=7
+>  hdr.serialno=31
+>  hdr.sockid=0
+  sockid=0 socket=0
+  read enabled = 0
+END
+END
+Buf Received: (12)
+ >24
+TCPMSG_ACKNOWLEDGE
+tcpmsg_acknowledge
+>  hdr.msgid=7
+>  hdr.serialno=32
+>  hdr.sockid=1
+  sockid=1 socket=1936
+  read enabled = 0
+len=-1
+len=-1
+len=-1
+len=-1
+len=-1
+len=-1
+len=-1
+len=-1
+len=-1
+len=-1
+len=-1
+len=-1
+len=-1
+len=-1
+len=-1
+len=-1
+len=-1
+len=-1
+len=-1
+len=-1
+len=-1
+len=-1
+len=-1
+len=-1
+len=-1
+len=-1
+len=-1
+len=-1
+len=-1
+len=-1
+len=-1
+len=-1
+len=-1
+len=-1
+len=-1
+len=-1
+len=-1
+len=-1
+len=-1
+len=-1
+len=-1
+len=-1
+len=-1
+len=-1
+len=-1
+len=-1
+len=-1
+len=-1
+len=-1
+len=-1
+len=-1
+len=-1
+len=-1
+len=-1
+len=-1
+len=-1
+len=-1
+len=-1
+len=-1
+len=-1
+len=-1
+len=-1
+len=-1
+len=-1
+len=-1
+len=-1
+len=-1
+len=-1
+len=-1
+len=-1
+len=-1
+len=-1
+len=-1
+len=-1
+len=-1
+len=-1
+len=-1
+len=-1
+len=-1
+len=-1
+len=-1
+len=-1
+len=-1
+len=-1
+len=-1
+len=-1
+len=-1
+len=-1
+len=-1
+len=-1
+len=-1
+len=-1
+len=-1
+len=-1
+len=-1
+len=-1
+len=-1
+len=-1
+len=-1
+len=-1
+len=-1
+len=-1
+len=-1
+len=-1
+len=-1
+len=-1
+len=-1
+len=-1
+len=-1
+len=-1
+len=-1
+len=-1
+len=-1
+len=-1
+len=-1
+len=-1
+len=-1
+len=-1
+len=-1
+len=-1
+len=-1
+len=-1
+len=-1
+len=-1
+len=-1
+len=-1
+len=-1
+len=-1
+len=-1
+len=-1
+len=-1
+len=-1
+len=-1
+len=-1
+len=-1
+len=-1
+len=-1
+len=-1
+len=-1
+len=-1
+len=-1
+len=-1
+len=-1
+len=-1
+len=-1
+len=-1
+len=-1
+len=-1
+len=-1
+len=-1
+len=-1
+len=-1
+len=-1
+len=-1
+len=-1
+len=-1
+len=-1
+len=-1
+len=-1
+len=-1
+len=-1
+len=-1
+len=-1
+len=-1
+len=-1
+len=-1
+len=-1
+len=-1
+len=-1
+len=-1
+len=-1
+len=-1
+len=-1
+len=-1
+len=-1
+len=-1
+len=-1
+len=-1
+len=-1
+len=-1
+len=-1
+len=-1
+len=-1
+len=-1
+len=-1
+len=-1
+len=-1
+len=-1
+len=-1
+len=-1
+len=-1
+len=-1
+len=-1
+len=-1
+len=-1
+len=-1
+len=-1
+len=-1
+len=-1
+len=-1
+len=-1
+len=-1
+len=-1
+len=-1
+len=-1
+len=-1
+len=-1
+len=-1
+len=-1
+len=-1
+len=-1
+len=-1
+len=-1
+len=-1
+len=-1
+len=-1
+len=-1
+len=-1
+len=-1
+len=-1
+len=-1
+len=-1
+len=-1
+len=-1
+len=-1
+len=-1
+len=-1
+len=-1
+len=-1
+len=-1
+len=-1
+len=-1
+len=-1
+len=-1
+len=-1
+len=-1
+len=-1
+len=-1
+len=-1
+len=-1
+len=-1
+len=-1
+len=-1
+len=-1
+len=-1
+len=-1
+len=-1
+len=-1
+len=-1
+len=-1
+len=-1
+len=-1
+len=-1
+len=-1
+len=-1
+len=-1
+len=-1
+len=-1
+len=-1
+len=-1
+len=-1
+len=-1
+len=-1
+len=-1
+len=-1
+len=-1
+len=-1
+len=-1
+len=-1
+len=-1
+len=-1
+len=-1
+len=-1
+len=-1
+len=-1
+len=-1
+len=-1
+len=-1
+len=-1
+len=-1
+len=-1
+len=-1
+len=-1
+len=-1
+len=-1
+len=-1
+len=-1
+len=-1
+len=-1
+len=-1
+len=-1
+len=-1
+len=-1
+len=-1
+len=-1
+len=-1
+len=-1
+len=-1
+len=-1
+len=-1
+len=-1
+len=-1
+len=-1
+len=-1
+len=-1
+len=-1
+len=-1
+len=-1
+len=-1
+len=-1
+len=-1
+len=-1
+len=-1
+len=-1
+len=-1
+len=-1
+len=-1
+len=-1
+len=-1
+len=-1
+len=-1
+len=-1
+len=-1
+len=-1
+len=-1
+len=-1
+len=-1
+len=-1
+len=-1
+len=-1
+len=-1
+len=-1
+len=-1
+len=-1
+len=-1
+len=-1
+len=-1
+len=-1
+len=-1
+len=-1
+len=-1
+len=-1
+len=-1
+len=-1
+len=-1
+len=-1
+len=-1
+len=-1
+len=-1
+len=-1
+len=-1
+len=-1
+len=-1
+len=-1
+len=-1
+len=-1
+len=-1
+len=-1
+len=-1
+len=-1
+len=-1
+len=-1
+len=-1
+len=-1
+len=-1
+len=-1
+len=-1
+len=-1
+len=-1
+len=-1
+len=-1
+len=-1
+len=-1
+len=-1
+len=-1
+len=-1
+len=-1
+len=-1
+len=-1
+len=-1
+len=-1
+len=-1
+len=-1
+len=-1
+len=-1
+len=-1
+len=-1
+len=-1
+len=-1
+len=-1
+len=-1
+len=-1
+len=-1
+len=-1
+len=-1
+len=-1
+len=-1
+len=-1
+len=-1
+len=-1
+len=-1
+len=-1
+len=-1
+len=-1
+len=-1
+len=-1
+len=-1
+len=-1
+len=-1
+len=-1
+len=-1
+len=-1
+len=-1
+len=-1
+len=-1
+len=-1
+len=-1
+len=-1
+len=-1
+len=-1
+len=-1
+len=-1
+len=-1
+len=-1
+len=-1
+len=-1
+len=-1
+len=-1
+len=-1
+len=-1
+len=-1
+len=-1
+len=-1
+len=-1
+len=-1
+len=-1
+len=-1
+len=-1
+len=-1
+len=-1
+len=-1
+len=-1
+len=-1
+len=-1
+len=-1
+len=-1
+len=-1
+len=-1
+len=-1
+len=-1
+len=-1
+len=-1
+len=-1
+len=-1
+len=-1
+len=-1
+len=-1
+len=-1
+len=-1
+len=-1
+len=-1
+len=-1
+len=-1
+len=-1
+len=-1
+len=-1
+len=-1
+len=-1
+len=-1
+len=-1
+len=-1
+len=-1
+len=-1
+len=-1
+len=-1
+len=-1
+len=-1
+len=-1
+len=-1
+len=-1
+len=-1
+len=-1
+len=-1
+len=-1
+len=-1
+len=-1
+len=-1
+len=-1
+len=-1
+len=-1
+len=-1
+len=-1
+len=-1
+len=-1
+len=-1
+len=-1
+len=-1
+len=-1
+len=-1
+len=-1
+len=-1
+len=-1
+len=-1
+len=-1
+len=-1
+len=-1
+len=-1
+len=-1
+len=-1
+len=-1
+len=-1
+len=-1
+len=-1
+len=-1
+len=-1
+len=-1
+len=-1
+len=-1
+len=-1
+len=-1
+len=-1
+len=-1
+len=-1
+len=-1
+len=-1
+len=-1
+len=-1
+len=-1
+len=-1
+len=-1
+len=-1
+len=-1
+len=-1
+len=-1
+len=-1
+len=-1
+len=-1
+len=-1
+len=-1
+len=-1
+len=-1
+len=-1
+len=-1
+len=-1
+len=-1
+len=-1
+len=-1
+len=-1
+len=-1
+len=-1
+len=-1
+len=-1
+len=-1
+len=-1
+len=-1
+len=-1
+len=-1
+len=-1
+len=-1
+len=-1
+len=-1
+len=-1
+len=-1
+len=-1
+len=-1
+len=-1
+len=-1
+len=-1
+len=-1
+len=-1
+len=-1
+len=-1
+len=-1
+len=-1
+len=-1
+len=-1
+len=-1
+len=-1
+len=-1
+len=-1
+len=-1
+len=-1
+len=-1
+len=-1
+len=-1
+len=-1
+len=-1
+len=-1
+len=-1
+len=-1
+len=-1
+len=-1
+len=-1
+len=-1
+len=-1
+len=-1
+len=-1
+len=-1
+len=-1
+len=-1
+len=-1
+len=-1
+len=-1
+len=-1
+len=-1
+len=-1
+len=-1
+len=-1
+len=-1
+len=-1
+len=-1
+len=-1
+len=-1
+len=-1
+len=-1
+len=-1
+len=-1
+len=-1
+len=-1
+len=-1
+len=-1
+len=-1
+len=-1
+len=-1
+END
+len=-1
+END
+Buf Received: (13)
+ >25
+TCPMSG_WRITE_REQUEST
+tcpmsg_write_request
+>  hdr.msgid=2
+>  hdr.serialno=33
+>  hdr.sockid=1
+>  msg->data= เM
+  sockid=1 socket=1936
+  sockid=1 filter=00401019
+ {6
+filter_send_raw(sockid=1, msgbuf= เM, len=1
+Wrote  เM
+tcpmsg_write_response(sockid=1 status=0 serialno=33)
+  sockid=1 socket=1936
+tcpmsg_send_data(sockid=1, tcpqueue=0 data= len=16)
+  sockid=1 socket=1936
+  Sockid=1
+  Sending to queue 8449
+ <14
+sending entry=0 len=40 
+xxxx done
+END
+END
+Buf Received: (12)
+ >26
+TCPMSG_ACKNOWLEDGE
+tcpmsg_acknowledge
+>  hdr.msgid=7
+>  hdr.serialno=34
+>  hdr.sockid=1
+  sockid=1 socket=1936
+  read enabled = 0
+len=-1
+len=-1
+len=-1
+len=-1
+len=-1
+len=-1
+len=-1
+len=-1
+len=-1
+len=-1
+len=-1
+len=-1
+len=-1
+len=-1
+len=-1
+len=-1
+len=-1
+len=-1
+len=-1
+len=-1
+len=-1
+len=-1
+len=-1
+len=-1
+len=-1
+len=-1
+len=-1
+len=-1
+len=-1
+len=-1
+len=-1
+len=-1
+len=-1
+len=-1
+len=-1
+len=-1
+len=-1
+len=-1
+len=-1
+len=-1
+len=-1
+len=-1
+len=-1
+len=-1
+END
+len=-1
+END
+Buf Received: (13)
+ >27
+TCPMSG_WRITE_REQUEST
+tcpmsg_write_request
+>  hdr.msgid=2
+>  hdr.serialno=35
+>  hdr.sockid=1
+>  msg->data=เM
+  sockid=1 socket=1936
+  sockid=1 filter=00401019
+ {7
+filter_send_raw(sockid=1, msgbuf=เM, len=1
+Wrote เM
+tcpmsg_write_response(sockid=1 status=0 serialno=35)
+  sockid=1 socket=1936
+tcpmsg_send_data(sockid=1, tcpqueue=0 data= len=16)
+  sockid=1 socket=1936
+  Sockid=1
+  Sending to queue 8449
+ <15
+sending entry=0 len=40 
+xxxx done
+END
+END
+Buf Received: (12)
+ >28
+TCPMSG_ACKNOWLEDGE
+tcpmsg_acknowledge
+>  hdr.msgid=7
+>  hdr.serialno=36
+>  hdr.sockid=1
+  sockid=1 socket=1936
+  read enabled = 0
+len=-1
+len=-1
+len=-1
+len=-1
+len=-1
+len=-1
+len=-1
+len=-1
+len=-1
+len=-1
+len=-1
+len=-1
+len=-1
+len=-1
+len=-1
+len=-1
+len=-1
+len=-1
+len=-1
+len=-1
+len=-1
+len=-1
+len=-1
+len=-1
+len=-1
+len=-1
+len=-1
+len=-1
+len=-1
+len=-1
+len=-1
+len=-1
+len=-1
+len=-1
+len=-1
+len=-1
+len=-1
+len=-1
+len=-1
+len=-1
+len=-1
+len=-1
+len=-1
+len=-1
+len=-1
+len=-1
+len=-1
+len=-1
+len=-1
+len=-1
+len=-1
+len=-1
+len=-1
+len=-1
+len=-1
+len=-1
+len=-1
+len=-1
+len=-1
+len=-1
+len=-1
+len=-1
+len=-1
+len=-1
+len=-1
+len=-1
+len=-1
+len=-1
+len=-1
+len=-1
+len=-1
+len=-1
+len=-1
+len=-1
+len=-1
+len=-1
+len=-1
+len=-1
+len=-1
+len=-1
+len=-1
+len=-1
+len=-1
+len=-1
+len=-1
+len=-1
+len=-1
+len=-1
+len=-1
+len=-1
+len=-1
+len=-1
+len=-1
+len=-1
+len=-1
+len=-1
+len=-1
+len=-1
+len=-1
+len=-1
+len=-1
+len=-1
+len=-1
+len=-1
+len=-1
+len=-1
+len=-1
+len=-1
+len=-1
+len=-1
+len=-1
+len=-1
+len=-1
+len=-1
+len=-1
+len=-1
+len=-1
+len=-1
+len=-1
+len=-1
+len=-1
+len=-1
+len=-1
+len=-1
+len=-1
+len=-1
+len=-1
+len=-1
+len=-1
+len=-1
+len=-1
+len=-1
+len=-1
+len=-1
+len=-1
+len=-1
+len=-1
+len=-1
+len=-1
+len=-1
+len=-1
+len=-1
+len=-1
+len=-1
+len=-1
+len=-1
+len=-1
+len=-1
+len=-1
+len=-1
+len=-1
+len=-1
+len=-1
+len=-1
+len=-1
+len=-1
+len=-1
+len=-1
+len=-1
+len=-1
+len=-1
+len=-1
+len=-1
+len=-1
+len=-1
+len=-1
+len=-1
+len=-1
+len=-1
+len=-1
+len=-1
+len=-1
+len=-1
+len=-1
+len=-1
+len=-1
+len=-1
+len=-1
+len=-1
+len=-1
+len=-1
+len=-1
+len=-1
+len=-1
+len=-1
+len=-1
+len=-1
+len=-1
+len=-1
+len=-1
+len=-1
+len=-1
+len=-1
+len=-1
+len=-1
+len=-1
+len=-1
+len=-1
+len=-1
+len=-1
+len=-1
+len=-1
+len=-1
+len=-1
+len=-1
+len=-1
+len=-1
+len=-1
+len=-1
+len=-1
+len=-1
+len=-1
+len=-1
+len=-1
+len=-1
+len=-1
+len=-1
+len=-1
+len=-1
+len=-1
+len=-1
+len=-1
+len=-1
+len=-1
+len=-1
+len=-1
+len=-1
+len=-1
+len=-1
+len=-1
+len=-1
+len=-1
+len=-1
+len=-1
+len=-1
+len=-1
+len=-1
+len=-1
+len=-1
+len=-1
+len=-1
+len=-1
+len=-1
+len=-1
+len=-1
+len=-1
+len=-1
+len=-1
+len=-1
+len=-1
+len=-1
+len=-1
+len=-1
+len=-1
+len=-1
+len=-1
+len=-1
+len=-1
+len=-1
+len=-1
+len=-1
+len=-1
+len=-1
+len=-1
+len=-1
+len=-1
+len=-1
+len=-1
+len=-1
+len=-1
+len=-1
+len=-1
+END
+len=-1
+END
+Buf Received: (13)
+ >29
+TCPMSG_WRITE_REQUEST
+tcpmsg_write_request
+>  hdr.msgid=2
+>  hdr.serialno=37
+>  hdr.sockid=1
+>  msg->data= เM
+  sockid=1 socket=1936
+  sockid=1 filter=00401019
+ {8
+filter_send_raw(sockid=1, msgbuf= เM, len=1
+Wrote  เM
+tcpmsg_write_response(sockid=1 status=0 serialno=37)
+  sockid=1 socket=1936
+tcpmsg_send_data(sockid=1, tcpqueue=0 data= len=16)
+  sockid=1 socket=1936
+  Sockid=1
+  Sending to queue 8449
+ <16
+sending entry=0 len=40 
+xxxx done
+END
+END
+Buf Received: (13)
+ >30
+TCPMSG_WRITE_REQUEST
+tcpmsg_write_request
+>  hdr.msgid=2
+>  hdr.serialno=38
+>  hdr.sockid=1
+>  msg->data= เM
+  sockid=1 socket=1936
+  sockid=1 filter=00401019
+ {9
+filter_send_raw(sockid=1, msgbuf= เM, len=1
+Wrote  เM
+tcpmsg_write_response(sockid=1 status=0 serialno=38)
+  sockid=1 socket=1936
+tcpmsg_send_data(sockid=1, tcpqueue=0 data= len=16)
+  sockid=1 socket=1936
+  Sockid=1
+  Sending to queue 8449
+ <17
+sending entry=0 len=40 
+xxxx done
+END
+END
+Buf Received: (13)
+ >31
+TCPMSG_WRITE_REQUEST
+tcpmsg_write_request
+>  hdr.msgid=2
+>  hdr.serialno=39
+>  hdr.sockid=1
+>  msg->data= เM
+  sockid=1 socket=1936
+  sockid=1 filter=00401019
+ {10
+filter_send_raw(sockid=1, msgbuf= เM, len=1
+Wrote  เM
+tcpmsg_write_response(sockid=1 status=0 serialno=39)
+  sockid=1 socket=1936
+tcpmsg_send_data(sockid=1, tcpqueue=0 data= len=16)
+  sockid=1 socket=1936
+  Sockid=1
+  Sending to queue 8449
+ <18
+sending entry=0 len=40 
+xxxx done
+END
+END
+Buf Received: (12)
+ >32
+TCPMSG_ACKNOWLEDGE
+tcpmsg_acknowledge
+>  hdr.msgid=7
+>  hdr.serialno=41
+>  hdr.sockid=1
+  sockid=1 socket=1936
+  read enabled = 2
+END
+END
+Buf Received: (13)
+ >33
+TCPMSG_WRITE_REQUEST
+tcpmsg_write_request
+>  hdr.msgid=2
+>  hdr.serialno=42
+>  hdr.sockid=1
+>  msg->data=เM
+  sockid=1 socket=1936
+  sockid=1 filter=00401019
+ {11
+filter_send_raw(sockid=1, msgbuf=เM, len=1
+Wrote เM
+tcpmsg_write_response(sockid=1 status=0 serialno=42)
+  sockid=1 socket=1936
+tcpmsg_send_data(sockid=1, tcpqueue=0 data= len=16)
+  sockid=1 socket=1936
+  Sockid=1
+  Sending to queue 8449
+ <19
+sending entry=0 len=40 
+xxxx done
+END
+END
+Buf Received: (12)
+ >34
+TCPMSG_ACKNOWLEDGE
+tcpmsg_acknowledge
+>  hdr.msgid=7
+>  hdr.serialno=43
+>  hdr.sockid=1
+  sockid=1 socket=1936
+  read enabled = 2
